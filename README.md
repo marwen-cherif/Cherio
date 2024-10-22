@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cherio
 
-## Getting Started
+Cherio is a fullstack medical application built with **Next.js**, designed to streamline appointment scheduling and patient record management for healthcare providers and patients. It leverages **PostgreSQL** for secure and efficient data management. The application is run entirely using **Docker Compose** for easy setup, with everything—database and development server—containerized.
 
-First, run the development server:
+## Features
+
+- **Appointment Scheduling**: Patients can book appointments, and doctors can manage their schedules.
+- **Patient Records**: Secure and efficient storage and management of patient medical histories.
+- **Automated Notifications**: Notifications and reminders for upcoming appointments.
+- **Authentication**: Secure user authentication via JWT.
+- **Real-time Updates**: Real-time appointment management and updates.
+
+## Tech Stack
+
+- **Framework**: Next.js (Fullstack React)
+- **Database**: PostgreSQL (with Prisma ORM)
+- **Containerization**: Docker, Docker Compose
+- **Package Manager**: pnpm
+- **Port**: 4000 (Development and Production)
+
+## Installation
+
+To run **Cherio** locally using Docker Compose, follow these steps:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/cherio.git
+    ```
+
+2. Navigate into the project directory:
+    ```bash
+    cd cherio
+    ```
+
+3. Copy the `.env.example` file and rename it to `.env`:
+    ```bash
+    cp .env.example .env
+    ```
+
+4. Modify the `.env` file with your own values, particularly the `JWT_SECRET`:
+    ```env
+    JWT_SECRET=your-jwt-secret
+    PORT=4000
+    ```
+
+5. Run the development server using Docker Compose:
+    ```bash
+    pnpm start:dev
+    ```
+
+6. Open your browser and visit `http://localhost:4000` to access the app.
+
+### Docker Compose Setup
+
+Cherio uses **Docker Compose** to orchestrate the development environment, which includes:
+
+- A **PostgreSQL** database service.
+- The **Next.js** development server.
+
+`pnpm start:dev` uses Docker Compose to:
+1. Build the PostgreSQL container.
+2. Build and start the Next.js development server.
+3. Link both services and expose them via `localhost:4000`.
+
+You don’t need to install PostgreSQL manually—the Docker setup handles everything for you.
+
+## Database Setup
+
+The application uses **Prisma** to manage the database schema. Migrations will be automatically applied when the Docker containers are built. If you need to manually run migrations:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+pnpm prisma-migrate
