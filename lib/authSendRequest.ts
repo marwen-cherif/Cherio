@@ -1,9 +1,6 @@
-import { Client, LibraryResponse, SendEmailV3_1 } from 'node-mailjet';
-
-const mailjet = new Client({
-  apiKey: process.env.MJ_APIKEY_PUBLIC as string,
-  apiSecret: process.env.MJ_APIKEY_PRIVATE as string,
-});
+const apiKey = process.env.MJ_APIKEY_PUBLIC as string;
+const apiSecret = process.env.MJ_APIKEY_PRIVATE as string;
+const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64');
 
 export async function sendVerificationRequest({
   identifier: email,
@@ -14,7 +11,7 @@ export async function sendVerificationRequest({
 }) {
   console.log('sending mail');
 
-  const data: SendEmailV3_1.Body = {
+  const data = {
     Messages: [
       {
         From: {
@@ -35,13 +32,25 @@ export async function sendVerificationRequest({
     ],
   };
 
-  const result: LibraryResponse<SendEmailV3_1.Response> = await mailjet
-    .post('send', { version: 'v3.1' })
-    .request(data);
+  try {
+    const response = await fetch('https://api.mailjet.com/v3.1/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${auth}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-  const { Status } = result.body.Messages[0];
+    const result = await response.json();
 
-  if (Status === 'error') {
-    throw new Error(JSON.stringify(result.response));
+    if (response.status !== 200) {
+      throw new Error(JSON.stringify(result));
+    }
+
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw new Error(`Failed to send verification email: ${error.message}`);
   }
 }
