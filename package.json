@@ -16,7 +16,6 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
     "@auth/unstorage-adapter": "^2.0.0",
-    "@next-auth/prisma-adapter": "^1.0.7",
     "@prisma/client": "5.21.1",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-collapsible": "^1.0.3",
