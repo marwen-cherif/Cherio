@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  frontend:
+    container_name: cherio
+    build:
+      context: .
+      target: dev
+      args:
+        - NODE_ENV=development
+    restart: always
+    command: pnpm dev
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - DATABASE_URL=postgresql://cherio:cherio@localhost:5432/mydb?schema=public
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 4000:4000
+  db:
+    container_name: cherio-db
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_USER: cherio
+      POSTGRES_PASSWORD: cherio
+      POSTGRES_DB: cherio-db
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
