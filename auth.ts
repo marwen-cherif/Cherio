@@ -17,7 +17,9 @@ const config = {
       maxAge: 60 * 60 * 24,
       sendVerificationRequest,
     },
-    GoogleProvider,
+    GoogleProvider({
+      allowDangerousEmailAccountLinking: true,
+    }),
   ],
   basePath: '/auth',
   session: { strategy: 'jwt' },

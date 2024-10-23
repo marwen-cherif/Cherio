@@ -33,8 +33,6 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY prisma ./prisma
 
-RUN npx prisma generate
-
 COPY . .
 COPY next.config.mjs ./next.config.mjs
 
@@ -47,8 +45,6 @@ WORKDIR /app
 COPY --from=prod-deps /app/node_modules ./node_modules
 
 COPY prisma ./prisma
-
-RUN npx prisma generate
 
 COPY . .
 

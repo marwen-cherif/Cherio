@@ -49,7 +49,7 @@ export async function sendVerificationRequest({
     }
 
     console.log('Email sent successfully');
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending email:', error);
     throw new Error(`Failed to send verification email: ${error.message}`);
   }
