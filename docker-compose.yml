@@ -12,7 +12,7 @@ services:
     environment:
       - NODE_ENV=development
       - WATCHPACK_POLLING=true
-      - DATABASE_URL=postgresql://cherio:cherio@localhost:5432/mydb?schema=public
+      - POSTGRES_PRISMA_URL=postgresql://cherio:cherio@localhost:5432/cherio-db?schema=public
     depends_on:
       - db
     volumes:

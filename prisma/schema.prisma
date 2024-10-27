@@ -9,8 +9,23 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  LEAD_DOCTOR
+  DOCTOR
+  PATIENT
+}
+
+model Tenant {
+  id    String  @id @default(cuid())
+  name  String?
+  users User[]
+}
+
 model User {
-  id            String          @id @default(cuid())
+  id String @id @default(cuid())
+
   name          String?
   email         String          @unique
   emailVerified DateTime?
@@ -22,6 +37,15 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  tenant   Tenant? @relation(fields: [tenantId], references: [id])
+  tenantId String?
+
+  role           Role            @default(DOCTOR)
+  patientDetails PatientDetails?
+
+  phone   String?
+  address Address?
 }
 
 model Account {
@@ -77,4 +101,23 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+}
+
+model PatientDetails {
+  id String @id @default(cuid())
+
+  user      User   @relation(fields: [patientId], references: [id])
+  patientId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Address {
+  id          String @id @default(cuid())
+  street      String
+  city        String
+  zip         String
+  countryCode String
+  user        User   @relation(fields: [id], references: [id])
 }

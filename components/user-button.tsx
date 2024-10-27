@@ -1,18 +1,21 @@
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
-import { auth } from "auth";
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Button } from './ui/button';
+import { auth } from 'auth';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { SignIn, SignOut } from "./auth-components";
+} from './ui/dropdown-menu';
+import { SignIn, SignOut } from './auth-components';
 
 export default async function UserButton() {
   const session = await auth();
-  if (!session?.user) return <SignIn />;
+  if (!session?.user) {
+    return <SignIn />;
+  }
+
   return (
     <div className="flex items-center gap-2">
       <span className="hidden text-sm sm:inline-flex">
@@ -27,7 +30,7 @@ export default async function UserButton() {
                   session.user.image ??
                   `https://api.dicebear.com/9.x/thumbs/svg?seed=${Math.floor(Math.random() * 100000) + 1}&randomizeIds=true`
                 }
-                alt={session.user.name ?? ""}
+                alt={session.user.name ?? ''}
               />
             </Avatar>
           </Button>
