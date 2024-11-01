@@ -8,7 +8,7 @@ import { prisma } from '@/prisma/prisma';
 
 const config = {
   theme: { logo: '/inverted-logo.svg' },
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma as any),
   providers: [
     {
       id: 'http-email',
@@ -26,7 +26,7 @@ const config = {
   callbacks: {
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl;
-      if (pathname === '/middleware-example') {
+      if (pathname === '/settings/users' || pathname === '/') {
         return !!auth;
       }
 
