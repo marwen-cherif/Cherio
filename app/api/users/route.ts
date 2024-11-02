@@ -1,28 +1,34 @@
 import { auth } from 'auth';
 import { prisma } from '@/prisma/prisma';
 import { Role } from '@/prisma/generated/client';
+import { getCurrentUser } from '../../helpers/ApiHelper/getCurrentUser';
 
 export const GET = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const user = await prisma.user.findFirstOrThrow({
-      where: {
-        email: req.auth.user.email,
-        role: {
-          in: [Role.LEAD_DOCTOR, Role.ADMIN, Role.SUPER_ADMIN],
-        },
-      },
-    });
+    const currentUser = await getCurrentUser({ email: req.auth.user.email });
 
-    if (!user) {
+    if (!currentUser) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
       );
     }
 
+    if (currentUser.role === Role.SUPER_ADMIN) {
+      const users = await prisma.user.findMany({
+        where: {
+          role: {
+            not: 'SUPER_ADMIN',
+          },
+        },
+      });
+
+      return Response.json({ value: users, success: true });
+    }
+
     const users = await prisma.user.findMany({
       where: {
-        tenantId: user.tenantId,
+        tenantId: currentUser.tenantId,
         role: {
           not: 'SUPER_ADMIN',
         },
@@ -40,16 +46,9 @@ export const GET = auth(async (req) => {
 
 export const POST = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const user = await prisma.user.findFirstOrThrow({
-      where: {
-        email: req.auth.user.email,
-        role: {
-          in: [Role.LEAD_DOCTOR, Role.ADMIN, Role.SUPER_ADMIN],
-        },
-      },
-    });
+    const currentUser = await getCurrentUser({ email: req.auth.user.email });
 
-    if (!user) {
+    if (!currentUser) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
@@ -64,7 +63,7 @@ export const POST = auth(async (req) => {
         email,
         phone,
         role,
-        tenantId: user.tenantId,
+        tenantId: currentUser.tenantId,
         firstName,
         lastName,
       },
@@ -81,14 +80,7 @@ export const POST = auth(async (req) => {
 
 export const PUT = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const currentUser = await prisma.user.findFirstOrThrow({
-      where: {
-        email: req.auth.user.email,
-        role: {
-          in: [Role.LEAD_DOCTOR, Role.ADMIN, Role.SUPER_ADMIN],
-        },
-      },
-    });
+    const currentUser = await getCurrentUser({ email: req.auth.user.email });
 
     if (!currentUser) {
       return Response.json(
@@ -103,6 +95,7 @@ export const PUT = auth(async (req) => {
     const newUser = await prisma.user.update({
       where: {
         id,
+        tenantId: currentUser.tenantId,
       },
       data: {
         email,

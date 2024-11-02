@@ -138,7 +138,8 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   tenantId: 'tenantId',
   role: 'role',
-  phone: 'phone'
+  phone: 'phone',
+  locale: 'locale'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
@@ -184,9 +185,9 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
 
 exports.Prisma.PatientDetailsScalarFieldEnum = {
   id: 'id',
-  patientId: 'patientId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  birthDate: 'birthDate'
 };
 
 exports.Prisma.AddressScalarFieldEnum = {
@@ -195,6 +196,29 @@ exports.Prisma.AddressScalarFieldEnum = {
   city: 'city',
   zip: 'zip',
   countryCode: 'countryCode'
+};
+
+exports.Prisma.NoteScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  createdAt: 'createdAt',
+  createdById: 'createdById',
+  updatedAt: 'updatedAt',
+  updatedById: 'updatedById',
+  patientId: 'patientId'
+};
+
+exports.Prisma.DocumentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  path: 'path',
+  createdAt: 'createdAt',
+  createdById: 'createdById',
+  updatedAt: 'updatedAt',
+  updatedById: 'updatedById',
+  contentType: 'contentType',
+  noteId: 'noteId',
+  visibleTo: 'visibleTo'
 };
 
 exports.Prisma.SortOrder = {
@@ -227,7 +251,9 @@ exports.Prisma.ModelName = {
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
   PatientDetails: 'PatientDetails',
-  Address: 'Address'
+  Address: 'Address',
+  Note: 'Note',
+  Document: 'Document'
 };
 
 /**
