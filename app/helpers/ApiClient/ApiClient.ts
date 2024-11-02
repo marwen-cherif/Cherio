@@ -1,4 +1,8 @@
+'use client';
+
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { addAxiosDateTransformer } from 'axios-date-transformer';
+
 import { Forbidden } from '../../errors/Forbidden';
 import { HttpError } from '../../errors/HttpError';
 import { Unauthorized } from '../../errors/Unauthorized';
@@ -70,10 +74,10 @@ export class ApiClient {
     }
   }
 
-  public async uploadFile(
+  public async uploadFile<Response>(
     endpoint: string = '',
     formData: FormData
-  ): Promise<any> {
+  ): Promise<Response> {
     try {
       const client = this.createClient();
       const response = await client.post(endpoint, formData, {
@@ -81,7 +85,8 @@ export class ApiClient {
           'Content-Type': 'multipart/form-data',
         },
       });
-      return response.data;
+
+      return response.data.value as Response;
     } catch (error) {
       this.handleError(error);
     }
@@ -98,7 +103,12 @@ export class ApiClient {
         Authorization: `Bearer ${this.authToken}`,
       };
     }
-    return axios.create(config);
+
+    const axiosInstance = axios.create(config);
+
+    return addAxiosDateTransformer(axiosInstance, {
+      allowlist: ['birthDate', 'createdAt', 'updatedAt'],
+    });
   }
 
   private handleError(error: any): never {

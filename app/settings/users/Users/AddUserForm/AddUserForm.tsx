@@ -18,7 +18,7 @@ export const AddUserForm: FC<AddUserFormProps> = ({ onClose }) => {
   } = formContext;
 
   return (
-    <form onSubmit={handleSubmitNewUser}>
+    <form onSubmit={handleSubmitNewUser} noValidate>
       <Select
         name="role"
         options={[

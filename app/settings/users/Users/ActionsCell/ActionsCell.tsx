@@ -17,6 +17,8 @@ export const ActionsCell: FC<{ user: User }> = ({ user }) => {
     },
   });
 
+  const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
+    useState(false);
   const [isUpdateUserModalOpen, setIsUpdateUserModalOpen] = useState(false);
 
   return (
@@ -44,10 +46,38 @@ export const ActionsCell: FC<{ user: User }> = ({ user }) => {
         </Suspense>
       </Modal>
 
+      <Modal
+        isOpen={isConfirmDeleteModalOpen}
+        onClose={() => setIsConfirmDeleteModalOpen(false)}
+        header="Patient will be deleted permently from the system"
+      >
+        <div className="flex justify-end gap-4">
+          <Button
+            color="dark"
+            size="sm"
+            onClick={() => setIsConfirmDeleteModalOpen(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            color="failure"
+            size="sm"
+            onClick={async () => {
+              await mutateAsync();
+
+              setIsConfirmDeleteModalOpen(false);
+            }}
+            isProcessing={isPending}
+          >
+            Confirm
+          </Button>
+        </div>
+      </Modal>
+
       <Button
         color="failure"
         size="sm"
-        onClick={() => mutateAsync()}
+        onClick={() => setIsConfirmDeleteModalOpen(true)}
         isProcessing={isPending}
       >
         Delete

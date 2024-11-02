@@ -1,5 +1,3 @@
-'use client';
-
 import React, { Suspense } from 'react';
 import { Users } from '@/app/settings/users/Users/Users';
 import Skeleton from 'react-loading-skeleton';

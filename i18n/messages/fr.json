@@ -1,0 +1,27 @@
+{
+  "Patients": {
+    "title": "Hello world!",
+    "Patient": {
+      "title": "Fiche de {name}",
+      "personalInformation": "Informations personnelles",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "birthDate": "Date de naissance",
+      "notes": "Notes",
+      "addNote": "Ajouter une note",
+      "noteFilesLabel": "Fichiers",
+      "noteLabel": "Note",
+      "noteAdded": "Note ajoutée avec succéss",
+      "Notes": {
+        "title": "Notes",
+        "content": "Contenu",
+        "files": "Fichiers",
+        "createdAt": "Créé le",
+        "updatedAt": "Mis à jour le",
+        "preview": "Prévisualiser le fichier"
+      }
+    }
+  }
+}

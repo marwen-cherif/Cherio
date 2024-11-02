@@ -13,51 +13,6 @@ import { useGetUsers } from '@/app/settings/users/Users/hooks/useGetUsers';
 import { ActionsCell } from '@/app/settings/users/Users/ActionsCell/ActionsCell';
 import { prisma } from '../../../../prisma/prisma';
 import { GetServerSideProps } from 'next';
-/*
-export async function getServerSideProps(context) {}
-
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  if (req.auth && req.auth.user && req.auth.user.email) {
-    const user = await prisma.user.findFirstOrThrow({
-      where: {
-        email: req.auth.user.email,
-        role: {
-          in: [Role.LEAD_DOCTOR, Role.ADMIN, Role.SUPER_ADMIN],
-        },
-      },
-    });
-
-    if (!user) {
-      return Response.json(
-        { message: 'Unauthorized', success: false },
-        { status: 401 }
-      );
-    }
-
-    const users = await prisma.user.findMany({
-      where: {
-        tenantId: user.tenantId,
-        role: {
-          not: 'SUPER_ADMIN',
-        },
-      },
-    });
-
-    return Response.json({ value: users, success: true });
-  }
-
-  return Response.json(
-    { message: 'Unauthorized', success: false },
-    { status: 401 }
-  );
-
-  return {
-    props: {
-      users,
-      session: await getServerSession(context.req, context.res, authOptions),
-    },
-  };
-};*/
 
 export const Users: FC = () => {
   const [isAddNewUserModalOpen, setIsAddNewUserModalOpen] = useState(false);

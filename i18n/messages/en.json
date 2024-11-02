@@ -1,0 +1,14 @@
+{
+  "Patients": {
+    "title": "Hello world!",
+    "Patient": {
+      "title": "Record of {name}",
+      "personalInformation": "Personal Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "birthDate": "Birth Date"
+    }
+  }
+}

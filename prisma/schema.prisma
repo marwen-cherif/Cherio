@@ -48,6 +48,13 @@ model User {
 
   phone   String?
   address Address?
+  locale  String   @default("en")
+
+  createdDocuments Document[] @relation(name: "CreatedBy")
+  updatedDocuments Document[] @relation(name: "UpdatedBy")
+
+  createdNotes Note[] @relation(name: "CreatedBy")
+  updatedNotes Note[] @relation(name: "UpdatedBy")
 }
 
 model Account {
@@ -106,13 +113,14 @@ model Authenticator {
 }
 
 model PatientDetails {
-  id String @id @default(cuid())
+  id   String @id
+  user User   @relation(fields: [id], references: [id])
 
-  user      User   @relation(fields: [patientId], references: [id])
-  patientId String @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  birthDate DateTime?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  notes Note[]
 }
 
 model Address {
@@ -122,4 +130,43 @@ model Address {
   zip         String
   countryCode String
   user        User   @relation(fields: [id], references: [id])
+}
+
+model Note {
+  id      String @id @default(cuid())
+  content String
+
+  createdAt   DateTime @default(now())
+  createdBy   User     @relation(name: "CreatedBy", fields: [createdById], references: [id])
+  createdById String
+
+  updatedAt   DateTime? @updatedAt
+  updatedBy   User?     @relation(name: "UpdatedBy", fields: [updatedById], references: [id])
+  updatedById String?
+
+  patientDetails PatientDetails @relation(fields: [patientId], references: [id])
+  patientId      String
+
+  files Document[]
+}
+
+model Document {
+  id   String @id @default(cuid())
+  name String
+  path String
+
+  createdAt   DateTime @default(now())
+  createdBy   User     @relation(name: "CreatedBy", fields: [createdById], references: [id])
+  createdById String
+
+  updatedAt   DateTime? @updatedAt
+  updatedBy   User?     @relation(name: "UpdatedBy", fields: [updatedById], references: [id])
+  updatedById String?
+
+  contentType String
+
+  note   Note?   @relation(fields: [noteId], references: [id])
+  noteId String?
+
+  visibleTo Role[]
 }
