@@ -8,7 +8,20 @@
       "lastName": "Last Name",
       "email": "Email",
       "phone": "Phone",
-      "birthDate": "Birth Date"
+      "birthDate": "Date of Birth",
+      "notes": "Notes",
+      "addNote": "Add a Note",
+      "noteFilesLabel": "Files",
+      "noteLabel": "Note",
+      "noteAdded": "Note added successfully",
+      "Notes": {
+        "title": "Notes",
+        "content": "Content",
+        "files": "Files",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "preview": "Preview File"
+      }
     }
   }
 }
