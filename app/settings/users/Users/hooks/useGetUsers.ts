@@ -1,7 +1,7 @@
 'use client';
 
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../../lib/ApiClient/Service';
 
 export const GET_USERS = 'getUsers';
 

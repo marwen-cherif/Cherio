@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { Service } from '../../../../helpers/ApiClient/Service';
+import { Service } from '../../../../../lib/ApiClient/Service';
 
 const GET_NOTES = 'GET_NOTES';
 

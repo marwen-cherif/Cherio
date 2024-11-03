@@ -3,9 +3,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { addAxiosDateTransformer } from 'axios-date-transformer';
 
-import { Forbidden } from '../../errors/Forbidden';
-import { HttpError } from '../../errors/HttpError';
-import { Unauthorized } from '../../errors/Unauthorized';
+import { Forbidden } from '../errors/Forbidden';
+import { HttpError } from '../errors/HttpError';
+import { Unauthorized } from '../errors/Unauthorized';
 
 export class ApiClient {
   constructor(

@@ -1,7 +1,7 @@
 import React, { FC, Suspense, useState } from 'react';
 import { Button } from 'flowbite-react';
 import { useMutation } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../../lib/ApiClient/Service';
 import { toast } from 'react-toastify';
 import { Modal } from '../../../../../components/ui/Modal/Modal';
 import Skeleton from 'react-loading-skeleton';

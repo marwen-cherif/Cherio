@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import Preview from 'react-file-previewer';
 
-import { Service } from '../../../helpers/ApiClient/Service';
+import { Service } from '../../../../lib/ApiClient/Service';
 
 const GET_PRESIGNED_URL = 'getPresignedUrl';
 

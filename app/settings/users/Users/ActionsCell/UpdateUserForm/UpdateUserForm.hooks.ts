@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useQueryClient } from '@tanstack/react-query';
-import { Service } from '../../../../../helpers/ApiClient/Service';
+import { Service } from '../../../../../../lib/ApiClient/Service';
 import { Role } from '../../../../../../prisma/generated/client';
 import { GET_USERS } from '../../hooks/useGetUsers';
 import { toast } from 'react-toastify';

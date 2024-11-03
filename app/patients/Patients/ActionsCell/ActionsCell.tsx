@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'flowbite-react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../lib/ApiClient/Service';
 import { toast } from 'react-toastify';
 import { Modal } from '../../../../components/ui/Modal/Modal';
 import { GET_PATIENTS } from '../hooks/useGetPatients';

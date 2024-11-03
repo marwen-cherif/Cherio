@@ -1,11 +1,11 @@
 import { auth } from 'auth';
 import { v4 } from 'uuid';
 
-import { getCurrentUser } from '../../../../helpers/ApiHelper/getCurrentUser';
+import { getCurrentUser } from '../../../../../lib/ApiHelper/getCurrentUser';
 import { prisma } from '../../../../../prisma/prisma';
 import { Role } from '../../../../../prisma/generated/client';
-import { documentKeyBuilder } from '../../../../helpers/FileStorage/documentKeyBuilder';
-import { uploadFileToStorage } from '../../../../helpers/FileStorage/uploadFileToStorage';
+import { documentKeyBuilder } from '../../../../../lib/FileStorage/documentKeyBuilder';
+import { uploadFileToStorage } from '../../../../../lib/FileStorage/uploadFileToStorage';
 import mime from 'mime-types';
 
 export const POST = auth(async (req, { params }) => {

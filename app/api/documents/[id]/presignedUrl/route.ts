@@ -1,7 +1,7 @@
 import { auth } from 'auth';
-import { getCurrentUser } from '../../../../helpers/ApiHelper/getCurrentUser';
+import { getCurrentUser } from '../../../../../lib/ApiHelper/getCurrentUser';
 import { prisma } from '../../../../../prisma/prisma';
-import { generatePresignedUrl } from '../../../../helpers/FileStorage/generatePresignedUrl';
+import { generatePresignedUrl } from '../../../../../lib/FileStorage/generatePresignedUrl';
 
 export const GET = auth(async (req, { params }) => {
   const documentId = (await params)?.id as string;

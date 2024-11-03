@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useQueryClient } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../lib/ApiClient/Service';
 import { toast } from 'react-toastify';
 import { GET_PATIENTS } from '../hooks/useGetPatients';
 import { addPatientFormSchema } from './AddPatientForm.schema';

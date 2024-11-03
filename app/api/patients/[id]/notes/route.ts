@@ -1,5 +1,5 @@
 import { auth } from 'auth';
-import { getCurrentUser } from '../../../../helpers/ApiHelper/getCurrentUser';
+import { getCurrentUser } from '../../../../../lib/ApiHelper/getCurrentUser';
 import { prisma } from '../../../../../prisma/prisma';
 
 export const GET = auth(async (req, { params }) => {

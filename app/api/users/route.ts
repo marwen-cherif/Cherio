@@ -1,7 +1,7 @@
 import { auth } from 'auth';
 import { prisma } from '@/prisma/prisma';
 import { Role } from '@/prisma/generated/client';
-import { getCurrentUser } from '../../helpers/ApiHelper/getCurrentUser';
+import { getCurrentUser } from '../../../lib/ApiHelper/getCurrentUser';
 
 export const GET = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
