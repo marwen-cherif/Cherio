@@ -132,6 +132,9 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
     devDependencies:
+      '@auth/core':
+        specifier: ^0.37.2
+        version: 0.37.2(@simplewebauthn/server@9.0.3)(nodemailer@6.9.15)
       '@next/eslint-plugin-next':
         specifier: ^14.2.16
         version: 14.2.16

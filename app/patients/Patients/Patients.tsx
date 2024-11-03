@@ -2,7 +2,6 @@
 
 import React, { FC, Suspense, useState } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { User } from '@/prisma/generated/client';
 import { Table } from '@/components/ui/Table/Table';
 import { Button } from 'flowbite-react';
 import { FaPlus } from 'react-icons/fa';
@@ -11,6 +10,7 @@ import { AddPatientForm } from './AddPatientForm/AddPatientForm';
 import Skeleton from 'react-loading-skeleton';
 import { ActionsCell } from './ActionsCell/ActionsCell';
 import { useGetPatients } from './hooks/useGetPatients';
+import { User } from '../../types/User';
 
 export const Patients: FC = () => {
   const [isAddNewPatientModalOpen, setIsAddNewPatientModalOpen] =

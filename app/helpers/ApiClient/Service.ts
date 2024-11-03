@@ -1,6 +1,7 @@
 import { apiClient } from '@/app/helpers/ApiClient/ApiClientFactory';
-import { Role, User } from '@/prisma/generated/client';
+import { Role } from '@/prisma/generated/client';
 import { Note, PatientDetails } from '../../types/PatientDetails';
+import { User } from '../../types/User';
 
 export const Service = {
   getUsers: async () => {

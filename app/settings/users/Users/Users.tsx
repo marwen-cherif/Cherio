@@ -2,7 +2,6 @@
 
 import React, { FC, Suspense, useState } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { Role, User } from '@/prisma/generated/client';
 import { Table } from '@/components/ui/Table/Table';
 import { Button } from 'flowbite-react';
 import { FaPlus } from 'react-icons/fa';
@@ -11,8 +10,7 @@ import { AddUserForm } from '@/app/settings/users/Users/AddUserForm/AddUserForm'
 import Skeleton from 'react-loading-skeleton';
 import { useGetUsers } from '@/app/settings/users/Users/hooks/useGetUsers';
 import { ActionsCell } from '@/app/settings/users/Users/ActionsCell/ActionsCell';
-import { prisma } from '../../../../prisma/prisma';
-import { GetServerSideProps } from 'next';
+import { User } from '../../../types/User';
 
 export const Users: FC = () => {
   const [isAddNewUserModalOpen, setIsAddNewUserModalOpen] = useState(false);

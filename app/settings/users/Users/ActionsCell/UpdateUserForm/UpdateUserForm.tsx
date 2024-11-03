@@ -3,9 +3,9 @@ import { Select } from '../../../../../../components/ui/Select/Select';
 import { Input } from '../../../../../../components/ui/Input/Input';
 import { Button } from 'flowbite-react';
 import { Role } from '../../../../../../prisma/generated/client';
-import { User } from '@/prisma/generated/client';
 import { HiddenInput } from '../../../../../../components/ui/HiddenInput/HiddenInput';
 import { useUpdateUserForm } from './UpdateUserForm.hooks';
+import { User } from '../../../../../types/User';
 
 interface AddUserFormProps {
   onClose: () => void;

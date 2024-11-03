@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'flowbite-react';
-import { User } from '@/prisma/generated/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Service } from '@/app/helpers/ApiClient/Service';
 import { toast } from 'react-toastify';
 import { Modal } from '../../../../components/ui/Modal/Modal';
 import { GET_PATIENTS } from '../hooks/useGetPatients';
 import { redirect } from 'next/navigation';
+import { User } from '../../../types/User';
 
 export const ActionsCell: FC<{ user: User }> = ({ user }) => {
   const queryClient = useQueryClient();
