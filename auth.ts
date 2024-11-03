@@ -5,7 +5,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import type { NextAuthConfig } from 'next-auth';
 import { sendVerificationRequest } from './lib/authSendRequest';
 import { prisma } from '@/prisma/prisma';
-import { Awaitable } from '@auth/core/types';
 
 const config = {
   theme: { logo: '/inverted-logo.svg' },
@@ -54,15 +53,6 @@ const config = {
 } satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
-
-declare module 'next-auth' {
-  interface Session {
-    accessToken?: string;
-  }
-  type AppRouteHandlerFnContext = {
-    params: Awaitable<Record<string, string | string[]>>;
-  };
-}
 
 declare module 'next-auth/jwt' {
   interface JWT {
