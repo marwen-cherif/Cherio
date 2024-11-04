@@ -10,31 +10,31 @@ import { AddUserForm } from '@/app/settings/users/Users/AddUserForm/AddUserForm'
 import Skeleton from 'react-loading-skeleton';
 import { useGetUsers } from '@/app/settings/users/Users/hooks/useGetUsers';
 import { ActionsCell } from '@/app/settings/users/Users/ActionsCell/ActionsCell';
-import { User } from '../../../types/User';
+import { StaffMember } from '../../../types/StaffMember';
 
 export const Users: FC = () => {
   const [isAddNewUserModalOpen, setIsAddNewUserModalOpen] = useState(false);
 
-  const columns = React.useMemo<ColumnDef<User>[]>(
+  const columns = React.useMemo<ColumnDef<StaffMember>[]>(
     () => [
       {
-        accessorKey: 'email',
+        accessorKey: 'user.email',
         header: () => 'Email',
         footer: (props) => props.column.id,
       },
       {
-        accessorKey: 'phone',
+        accessorKey: 'user.phone',
         header: 'Phone',
         footer: (props) => props.column.id,
       },
       {
-        accessorKey: 'role',
+        accessorKey: 'user.role',
         header: () => 'Role',
         footer: (props) => props.column.id,
       },
       {
         header: 'Actions',
-        cell: (props) => <ActionsCell user={props.row.original} />,
+        cell: (props) => <ActionsCell staffMember={props.row.original} />,
       },
     ],
     []

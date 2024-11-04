@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useQueryClient } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../lib/ApiClient/Service';
 import { toast } from 'react-toastify';
 import { GET_PATIENTS } from '../hooks/useGetPatients';
 import { addPatientFormSchema } from './AddPatientForm.schema';
@@ -12,21 +12,28 @@ export const useAddPatientForm = ({ onClose }: { onClose: () => void }) => {
     mode: 'onChange',
     resolver: yupResolver(addPatientFormSchema),
   });
+
   const { handleSubmit } = formContext;
 
   const queryClient = useQueryClient();
 
   const handleSubmitNewUser = handleSubmit(async (data) => {
-    await Service.createPatient({
-      email: data.email,
-      phone: data.phone,
-      firstName: data.firstName,
-      lastName: data.lastName,
-    });
+    try {
+      await Service.createPatient({
+        email: data.email,
+        phone: data.phone,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      });
+    } catch (error) {
+      toast.error('Failed to create patient.');
+
+      return;
+    }
 
     await queryClient.invalidateQueries({ queryKey: [GET_PATIENTS] });
 
-    toast.success('User created successfully');
+    toast.success('Patient created successfully');
 
     onClose();
   });

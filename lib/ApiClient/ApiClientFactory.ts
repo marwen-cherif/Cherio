@@ -1,4 +1,4 @@
-import { ApiClient } from '@/app/helpers/ApiClient/ApiClient';
+import { ApiClient } from './ApiClient';
 
 export const apiClient = () => {
   return new ApiClient(process.env.BASE_URL || '', {

@@ -1,13 +1,15 @@
-import { apiClient } from '@/app/helpers/ApiClient/ApiClientFactory';
-import { Role } from '@/prisma/generated/client';
-import { Note, PatientDetails } from '../../types/PatientDetails';
-import { User } from '../../types/User';
+import { apiClient } from './ApiClientFactory';
+import { Role } from '../../prisma/generated/client';
+import { Note, PatientDetails } from '../../app/types/PatientDetails';
+import { User } from '../../app/types/User';
+import { StaffMember, UserStaffMember } from '../../app/types/StaffMember';
+import { Tenant } from '../../app/types/Tenant';
 
 export const Service = {
-  getUsers: async () => {
-    return apiClient().get<User[]>('/api/users');
+  getStaffMembers: async () => {
+    return apiClient().get<StaffMember[]>('/api/staffMembers');
   },
-  createUser: async (data: {
+  createStaffMember: async (data: {
     email: string;
     phone: string;
     role: Role;
@@ -22,13 +24,13 @@ export const Service = {
         firstName: string;
         lastName: string;
       },
-      User
-    >('/api/users', data);
+      Omit<StaffMember, 'user'>
+    >('/api/staffMembers', data);
   },
-  deleteUser: async ({ id }: { id: string }) => {
-    return apiClient().delete<{ id: string }>(`/api/users/${id}`);
+  deleteStaffMember: async ({ id }: { id: string }) => {
+    return apiClient().delete<{ id: string }>(`/api/staffMembers/${id}`);
   },
-  updateUser: async (data: {
+  updateStaffMember: async (data: {
     id: string;
     email: string;
     phone: string;
@@ -45,12 +47,12 @@ export const Service = {
         firstName: string;
         lastName: string;
       },
-      User
-    >('/api/users', data);
+      Omit<StaffMember, 'user'>
+    >('/api/staffMembers', data);
   },
 
   getPatients: async () => {
-    return apiClient().get<User[]>('/api/patients');
+    return apiClient().get<PatientDetails[]>('/api/patients');
   },
   createPatient: async (data: {
     email: string;
@@ -65,7 +67,7 @@ export const Service = {
         firstName: string;
         lastName: string;
       },
-      User
+      PatientDetails
     >('/api/patients', data);
   },
   deletePatient: async ({ id }: { id: string }) => {
@@ -80,14 +82,18 @@ export const Service = {
   }) => {
     return apiClient().put<
       {
-        id: string;
         email: string;
         phone: string;
         firstName: string;
         lastName: string;
       },
       User
-    >('/api/patients', data);
+    >(`/api/patients/${data.id}`, {
+      email: data.email,
+      phone: data.phone,
+      firstName: data.firstName,
+      lastName: data.lastName,
+    });
   },
   getPatient: async ({ id }: { id: string }) => {
     return apiClient().get<PatientDetails>(`/api/patients/${id}`);
@@ -119,5 +125,16 @@ export const Service = {
   },
   getPresignedUrl: async ({ id }: { id: string }) => {
     return apiClient().get<string>(`/api/documents/${id}/presignedUrl`);
+  },
+  getUser: async () => {
+    return apiClient().get<UserStaffMember>('/api/user');
+  },
+  initializeTenant: async ({ name }: { name: string }) => {
+    return apiClient().post<{ name: string }, Tenant>(
+      '/api/tenant/initialize',
+      {
+        name,
+      }
+    );
   },
 };

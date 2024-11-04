@@ -1,4 +1,16 @@
 {
+  "App": {
+    "submit": "Envoyer"
+  },
+  "Tenant": {
+    "Initialize": {
+      "isOwner": "Êtes-vous le propriétaire de cet établissement ?",
+      "tenantName": "Nom de l'établissement",
+      "actionByOwnerTitle": "Action requise par le propriétaire",
+      "youNeedToBeOwner": "Vous devez être le propriétaire de cet établissement pour continuer",
+      "ownerWillAddYou": "Le propriétaire de l'établissement vous ajoutera à l'application"
+    }
+  },
   "Patients": {
     "title": "Hello world!",
     "Patient": {

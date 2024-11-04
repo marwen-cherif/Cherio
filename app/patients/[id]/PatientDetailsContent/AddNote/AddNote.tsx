@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Modal } from '../../../../../components/ui/Modal/Modal';
 import { useForm } from 'react-hook-form';
 import { AddNoteFormValues } from './AddNote.types';
-import { Service } from '../../../../helpers/ApiClient/Service';
+import { Service } from '../../../../../lib/ApiClient/Service';
 import { useParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 
@@ -13,8 +13,6 @@ export const AddNote: FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
-
-  console.log(id);
 
   const formContext = useForm<AddNoteFormValues>();
   const {

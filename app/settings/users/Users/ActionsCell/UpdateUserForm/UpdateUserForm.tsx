@@ -5,17 +5,20 @@ import { Button } from 'flowbite-react';
 import { Role } from '../../../../../../prisma/generated/client';
 import { HiddenInput } from '../../../../../../components/ui/HiddenInput/HiddenInput';
 import { useUpdateUserForm } from './UpdateUserForm.hooks';
-import { User } from '../../../../../types/User';
+import { StaffMember } from '../../../../../types/StaffMember';
 
 interface AddUserFormProps {
   onClose: () => void;
-  user: User;
+  staffMember: StaffMember;
 }
 
-export const UpdateUserForm: FC<AddUserFormProps> = ({ onClose, user }) => {
+export const UpdateUserForm: FC<AddUserFormProps> = ({
+  onClose,
+  staffMember,
+}) => {
   const { formContext, handleSubmitNewUser } = useUpdateUserForm({
     onClose,
-    user,
+    staffMember,
   });
   const {
     register,

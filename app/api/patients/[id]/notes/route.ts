@@ -1,11 +1,11 @@
 import { auth } from 'auth';
-import { getCurrentUser } from '../../../../helpers/ApiHelper/getCurrentUser';
+import { getStaffMemberUser } from '../../../../../lib/ApiHelper/getUser';
 import { prisma } from '../../../../../prisma/prisma';
 
 export const GET = auth(async (req, { params }) => {
-  const { id: patientId } = (await params) as { id: string };
+  const { id: patientDetailsId } = (await params) as { id: string };
 
-  if (!patientId) {
+  if (!patientDetailsId) {
     return Response.json(
       { message: 'Bad Request', success: false },
       { status: 400 }
@@ -13,19 +13,21 @@ export const GET = auth(async (req, { params }) => {
   }
 
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const currentUser = await getCurrentUser({ email: req.auth.user.email });
+    const currentUser = await getStaffMemberUser({
+      email: req.auth.user.email,
+    });
 
-    if (!currentUser || !currentUser.tenantId) {
+    if (!currentUser || !currentUser.staffMember?.tenantId) {
       return Response.json(
         { message: 'User not found', success: false },
         { status: 404 }
       );
     }
 
-    const patient = await prisma.user.findFirstOrThrow({
+    const patient = await prisma.patientDetails.findFirstOrThrow({
       where: {
-        id: patientId,
-        tenantId: currentUser.tenantId,
+        id: patientDetailsId,
+        tenantId: currentUser.staffMember.tenantId as string,
       },
     });
 
@@ -38,7 +40,7 @@ export const GET = auth(async (req, { params }) => {
 
     const notes = await prisma.note.findMany({
       where: {
-        patientId,
+        patientDetailsId,
       },
       include: {
         files: true,

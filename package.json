@@ -12,7 +12,8 @@
     "start:dev": "docker compose up -d --build",
     "start:production": "docker compose -f \"docker-compose.prod.yml\" up -d --build",
     "postinstall": "prisma generate",
-    "prisma-local-migrate": "dotenv -e .env.local -- prisma migrate dev && prisma generate",
+    "prisma-local-migrate": "dotenv -e .env.local -- prisma migrate dev",
+    "prisma-migrate-reset": "dotenv -e .env.local -- prisma migrate reset",
     "prisma-pull": "dotenv -e .env.local -- prisma db pull"
   },
   "dependencies": {

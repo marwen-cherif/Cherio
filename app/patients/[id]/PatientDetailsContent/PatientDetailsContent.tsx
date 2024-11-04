@@ -11,13 +11,14 @@ export const PatientDetailsContent: FC<{ id: string }> = ({ id }) => {
   const t = useTranslations('Patients.Patient');
   const format = useFormatter();
   const { patient } = usePatientDetailsContent({ id });
+  const user = patient.user;
 
   return (
     <>
       <div className="space-y-2 flex justify-between">
         <h1 className="text-3xl font-bold mb-4">
           {t('title', {
-            name: `${patient.firstName} ${patient.lastName}`,
+            name: `${user.firstName} ${user.lastName}`,
           })}
         </h1>
 
@@ -30,28 +31,28 @@ export const PatientDetailsContent: FC<{ id: string }> = ({ id }) => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div>
               <div className="text-lg font-bold mb-1">{t('firstName')}</div>
-              <div>{patient.firstName}</div>
+              <div>{user.firstName}</div>
             </div>
             <div>
               <div className="text-lg font-bold mb-1">{t('lastName')}</div>
-              <div>{patient.lastName}</div>
+              <div>{user.lastName}</div>
             </div>
             <div>
               <div className="text-lg font-bold mb-1">{t('email')}</div>
-              <div>{patient.email}</div>
+              <div>{user.email}</div>
             </div>
             <div>
               <div className="text-lg font-bold mb-1">{t('phone')}</div>
-              <div>{patient.phone}</div>
+              <div>{user.phone}</div>
             </div>
           </div>
 
-          {patient.patientDetails.birthDate && (
+          {user.birthDate && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <div className="text-lg font-bold mb-1">{t('birthDate')}</div>
                 <div>
-                  {format.dateTime(patient.patientDetails.birthDate, {
+                  {format.dateTime(user.birthDate, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',

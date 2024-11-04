@@ -15,6 +15,8 @@ export const AddPatientForm: FC<AddUserFormProps> = ({ onClose }) => {
     formState: { isSubmitting, errors },
   } = formContext;
 
+  console.log(errors);
+
   return (
     <form onSubmit={handleSubmitNewUser} noValidate>
       <div className="flex gap-4 w-full">

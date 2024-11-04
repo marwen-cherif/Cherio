@@ -1,17 +1,17 @@
 import { auth } from 'auth';
 import { v4 } from 'uuid';
 
-import { getCurrentUser } from '../../../../helpers/ApiHelper/getCurrentUser';
+import { getStaffMemberUser } from '../../../../../lib/ApiHelper/getUser';
 import { prisma } from '../../../../../prisma/prisma';
 import { Role } from '../../../../../prisma/generated/client';
-import { documentKeyBuilder } from '../../../../helpers/FileStorage/documentKeyBuilder';
-import { uploadFileToStorage } from '../../../../helpers/FileStorage/uploadFileToStorage';
+import { documentKeyBuilder } from '../../../../../lib/FileStorage/documentKeyBuilder';
+import { uploadFileToStorage } from '../../../../../lib/FileStorage/uploadFileToStorage';
 import mime from 'mime-types';
 
 export const POST = auth(async (req, { params }) => {
-  const { id: patientId } = (await params) as { id: string };
+  const { id: patientDetailsId } = (await params) as { id: string };
 
-  if (!patientId) {
+  if (!patientDetailsId) {
     return Response.json(
       { message: 'Unauthorized', success: false },
       { status: 401 }
@@ -19,9 +19,11 @@ export const POST = auth(async (req, { params }) => {
   }
 
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const currentUser = await getCurrentUser({ email: req.auth.user.email });
+    const currentUser = await getStaffMemberUser({
+      email: req.auth.user.email,
+    });
 
-    if (!currentUser || !currentUser.tenantId) {
+    if (!currentUser || !currentUser.staffMember?.tenantId) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
@@ -39,8 +41,8 @@ export const POST = auth(async (req, { params }) => {
         const fileName = `${id}.${mime.extension(file.type)}`;
 
         const key = documentKeyBuilder({
-          patientId,
-          tenantId: currentUser.tenantId as string,
+          patientDetailsId,
+          tenantId: currentUser.staffMember?.tenantId as string,
           fileName,
         });
 
@@ -66,7 +68,7 @@ export const POST = auth(async (req, { params }) => {
       data: {
         createdById: currentUser.id,
         content,
-        patientId,
+        patientDetailsId,
         files: {
           create: files,
         },

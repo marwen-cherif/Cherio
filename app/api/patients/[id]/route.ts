@@ -1,25 +1,27 @@
 import { auth } from 'auth';
 import { prisma } from '@/prisma/prisma';
-import { Role } from '@/prisma/generated/client';
-import { getCurrentUser } from '../../../helpers/ApiHelper/getCurrentUser';
+import { getStaffMemberUser } from '../../../../lib/ApiHelper/getUser';
+import { Role } from '../../../../prisma/generated/client';
 
 export const DELETE = auth(async (req, { params }) => {
-  const id = (await params)?.id as string;
+  const patientDetailsId = (await params)?.id as string;
 
-  if (req.auth && req.auth.user && req.auth.user.email && id) {
-    const currentUser = await getCurrentUser({ email: req.auth.user.email });
+  if (req.auth && req.auth.user && req.auth.user.email && patientDetailsId) {
+    const currentUser = await getStaffMemberUser({
+      email: req.auth.user.email,
+    });
 
-    if (!currentUser) {
+    if (!currentUser || !currentUser.staffMember?.tenantId) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
       );
     }
 
-    await prisma.user.delete({
+    await prisma.patientDetails.delete({
       where: {
-        id,
-        role: Role.PATIENT,
+        id: patientDetailsId,
+        tenantId: currentUser.staffMember?.tenantId,
       },
     });
 
@@ -33,29 +35,75 @@ export const DELETE = auth(async (req, { params }) => {
 });
 
 export const GET = auth(async (req, { params }) => {
-  const { id } = (await params) as { id: string };
+  const { id: patientDetailsId } = (await params) as { id: string };
 
-  if (req.auth && req.auth.user && req.auth.user.email && id) {
-    const currentUser = await getCurrentUser({ email: req.auth.user.email });
+  if (req.auth && req.auth.user && req.auth.user.email && patientDetailsId) {
+    const currentUser = await getStaffMemberUser({
+      email: req.auth.user.email,
+    });
 
-    if (!currentUser) {
+    if (!currentUser || !currentUser.staffMember?.tenantId) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
       );
     }
 
-    const patient = await prisma.user.findFirstOrThrow({
+    const patient = await prisma.patientDetails.findFirstOrThrow({
       where: {
-        id,
-        role: Role.PATIENT,
+        id: patientDetailsId,
+        tenantId: currentUser.staffMember.tenantId as string,
       },
       include: {
-        patientDetails: true,
+        user: true,
       },
     });
 
     return Response.json({ success: true, value: patient });
+  }
+
+  return Response.json(
+    { message: 'Unauthorized', success: false },
+    { status: 401 }
+  );
+});
+
+export const PUT = auth(async (req, { params }) => {
+  const patientDetailsId = (await params)?.id as string;
+
+  if (req.auth && req.auth.user && req.auth.user.email && patientDetailsId) {
+    const currentUser = await getStaffMemberUser({
+      email: req.auth.user.email,
+    });
+
+    if (!currentUser || !currentUser.staffMember?.tenantId) {
+      return Response.json(
+        { message: 'Unauthorized', success: false },
+        { status: 401 }
+      );
+    }
+
+    const body = await req.json();
+    const { email, phone, firstName, lastName } = body;
+
+    const patientDetails = await prisma.patientDetails.update({
+      where: {
+        id: patientDetailsId,
+        tenantId: currentUser.staffMember.tenantId,
+      },
+      data: {
+        user: {
+          update: {
+            email,
+            phone,
+            firstName,
+            lastName,
+          },
+        },
+      },
+    });
+
+    return Response.json({ value: patientDetails, success: true });
   }
 
   return Response.json(

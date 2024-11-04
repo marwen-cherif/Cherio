@@ -10,27 +10,27 @@ import { AddPatientForm } from './AddPatientForm/AddPatientForm';
 import Skeleton from 'react-loading-skeleton';
 import { ActionsCell } from './ActionsCell/ActionsCell';
 import { useGetPatients } from './hooks/useGetPatients';
-import { User } from '../../types/User';
+import { PatientDetails } from '../../types/PatientDetails';
 
 export const Patients: FC = () => {
   const [isAddNewPatientModalOpen, setIsAddNewPatientModalOpen] =
     useState(false);
 
-  const columns = React.useMemo<ColumnDef<User>[]>(
+  const columns = React.useMemo<ColumnDef<PatientDetails>[]>(
     () => [
       {
-        accessorKey: 'email',
+        accessorKey: 'user.email',
         header: () => 'Email',
         footer: (props) => props.column.id,
       },
       {
-        accessorKey: 'phone',
+        accessorKey: 'user.phone',
         header: 'Phone',
         footer: (props) => props.column.id,
       },
       {
         header: 'Actions',
-        cell: (props) => <ActionsCell user={props.row.original} />,
+        cell: (props) => <ActionsCell patient={props.row.original} />,
       },
     ],
     []

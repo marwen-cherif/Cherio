@@ -1,7 +1,7 @@
 'use client';
 
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../../lib/ApiClient/Service';
 
 export const GET_USERS = 'getUsers';
 
@@ -10,7 +10,7 @@ export const useGetUsers = () => {
     initialData: [],
     queryKey: [GET_USERS],
     queryFn: async () => {
-      return Service.getUsers();
+      return Service.getStaffMembers();
     },
     placeholderData: keepPreviousData,
   });

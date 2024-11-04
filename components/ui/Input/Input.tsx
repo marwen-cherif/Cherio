@@ -11,11 +11,22 @@ interface InputProps {
   isRequired?: boolean;
   label?: string;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { errors, isRequired, name, value, label, placeholder, onChange, onBlur },
+    {
+      errors,
+      isRequired,
+      name,
+      value,
+      label,
+      placeholder,
+      onChange,
+      onBlur,
+      disabled,
+    },
     ref
   ) => {
     const hasError = !!errors?.[name];
@@ -43,6 +54,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onChange={onChange}
           onBlur={onBlur}
           ref={ref}
+          disabled={disabled}
         />
       </div>
     );

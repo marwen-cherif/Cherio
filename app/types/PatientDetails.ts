@@ -2,15 +2,18 @@ import { Role } from '../../prisma/generated/client';
 
 export interface PatientDetails {
   id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  role: Role;
-  patientDetails: {
+  user: {
     id: string;
-    birthDate?: Date;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    role: Role;
+    birthDate: Date;
   };
+
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Document {

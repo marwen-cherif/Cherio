@@ -3,7 +3,7 @@ import { AddUserFormValue } from '@/app/settings/users/Users/AddUserForm/AddUser
 import { yupResolver } from '@hookform/resolvers/yup';
 import { addUserFormSchema } from '@/app/settings/users/Users/AddUserForm/AddUserForm.schema';
 import { useQueryClient } from '@tanstack/react-query';
-import { Service } from '@/app/helpers/ApiClient/Service';
+import { Service } from '../../../../../lib/ApiClient/Service';
 import { Role } from '@/prisma/generated/client';
 import { GET_USERS } from '@/app/settings/users/Users/hooks/useGetUsers';
 import { toast } from 'react-toastify';
@@ -18,7 +18,7 @@ export const useAddUserForm = ({ onClose }: { onClose: () => void }) => {
   const queryClient = useQueryClient();
 
   const handleSubmitNewUser = handleSubmit(async (data) => {
-    await Service.createUser({
+    await Service.createStaffMember({
       email: data.email,
       phone: data.phone,
       role: data.role.value as Role,
