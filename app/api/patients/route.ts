@@ -1,23 +1,28 @@
 import { auth } from 'auth';
 import { prisma } from '@/prisma/prisma';
-import { Role } from '@/prisma/generated/client';
-import { getCurrentUser } from '../../../lib/ApiHelper/getCurrentUser';
+import { PatientDetails, Role } from '@/prisma/generated/client';
+import {
+  getPatientUser,
+  getStaffMemberUser,
+} from '../../../lib/ApiHelper/getUser';
 
 export const GET = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const user = await getCurrentUser({ email: req.auth.user.email });
+    const user = await getStaffMemberUser({ email: req.auth.user.email });
 
-    if (!user) {
+    if (!user || !user.staffMember?.tenantId) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
       );
     }
 
-    const users = await prisma.user.findMany({
+    const users = await prisma.patientDetails.findMany({
       where: {
-        tenantId: user.tenantId,
-        role: Role.PATIENT,
+        tenantId: user.staffMember.tenantId,
+      },
+      include: {
+        user: true,
       },
     });
 
@@ -32,9 +37,10 @@ export const GET = auth(async (req) => {
 
 export const POST = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const user = await getCurrentUser({ email: req.auth.user.email });
+    const user = await getStaffMemberUser({ email: req.auth.user.email });
+    const tenantId = user?.staffMember?.tenantId;
 
-    if (!user) {
+    if (!user || !tenantId) {
       return Response.json(
         { message: 'Unauthorized', success: false },
         { status: 401 }
@@ -44,63 +50,81 @@ export const POST = auth(async (req) => {
     const body = await req.json();
     const { email, phone, firstName, lastName } = body;
 
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        phone,
-        role: Role.PATIENT,
-        tenantId: user.tenantId,
-        firstName,
-        lastName,
-        patientDetails: {
-          create: {},
+    const patient = await getPatientUser({ email });
+    const existingPatientDetails = patient?.patientDetails.some(
+      (p) => p.tenantId === tenantId
+    );
+
+    if (!patient) {
+      const newUser = await prisma.user.create({
+        data: {
+          email,
+          phone,
+          role: Role.PATIENT,
+          firstName,
+          lastName,
+          patientDetails: {
+            create: [
+              {
+                tenantId: tenantId,
+              },
+            ],
+          },
         },
-      },
-    });
-
-    return Response.json({ value: newUser, success: true });
-  }
-
-  return Response.json(
-    { message: 'Unauthorized', success: false },
-    { status: 401 }
-  );
-});
-
-export const PUT = auth(async (req) => {
-  if (req.auth && req.auth.user && req.auth.user.email) {
-    const currentUser = await prisma.user.findFirstOrThrow({
-      where: {
-        email: req.auth.user.email,
-        role: {
-          in: [Role.LEAD_DOCTOR, Role.ADMIN, Role.SUPER_ADMIN],
+        include: {
+          patientDetails: true,
         },
-      },
-    });
+      });
 
-    if (!currentUser) {
-      return Response.json(
-        { message: 'Unauthorized', success: false },
-        { status: 401 }
-      );
+      const result = newUser.patientDetails.find(
+        (p) => p.tenantId === tenantId
+      ) as PatientDetails;
+
+      return Response.json({ value: result, success: true });
     }
 
-    const body = await req.json();
-    const { id, email, phone, firstName, lastName } = body;
+    if (existingPatientDetails) {
+      await prisma.user.update({
+        where: {
+          id: patient.id,
+        },
+        data: {
+          phone,
+          firstName,
+          lastName,
+        },
+      });
+
+      return Response.json({ value: existingPatientDetails, success: true });
+    }
 
     const newUser = await prisma.user.update({
       where: {
-        id,
+        id: patient.id,
       },
       data: {
-        email,
         phone,
+        role: Role.PATIENT,
         firstName,
         lastName,
+        patientDetails: {
+          create: [
+            {
+              tenantId: tenantId,
+            },
+          ],
+        },
+      },
+      include: {
+        patientDetails: true,
       },
     });
 
-    return Response.json({ value: newUser, success: true });
+    const result = newUser.patientDetails.find(
+      (p) => p.tenantId === tenantId
+    ) as PatientDetails;
+
+    return Response.json({ value: result, success: true });
   }
 
   return Response.json(

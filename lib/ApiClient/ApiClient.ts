@@ -53,7 +53,6 @@ export class ApiClient {
       const response = await client.post(endpoint, data, { signal });
       return response.data.value as Response;
     } catch (error) {
-      debugger;
       this.handleError(error);
     }
   }

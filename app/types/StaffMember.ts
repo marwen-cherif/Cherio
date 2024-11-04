@@ -1,6 +1,6 @@
 import { Role } from '../../prisma/generated/client';
 
-export interface PatientDetails {
+export interface StaffMember {
   id: string;
   user: {
     id: string;
@@ -9,22 +9,21 @@ export interface PatientDetails {
     email: string;
     phone: string;
     role: Role;
-    birthDate: Date;
   };
 
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface Document {
+export interface UserStaffMember {
   id: string;
-  name: string;
-  path: string;
-}
-
-export interface Note {
-  id: string;
-  content: string;
-  createdAt: Date;
-  files: Document[];
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  role: Role;
+  staffMember: {
+    id: string;
+    tenantId: string;
+  };
 }

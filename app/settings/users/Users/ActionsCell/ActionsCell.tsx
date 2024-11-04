@@ -7,11 +7,14 @@ import { Modal } from '../../../../../components/ui/Modal/Modal';
 import Skeleton from 'react-loading-skeleton';
 import { UpdateUserForm } from './UpdateUserForm/UpdateUserForm';
 import { User } from '../../../../types/User';
+import { StaffMember } from '../../../../types/StaffMember';
 
-export const ActionsCell: FC<{ user: User }> = ({ user }) => {
+export const ActionsCell: FC<{ staffMember: StaffMember }> = ({
+  staffMember,
+}) => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async () => {
-      await Service.deleteUser({ id: user.id });
+      await Service.deleteStaffMember({ id: staffMember.id });
 
       toast.success('User deleted successfully');
     },
@@ -38,7 +41,7 @@ export const ActionsCell: FC<{ user: User }> = ({ user }) => {
       >
         <Suspense fallback={<Skeleton />}>
           <UpdateUserForm
-            user={user}
+            staffMember={staffMember}
             onClose={() => {
               setIsUpdateUserModalOpen(false);
             }}

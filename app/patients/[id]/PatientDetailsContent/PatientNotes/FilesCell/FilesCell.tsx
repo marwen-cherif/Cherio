@@ -11,7 +11,7 @@ export const FilesCell: FC<Props> = ({ files }) => {
     <>
       {files?.map((file) => {
         return (
-          <div>
+          <div key={file.id}>
             <CustomLink
               target="_blank"
               className="font-medium text-blue-600 dark:text-blue-100 hover:underline"

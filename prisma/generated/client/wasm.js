@@ -129,17 +129,32 @@ exports.Prisma.TenantScalarFieldEnum = {
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  role: 'role',
   firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  tenantId: 'tenantId',
-  role: 'role',
+  locale: 'locale',
   phone: 'phone',
-  locale: 'locale'
+  birthDate: 'birthDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StaffMemberScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PatientDetailsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
@@ -183,19 +198,13 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
   transports: 'transports'
 };
 
-exports.Prisma.PatientDetailsScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  birthDate: 'birthDate'
-};
-
 exports.Prisma.AddressScalarFieldEnum = {
   id: 'id',
   street: 'street',
   city: 'city',
   zip: 'zip',
-  countryCode: 'countryCode'
+  countryCode: 'countryCode',
+  userId: 'userId'
 };
 
 exports.Prisma.NoteScalarFieldEnum = {
@@ -205,7 +214,7 @@ exports.Prisma.NoteScalarFieldEnum = {
   createdById: 'createdById',
   updatedAt: 'updatedAt',
   updatedById: 'updatedById',
-  patientId: 'patientId'
+  patientDetailsId: 'patientDetailsId'
 };
 
 exports.Prisma.DocumentScalarFieldEnum = {
@@ -246,11 +255,12 @@ exports.Role = exports.$Enums.Role = {
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
   User: 'User',
+  StaffMember: 'StaffMember',
+  PatientDetails: 'PatientDetails',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
-  PatientDetails: 'PatientDetails',
   Address: 'Address',
   Note: 'Note',
   Document: 'Document'

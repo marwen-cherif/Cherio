@@ -1,11 +1,11 @@
 export const documentKeyBuilder = ({
   tenantId,
-  patientId,
+  patientDetailsId,
   fileName,
 }: {
   tenantId: string;
-  patientId: string;
+  patientDetailsId: string;
   fileName: string;
 }) => {
-  return `tenants/${tenantId}/patients/${patientId}/${fileName}`;
+  return `tenants/${tenantId}/patients/${patientDetailsId}/${fileName}`;
 };

@@ -1,5 +1,5 @@
 import { auth } from 'auth';
-import { getCurrentUser } from '../../../../../lib/ApiHelper/getCurrentUser';
+import { getStaffMemberUser } from '../../../../../lib/ApiHelper/getUser';
 import { prisma } from '../../../../../prisma/prisma';
 import { generatePresignedUrl } from '../../../../../lib/FileStorage/generatePresignedUrl';
 
@@ -14,7 +14,7 @@ export const GET = auth(async (req, { params }) => {
   }
 
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const user = await getCurrentUser({ email: req.auth.user.email });
+    const user = await getStaffMemberUser({ email: req.auth.user.email });
 
     if (!user) {
       return Response.json(

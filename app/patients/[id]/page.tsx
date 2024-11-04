@@ -1,16 +1,14 @@
+'use client';
+
 import React, { Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { PatientDetailsContent } from './PatientDetailsContent/PatientDetailsContent';
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = React.use<{ id: string }>(params);
 
   if (!id) {
-    return <div>Invalid patient ID</div>;
+    return <div>Invalid patient details ID</div>;
   }
 
   return (

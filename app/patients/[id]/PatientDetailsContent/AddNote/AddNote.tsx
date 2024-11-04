@@ -14,8 +14,6 @@ export const AddNote: FC = () => {
 
   const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
 
-  console.log(id);
-
   const formContext = useForm<AddNoteFormValues>();
   const {
     formState: { isSubmitting },

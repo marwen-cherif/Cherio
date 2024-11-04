@@ -18,7 +18,7 @@ export const useAddUserForm = ({ onClose }: { onClose: () => void }) => {
   const queryClient = useQueryClient();
 
   const handleSubmitNewUser = handleSubmit(async (data) => {
-    await Service.createUser({
+    await Service.createStaffMember({
       email: data.email,
       phone: data.phone,
       role: data.role.value as Role,

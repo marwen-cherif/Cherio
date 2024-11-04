@@ -10,7 +10,7 @@ export const useGetUsers = () => {
     initialData: [],
     queryKey: [GET_USERS],
     queryFn: async () => {
-      return Service.getUsers();
+      return Service.getStaffMembers();
     },
     placeholderData: keepPreviousData,
   });
