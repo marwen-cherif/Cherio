@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import React from 'react';
 import { ReactQueryProvider } from '@/app/react-query-provider';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Sidebar } from '../components/Sidebar';

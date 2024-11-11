@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Service } from '../lib/ApiClient/Service';
 
 export const GET_USER = 'GET_USER';
@@ -12,5 +12,14 @@ export const useCurrentUser = () => {
     staleTime: Infinity,
   });
 
-  return { currentUser, isFetching };
+  const { mutateAsync: handleSetLocale } = useMutation({
+    mutationFn: async ({ locale }: { locale: string }) => {
+      return await Service.updateUserLocale({ locale });
+    },
+    onSuccess: async () => {
+      window.location.reload();
+    },
+  });
+
+  return { currentUser, isFetching, handleSetLocale };
 };

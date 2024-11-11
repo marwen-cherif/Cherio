@@ -4,6 +4,8 @@ import { sendVerificationRequest } from './lib/authSendRequest';
 import GoogleProvider from 'next-auth/providers/google';
 import type { NextAuthConfig } from 'next-auth';
 
+import { encode } from 'next-auth/jwt';
+
 const config = {
   theme: { logo: '/inverted-logo.svg' },
   adapter: PrismaAdapter(prisma as any),
@@ -32,18 +34,13 @@ const config = {
       return true;
     },
     jwt({ token, trigger, session, account }) {
-      if (trigger === 'update') token.name = session.user.name;
-      if (account?.provider === 'keycloak') {
-        return { ...token, accessToken: account.access_token };
+      if (trigger === 'update') {
+        token.name = session.user.name;
       }
 
       return token;
     },
     async session({ session, token }) {
-      if (token?.accessToken) {
-        session.accessToken = token.accessToken;
-      }
-
       return session;
     },
   },

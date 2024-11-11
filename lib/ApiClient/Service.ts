@@ -126,9 +126,16 @@ export const Service = {
   getPresignedUrl: async ({ id }: { id: string }) => {
     return apiClient().get<string>(`/api/documents/${id}/presignedUrl`);
   },
+
   getUser: async () => {
-    return apiClient().get<UserStaffMember>('/api/user');
+    return apiClient().get<User>('/api/user');
   },
+  updateUserLocale: async ({ locale }: { locale: string }) => {
+    return apiClient().put<{ locale: string }, User>('/api/user/locale', {
+      locale,
+    });
+  },
+
   initializeTenant: async ({ name }: { name: string }) => {
     return apiClient().post<{ name: string }, Tenant>(
       '/api/tenant/initialize',

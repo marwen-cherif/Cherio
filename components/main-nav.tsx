@@ -4,15 +4,7 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 import CustomLink from './custom-link';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from './ui/navigation-menu';
+import { NavigationMenuLink } from './ui/navigation-menu';
 import React from 'react';
 import { Button } from './ui/button';
 

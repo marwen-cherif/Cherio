@@ -1,0 +1,47 @@
+{
+  "App": {
+    "submit": "Submit",
+    "locales": "Languages",
+    "FR": "French",
+    "EN": "English",
+    "navigation": {
+      "dashboard": "Dashboard",
+      "patients": "Patients",
+      "myTeam": "My Team"
+    }
+  },
+  "Tenant": {
+    "Initialize": {
+      "isOwner": "Are you the owner of this establishment?",
+      "tenantName": "Name of the establishment",
+      "actionByOwnerTitle": "Action required by the owner",
+      "youNeedToBeOwner": "You need to be the owner of this establishment to continue",
+      "ownerWillAddYou": "The owner of the establishment will add you to the application"
+    }
+  },
+  "Patients": {
+    "title": "Hello world!",
+    "Patient": {
+      "title": "Record of {name}",
+      "personalInformation": "Personal Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "birthDate": "Date of Birth",
+      "notes": "Notes",
+      "addNote": "Add a note",
+      "noteFilesLabel": "Files",
+      "noteLabel": "Note",
+      "noteAdded": "Note added successfully",
+      "Notes": {
+        "title": "Notes",
+        "content": "Content",
+        "files": "Files",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at",
+        "preview": "Preview file"
+      }
+    }
+  }
+}

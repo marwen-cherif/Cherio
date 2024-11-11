@@ -1,6 +1,14 @@
 {
   "App": {
-    "submit": "Envoyer"
+    "submit": "Envoyer",
+    "locales": "Langues",
+    "FR": "Français",
+    "EN": "Anglais",
+    "navigation": {
+      "dashboard": "Tableau de bord",
+      "patients": "Patients",
+      "myTeam": "Mon équipe"
+    }
   },
   "Tenant": {
     "Initialize": {

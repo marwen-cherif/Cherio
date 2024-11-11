@@ -9,6 +9,8 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { SignIn, SignOut } from './auth-components';
+import { Dropdown } from 'flowbite-react';
+import { LanguageChooser } from './ui/LanguageChooser/LanguageChooser';
 
 export default async function UserButton() {
   const session = await auth();
@@ -18,9 +20,8 @@ export default async function UserButton() {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="hidden text-sm sm:inline-flex">
-        {session.user.email}
-      </span>
+      <LanguageChooser />
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -35,6 +36,7 @@ export default async function UserButton() {
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
+
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
@@ -46,6 +48,7 @@ export default async function UserButton() {
               </p>
             </div>
           </DropdownMenuLabel>
+
           <DropdownMenuItem>
             <SignOut />
           </DropdownMenuItem>
