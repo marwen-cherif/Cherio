@@ -6,7 +6,7 @@ import React, { FC } from 'react';
 import { Sidebar as FSidebar } from 'flowbite-react';
 
 export const Sidebar: FC = async () => {
-  const t = await getTranslations('App.navigation');
+  const t = await getTranslations('navigation');
 
   return (
     <FSidebar>

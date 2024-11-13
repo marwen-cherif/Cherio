@@ -2,7 +2,11 @@ import React, { FC } from 'react';
 import { Label, Select as FSelect } from 'flowbite-react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
-export type SelectOption = { value: string; label: string };
+export type SelectOption<T = unknown> = {
+  value: string;
+  label: string;
+  data?: T;
+};
 
 interface SelectProps {
   label?: string;

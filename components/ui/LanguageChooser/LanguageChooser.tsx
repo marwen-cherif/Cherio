@@ -9,7 +9,7 @@ import { useTranslations, useLocale } from 'next-intl';
 export const LanguageChooser: FC = () => {
   const { isFetching, currentUser, handleSetLocale } = useCurrentUser();
 
-  const t = useTranslations('App');
+  const t = useTranslations('language');
 
   const SUPPORTED_LOCALES = ['EN', 'FR'];
 
