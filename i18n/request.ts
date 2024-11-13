@@ -27,8 +27,6 @@ export default getRequestConfig(async () => {
     },
   });
 
-  console.log('locale', locale);
-
   const defaultLocale = 'EN';
 
   return {
