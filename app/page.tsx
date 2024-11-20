@@ -1,5 +1,6 @@
 import { auth } from 'auth';
 import { SessionProvider } from 'next-auth/react';
+import Calendar from '../components/ui/Calendar/Calendar';
 
 export default async function Index() {
   const session = await auth();
@@ -10,7 +11,9 @@ export default async function Index() {
 
   return (
     <SessionProvider session={session}>
-      <div className="flex flex-col gap-6">111</div>
+      <div className="flex flex-col gap-6">
+        <Calendar />
+      </div>
     </SessionProvider>
   );
 }

@@ -11,18 +11,18 @@ interface Props {
 }
 
 export const PatientNotes: FC<Props> = ({ patientId }) => {
-  const t = useTranslations('Patients.Patient.Notes');
+  const notesMessages = useTranslations('patients.patient.notes');
   const { notes } = usePatientNotes({ patientId });
 
   const columns = React.useMemo<ColumnDef<Note>[]>(
     () => [
       {
         accessorKey: 'content',
-        header: () => t('content'),
+        header: () => notesMessages('content'),
         footer: (props) => props.column.id,
       },
       {
-        header: t('files'),
+        header: notesMessages('files'),
         cell: (props) => <FilesCell files={props.row.original.files} />,
         footer: (props) => props.column.id,
       },
@@ -32,12 +32,6 @@ export const PatientNotes: FC<Props> = ({ patientId }) => {
 
   return (
     <>
-      <div className="space-y-4">
-        <div>
-          <h2 className="text-xl font-bold mb-4">{t('title')}</h2>
-        </div>
-      </div>
-
       <Table data={notes} columns={columns} />
     </>
   );

@@ -11,8 +11,11 @@ import Skeleton from 'react-loading-skeleton';
 import { ActionsCell } from './ActionsCell/ActionsCell';
 import { useGetPatients } from './hooks/useGetPatients';
 import { PatientDetails } from '../../types/PatientDetails';
+import { useTranslations } from 'next-intl';
 
 export const Patients: FC = () => {
+  const generalMessages = useTranslations('general');
+  const patientMessages = useTranslations('patients.patient');
   const [isAddNewPatientModalOpen, setIsAddNewPatientModalOpen] =
     useState(false);
 
@@ -20,16 +23,16 @@ export const Patients: FC = () => {
     () => [
       {
         accessorKey: 'user.email',
-        header: () => 'Email',
+        header: () => generalMessages('email'),
         footer: (props) => props.column.id,
       },
       {
         accessorKey: 'user.phone',
-        header: 'Phone',
+        header: generalMessages('phone'),
         footer: (props) => props.column.id,
       },
       {
-        header: 'Actions',
+        header: generalMessages('actions'),
         cell: (props) => <ActionsCell patient={props.row.original} />,
       },
     ],
@@ -51,13 +54,15 @@ export const Patients: FC = () => {
           className="mb-4"
           onClick={() => setIsAddNewPatientModalOpen(true)}
         >
-          <FaPlus className="mr-2 h-5 w-5" /> Add Patient
+          <FaPlus className="mr-2 h-5 w-5" />{' '}
+          {patientMessages('addPatient.button')}
         </Button>
 
         <Modal
           isOpen={isAddNewPatientModalOpen}
           onClose={() => setIsAddNewPatientModalOpen(false)}
-          header="Add Patient"
+          header={patientMessages('addPatient.title')}
+          size="4xl"
         >
           <Suspense fallback={<Skeleton />}>
             <AddPatientForm
@@ -68,6 +73,7 @@ export const Patients: FC = () => {
           </Suspense>
         </Modal>
       </div>
+
       <Table data={patients} columns={columns} />
     </>
   );

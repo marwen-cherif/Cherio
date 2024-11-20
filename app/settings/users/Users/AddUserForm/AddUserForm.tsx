@@ -5,6 +5,7 @@ import { Button } from 'flowbite-react';
 import { Role } from '@/prisma/generated/client';
 
 import { useAddUserForm } from '@/app/settings/users/Users/AddUserForm/AddUserForm.hooks';
+import { Form } from '../../../../../components/ui/Form/Form';
 
 interface AddUserFormProps {
   onClose: () => void;
@@ -18,7 +19,7 @@ export const AddUserForm: FC<AddUserFormProps> = ({ onClose }) => {
   } = formContext;
 
   return (
-    <form onSubmit={handleSubmitNewUser} noValidate>
+    <Form onSubmit={handleSubmitNewUser}>
       <Select
         name="role"
         options={[
@@ -52,6 +53,6 @@ export const AddUserForm: FC<AddUserFormProps> = ({ onClose }) => {
           Submit
         </Button>
       </div>
-    </form>
+    </Form>
   );
 };

@@ -14,7 +14,7 @@ export class ApiClient {
     private readonly authToken: string = ''
   ) {}
 
-  public async get<Response, Arguments extends object = {}>(
+  public async get<Arguments extends object = {}, Response = undefined>(
     endpoint: string = '',
     params?: Arguments,
     signal?: AbortSignal
@@ -28,7 +28,7 @@ export class ApiClient {
     }
   }
 
-  public async delete<Response, Arguments extends object = {}>(
+  public async delete<Arguments extends object = {}, Response = undefined>(
     endpoint: string = '',
     params?: Arguments,
     signal?: AbortSignal
@@ -42,7 +42,7 @@ export class ApiClient {
     }
   }
 
-  public async post<Arguments, Response>(
+  public async post<Arguments, Response = undefined>(
     endpoint: string = '',
     data?: Arguments,
     signal?: AbortSignal
@@ -57,7 +57,7 @@ export class ApiClient {
     }
   }
 
-  public async put<Arguments, Response>(
+  public async put<Arguments, Response = undefined>(
     endpoint: string = '',
     data?: Arguments,
     signal?: AbortSignal

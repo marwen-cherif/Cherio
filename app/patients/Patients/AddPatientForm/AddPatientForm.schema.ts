@@ -6,4 +6,5 @@ export const addPatientFormSchema = Yup.object<AddPatientFormValue>().shape({
   firstName: Yup.string().required('FirstName is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   phone: Yup.string().required('Phone is required'),
+  birthDate: Yup.date().required('Birthdate is required'),
 });

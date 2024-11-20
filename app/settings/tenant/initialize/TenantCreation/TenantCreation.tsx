@@ -9,6 +9,7 @@ import { redirect } from 'next/navigation';
 import { Input } from '../../../../../components/ui/Input/Input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { tenantCreationSchema } from './TenantCreation.schema';
+import { Form } from '../../../../../components/ui/Form/Form';
 
 export const TenantCreation: FC = () => {
   const appTranslations = useTranslations('App');
@@ -40,7 +41,7 @@ export const TenantCreation: FC = () => {
   });
 
   return (
-    <form onSubmit={submitInitializeTenant} noValidate>
+    <Form onSubmit={submitInitializeTenant}>
       <div className="mb-4">
         <Controller
           control={formContext.control}
@@ -95,6 +96,6 @@ export const TenantCreation: FC = () => {
           {appTranslations('submit')}
         </Button>
       </div>
-    </form>
+    </Form>
   );
 };

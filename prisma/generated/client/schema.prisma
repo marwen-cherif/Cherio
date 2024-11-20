@@ -17,6 +17,13 @@ enum Role {
   PATIENT
 }
 
+enum AppointmentStatus {
+  SCHEDULED
+  CANCELLED
+  COMPLETED
+  MISSED
+}
+
 model Tenant {
   id   String @id @default(cuid())
   name String
@@ -67,8 +74,9 @@ model StaffMember {
   createdNotes Note[] @relation(name: "CreatedBy")
   updatedNotes Note[] @relation(name: "UpdatedBy")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Appointment Appointment[]
 }
 
 model PatientDetails {
@@ -82,8 +90,9 @@ model PatientDetails {
 
   notes Note[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Appointment Appointment[]
 
   @@unique([userId, tenantId])
 }
@@ -169,7 +178,8 @@ model Note {
   patientDetails   PatientDetails @relation(fields: [patientDetailsId], references: [id])
   patientDetailsId String
 
-  files Document[]
+  files       Document[]
+  Appointment Appointment[]
 }
 
 model Document {
@@ -191,4 +201,25 @@ model Document {
   noteId String?
 
   visibleTo Role[]
+}
+
+model Appointment {
+  id String @id @default(cuid())
+
+  status AppointmentStatus
+
+  patientDetails   PatientDetails @relation(fields: [patientDetailsId], references: [id])
+  patientDetailsId String
+
+  staffMember   StaffMember @relation(fields: [staffMemberId], references: [id])
+  staffMemberId String
+
+  startAt DateTime
+  endAt   DateTime
+
+  reportNote   Note?   @relation(fields: [reportNoteId], references: [id])
+  reportNoteId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

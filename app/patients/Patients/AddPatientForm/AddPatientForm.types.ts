@@ -3,4 +3,5 @@ export interface AddPatientFormValue {
   lastName: string;
   email: string;
   phone: string;
+  birthDate: Date;
 }

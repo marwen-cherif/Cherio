@@ -1,47 +1,79 @@
 {
-  "App": {
-    "submit": "Submit",
-    "locales": "Languages",
-    "FR": "French",
-    "EN": "English",
+    "general": {
+      "submit": "Submit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "view": "View",
+      "add": "Add",
+        "edit": "Edit",
+        "save": "Save",
+        "close": "Close",
+      "actions": "Actions"
+    },
+    "language": {
+      "locales": "Languages",
+      "FR": "French",
+      "EN": "English"
+    },
     "navigation": {
       "dashboard": "Dashboard",
       "patients": "Patients",
       "myTeam": "My Team"
-    }
-  },
-  "Tenant": {
-    "Initialize": {
-      "isOwner": "Are you the owner of this establishment?",
-      "tenantName": "Name of the establishment",
-      "actionByOwnerTitle": "Action required by the owner",
-      "youNeedToBeOwner": "You need to be the owner of this establishment to continue",
-      "ownerWillAddYou": "The owner of the establishment will add you to the application"
-    }
-  },
-  "Patients": {
-    "title": "Hello world!",
-    "Patient": {
-      "title": "Record of {name}",
-      "personalInformation": "Personal Information",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "phone": "Phone",
-      "birthDate": "Date of Birth",
-      "notes": "Notes",
-      "addNote": "Add a note",
-      "noteFilesLabel": "Files",
-      "noteLabel": "Note",
-      "noteAdded": "Note added successfully",
-      "Notes": {
-        "title": "Notes",
-        "content": "Content",
-        "files": "Files",
-        "createdAt": "Created at",
-        "updatedAt": "Updated at",
-        "preview": "Preview file"
+    },
+    "tenant": {
+      "initialize": {
+        "isOwner": "Are you the owner of this establishment?",
+        "tenantName": "Name of the establishment",
+        "actionByOwnerTitle": "Action required by the owner",
+        "youNeedToBeOwner": "You need to be the owner of this establishment to continue",
+        "ownerWillAddYou": "The owner of the establishment will add you to the application"
+      }
+    },
+    "patients": {
+      "patient": {
+        "title": "Record of {name}",
+        "personalInformation": "Personal Information",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "birthDate": "Date of Birth",
+
+        "deletePatient": {
+            "title": "Are you sure you want to delete this patient ?",
+            "success": "Patient deleted successfully"
+        },
+
+        "addPatient": {
+          "title": "Add a patient",
+          "button": "Add a patient",
+          "success": "Patient added successfully"
+        },
+
+        "notes": {
+          "title": "Notes",
+
+          "addNote": {
+            "button": "Add a note",
+            "title": "Add a note",
+            "content": "Content",
+            "files": "Files",
+            "success": "Note added successfully"
+          },
+
+          "content": "Content",
+          "files": "Files",
+          "createdAt": "Created at",
+          "updatedAt": "Updated at",
+          "preview": "Preview file"
+        },
+        "takeAppointment": {
+          "title": "Take an appointment",
+          "button": "Take an appointment",
+          "success": "Appointment taken successfully",
+          "submit": "submit"
+        }
       }
     }
-  }
 }

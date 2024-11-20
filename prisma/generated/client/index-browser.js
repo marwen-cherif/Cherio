@@ -230,6 +230,18 @@ exports.Prisma.DocumentScalarFieldEnum = {
   visibleTo: 'visibleTo'
 };
 
+exports.Prisma.AppointmentScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  patientDetailsId: 'patientDetailsId',
+  staffMemberId: 'staffMemberId',
+  startAt: 'startAt',
+  endAt: 'endAt',
+  reportNoteId: 'reportNoteId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -252,6 +264,13 @@ exports.Role = exports.$Enums.Role = {
   PATIENT: 'PATIENT'
 };
 
+exports.AppointmentStatus = exports.$Enums.AppointmentStatus = {
+  SCHEDULED: 'SCHEDULED',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED',
+  MISSED: 'MISSED'
+};
+
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
   User: 'User',
@@ -263,7 +282,8 @@ exports.Prisma.ModelName = {
   Authenticator: 'Authenticator',
   Address: 'Address',
   Note: 'Note',
-  Document: 'Document'
+  Document: 'Document',
+  Appointment: 'Appointment'
 };
 
 /**

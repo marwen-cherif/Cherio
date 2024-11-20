@@ -64,10 +64,10 @@ export default function TermsOfService() {
         <p className="mt-6 text-gray-500">
           Pour toute question, veuillez nous contacter à{' '}
           <a
-            href="mailto:support@cherio.com"
+            href="mailto:reply.cherio@gmail.com"
             className="text-blue-600 hover:text-blue-800"
           >
-            support@cherio.com
+            reply.cherio@gmail.com
           </a>
           .
         </p>

@@ -6,6 +6,7 @@ import { Role } from '../../../../../../prisma/generated/client';
 import { HiddenInput } from '../../../../../../components/ui/HiddenInput/HiddenInput';
 import { useUpdateUserForm } from './UpdateUserForm.hooks';
 import { StaffMember } from '../../../../../types/StaffMember';
+import { Form } from '../../../../../../components/ui/Form/Form';
 
 interface AddUserFormProps {
   onClose: () => void;
@@ -26,7 +27,7 @@ export const UpdateUserForm: FC<AddUserFormProps> = ({
   } = formContext;
 
   return (
-    <form onSubmit={handleSubmitNewUser}>
+    <Form onSubmit={handleSubmitNewUser}>
       <HiddenInput {...register('id')} />
       <Select
         name="role"
@@ -62,6 +63,6 @@ export const UpdateUserForm: FC<AddUserFormProps> = ({
           Submit
         </Button>
       </div>
-    </form>
+    </Form>
   );
 };

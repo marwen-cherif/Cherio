@@ -1,46 +1,78 @@
 {
-  "App": {
-    "submit": "Envoyer",
+  "general": {
+    "submit": "Soumettre",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "view": "Voir",
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "save": "Enregistrer",
+    "close": "Fermer",
+    "actions": "Actions"
+  },
+  "language": {
     "locales": "Langues",
     "FR": "Français",
-    "EN": "Anglais",
-    "navigation": {
-      "dashboard": "Tableau de bord",
-      "patients": "Patients",
-      "myTeam": "Mon équipe"
-    }
+    "EN": "Anglais"
   },
-  "Tenant": {
-    "Initialize": {
-      "isOwner": "Êtes-vous le propriétaire de cet établissement ?",
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "patients": "Patients",
+    "myTeam": "Mon équipe"
+  },
+  "tenant": {
+    "initialize": {
+      "isOwner": "Êtes-vous le propriétaire de cet établissement?",
       "tenantName": "Nom de l'établissement",
       "actionByOwnerTitle": "Action requise par le propriétaire",
       "youNeedToBeOwner": "Vous devez être le propriétaire de cet établissement pour continuer",
       "ownerWillAddYou": "Le propriétaire de l'établissement vous ajoutera à l'application"
     }
   },
-  "Patients": {
-    "title": "Hello world!",
-    "Patient": {
-      "title": "Fiche de {name}",
+  "patients": {
+    "patient": {
+      "title": "Dossier de {name}",
       "personalInformation": "Informations personnelles",
       "firstName": "Prénom",
       "lastName": "Nom",
       "email": "Email",
       "phone": "Téléphone",
       "birthDate": "Date de naissance",
-      "notes": "Notes",
-      "addNote": "Ajouter une note",
-      "noteFilesLabel": "Fichiers",
-      "noteLabel": "Note",
-      "noteAdded": "Note ajoutée avec succéss",
-      "Notes": {
+
+      "deletePatient": {
+        "title": "Êtes-vous sûr de vouloir supprimer ce patient?",
+        "success": "Patient supprimé avec succès"
+      },
+
+      "addPatient": {
+        "title": "Ajouter un patient",
+        "button": "Ajouter un patient",
+        "success": "Patient ajouté avec succès"
+      },
+
+      "notes": {
         "title": "Notes",
+
+        "addNote": {
+          "button": "Ajouter une note",
+          "title": "Ajouter une note",
+          "content": "Contenu",
+          "files": "Fichiers",
+          "success": "Note ajoutée avec succès"
+        },
+
         "content": "Contenu",
         "files": "Fichiers",
         "createdAt": "Créé le",
         "updatedAt": "Mis à jour le",
-        "preview": "Prévisualiser le fichier"
+        "preview": "Aperçu du fichier"
+      },
+      "takeAppointment": {
+        "title": "Prendre un rendez-vous",
+        "button": "Prendre un rendez-vous",
+        "success": "Rendez-vous pris avec succès",
+        "submit": "soumettre"
       }
     }
   }

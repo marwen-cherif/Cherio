@@ -6,17 +6,20 @@ import { toast } from 'react-toastify';
 import { Modal } from '../../../../components/ui/Modal/Modal';
 import { GET_PATIENTS } from '../hooks/useGetPatients';
 import { redirect } from 'next/navigation';
-import { User } from '../../../types/User';
 import { PatientDetails } from '../../../types/PatientDetails';
+import { useTranslations } from 'next-intl';
+import { ButtonContainer } from '../../../../components/ui/ButtonContainer/ButtonContainer';
 
 export const ActionsCell: FC<{ patient: PatientDetails }> = ({ patient }) => {
   const queryClient = useQueryClient();
+  const generalMessages = useTranslations('general');
+  const deletePatientsMessages = useTranslations('patients.deletePatient');
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async () => {
       await Service.deletePatient({ id: patient.id });
 
-      toast.success('Patient deleted successfully');
+      toast.success(deletePatientsMessages('success'));
 
       await queryClient.invalidateQueries({ queryKey: [GET_PATIENTS] });
     },
@@ -27,19 +30,29 @@ export const ActionsCell: FC<{ patient: PatientDetails }> = ({ patient }) => {
 
   return (
     <div className="flex gap-4">
-      <Button
-        color="failure"
-        size="sm"
-        onClick={() => setIsConfirmDeleteModalOpen(true)}
-        isProcessing={isPending}
-      >
-        Delete
-      </Button>
+      <ButtonContainer>
+        <Button
+          color="gray"
+          size="sm"
+          onClick={() => redirect(`/patients/${patient.id}`)}
+        >
+          {generalMessages('view')}
+        </Button>
+
+        <Button
+          color="failure"
+          size="sm"
+          onClick={() => setIsConfirmDeleteModalOpen(true)}
+          isProcessing={isPending}
+        >
+          {generalMessages('delete')}
+        </Button>
+      </ButtonContainer>
 
       <Modal
         isOpen={isConfirmDeleteModalOpen}
         onClose={() => setIsConfirmDeleteModalOpen(false)}
-        header="Patient will be deleted permently from the system"
+        header={deletePatientsMessages('title')}
       >
         <div className="flex justify-end gap-4">
           <Button
@@ -47,7 +60,7 @@ export const ActionsCell: FC<{ patient: PatientDetails }> = ({ patient }) => {
             size="sm"
             onClick={() => setIsConfirmDeleteModalOpen(false)}
           >
-            Cancel
+            {generalMessages('cancel')}
           </Button>
           <Button
             color="failure"
@@ -59,18 +72,10 @@ export const ActionsCell: FC<{ patient: PatientDetails }> = ({ patient }) => {
             }}
             isProcessing={isPending}
           >
-            Confirm
+            {generalMessages('confirm')}
           </Button>
         </div>
       </Modal>
-
-      <Button
-        color="gray"
-        size="sm"
-        onClick={() => redirect(`/patients/${patient.id}`)}
-      >
-        Fiche patient
-      </Button>
     </div>
   );
 };

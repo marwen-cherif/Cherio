@@ -1,4 +1,4 @@
 export interface AddNoteFormValues {
   content: string;
-  files: FileList;
+  files?: FileList;
 }

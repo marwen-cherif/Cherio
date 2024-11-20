@@ -3,15 +3,19 @@
 import React, { FC, Suspense } from 'react';
 import { useFormatter, useTranslations } from 'next-intl';
 import { usePatientDetailsContent } from './PatientDetailsContent.hooks';
-import { AddNote } from './AddNote/AddNote';
 import Skeleton from 'react-loading-skeleton';
 import { PatientNotes } from './PatientNotes/PatientNotes';
+import { PatientQuickActions } from './PatientQuickActions/PatientQuickActions';
+import { Tabs } from 'flowbite-react';
+import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi';
+import { MdDashboard } from 'react-icons/md';
 
 export const PatientDetailsContent: FC<{ id: string }> = ({ id }) => {
-  const t = useTranslations('Patients.Patient');
+  const t = useTranslations('patients.patient');
   const format = useFormatter();
   const { patient } = usePatientDetailsContent({ id });
   const user = patient.user;
+  const notesMessages = useTranslations('patients.patient.notes');
 
   return (
     <>
@@ -22,7 +26,7 @@ export const PatientDetailsContent: FC<{ id: string }> = ({ id }) => {
           })}
         </h1>
 
-        <AddNote />
+        <PatientQuickActions />
       </div>
       <div className="space-y-4">
         <div>
@@ -64,9 +68,14 @@ export const PatientDetailsContent: FC<{ id: string }> = ({ id }) => {
         </div>
       </div>
 
-      <Suspense fallback={<Skeleton height="5rem" />}>
-        <PatientNotes patientId={id} />
-      </Suspense>
+      <Tabs aria-label="Tabs with icons" variant="underline">
+        <Tabs.Item active title={notesMessages('title')} icon={HiUserCircle}>
+          <Suspense fallback={<Skeleton height="5rem" />}>
+            <PatientNotes patientId={id} />
+          </Suspense>
+        </Tabs.Item>
+        <Tabs.Item title="Devis" icon={HiUserCircle}></Tabs.Item>
+      </Tabs>
     </>
   );
 };

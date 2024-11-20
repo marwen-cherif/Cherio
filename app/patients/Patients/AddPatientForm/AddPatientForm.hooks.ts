@@ -6,13 +6,15 @@ import { toast } from 'react-toastify';
 import { GET_PATIENTS } from '../hooks/useGetPatients';
 import { addPatientFormSchema } from './AddPatientForm.schema';
 import { AddPatientFormValue } from './AddPatientForm.types';
+import { useTranslations } from 'next-intl';
+import { dateToLocalISO } from '../../../../lib/helpers/dateToLocaleIso';
 
 export const useAddPatientForm = ({ onClose }: { onClose: () => void }) => {
   const formContext = useForm<AddPatientFormValue>({
     mode: 'onChange',
     resolver: yupResolver(addPatientFormSchema),
   });
-
+  const addPatientMessages = useTranslations('patients.addPatient');
   const { handleSubmit } = formContext;
 
   const queryClient = useQueryClient();
@@ -24,6 +26,7 @@ export const useAddPatientForm = ({ onClose }: { onClose: () => void }) => {
         phone: data.phone,
         firstName: data.firstName,
         lastName: data.lastName,
+        birthDate: dateToLocalISO(data.birthDate),
       });
     } catch (error) {
       toast.error('Failed to create patient.');
@@ -33,7 +36,7 @@ export const useAddPatientForm = ({ onClose }: { onClose: () => void }) => {
 
     await queryClient.invalidateQueries({ queryKey: [GET_PATIENTS] });
 
-    toast.success('Patient created successfully');
+    toast.success(addPatientMessages('success'));
 
     onClose();
   });

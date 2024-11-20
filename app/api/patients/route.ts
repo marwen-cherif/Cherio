@@ -2,7 +2,7 @@ import { auth } from 'auth';
 import { prisma } from '@/prisma/prisma';
 import { PatientDetails, Role } from '@/prisma/generated/client';
 import {
-  getPatientUser,
+  getPatientUserByEmail,
   getStaffMemberUser,
 } from '../../../lib/ApiHelper/getUser';
 
@@ -48,9 +48,16 @@ export const POST = auth(async (req) => {
     }
 
     const body = await req.json();
-    const { email, phone, firstName, lastName } = body;
+    const { email, phone, firstName, lastName, birthDate } = body;
 
-    const patient = await getPatientUser({ email });
+    if (!email || !phone || !firstName || !lastName || !birthDate) {
+      return Response.json(
+        { message: 'Missing required fields', success: false },
+        { status: 400 }
+      );
+    }
+
+    const patient = await getPatientUserByEmail({ email });
     const existingPatientDetails = patient?.patientDetails.some(
       (p) => p.tenantId === tenantId
     );
@@ -63,6 +70,7 @@ export const POST = auth(async (req) => {
           role: Role.PATIENT,
           firstName,
           lastName,
+          birthDate,
           patientDetails: {
             create: [
               {
@@ -92,6 +100,7 @@ export const POST = auth(async (req) => {
           phone,
           firstName,
           lastName,
+          birthDate,
         },
       });
 

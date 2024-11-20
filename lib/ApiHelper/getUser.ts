@@ -15,7 +15,7 @@ export const getStaffMemberUser = async ({ email }: { email: string }) => {
   });
 };
 
-export const getPatientUser = async ({ email }: { email: string }) => {
+export const getPatientUserByEmail = async ({ email }: { email: string }) => {
   return prisma.user.findFirst({
     where: {
       email: email,

@@ -1,7 +1,6 @@
 import { auth } from 'auth';
 import { prisma } from '@/prisma/prisma';
 import { getStaffMemberUser } from '../../../../lib/ApiHelper/getUser';
-import { Role } from '../../../../prisma/generated/client';
 
 export const DELETE = auth(async (req, { params }) => {
   const patientDetailsId = (await params)?.id as string;
