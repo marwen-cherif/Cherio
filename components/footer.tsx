@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="mx-0 my-4 flex w-full flex-col gap-4 text-sm items-center">
       <div className="flex items-center justify-start gap-1">
         Besoin d'aide ?
-        <CustomLink href="mailto:reply.cherio@gmail.com">
+        <CustomLink href="mailto:contact@cherio.care">
           Contactez le support
         </CustomLink>
         |

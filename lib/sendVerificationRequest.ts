@@ -13,7 +13,7 @@ export async function sendVerificationRequest({
     Messages: [
       {
         From: {
-          Email: 'reply.cherio@gmail.com',
+          Email: 'contact@cherio.care',
         },
         To: [
           {
