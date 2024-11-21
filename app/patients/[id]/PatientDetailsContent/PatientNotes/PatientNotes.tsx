@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useTranslations } from 'next-intl';
 import { Table } from '../../../../../components/ui/Table/Table';
 import { ColumnDef } from '@tanstack/react-table';
-import { Note } from '../../../../types/PatientDetails';
+import { Note } from '../../../../../types/PatientDetails';
 import { FilesCell } from './FilesCell/FilesCell';
 import { usePatientNotes } from './PatientNotes.hooks';
 

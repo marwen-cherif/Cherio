@@ -50,7 +50,14 @@
           "button": "Add a patient",
           "success": "Patient added successfully"
         },
-
+        "quotations": {
+          "createQuotation": {
+            "title": "Create a quotation",
+            "button": "Create a quotation",
+            "success": "Quotation created successfully",
+            "submit": "submit"
+          }
+        },
         "notes": {
           "title": "Notes",
 

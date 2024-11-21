@@ -10,7 +10,7 @@ import { AddUserForm } from '@/app/settings/users/Users/AddUserForm/AddUserForm'
 import Skeleton from 'react-loading-skeleton';
 import { useGetUsers } from '@/app/settings/users/Users/hooks/useGetUsers';
 import { ActionsCell } from '@/app/settings/users/Users/ActionsCell/ActionsCell';
-import { StaffMember } from '../../../types/StaffMember';
+import { StaffMember } from '../../../../types/StaffMember';
 
 export const Users: FC = () => {
   const [isAddNewUserModalOpen, setIsAddNewUserModalOpen] = useState(false);

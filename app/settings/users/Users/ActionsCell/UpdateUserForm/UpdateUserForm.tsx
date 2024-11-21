@@ -5,7 +5,7 @@ import { Button } from 'flowbite-react';
 import { Role } from '../../../../../../prisma/generated/client';
 import { HiddenInput } from '../../../../../../components/ui/HiddenInput/HiddenInput';
 import { useUpdateUserForm } from './UpdateUserForm.hooks';
-import { StaffMember } from '../../../../../types/StaffMember';
+import { StaffMember } from '../../../../../../types/StaffMember';
 import { Form } from '../../../../../../components/ui/Form/Form';
 
 interface AddUserFormProps {

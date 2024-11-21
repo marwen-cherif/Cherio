@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 
 import { UpdateUserFormValue } from './UpdateUserForm.types';
 import { updateUserFormSchema } from './UpdateUserForm.schema';
-import { User } from '../../../../../types/User';
-import { StaffMember } from '../../../../../types/StaffMember';
+import { User } from '../../../../../../types/User';
+import { StaffMember } from '../../../../../../types/StaffMember';
 
 export const useUpdateUserForm = ({
   onClose,

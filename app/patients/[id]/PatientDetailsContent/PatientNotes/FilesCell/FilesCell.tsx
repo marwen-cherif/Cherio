@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Document } from '../../../../../types/PatientDetails';
+import { Document } from '../../../../../../types/PatientDetails';
 import CustomLink from '../../../../../../components/custom-link';
 
 interface Props {

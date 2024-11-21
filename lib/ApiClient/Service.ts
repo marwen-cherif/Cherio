@@ -1,9 +1,9 @@
 import { apiClient } from './ApiClientFactory';
 import { Role } from '../../prisma/generated/client';
-import { Note, PatientDetails } from '../../app/types/PatientDetails';
-import { User } from '../../app/types/User';
-import { StaffMember, UserStaffMember } from '../../app/types/StaffMember';
-import { Tenant } from '../../app/types/Tenant';
+import { Note, PatientDetails } from '../../types/PatientDetails';
+import { User } from '../../types/User';
+import { StaffMember, UserStaffMember } from '../../types/StaffMember';
+import { Tenant } from '../../types/Tenant';
 
 export const Service = {
   getStaffMembers: async () => {

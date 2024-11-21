@@ -1,4 +1,4 @@
-import { StaffMember } from '../../../../../types/StaffMember';
+import { StaffMember } from '../../../../../../types/StaffMember';
 import { SelectOption } from '../../../../../../components/ui/Select/Select';
 
 export interface TakeAppointmentFormValues {

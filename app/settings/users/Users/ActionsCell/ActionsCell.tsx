@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import { Modal } from '../../../../../components/ui/Modal/Modal';
 import Skeleton from 'react-loading-skeleton';
 import { UpdateUserForm } from './UpdateUserForm/UpdateUserForm';
-import { User } from '../../../../types/User';
-import { StaffMember } from '../../../../types/StaffMember';
+import { User } from '../../../../../types/User';
+import { StaffMember } from '../../../../../types/StaffMember';
 
 export const ActionsCell: FC<{ staffMember: StaffMember }> = ({
   staffMember,

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { Modal } from '../../../../components/ui/Modal/Modal';
 import { GET_PATIENTS } from '../hooks/useGetPatients';
 import { redirect } from 'next/navigation';
-import { PatientDetails } from '../../../types/PatientDetails';
+import { PatientDetails } from '../../../../types/PatientDetails';
 import { useTranslations } from 'next-intl';
 import { ButtonContainer } from '../../../../components/ui/ButtonContainer/ButtonContainer';
 

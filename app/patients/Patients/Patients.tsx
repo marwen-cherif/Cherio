@@ -10,7 +10,7 @@ import { AddPatientForm } from './AddPatientForm/AddPatientForm';
 import Skeleton from 'react-loading-skeleton';
 import { ActionsCell } from './ActionsCell/ActionsCell';
 import { useGetPatients } from './hooks/useGetPatients';
-import { PatientDetails } from '../../types/PatientDetails';
+import { PatientDetails } from '../../../types/PatientDetails';
 import { useTranslations } from 'next-intl';
 
 export const Patients: FC = () => {

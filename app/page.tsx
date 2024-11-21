@@ -11,9 +11,7 @@ export default async function Index() {
 
   return (
     <SessionProvider session={session}>
-      <div className="flex flex-col gap-6">
-        <Calendar />
-      </div>
+      <div className="flex flex-col gap-6"></div>
     </SessionProvider>
   );
 }
