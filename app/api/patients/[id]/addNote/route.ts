@@ -30,6 +30,8 @@ export const POST = auth(async (req, { params }) => {
       );
     }
 
+    // TODO: implement validation with zod
+
     const formData = await req.formData();
 
     const content = formData.get('content') as string;

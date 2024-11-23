@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devis</title>
+
+    <style>
+        @font-face {
+            font-family: 'Cairo';
+            src: url({{ getFontBase64 './fonts/Cairo-Regular.ttf'}}) format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cairo';
+            src: url({{ getFontBase64 './fonts/Cairo-Bold.ttf' }}) format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cairo';
+            src: url({{ getFontBase64 './fonts/Cairo-Black.ttf' }}) format('truetype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cairo';
+            src: url({{ getFontBase64 './fonts/Cairo-ExtraBold.ttf' }}) format('truetype');
+            font-weight: 800;
+            font-style: normal;
+        }
+    </style>
+
+    <style>
+        body {
+            font-family: Cairo, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            font-size: 16px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        table {
+            border: none;
+            width: 100%;
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        .doctor-info {
+            text-align: right;
+        }
+
+        .quotationTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .quotationTable td {
+            border: 1px solid #c5dfe6;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .quotationTable th {
+            border: 1px solid #6aa2b9;
+            padding: 8px;
+            text-align: left;
+            background-color: #6aa2b9;
+            color: #fff;
+        }
+
+        .totals {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .totals p {
+            margin: 5px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #878b8c;
+            padding-top: 10px;
+        }
+
+        .doctor-info {
+            display: flex;
+            flex-direction: column;
+
+            & * {
+                margin: 0;
+            }
+        }
+
+        h2, h3 {
+            color: #6aa2b9;
+            font-weight: bold;
+        }
+
+        label {
+            color: #6aa2b9;
+            font-weight: bold;
+        }
+
+        .didactics {
+            color: #878b8c;
+        }
+
+        .documentTitle {
+            text-align: center;
+            color: #6aa2b9;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+            & * {
+                margin: 0;
+            }
+        }
+
+        td.priceCell, th.priceCell {
+            text-align: right;
+        }
+
+        .small {
+            font-size: 0.8em;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .page-footer, .page-footer-space {
+            height: 80px;
+
+        }
+
+        .page-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+
+        .page-header {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .page {
+            page-break-after: always;
+        }
+
+        @page {
+            margin: 5mm
+        }
+
+        @media print {
+            thead {display: table-header-group;}
+            tfoot {display: table-footer-group;}
+
+            button {display: none;}
+
+            body {margin: 0;}
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header" style="text-align: center">
+        <div class="logo">
+            <img src="{{ getImageBase64 './Logo-DR-Aslem-Gouiaa.png' }}" alt="Logo" class="logo"/>
+        </div>
+        <div class="doctor-info">
+            <h3>Cabinet Dr. Aslem Gouiaa</h3>
+            <div class="didactics">Parodontologie et implantologie orale</div>
+        </div>
+    </header>
+
+    <footer class="page-footer">
+        <label>Adresse:</label> Bureau 3.3, 3ème étage, Immeuble Fraj, Rue du Lac Biwa, Tunis 1053, Tunisie <br>
+        <label>Tél:</label> +216 26 60 86 09 | <label>Email:</label> dr.aslem.gouiaa@gmail.com<br>
+        © {{ currentYear }} Cabinet Dr. Aslem Gouiaa.
+    </footer>
+
+    <table class="hiddenTable">
+        <thead>
+        <tr>
+            <td>
+                <!--place holder for the fixed-position header-->
+                <div class="page-header-space"></div>
+            </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>
+                <div class="documentTitle">
+                    <h2>Devis émis le 23/11/2024</h2>
+                </div>
+
+                <div class="patient-info">
+                    <div>
+                        <span><label>Nom complet:</label> John Doe</span> | <span><label>Date de naissance:</label> 27/10/1990</span>
+                    </div>
+                    <div><label>Adresse:</label> 123 Medical Street, Health City, HC 12345</div>
+                    <div><label>Email:</label> jjj@gmail.com</div>
+                </div>
+
+                <div class="didactics small right">
+                    Tous les montants renseignés sont en dinar tunisien (TND)<br>
+                </div>
+
+                <table class="quotationTable">
+                    <thead>
+                    <tr>
+                        <th>Type de l'acte</th>
+                        <th>Description</th>
+                        <th>Date prévisionnel</th>
+                        <th class="priceCell">Quantité</th>
+                        <th class="priceCell">Prix unitaire</th>
+                        <th class="priceCell">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Consultation</td>
+                        <td>General</td>
+                        <td>07/07/2025</td>
+                        <td class="priceCell">1</td>
+                        <td class="priceCell">50,00</td>
+                        <td class="priceCell">50,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Medication</td>
+                        <td>Pain Reliever</td>
+                        <td>10/07/2025</td>
+                        <td class="priceCell">2</td>
+                        <td class="priceCell">10,00</td>
+                        <td class="priceCell">20,00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="totals">
+                    <p><label>Total HTC:</label> 70,00</p>
+                    <p><label>Total TTC:</label> 84,00</p>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <td>
+                <!--place holder for the fixed-position footer-->
+                <div class="page-footer-space"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

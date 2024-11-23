@@ -1,12 +1,19 @@
 import { auth } from 'auth';
-import { getStaffMemberUser } from '../../../../lib/ApiHelper/getUser';
 import { prisma } from '../../../../prisma/prisma';
 import { Role } from '../../../../prisma/generated/client';
 
 export const POST = auth(async (req) => {
   if (req.auth && req.auth.user && req.auth.user.email) {
-    const currentUser = await getStaffMemberUser({
-      email: req.auth.user.email,
+    const currentUser = await prisma.user.findFirst({
+      where: {
+        email: req.auth.user.email,
+        role: {
+          in: [Role.DOCTOR, Role.LEAD_DOCTOR, Role.ADMIN, Role.SUPER_ADMIN],
+        },
+      },
+      include: {
+        staffMember: true,
+      },
     });
 
     if (!currentUser) {

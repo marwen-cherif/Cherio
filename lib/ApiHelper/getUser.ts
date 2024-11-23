@@ -1,8 +1,8 @@
 import { prisma } from '../../prisma/prisma';
-import { Role } from '../../prisma/generated/client';
+import { Role, User } from '../../prisma/generated/client';
 
 export const getStaffMemberUser = async ({ email }: { email: string }) => {
-  return prisma.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
       email: email,
       role: {
@@ -13,6 +13,12 @@ export const getStaffMemberUser = async ({ email }: { email: string }) => {
       staffMember: true,
     },
   });
+
+  if (!user?.staffMember || !user.staffMember.tenantId) {
+    throw new Error('Staff member does not have a tenant ID');
+  }
+
+  return user;
 };
 
 export const getPatientUserByEmail = async ({ email }: { email: string }) => {

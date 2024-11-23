@@ -124,7 +124,10 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.TenantScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  logo: 'logo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -146,13 +149,27 @@ exports.Prisma.StaffMemberScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted'
 };
 
 exports.Prisma.PatientDetailsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted'
+};
+
+exports.Prisma.AccountingEntryScalarFieldEnum = {
+  id: 'id',
+  patientDetailsId: 'patientDetailsId',
+  amount: 'amount',
+  currency: 'currency',
+  paymentMethod: 'paymentMethod',
+  transactionReference: 'transactionReference',
+  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -204,7 +221,11 @@ exports.Prisma.AddressScalarFieldEnum = {
   city: 'city',
   zip: 'zip',
   countryCode: 'countryCode',
-  userId: 'userId'
+  additionalAddressLine: 'additionalAddressLine',
+  userId: 'userId',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.NoteScalarFieldEnum = {
@@ -214,7 +235,8 @@ exports.Prisma.NoteScalarFieldEnum = {
   createdById: 'createdById',
   updatedAt: 'updatedAt',
   updatedById: 'updatedById',
-  patientDetailsId: 'patientDetailsId'
+  patientDetailsId: 'patientDetailsId',
+  isDeleted: 'isDeleted'
 };
 
 exports.Prisma.DocumentScalarFieldEnum = {
@@ -227,7 +249,8 @@ exports.Prisma.DocumentScalarFieldEnum = {
   updatedById: 'updatedById',
   contentType: 'contentType',
   noteId: 'noteId',
-  visibleTo: 'visibleTo'
+  visibleTo: 'visibleTo',
+  quotationId: 'quotationId'
 };
 
 exports.Prisma.AppointmentScalarFieldEnum = {
@@ -238,6 +261,58 @@ exports.Prisma.AppointmentScalarFieldEnum = {
   startAt: 'startAt',
   endAt: 'endAt',
   reportNoteId: 'reportNoteId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FeatureFlagScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  isEnabled: 'isEnabled',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PredefinedActTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  tenantId: 'tenantId',
+  price: 'price',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PredefinedActSubTypesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  currency: 'currency',
+  predefinedActTypeId: 'predefinedActTypeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuotationScalarFieldEnum = {
+  id: 'id',
+  patientDetailsId: 'patientDetailsId',
+  name: 'name',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuotationLineScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  comment: 'comment',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  currency: 'currency',
+  actTypeId: 'actTypeId',
+  subActTypeId: 'subActTypeId',
+  forecastDate: 'forecastDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -264,6 +339,25 @@ exports.Role = exports.$Enums.Role = {
   PATIENT: 'PATIENT'
 };
 
+exports.Currency = exports.$Enums.Currency = {
+  EUR: 'EUR',
+  TND: 'TND',
+  USD: 'USD',
+  CAD: 'CAD'
+};
+
+exports.PaymentMethod = exports.$Enums.PaymentMethod = {
+  CASH: 'CASH',
+  CARD: 'CARD',
+  CHEQUE: 'CHEQUE',
+  TRANSFER: 'TRANSFER'
+};
+
+exports.AccountingEntryType = exports.$Enums.AccountingEntryType = {
+  CREDIT: 'CREDIT',
+  DEBIT: 'DEBIT'
+};
+
 exports.AppointmentStatus = exports.$Enums.AppointmentStatus = {
   SCHEDULED: 'SCHEDULED',
   CANCELLED: 'CANCELLED',
@@ -271,11 +365,23 @@ exports.AppointmentStatus = exports.$Enums.AppointmentStatus = {
   MISSED: 'MISSED'
 };
 
+exports.FeatureFlagKey = exports.$Enums.FeatureFlagKey = {
+  PERIODONTAL_MODULE: 'PERIODONTAL_MODULE'
+};
+
+exports.QuotationStatus = exports.$Enums.QuotationStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  PAID: 'PAID'
+};
+
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
   User: 'User',
   StaffMember: 'StaffMember',
   PatientDetails: 'PatientDetails',
+  AccountingEntry: 'AccountingEntry',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
@@ -283,7 +389,12 @@ exports.Prisma.ModelName = {
   Address: 'Address',
   Note: 'Note',
   Document: 'Document',
-  Appointment: 'Appointment'
+  Appointment: 'Appointment',
+  FeatureFlag: 'FeatureFlag',
+  PredefinedActType: 'PredefinedActType',
+  PredefinedActSubTypes: 'PredefinedActSubTypes',
+  Quotation: 'Quotation',
+  QuotationLine: 'QuotationLine'
 };
 
 /**

@@ -1,6 +1,7 @@
 import { auth } from 'auth';
 import { getStaffMemberUser } from '../../../../../lib/ApiHelper/getUser';
 import { prisma } from '../../../../../prisma/prisma';
+import { isAuthorizedToViewQuotation } from '../../../../../lib/ApiHelper/quotationHelper';
 
 export const GET = auth(async (req, { params }) => {
   const { id: patientDetailsId } = (await params) as { id: string };
@@ -17,9 +18,12 @@ export const GET = auth(async (req, { params }) => {
       email: req.auth.user.email,
     });
 
-    if (!currentUser || !currentUser.staffMember?.tenantId) {
+    const isAuthorized =
+      currentUser && isAuthorizedToViewQuotation({ role: currentUser.role });
+
+    if (!isAuthorized || !currentUser.staffMember?.tenantId) {
       return Response.json(
-        { message: 'User not found', success: false },
+        { message: 'Unauthorized', success: false },
         { status: 404 }
       );
     }
@@ -38,7 +42,7 @@ export const GET = auth(async (req, { params }) => {
       );
     }
 
-    const notes = await prisma.note.findMany({
+    const quotations = await prisma.quotation.findMany({
       where: {
         patientDetailsId,
         patientDetails: {
@@ -46,7 +50,8 @@ export const GET = auth(async (req, { params }) => {
         },
       },
       include: {
-        files: true,
+        quotationLines: true,
+        document: true,
       },
       orderBy: [
         {
@@ -55,7 +60,7 @@ export const GET = auth(async (req, { params }) => {
       ],
     });
 
-    return Response.json({ value: notes, success: true });
+    return Response.json({ value: quotations, success: true });
   }
 
   return Response.json(

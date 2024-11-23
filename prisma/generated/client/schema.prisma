@@ -30,6 +30,16 @@ model Tenant {
 
   patients     PatientDetails[]
   staffMembers StaffMember[]
+  FeatureFlag  FeatureFlag[]
+
+  logo String?
+
+  billingAddress Address?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  predefinedActTypes PredefinedActType[]
 }
 
 model User {
@@ -54,10 +64,10 @@ model User {
 
   phone     String?
   address   Address?
-  birthDate DateTime?
+  birthDate DateTime? @db.Date
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model StaffMember {
@@ -77,6 +87,8 @@ model StaffMember {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   Appointment Appointment[]
+
+  isDeleted Boolean @default(false)
 }
 
 model PatientDetails {
@@ -94,7 +106,41 @@ model PatientDetails {
   updatedAt   DateTime      @updatedAt
   Appointment Appointment[]
 
+  isDeleted       Boolean           @default(false)
+  AccountingEntry AccountingEntry[]
+  Quotation       Quotation[]
+
   @@unique([userId, tenantId])
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  CHEQUE
+  TRANSFER
+}
+
+enum AccountingEntryType {
+  CREDIT
+  DEBIT
+}
+
+model AccountingEntry {
+  id String @id @default(cuid())
+
+  patientDetails   PatientDetails @relation(fields: [patientDetailsId], references: [id])
+  patientDetailsId String
+
+  amount   Decimal  @db.Money
+  currency Currency
+
+  paymentMethod        PaymentMethod
+  transactionReference String?
+
+  type AccountingEntryType
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model Account {
@@ -110,8 +156,8 @@ model Account {
   id_token          String?
   session_state     String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -124,8 +170,8 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model VerificationToken {
@@ -153,14 +199,21 @@ model Authenticator {
 }
 
 model Address {
-  id          String @id @default(cuid())
-  street      String
-  city        String
-  zip         String
-  countryCode String
+  id                    String  @id @default(cuid())
+  street                String
+  city                  String
+  zip                   String
+  countryCode           String
+  additionalAddressLine String?
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @unique
+
+  tenant   Tenant? @relation(fields: [tenantId], references: [id])
+  tenantId String? @unique
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model Note {
@@ -180,6 +233,8 @@ model Note {
 
   files       Document[]
   Appointment Appointment[]
+
+  isDeleted Boolean @default(false)
 }
 
 model Document {
@@ -201,6 +256,9 @@ model Document {
   noteId String?
 
   visibleTo Role[]
+
+  quotation   Quotation? @relation(fields: [quotationId], references: [id])
+  quotationId String?    @unique
 }
 
 model Appointment {
@@ -220,6 +278,110 @@ model Appointment {
   reportNote   Note?   @relation(fields: [reportNoteId], references: [id])
   reportNoteId String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+enum FeatureFlagKey {
+  PERIODONTAL_MODULE
+}
+
+model FeatureFlag {
+  id        String         @default(cuid())
+  key       FeatureFlagKey
+  isEnabled Boolean
+
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+  tenantId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@id([id, key, tenantId])
+}
+
+enum Currency {
+  EUR
+  TND
+  USD
+  CAD
+}
+
+model PredefinedActType {
+  id   String @id @default(cuid())
+  name String
+
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+  tenantId String
+
+  price    Decimal  @db.Money
+  currency Currency
+
+  predefinedActSubTypes PredefinedActSubTypes[]
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  QuotationLine QuotationLine[]
+}
+
+model PredefinedActSubTypes {
+  id   String @id @default(cuid())
+  name String
+
+  price    Decimal  @db.Money
+  currency Currency
+
+  predefinedActType   PredefinedActType @relation(fields: [predefinedActTypeId], references: [id])
+  predefinedActTypeId String
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  QuotationLine QuotationLine[]
+}
+
+enum QuotationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  PAID
+}
+
+model Quotation {
+  id String @id @default(cuid())
+
+  patientDetails   PatientDetails @relation(fields: [patientDetailsId], references: [id])
+  patientDetailsId String
+
+  name   String
+  status QuotationStatus
+
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  quotationLines QuotationLine[]
+
+  document Document?
+}
+
+model QuotationLine {
+  id String @id @default(cuid())
+
+  quotation   Quotation @relation(fields: [quotationId], references: [id])
+  quotationId String
+
+  comment  String
+  quantity Int
+
+  unitPrice Decimal  @db.Money
+  currency  Currency
+
+  actType   PredefinedActType @relation(fields: [actTypeId], references: [id])
+  actTypeId String
+
+  subActType   PredefinedActSubTypes? @relation(fields: [subActTypeId], references: [id])
+  subActTypeId String?
+
+  forecastDate DateTime? @db.Date
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
