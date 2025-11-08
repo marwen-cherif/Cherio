@@ -8,21 +8,21 @@ export const colors = {
   background: '#FFFBF5',
   foreground: '#5C5451',
   primary: '#5C5451',
-  
+
   // Secondary colors
   secondary: '#A18080',
   muted: '#A18080',
-  
+
   // Accent colors
   accent: '#FFDBD9',
-  
+
   // Semantic colors
   border: '#FFDBD9',
-  
+
   // Additional colors (for buttons, links, etc.)
   white: '#FFFFFF',
   black: '#000000',
-  
+
   // External platform colors (for product links)
   amazon: {
     primary: '#FF9900',

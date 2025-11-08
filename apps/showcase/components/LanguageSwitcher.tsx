@@ -10,9 +10,9 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
 
   const languages = [
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'ar', name: 'العربية', flag: '🇸🇦' }
+    { code: 'fr', name: 'Français' },
+    { code: 'en', name: 'English' },
+    { code: 'ar', name: 'العربية' }
   ];
 
   const handleLanguageChange = (newLocale: string) => {
@@ -25,12 +25,10 @@ export default function LanguageSwitcher() {
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-secondary hover:text-primary transition-colors rounded-lg hover:bg-accent/30"
         aria-label="Change language"
       >
-        <span className="text-lg">
-          {languages.find(l => l.code === locale)?.flag || '🌐'}
-        </span>
         <span className="hidden sm:inline">
           {languages.find(l => l.code === locale)?.code.toUpperCase() || locale.toUpperCase()}
         </span>
+
         <svg
           className="w-4 h-4"
           fill="none"
@@ -43,7 +41,7 @@ export default function LanguageSwitcher() {
           <path d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      
+
       <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
         <div className="py-1">
           {languages.map((lang) => (
@@ -56,7 +54,6 @@ export default function LanguageSwitcher() {
                   : 'text-secondary hover:bg-accent/20'
               }`}
             >
-              <span className="text-lg">{lang.flag}</span>
               <span>{lang.name}</span>
             </button>
           ))}

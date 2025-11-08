@@ -1,10 +1,11 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const locale = useLocale();
 
   return (
     <footer className="border-t border-border bg-accent/30">
@@ -12,10 +13,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <h3 className="text-lg font-semibold text-primary mb-4">
-              Cherio
+                <div>
+                    <span className="text-1xl font-bold text-primary">Eva Accessories</span>
+                    <div className="text-sm text-secondary">by Cherio</div>
+                </div>
             </h3>
             <p className="text-sm text-secondary">
-              Des produits artisanaux de qualité, créés avec passion et attention aux détails.
+                {t('description')}
             </p>
           </div>
 
@@ -29,7 +33,7 @@ export default function Footer() {
                   href="/about"
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  À propos
+                    {t('about')}
                 </Link>
               </li>
               <li>
@@ -37,7 +41,7 @@ export default function Footer() {
                   href="/products"
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  Produits
+                    {t('products')}
                 </Link>
               </li>
               <li>
@@ -45,7 +49,7 @@ export default function Footer() {
                   href="/contact"
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  Contact
+                    {t('contact')}
                 </Link>
               </li>
             </ul>
@@ -53,24 +57,24 @@ export default function Footer() {
 
           <div>
             <h4 className="text-sm font-semibold text-primary mb-4">
-              Légal
+              {locale === 'fr' ? 'Légal' : locale === 'en' ? 'Legal' : 'قانوني'}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
+                <Link
                   href="/legal"
                   className="text-secondary hover:text-primary transition-colors"
                 >
                   {t('legal')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/privacy"
                   className="text-secondary hover:text-primary transition-colors"
                 >
                   {t('privacy')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
