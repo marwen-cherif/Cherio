@@ -1,0 +1,54 @@
+{
+  "common": {
+    "language": "Langue",
+    "menu": "Menu",
+    "close": "Fermer",
+    "readMore": "Découvrir",
+    "buyNow": "Acheter maintenant",
+    "contact": "Contact",
+    "about": "À propos",
+    "products": "Produits",
+    "home": "Accueil",
+    "news": "Actualités"
+  },
+  "hero": {
+    "title": "Des produits de qualité au meilleur prix",
+    "subtitle": "Découvrez une sélection tendance à prix compétitifs",
+    "cta": "Voir les produits",
+    "description": "Nous proposons une gamme variée de produits alliant style, fiabilité et prix abordables. Faites-vous plaisir sans compromis."
+  },
+  "products": {
+    "title": "Nos Produits",
+    "subtitle": "Des nouveautés régulièrement ajoutées pour tous les goûts",
+    "viewAll": "Voir tous les produits",
+    "price": "Prix",
+    "availableOn": "Disponible sur",
+    "description": "Chaque article est sélectionné avec soin pour offrir le meilleur rapport qualité-prix.",
+    "noProducts": "Aucun produit disponible pour le moment. Revenez bientôt pour découvrir nos nouveautés."
+  },
+  "about": {
+    "title": "À Propos",
+    "subtitle": "Notre engagement : qualité et accessibilité",
+    "story": "Nous croyons que tout le monde mérite d’avoir accès à des produits modernes et fiables sans payer trop cher. Notre objectif est simple : vous proposer les meilleurs prix sans sacrifier la qualité.",
+    "values": "Transparence, fiabilité et satisfaction client sont au cœur de notre démarche.",
+    "mission": "Rendre le shopping en ligne simple, agréable et accessible à tous."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Besoin d’aide ou d’informations ? Nous sommes là pour vous.",
+    "name": "Nom complet",
+    "email": "Adresse email",
+    "message": "Votre message",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success": "Message envoyé avec succès ! Nous vous répondrons rapidement.",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "socialMedia": "Suivez nos dernières offres sur les réseaux sociaux"
+  },
+  "footer": {
+    "rights": "© {{year}} Tous droits réservés",
+    "links": "Liens utiles",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité"
+  }
+}

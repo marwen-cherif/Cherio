@@ -1,0 +1,54 @@
+{
+  "common": {
+    "language": "Language",
+    "menu": "Menu",
+    "close": "Close",
+    "readMore": "Discover",
+    "buyNow": "Buy now",
+    "contact": "Contact",
+    "about": "About",
+    "products": "Products",
+    "home": "Home",
+    "news": "News"
+  },
+  "hero": {
+    "title": "Quality products at the best price",
+    "subtitle": "Explore our trendy and affordable selection",
+    "cta": "View products",
+    "description": "We offer a wide range of products that combine style, reliability, and great value. Enjoy shopping without compromise."
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "New arrivals added regularly for every taste",
+    "viewAll": "See all products",
+    "price": "Price",
+    "availableOn": "Available on",
+    "description": "Each item is carefully selected to offer you the best quality-to-price ratio.",
+    "noProducts": "No products available at the moment. Check back soon for new arrivals."
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Our commitment: quality and affordability",
+    "story": "We believe everyone deserves access to stylish and reliable products without overpaying. Our goal is simple: offer great prices without compromising quality.",
+    "values": "Transparency, reliability, and customer satisfaction are at the heart of what we do.",
+    "mission": "To make online shopping simple, enjoyable, and accessible to everyone."
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Need help or information? We’re here for you.",
+    "name": "Full name",
+    "email": "Email address",
+    "message": "Your message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Your message has been sent! We’ll get back to you shortly.",
+    "error": "An error occurred. Please try again later.",
+    "socialMedia": "Follow our latest offers on social media"
+  },
+  "footer": {
+    "rights": "© {{year}} All rights reserved",
+    "links": "Useful links",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy"
+  }
+}
