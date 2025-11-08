@@ -31,22 +31,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#FFDBD9] to-[#FFFBF5] py-20 sm:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-accent to-background py-20 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center animate-fade-in" dir={isRTL ? 'rtl' : 'ltr'}>
-            <h1 className="text-4xl font-bold tracking-tight text-[#5C5451] sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-6xl">
               {t('title')}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-[#A18080]">
+            <p className="mt-6 text-lg leading-8 text-secondary">
               {t('subtitle')}
             </p>
-            <p className="mt-4 text-base text-[#A18080]">
+            <p className="mt-4 text-base text-secondary">
               {t('description')}
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/products"
-                className="rounded-md bg-[#5C5451] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#A18080] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C5451]"
+                className="rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 {t('cta')}
               </Link>
@@ -59,10 +59,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-12" dir={isRTL ? 'rtl' : 'ltr'}>
-            <h2 className="text-3xl font-bold tracking-tight text-[#5C5451] sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
               {tProducts('title')}
             </h2>
-            <p className="mt-4 text-lg text-[#A18080]">
+            <p className="mt-4 text-lg text-secondary">
               {tProducts('subtitle')}
             </p>
           </div>
@@ -76,7 +76,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div className="mt-12 text-center">
             <Link
               href="/products"
-              className="inline-flex items-center rounded-md bg-[#5C5451] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#A18080]"
+              className="inline-flex items-center rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-secondary"
             >
               {tProducts('viewAll')}
             </Link>

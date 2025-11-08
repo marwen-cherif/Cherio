@@ -22,7 +22,7 @@ export default function LanguageSwitcher() {
   return (
     <div className="relative group">
       <button
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#A18080] hover:text-[#5C5451] transition-colors rounded-lg hover:bg-[#FFDBD9]/30"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-secondary hover:text-primary transition-colors rounded-lg hover:bg-accent/30"
         aria-label="Change language"
       >
         <span className="text-lg">
@@ -44,7 +44,7 @@ export default function LanguageSwitcher() {
         </svg>
       </button>
       
-      <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg border border-[#FFDBD9] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+      <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
         <div className="py-1">
           {languages.map((lang) => (
             <button
@@ -52,8 +52,8 @@ export default function LanguageSwitcher() {
               onClick={() => handleLanguageChange(lang.code)}
               className={`w-full text-left px-4 py-2 text-sm flex items-center gap-2 transition-colors ${
                 locale === lang.code
-                  ? 'bg-[#FFDBD9]/30 text-[#5C5451]'
-                  : 'text-[#A18080] hover:bg-[#FFDBD9]/20'
+                  ? 'bg-accent/30 text-primary'
+                  : 'text-secondary hover:bg-accent/20'
               }`}
             >
               <span className="text-lg">{lang.flag}</span>

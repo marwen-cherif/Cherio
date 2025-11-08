@@ -79,7 +79,7 @@ export default async function ProductDetailPage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             {/* Product Image */}
-            <div className="aspect-square overflow-hidden rounded-lg bg-[#FFDBD9]/20 border border-[#FFDBD9]">
+            <div className="aspect-square overflow-hidden rounded-lg bg-accent/20 border border-border">
               <Image
                 src={product.image || '/images/placeholder.jpg'}
                 alt={product.name[localeKey]}
@@ -92,27 +92,27 @@ export default async function ProductDetailPage({
 
             {/* Product Info */}
             <div className="flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
-              <h1 className="text-4xl font-bold tracking-tight text-[#5C5451] sm:text-5xl mb-4">
+              <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl mb-4">
                 {product.name[localeKey]}
               </h1>
               
               <div className="mb-6">
-                <span className="text-3xl font-bold text-[#5C5451]">
+                <span className="text-3xl font-bold text-primary">
                   {product.price} {product.currency}
                 </span>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-lg font-semibold text-[#5C5451] mb-2">
+                <h2 className="text-lg font-semibold text-primary mb-2">
                   {t('description')}
                 </h2>
-                <p className="text-[#A18080] leading-relaxed">
+                <p className="text-secondary leading-relaxed">
                   {product.description[localeKey]}
                 </p>
               </div>
 
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-[#5C5451] mb-4">
+                <h3 className="text-lg font-semibold text-primary mb-4">
                   {t('availableOn')}
                 </h3>
                 <div className="flex flex-wrap gap-4">
@@ -121,7 +121,7 @@ export default async function ProductDetailPage({
                       href={product.links.amazon}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md bg-orange-500 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-orange-600"
+                      className="inline-flex items-center gap-2 rounded-md bg-amazon px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-amazon-hover"
                     >
                       <span>Amazon</span>
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,7 @@ export default async function ProductDetailPage({
                       href={product.links.etsy}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md bg-pink-500 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-pink-600"
+                      className="inline-flex items-center gap-2 rounded-md bg-etsy px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-etsy-hover"
                     >
                       <span>Etsy</span>
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,7 +147,7 @@ export default async function ProductDetailPage({
                       href={product.links.vinted}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md bg-green-500 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-green-600"
+                      className="inline-flex items-center gap-2 rounded-md bg-vinted px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-vinted-hover"
                     >
                       <span>Vinted</span>
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

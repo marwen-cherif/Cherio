@@ -15,10 +15,10 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#FFDBD9] bg-[#FFFBF5]/95 backdrop-blur supports-[backdrop-filter]:bg-[#FFFBF5]/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8">
-          <Link href="/" className="text-2xl font-bold text-[#5C5451]">
+          <Link href="/" className="text-2xl font-bold text-primary">
             Cherio
           </Link>
           
@@ -26,32 +26,32 @@ export default function Header() {
           <div className="hidden items-center gap-6 md:flex">
             <Link
               href="/"
-              className={`transition-colors hover:text-[#A18080] ${
-                isActive('/') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+              className={`transition-colors hover:text-secondary ${
+                isActive('/') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('home')}
             </Link>
             <Link
               href="/products"
-              className={`transition-colors hover:text-[#A18080] ${
-                isActive('/products') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+              className={`transition-colors hover:text-secondary ${
+                isActive('/products') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('products')}
             </Link>
             <Link
               href="/about"
-              className={`transition-colors hover:text-[#A18080] ${
-                isActive('/about') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+              className={`transition-colors hover:text-secondary ${
+                isActive('/about') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('about')}
             </Link>
             <Link
               href="/contact"
-              className={`transition-colors hover:text-[#A18080] ${
-                isActive('/contact') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+              className={`transition-colors hover:text-secondary ${
+                isActive('/contact') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('contact')}
@@ -65,7 +65,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-[#A18080]"
+            className="md:hidden p-2 text-secondary"
             aria-label={t('menu')}
           >
             <svg
@@ -89,13 +89,13 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-[#FFDBD9] bg-[#FFFBF5]">
+        <div className="md:hidden border-t border-border bg-background">
           <div className="flex flex-col gap-4 px-4 py-4">
             <Link
               href="/"
               onClick={() => setIsMenuOpen(false)}
               className={`transition-colors ${
-                isActive('/') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+                isActive('/') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('home')}
@@ -104,7 +104,7 @@ export default function Header() {
               href="/products"
               onClick={() => setIsMenuOpen(false)}
               className={`transition-colors ${
-                isActive('/products') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+                isActive('/products') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('products')}
@@ -113,7 +113,7 @@ export default function Header() {
               href="/about"
               onClick={() => setIsMenuOpen(false)}
               className={`transition-colors ${
-                isActive('/about') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+                isActive('/about') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('about')}
@@ -122,7 +122,7 @@ export default function Header() {
               href="/contact"
               onClick={() => setIsMenuOpen(false)}
               className={`transition-colors ${
-                isActive('/contact') ? 'text-[#5C5451] font-medium' : 'text-[#A18080]'
+                isActive('/contact') ? 'text-primary font-medium' : 'text-secondary'
               }`}
             >
               {t('contact')}

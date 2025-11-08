@@ -38,18 +38,18 @@ export default function ContactPage() {
     <div className="py-16 sm:py-24">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" dir={isRTL ? 'rtl' : 'ltr'}>
-          <h1 className="text-4xl font-bold tracking-tight text-[#5C5451] sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
             {t('title')}
           </h1>
-          <p className="mt-4 text-lg text-[#A18080]">
+          <p className="mt-4 text-lg text-secondary">
             {t('subtitle')}
           </p>
         </div>
 
-        <div className="rounded-lg bg-white p-8 shadow-lg border border-[#FFDBD9]" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="rounded-lg bg-white p-8 shadow-lg border border-border" dir={isRTL ? 'rtl' : 'ltr'}>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-[#5C5451] mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
                 {t('name')}
               </label>
               <input
@@ -59,12 +59,12 @@ export default function ContactPage() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full rounded-md border border-[#FFDBD9] px-4 py-2 text-[#5C5451] shadow-sm focus:border-[#A18080] focus:ring-[#A18080] bg-[#FFFBF5]"
+                className="w-full rounded-md border border-border px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[#5C5451] mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
                 {t('email')}
               </label>
               <input
@@ -74,12 +74,12 @@ export default function ContactPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full rounded-md border border-[#FFDBD9] px-4 py-2 text-[#5C5451] shadow-sm focus:border-[#A18080] focus:ring-[#A18080] bg-[#FFFBF5]"
+                className="w-full rounded-md border border-border px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-[#5C5451] mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
                 {t('message')}
               </label>
               <textarea
@@ -89,33 +89,33 @@ export default function ContactPage() {
                 rows={6}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full rounded-md border border-[#FFDBD9] px-4 py-2 text-[#5C5451] shadow-sm focus:border-[#A18080] focus:ring-[#A18080] bg-[#FFFBF5]"
+                className="w-full rounded-md border border-border px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background"
               />
             </div>
 
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="w-full rounded-md bg-[#5C5451] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#A18080] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C5451] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'sending' ? t('sending') : t('send')}
             </button>
 
             {status === 'success' && (
-              <div className="rounded-md bg-[#FFDBD9] p-4 text-[#5C5451]">
+              <div className="rounded-md bg-accent p-4 text-primary">
                 {t('success')}
               </div>
             )}
 
             {status === 'error' && (
-              <div className="rounded-md bg-[#FFDBD9] p-4 text-[#A18080]">
+              <div className="rounded-md bg-accent p-4 text-secondary">
                 {t('error')}
               </div>
             )}
           </form>
 
-          <div className="mt-8 border-t border-[#FFDBD9] pt-8">
-            <h3 className="text-lg font-semibold text-[#5C5451] mb-4">
+          <div className="mt-8 border-t border-border pt-8">
+            <h3 className="text-lg font-semibold text-primary mb-4">
               {t('socialMedia')}
             </h3>
             <div className="flex gap-4">
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#A18080] hover:text-[#5C5451] transition-colors"
+                className="text-secondary hover:text-primary transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#A18080] hover:text-[#5C5451] transition-colors"
+                className="text-secondary hover:text-primary transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -145,7 +145,7 @@ export default function ContactPage() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#A18080] hover:text-[#5C5451] transition-colors"
+                className="text-secondary hover:text-primary transition-colors"
                 aria-label="Twitter"
               >
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

@@ -1,21 +1,50 @@
 @import "tailwindcss";
 
+/* Theme colors - centralized from theme/colors.ts */
 :root {
+  /* Base colors */
   --background: #FFFBF5;
   --foreground: #5C5451;
   --primary: #5C5451;
   --secondary: #A18080;
   --accent: #FFDBD9;
   --muted: #A18080;
+  --border: #FFDBD9;
+  
+  /* Additional colors */
+  --white: #FFFFFF;
+  --black: #000000;
+  
+  /* Platform colors */
+  --amazon-primary: #FF9900;
+  --amazon-hover: #E88900;
+  --etsy-primary: #F56400;
+  --etsy-hover: #D85600;
+  --vinted-primary: #09B1BA;
+  --vinted-hover: #0899A1;
 }
 
 @theme inline {
+  /* Tailwind color mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-white: var(--white);
+  --color-black: var(--black);
+  
+  /* Platform colors */
+  --color-amazon: var(--amazon-primary);
+  --color-amazon-hover: var(--amazon-hover);
+  --color-etsy: var(--etsy-primary);
+  --color-etsy-hover: var(--etsy-hover);
+  --color-vinted: var(--vinted-primary);
+  --color-vinted-hover: var(--vinted-hover);
+  
+  /* Font */
   --font-sans: var(--font-inter);
 }
 

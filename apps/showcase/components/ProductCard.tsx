@@ -16,9 +16,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const isRTL = locale === 'ar';
 
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-[#FFDBD9] bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#A18080]">
+    <div className="group relative overflow-hidden rounded-lg border border-border bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:border-secondary">
       <Link href={`/products/${product.id}`}>
-        <div className="aspect-square overflow-hidden bg-[#FFDBD9]/20 cursor-pointer">
+        <div className="aspect-square overflow-hidden bg-accent/20 cursor-pointer">
           <Image
             src={product.image || '/images/placeholder.jpg'}
             alt={product.name[locale]}
@@ -31,17 +31,17 @@ export default function ProductCard({ product }: ProductCardProps) {
       
       <div className="p-6" dir={isRTL ? 'rtl' : 'ltr'}>
         <Link href={`/products/${product.id}`}>
-          <h3 className="mb-2 text-xl font-semibold text-[#5C5451] hover:text-[#A18080] transition-colors cursor-pointer">
+          <h3 className="mb-2 text-xl font-semibold text-primary hover:text-secondary transition-colors cursor-pointer">
             {product.name[locale]}
           </h3>
         </Link>
         
-        <p className="mb-4 text-sm text-[#A18080] line-clamp-2">
+        <p className="mb-4 text-sm text-secondary line-clamp-2">
           {product.shortDescription[locale]}
         </p>
         
         <div className="mb-4 flex items-center justify-between">
-          <span className="text-2xl font-bold text-[#5C5451]">
+          <span className="text-2xl font-bold text-primary">
             {product.price} {product.currency}
           </span>
         </div>
@@ -52,7 +52,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links.amazon}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-md bg-orange-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-orange-600"
+              className="inline-flex items-center gap-1 rounded-md bg-amazon px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-amazon-hover"
             >
               Amazon
             </a>
@@ -62,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links.etsy}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-md bg-pink-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-pink-600"
+              className="inline-flex items-center gap-1 rounded-md bg-etsy px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-etsy-hover"
             >
               Etsy
             </a>
@@ -72,7 +72,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links.vinted}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-md bg-green-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-green-600"
+              className="inline-flex items-center gap-1 rounded-md bg-vinted px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-vinted-hover"
             >
               Vinted
             </a>

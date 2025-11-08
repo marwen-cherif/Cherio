@@ -27,20 +27,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     <div className="py-16 sm:py-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" dir={isRTL ? 'rtl' : 'ltr'}>
-          <h1 className="text-4xl font-bold tracking-tight text-[#5C5451] sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
             {t('title')}
           </h1>
-          <p className="mt-4 text-lg text-[#A18080]">
+          <p className="mt-4 text-lg text-secondary">
             {t('subtitle')}
           </p>
         </div>
 
         <div className="prose prose-lg max-w-none" dir={isRTL ? 'rtl' : 'ltr'}>
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-[#5C5451] mb-4">
+            <h2 className="text-2xl font-semibold text-primary mb-4">
               {t('story')}
             </h2>
-            <p className="text-[#A18080] leading-relaxed">
+            <p className="text-secondary leading-relaxed">
               {locale === 'fr' && (
                 <>
                   Notre histoire commence avec une passion pour l'artisanat et le désir de créer des produits uniques qui allient tradition et modernité. 
@@ -66,10 +66,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-[#5C5451] mb-4">
+            <h2 className="text-2xl font-semibold text-primary mb-4">
               {t('values')}
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-[#A18080]">
+            <ul className="list-disc list-inside space-y-2 text-secondary">
               {locale === 'fr' && (
                 <>
                   <li>Qualité supérieure et durabilité</li>
@@ -98,10 +98,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-[#5C5451] mb-4">
+            <h2 className="text-2xl font-semibold text-primary mb-4">
               {t('mission')}
             </h2>
-            <p className="text-[#A18080] leading-relaxed">
+            <p className="text-secondary leading-relaxed">
               {locale === 'fr' && (
                 <>
                   Notre mission est de créer des produits qui enrichissent la vie quotidienne tout en préservant 

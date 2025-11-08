@@ -29,10 +29,10 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
     <div className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-12" dir={isRTL ? 'rtl' : 'ltr'}>
-          <h1 className="text-4xl font-bold tracking-tight text-[#5C5451] sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
             {t('title')}
           </h1>
-          <p className="mt-4 text-lg text-[#A18080]">
+          <p className="mt-4 text-lg text-secondary">
             {t('subtitle')}
           </p>
         </div>
@@ -45,7 +45,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           </div>
         ) : (
           <div className="text-center py-12" dir={isRTL ? 'rtl' : 'ltr'}>
-            <p className="text-[#A18080]">{t('noProducts')}</p>
+            <p className="text-secondary">{t('noProducts')}</p>
           </div>
         )}
       </div>
