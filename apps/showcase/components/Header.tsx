@@ -17,11 +17,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="text-2xl font-bold text-primary">
-            Cherio
+
+          <Link href="/" className="flex flex-col items-center text-center">
+              <span className="text-2xl font-bold text-primary">Eva Accessories</span>
+              <span className="text-sm text-secondary">by Cherio</span>
           </Link>
-          
+
+        <div className="flex items-center gap-8">
+
+
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-6 md:flex">
             <Link
@@ -61,7 +65,7 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           <LanguageSwitcher />
-          
+
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}

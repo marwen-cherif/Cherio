@@ -21,17 +21,16 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages({ locale });
-  const isRTL = locale === 'ar';
+    const messages = await getMessages({ locale });
+    const isRTL = locale === 'ar';
+    const direction = isRTL ? 'rtl' : 'ltr';
 
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'}>
+    <html lang={locale} dir={direction} suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">

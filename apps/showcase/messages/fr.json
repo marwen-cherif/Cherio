@@ -49,6 +49,61 @@
     "rights": "Tous droits réservés",
     "links": "Liens utiles",
     "legal": "Mentions légales",
-    "privacy": "Politique de confidentialité"
+    "privacy": "Politique de confidentialité",
+    "description": "Une sélection rigoureuse de produits tendance, choisis pour leur qualité et leur prix attractif.",
+    "about": "A propos",
+    "products": "Produits",
+    "contact": "Contactez-nous"
+
+  },
+  "legal": {
+    "title": "Mentions Légales",
+    "subtitle": "Informations légales et conditions d'utilisation",
+    "companyInfo": {
+      "title": "Informations sur l'entreprise"
+    },
+    "hosting": {
+      "title": "Hébergement"
+    },
+    "intellectualProperty": {
+      "title": "Propriété Intellectuelle",
+      "content": "L'ensemble du contenu de ce site web, y compris mais sans s'y limiter, les textes, graphiques, logos, images et logiciels, est la propriété de Cherio ou de ses fournisseurs de contenu et est protégé par les lois internationales sur le droit d'auteur. Toute reproduction, distribution, modification ou utilisation de ce contenu sans autorisation écrite préalable est strictement interdite."
+    },
+    "liability": {
+      "title": "Responsabilité",
+      "content": "Cherio s'efforce d'assurer l'exactitude des informations sur ce site web. Cependant, nous ne pouvons garantir que toutes les informations sont complètes, exactes ou à jour. Cherio ne sera pas responsable de tout dommage direct ou indirect résultant de l'utilisation de ce site web ou de l'impossibilité de l'utiliser."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Pour toute question concernant ces mentions légales, veuillez nous contacter via notre page de contact."
+    }
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "subtitle": "Comment nous collectons, utilisons et protégeons vos données personnelles",
+    "dataCollection": {
+      "title": "Collecte de Données",
+      "content": "Nous collectons des informations personnelles que vous nous fournissez volontairement lorsque vous :"
+    },
+    "dataUsage": {
+      "title": "Utilisation de Vos Données",
+      "content": "Nous utilisons les données collectées aux fins suivantes :"
+    },
+    "dataProtection": {
+      "title": "Protection des Données",
+      "content": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre l'accès non autorisé, l'altération, la divulgation ou la destruction. Vos données sont stockées en toute sécurité et ne sont accessibles qu'au personnel autorisé."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Notre site web utilise des cookies pour améliorer votre expérience de navigation et analyser le trafic du site. Vous pouvez contrôler les cookies via les paramètres de votre navigateur. Cependant, la désactivation des cookies peut affecter le fonctionnement de certaines parties de notre site web."
+    },
+    "rights": {
+      "title": "Vos Droits",
+      "content": "Conformément aux lois applicables sur la protection des données, vous disposez des droits suivants concernant vos données personnelles :"
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Si vous avez des questions concernant cette politique de confidentialité ou souhaitez exercer vos droits, veuillez nous contacter via notre page de contact."
+    }
   }
 }

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Theme colors - centralized from theme/colors.ts */
+/* Theme colors - centralized from config/theme.ts */
 :root {
   /* Base colors */
   --background: #FFFBF5;
