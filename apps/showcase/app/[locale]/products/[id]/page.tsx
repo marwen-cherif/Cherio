@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { products } from '@/data/products';
-import JsonLd from '@/components/JsonLd';
-import ProductDetailClient from '@/components/ProductsGrid/ProductDetailClient';
+import JsonLd from '@/components/ui/JsonLd';
+import ProductDetailClient from '@/components/products/ProductDetailClient';
 
 export async function generateStaticParams() {
   return products.map((product) => ({

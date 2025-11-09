@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import CartClient from '@/components/CartClient';
+import CartClient from '@/components/cart/CartClient';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

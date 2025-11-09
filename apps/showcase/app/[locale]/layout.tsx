@@ -2,9 +2,9 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import CartProviderWrapper from '@/components/CartProviderWrapper';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import CartProviderWrapper from '@/components/cart/CartProviderWrapper';
 import { Inter } from 'next/font/google';
 import './globals.css';
 

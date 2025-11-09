@@ -24,7 +24,9 @@ export const products: Product[] = [
     images: [
       '/images/product-1-2.jpg', // Images supplémentaires
       '/images/product-1-3.jpg',
-      '/images/product-1-4.jpg'
+      '/images/product-1-4.jpg',
+      '/images/product-1-5.jpg',
+      '/images/product-1-6.jpg'
     ],
     video: '/videos/product-1.mp4', // Vidéo optionnelle (sera affichée en premier si présente)
     links: {

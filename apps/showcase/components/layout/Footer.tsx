@@ -13,13 +13,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <h3 className="text-lg font-semibold text-primary mb-4">
-                <div>
-                    <span className="text-1xl font-bold text-primary">Eva Accessories</span>
-                    <div className="text-sm text-secondary">by Cherio</div>
-                </div>
+              <div>
+                <span className="text-1xl font-bold text-primary">Eva Accessories</span>
+                <div className="text-sm text-secondary">by Cherio</div>
+              </div>
             </h3>
             <p className="text-sm text-secondary">
-                {t('description')}
+              {t('description')}
             </p>
           </div>
 
@@ -33,7 +33,7 @@ export default function Footer() {
                   href="/about"
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                    {t('about')}
+                  {t('about')}
                 </Link>
               </li>
               <li>
@@ -41,7 +41,7 @@ export default function Footer() {
                   href="/products"
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                    {t('products')}
+                  {t('products')}
                 </Link>
               </li>
               <li>
@@ -49,7 +49,7 @@ export default function Footer() {
                   href="/contact"
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                    {t('contact')}
+                  {t('contact')}
                 </Link>
               </li>
             </ul>

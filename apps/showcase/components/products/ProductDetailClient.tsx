@@ -5,7 +5,7 @@ import { Link } from '@/i18n/routing';
 import { Product } from '@/types/product';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
-import ImageCarousel from '../ImageCarousel';
+import ImageCarousel from '@/components/ui/ImageCarousel';
 
 interface ProductDetailClientProps {
   product: Product;
