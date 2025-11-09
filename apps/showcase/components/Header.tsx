@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import LanguageSwitcher from './LanguageSwitcher';
+import CartIcon from './CartIcon';
 
 export default function Header() {
   const t = useTranslations('common');
@@ -64,6 +65,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4">
+          <CartIcon />
           <LanguageSwitcher />
 
           {/* Mobile Menu Button */}

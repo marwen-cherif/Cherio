@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
+import ProductsGrid from '@/components/ProductsGrid';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -38,11 +38,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         </div>
         
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <ProductsGrid products={products} />
         ) : (
           <div className="text-center py-12" dir={isRTL ? 'rtl' : 'ltr'}>
             <p className="text-secondary">{t('noProducts')}</p>

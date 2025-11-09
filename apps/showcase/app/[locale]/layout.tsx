@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CartProviderWrapper from '@/components/CartProviderWrapper';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
-  subsets: ['latin', 'arabic'],
+  subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
 });
@@ -35,12 +36,7 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages({ locale });
   const isRTL = locale === 'ar';
-const direction = isRTL ? 'rtl' : 'ltr';
-
-    console.log({
-        locale,
-        direction,
-    })
+  const direction = isRTL ? 'rtl' : 'ltr';
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
@@ -53,11 +49,13 @@ const direction = isRTL ? 'rtl' : 'ltr';
 
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <CartProviderWrapper>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1 page-enter">{children}</main>
+              <Footer />
+            </div>
+          </CartProviderWrapper>
         </NextIntlClientProvider>
       </body>
     </html>
