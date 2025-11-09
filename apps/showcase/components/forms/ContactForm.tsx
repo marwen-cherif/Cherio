@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { socialLinks } from '@/config/socialLinks';
 import { Button } from '@/components/ui/Button';
 import { ButtonSize } from '@/components/ui/button.types';
+import { contactFormSchema, type ContactFormData } from './ContactForm.schema';
 
 interface ContactFormProps {
   isRTL: boolean;
@@ -13,35 +16,36 @@ interface ContactFormProps {
 
 export function ContactForm({ isRTL }: ContactFormProps) {
   const t = useTranslations('contact');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
     setStatus('sending');
     
     // Simulate form submission
     setTimeout(() => {
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      reset();
       setTimeout(() => setStatus('idle'), 3000);
     }, 1000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
   return (
     <div className="rounded-lg bg-white p-8 shadow-lg border border-border" dir={isRTL ? 'rtl' : 'ltr'}>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
             {t('name')}
@@ -49,12 +53,14 @@ export function ContactForm({ isRTL }: ContactFormProps) {
           <input
             type="text"
             id="name"
-            name="name"
-            required
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full rounded-md border border-border px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background"
+            {...register('name')}
+            className={`w-full rounded-md border ${
+              errors.name ? 'border-red-500' : 'border-border'
+            } px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background`}
           />
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+          )}
         </div>
 
         <div>
@@ -64,12 +70,14 @@ export function ContactForm({ isRTL }: ContactFormProps) {
           <input
             type="email"
             id="email"
-            name="email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full rounded-md border border-border px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background"
+            {...register('email')}
+            className={`w-full rounded-md border ${
+              errors.email ? 'border-red-500' : 'border-border'
+            } px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background`}
           />
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+          )}
         </div>
 
         <div>
@@ -78,13 +86,15 @@ export function ContactForm({ isRTL }: ContactFormProps) {
           </label>
           <textarea
             id="message"
-            name="message"
-            required
+            {...register('message')}
             rows={6}
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full rounded-md border border-border px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background"
+            className={`w-full rounded-md border ${
+              errors.message ? 'border-red-500' : 'border-border'
+            } px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background`}
           />
+          {errors.message && (
+            <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+          )}
         </div>
 
         <Button

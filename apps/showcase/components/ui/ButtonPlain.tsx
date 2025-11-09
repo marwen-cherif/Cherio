@@ -9,6 +9,7 @@ import {
   sizeStyles,
   iconSizeStyles,
 } from './button.types';
+import { useIsRTL } from '@/hooks/useLocale';
 
 export interface ButtonPlainProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, BaseButtonProps {}
 
@@ -16,7 +17,7 @@ export function ButtonPlain({
   variant = 'primary',
   size = ButtonSize.Normal,
   isLoading = false,
-  isRTL = false,
+  isRTL: isRTLProp,
   leftIcon,
   rightIcon,
   children,
@@ -24,6 +25,10 @@ export function ButtonPlain({
   disabled,
   ...props
 }: ButtonPlainProps) {
+  // Use store isRTL by default, but allow override via prop
+  const storeIsRTL = useIsRTL();
+  const isRTL = isRTLProp !== undefined ? isRTLProp : storeIsRTL;
+  
   const isIconVariant = variant === 'icon' || variant === 'icon-circle';
   const isDisabled = disabled || isLoading;
 
@@ -56,9 +61,9 @@ export function ButtonPlain({
           />
         </svg>
       )}
-      {!isLoading && leftIcon && <span className={cn(isRTL && 'order-2')}>{leftIcon}</span>}
+      {!isLoading && leftIcon && <span className={isRTL ? 'order-2' : ''}>{leftIcon}</span>}
       {!isLoading && children && (
-        <span className={cn(isRTL && leftIcon && 'order-1')}>{children}</span>
+        <span className={isRTL && leftIcon ? 'order-1' : ''}>{children}</span>
       )}
       {!isLoading && rightIcon && <span>{rightIcon}</span>}
     </>

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://raw.githubusercontent.com/getcursor/cursorrules/main/schema.json",
+  "version": 1,
+  "project": "Cherio Monorepo",
+  "description": "Coding standards and structure enforcement for Cherio monorepo (Next.js 16, Vite, Express, pnpm, Turbo).",
+  "rules": [
+    {
+      "pattern": "**/*.tsx",
+      "purpose": "UI presentation only — JSX, props, markup, and event bindings.",
+      "constraints": [
+        "No business logic or data fetching directly in JSX.",
+        "All logic must be extracted to corresponding `.hooks.ts` files.",
+        "All pure helper functions must live in `.utils.ts` files.",
+        "All strings must use i18n translations via `next-intl`.",
+        "Arabic locale must support RTL direction."
+      ]
+    },
+    {
+      "pattern": "**/*.hooks.ts",
+      "purpose": "Encapsulate business logic, async operations, and state management.",
+      "constraints": [
+        "Hooks must remain pure, composable, and reusable.",
+        "Do not include JSX or styling here.",
+        "Use explicit TypeScript types for all params and returns.",
+        "All hooks must start with `use` prefix and be colocated with their component."
+      ]
+    },
+    {
+      "pattern": "**/*.utils.ts",
+      "purpose": "Host pure reusable helper functions.",
+      "constraints": [
+        "Utils must be stateless and side-effect free.",
+        "Avoid importing React or framework-specific code.",
+        "Prefer named exports and clear function names.",
+        "Never include DOM or UI references."
+      ]
+    },
+    {
+      "pattern": "**/*.types.ts",
+      "purpose": "Local TypeScript type definitions.",
+      "constraints": [
+        "Use interfaces for shapes and type unions for constants.",
+        "No logic or imports from other layers.",
+        "Export types explicitly (no default export)."
+      ]
+    },
+    {
+      "pattern": "apps/showcase/**/*",
+      "purpose": "Next.js 16 showcase app with i18n, SSR, and SEO metadata.",
+      "constraints": [
+        "Use Server Components by default.",
+        "Use 'use client' only for interactive parts.",
+        "All text must come from next-intl messages (fr, en, ar).",
+        "Implement dir='rtl' for Arabic.",
+        "Use @/i18n/routing Link instead of Next.js Link.",
+        "Metadata must include alternates.languages for all locales."
+      ]
+    },
+    {
+      "pattern": "apps/frontend/**/*",
+      "purpose": "React + Vite frontend with Mantine UI.",
+      "constraints": [
+        "Use Mantine components and theming only.",
+        "Use React Router v7 for routing.",
+        "Use Context or hooks for state, avoid prop drilling.",
+        "Split components following `.tsx` / `.hooks.ts` / `.utils.ts` pattern."
+      ]
+    },
+    {
+      "pattern": "apps/backend/**/*",
+      "purpose": "Express.js backend with PostgreSQL.",
+      "constraints": [
+        "Use TypeScript and parameterized queries with pg.",
+        "Organize routes/controllers/middleware/models clearly.",
+        "Use JWT for auth (httpOnly cookies preferred).",
+        "Use bcrypt for password hashing.",
+        "Business logic lives only in controllers, never in routes."
+      ]
+    },
+    {
+      "pattern": "packages/shared/**/*",
+      "purpose": "Shared TypeScript utilities and type definitions.",
+      "constraints": [
+        "Keep dependencies minimal.",
+        "Export all through `src/index.ts`.",
+        "No framework-specific imports (React, Express, etc.)."
+      ]
+    }
+  ],
+  "conventions": {
+    "language": "TypeScript",
+    "strictTyping": true,
+    "preferredManager": "pnpm",
+    "workspaceProtocol": "workspace:*",
+    "folderStructure": {
+      "component": {
+        "files": [
+          "Component.tsx",
+          "Component.hooks.ts",
+          "Component.utils.ts",
+          "Component.types.ts"
+        ],
+        "subfolders": ["SubComponent/"]
+      }
+    },
+    "naming": {
+      "components": "PascalCase",
+      "functions": "camelCase",
+      "hooks": "usePrefix",
+      "variables": "camelCase"
+    },
+    "sizeLimits": {
+      "maxComponentLines": 200,
+      "maxFunctionLines": 40
+    }
+  },
+  "quality": {
+    "enforceTypes": true,
+    "forbidAny": true,
+    "requireCommentsForComplexLogic": true,
+    "requireAccessibility": true,
+    "requireTranslationKeys": true,
+    "forbidHardcodedStrings": true
+  },
+  "testing": {
+    "recommendation": "Vitest or Jest depending on app",
+    "coverage": "critical logic and i18n correctness"
+  },
+  "git": {
+    "commitFormat": "[{workspace}] type: concise description",
+    "branchNaming": "feature/*, fix/*, chore/*"
+  }
+}

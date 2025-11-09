@@ -3,28 +3,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
-import { useLocale } from 'next-intl';
 import { formatPrice } from '@/utils/formatPrice';
 import { Button } from '@/components/ui/Button';
 import { ButtonSize } from '@/components/ui/button.types';
 import { useClientStore } from '@/stores/clientStore';
+import { useLocale } from '@/hooks/useLocale';
+import { useTranslations } from 'next-intl';
 
 interface OrderSummaryProps {
-  translations: {
-    total: string;
-    subtotal: string;
-    deliveryMethod: string;
-    homeDelivery: string;
-    pickupPoint: string;
-    chooseDeliveryMethod: string;
-    checkout: string;
-    pay: string;
-    continueShopping: string;
-  };
-  isRTL: boolean;
   totalPrice: number;
   currency: string;
-  locale: 'fr' | 'en' | 'ar';
   isProductsCollapsed: boolean;
   isCartValid: boolean;
   validationError: string | null;
@@ -32,16 +20,17 @@ interface OrderSummaryProps {
 }
 
 export default function OrderSummary({
-  translations,
-  isRTL,
   totalPrice,
   currency,
-  locale,
   isProductsCollapsed,
   isCartValid,
   validationError,
   onCheckout,
 }: OrderSummaryProps) {
+  const t = useTranslations('cart');
+  // Get locale and isRTL from store
+  const { locale, isRTL } = useLocale();
+  
   // Get delivery data from Zustand store
   const deliveryAddress = useClientStore((state) => state.deliveryAddress);
   const pickupPoint = useClientStore((state) => state.pickupPoint);
@@ -56,11 +45,11 @@ export default function OrderSummary({
         transition={{ delay: 0.2, duration: 0.5 }}
         className="sticky top-24 rounded-lg border border-border bg-white p-6 shadow-sm"
       >
-        <h2 className="text-xl font-bold text-primary mb-4">{translations.total}</h2>
+        <h2 className="text-xl font-bold text-primary mb-4">{t('total')}</h2>
         
         <div className="space-y-4 mb-6">
           <div className="flex justify-between text-secondary">
-            <span>{translations.subtotal}</span>
+            <span>{t('subtotal')}</span>
             <span className="font-semibold text-primary">
               {formatPrice(totalPrice, currency, locale)}
             </span>
@@ -69,13 +58,13 @@ export default function OrderSummary({
           {/* Delivery Method Summary */}
           <div className="border-t border-border pt-4">
             <h3 className="text-sm font-semibold text-primary mb-2">
-              {translations.deliveryMethod}
+              {t('deliveryMethod')}
             </h3>
             {isDeliverySaved ? (
               <>
                 {deliveryAddress && (
                   <div className="text-sm text-secondary space-y-1">
-                    <p className="font-medium text-primary">{translations.homeDelivery}</p>
+                    <p className="font-medium text-primary">{t('homeDelivery')}</p>
                     <p>{deliveryAddress.firstName} {deliveryAddress.lastName}</p>
                     <p>{deliveryAddress.addressLine1}</p>
                     {deliveryAddress.addressLine2 && <p>{deliveryAddress.addressLine2}</p>}
@@ -86,7 +75,7 @@ export default function OrderSummary({
                 )}
                 {pickupPoint && (
                   <div className="text-sm text-secondary space-y-1">
-                    <p className="font-medium text-primary">{translations.pickupPoint}</p>
+                    <p className="font-medium text-primary">{t('pickupPoint')}</p>
                     <p>{pickupPoint.name}</p>
                     <p>{pickupPoint.address}</p>
                     <p>
@@ -97,7 +86,7 @@ export default function OrderSummary({
               </>
             ) : (
               <p className="text-sm text-secondary italic">
-                {translations.chooseDeliveryMethod}
+                {t('chooseDeliveryMethod')}
               </p>
             )}
           </div>
@@ -105,7 +94,7 @@ export default function OrderSummary({
 
         <div className="border-t border-border pt-4 mb-4">
           <div className="flex justify-between text-lg font-bold text-primary">
-            <span>{translations.total}</span>
+            <span>{t('total')}</span>
             <span>
               {formatPrice(totalPrice, currency, locale)}
             </span>
@@ -130,7 +119,7 @@ export default function OrderSummary({
           disabled={!isCartValid}
           className="w-full"
         >
-          { `${translations.pay} (${formatPrice(totalPrice, currency, locale)})`}
+          { `${t('pay')} (${formatPrice(totalPrice, currency, locale)})`}
         </Button>}
 
         {!isDeliverySaved &&<Button
@@ -141,14 +130,14 @@ export default function OrderSummary({
           disabled={!isCartValid}
           className="w-full"
         >
-          {translations.chooseDeliveryMethod}
+          {t('chooseDeliveryMethod')}
         </Button>}
 
         <Link
           href="/"
           className="mt-4 block text-center text-sm text-secondary hover:text-primary transition-colors"
         >
-          {translations.continueShopping}
+          {t('continueShopping')}
         </Link>
       </motion.div>
     </div>

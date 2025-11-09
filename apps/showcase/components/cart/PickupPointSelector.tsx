@@ -1,12 +1,18 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { PickupPoint } from '@shared/index';
 import { Button } from '@/components/ui/Button';
 import { ButtonSize } from '@/components/ui/button.types';
+import { Card } from '@/components/ui/Card';
 import { useClientStore } from '@/stores/clientStore';
+import { useIsRTL } from '@/hooks/useLocale';
+import { pickupPointSearchSchema, type PickupPointSearchData } from './PickupPointSelector.schema';
+import { useTranslations } from 'next-intl';
 
 // Dynamically import the map component to avoid SSR issues
 const PickupPointMap = dynamic(() => import('./PickupPointMap'), {
@@ -19,27 +25,10 @@ const PickupPointMap = dynamic(() => import('./PickupPointMap'), {
 });
 
 interface PickupPointSelectorProps {
-  translations: {
-    searchAddress: string;
-    selectPickupPoint: string;
-    save: string;
-    cancel: string;
-    chooseAnotherDeliveryMethod: string;
-    noPickupPoints: string;
-    loading: string;
-    distance: string;
-    openingHours: string;
-    phone: string;
-    km: string;
-  };
-  isRTL: boolean;
   initialData?: PickupPoint;
   onSave: (point: PickupPoint) => void;
   onCancel: () => void;
-  isCollapsed: boolean;
-  onToggleCollapse: () => void;
-  editLabel: string;
-  pickupPointLabel: string;
+  initialIsOpen?: boolean;
 }
 
 // Mock data for pickup points
@@ -131,16 +120,15 @@ const generateMockPickupPoints = (searchAddress?: string): PickupPoint[] => {
 };
 
 export default function PickupPointSelector({
-  translations,
-  isRTL,
   initialData,
   onSave,
   onCancel,
-  isCollapsed,
-  onToggleCollapse,
-  editLabel,
-  pickupPointLabel,
+  initialIsOpen = true,
 }: PickupPointSelectorProps) {
+  const t = useTranslations('cart');
+  // Get isRTL from store
+  const isRTL = useIsRTL();
+  
   // Get pickup point from store
   const storePickupPoint = useClientStore((state) => state.pickupPoint);
   const setPickupPoint = useClientStore((state) => state.setPickupPoint);
@@ -148,7 +136,23 @@ export default function PickupPointSelector({
   // Use store data if available, otherwise use initialData prop
   const savedPoint = storePickupPoint || initialData;
   
-  const [searchAddress, setSearchAddress] = useState('');
+  // Determine initial open state: if we have saved data, start collapsed
+  const cardInitialIsOpen = savedPoint ? false : initialIsOpen;
+  
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useForm<PickupPointSearchData>({
+    resolver: zodResolver(pickupPointSearchSchema),
+    defaultValues: {
+      searchAddress: '',
+    },
+  });
+
+  const searchAddress = watch('searchAddress');
+  const { ref, ...searchAddressRegister } = register('searchAddress');
+  
   const [pickupPoints, setPickupPoints] = useState<PickupPoint[]>([]);
   const [selectedPoint, setSelectedPoint] = useState<PickupPoint | null>(savedPoint || null);
   const [isLoading, setIsLoading] = useState(false);
@@ -170,16 +174,19 @@ export default function PickupPointSelector({
     }
   }, [savedPoint]);
 
-  // Focus on search input when component mounts and input is empty
+  // Track if card is open for focus management
+  const [isCardOpen, setIsCardOpen] = useState(cardInitialIsOpen);
+  
+  // Focus on search input when card opens and input is empty
   useEffect(() => {
-    if (!isCollapsed && searchInputRef.current && !searchAddress) {
+    if (isCardOpen && searchInputRef.current && !searchAddress) {
       // Small delay to ensure the component is fully rendered
       const timer = setTimeout(() => {
         searchInputRef.current?.focus();
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [isCollapsed, searchAddress]);
+  }, [isCardOpen, searchAddress]);
 
   // Load pickup points and set search coordinates
   useEffect(() => {
@@ -244,80 +251,65 @@ export default function PickupPointSelector({
     }
   };
 
-  // If collapsed and we have saved data, show summary
-  if (isCollapsed && savedPoint) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-        className="rounded-lg border border-border bg-white p-6 shadow-sm"
-        dir={isRTL ? 'rtl' : 'ltr'}
-      >
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-primary">{pickupPointLabel}</h3>
-          <Button
-            variant="secondary"
-            size={ButtonSize.Small}
-            onClick={onToggleCollapse}
-            isRTL={isRTL}
-          >
-            {editLabel}
-          </Button>
-        </div>
-        <div className="space-y-2 text-secondary">
-          <p className="font-medium text-primary">{savedPoint.name}</p>
-          <p>{savedPoint.address}</p>
-          <p>
-            {savedPoint.postalCode} {savedPoint.city}
-          </p>
-          {savedPoint.openingHours && (
-            <p className="text-sm mt-2">
-              <span className="font-medium">{translations.openingHours}:</span> {savedPoint.openingHours}
-            </p>
-          )}
-        </div>
-      </motion.div>
-    );
-  }
+  // Summary content to show when collapsed
+  const summaryContent = savedPoint ? (
+    <>
+      <p className="font-medium text-primary">{savedPoint.name}</p>
+      <p>{savedPoint.address}</p>
+      <p>
+        {savedPoint.postalCode} {savedPoint.city}
+      </p>
+      {savedPoint.openingHours && (
+        <p className="text-sm mt-2">
+          <span className="font-medium">{t('pickupPointForm.openingHours')}:</span> {savedPoint.openingHours}
+        </p>
+      )}
+    </>
+  ) : undefined;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 'auto' }}
-      exit={{ opacity: 0, height: 0 }}
-      className="rounded-lg border border-border bg-white p-6 shadow-sm"
-      dir={isRTL ? 'rtl' : 'ltr'}
+    <Card
+      title={t('pickupPoint')}
+      initialIsOpen={cardInitialIsOpen}
+      summary={summaryContent}
+      editLabel={t('editDeliveryInfo')}
+      onToggle={(isOpen) => setIsCardOpen(isOpen)}
     >
-      <h3 className="text-lg font-semibold text-primary mb-4">{pickupPointLabel}</h3>
 
       {/* Search Input */}
       <div className="mb-6">
         <label htmlFor="address-search" className="block text-sm font-medium text-primary mb-2">
-          {translations.searchAddress}
+          {t('pickupPointForm.searchAddress')}
         </label>
         <input
-          ref={searchInputRef}
+          {...searchAddressRegister}
+          ref={(e) => {
+            ref(e);
+            searchInputRef.current = e;
+          }}
           type="text"
           id="address-search"
-          value={searchAddress}
-          onChange={(e) => setSearchAddress(e.target.value)}
-          placeholder={translations.searchAddress}
-          className="w-full rounded-md border border-border px-3 py-2 text-primary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          placeholder={t('pickupPointForm.searchAddress')}
+          className={`w-full rounded-md border ${
+            errors.searchAddress ? 'border-red-500' : 'border-border'
+          } px-3 py-2 text-primary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary`}
           dir={isRTL ? 'rtl' : 'ltr'}
         />
+        {errors.searchAddress && (
+          <p className="mt-1 text-sm text-red-600">{errors.searchAddress.message}</p>
+        )}
       </div>
 
       {/* Content Grid: List on left, Map on right (desktop only) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Pickup Points List */}
         <div className="space-y-4">
-          <h4 className="text-md font-semibold text-primary">{translations.selectPickupPoint}</h4>
+          <h4 className="text-md font-semibold text-primary">{t('pickupPointForm.selectPickupPoint')}</h4>
           
           {isLoading && displayedPoints.length === 0 ? (
-            <div className="text-center py-8 text-secondary">{translations.loading}</div>
+            <div className="text-center py-8 text-secondary">{t('pickupPointForm.loading')}</div>
           ) : displayedPoints.length === 0 ? (
-            <div className="text-center py-8 text-secondary">{translations.noPickupPoints}</div>
+            <div className="text-center py-8 text-secondary">{t('pickupPointForm.noPickupPoints')}</div>
           ) : (
             <div className="space-y-3 max-h-[600px] overflow-y-auto">
               {displayedPoints.map((point, index) => (
@@ -340,17 +332,17 @@ export default function PickupPointSelector({
                       </p>
                       {point.distance !== undefined && (
                         <p className="text-sm text-primary mt-2">
-                          {translations.distance}: {point.distance.toFixed(1)} {translations.km}
+                          {t('pickupPointForm.distance')}: {point.distance.toFixed(1)} {t('pickupPointForm.km')}
                         </p>
                       )}
                       {point.openingHours && (
                         <p className="text-xs text-secondary mt-1">
-                          {translations.openingHours}: {point.openingHours}
+                          {t('pickupPointForm.openingHours')}: {point.openingHours}
                         </p>
                       )}
                       {point.phone && (
                         <p className="text-xs text-secondary mt-1">
-                          {translations.phone}: {point.phone}
+                          {t('pickupPointForm.phone')}: {point.phone}
                         </p>
                       )}
                     </div>
@@ -374,7 +366,7 @@ export default function PickupPointSelector({
               ))}
               {isLoading && (
                 <div ref={loadingRef} className="text-center py-4 text-secondary">
-                  {translations.loading}
+                  {t('pickupPointForm.loading')}
                 </div>
               )}
             </div>
@@ -402,7 +394,7 @@ export default function PickupPointSelector({
           size={ButtonSize.Normal}
           isRTL={isRTL}
         >
-          {translations.chooseAnotherDeliveryMethod}
+          {t('chooseAnotherDeliveryMethod')}
         </Button>
         {selectedPoint && (
           <Button
@@ -411,11 +403,11 @@ export default function PickupPointSelector({
             size={ButtonSize.Normal}
             isRTL={isRTL}
           >
-            {translations.save}
+            {t('pickupPointForm.save')}
           </Button>
         )}
       </div>
-    </motion.div>
+    </Card>
   );
 }
 

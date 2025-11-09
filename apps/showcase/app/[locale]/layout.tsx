@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CartProviderWrapper from '@/components/cart/CartProviderWrapper';
+import { LocaleProvider } from '@/components/providers/LocaleProvider';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -49,13 +50,15 @@ export default async function LocaleLayout({
 
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <CartProviderWrapper>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1 page-enter">{children}</main>
-              <Footer />
-            </div>
-          </CartProviderWrapper>
+          <LocaleProvider>
+            <CartProviderWrapper>
+              <div className="flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1 page-enter">{children}</main>
+                <Footer />
+              </div>
+            </CartProviderWrapper>
+          </LocaleProvider>
         </NextIntlClientProvider>
       </body>
     </html>

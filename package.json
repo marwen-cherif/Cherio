@@ -10,13 +10,16 @@
     "dev:all": "turbo dev --parallel",
     "build": "turbo build",
     "test": "turbo test",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "Syndical council platform for verifying bills",
   "devDependencies": {
+    "prettier": "^3.6.2",
     "turbo": "^2.4.4"
   },
   "packageManager": "pnpm@10.7.0"

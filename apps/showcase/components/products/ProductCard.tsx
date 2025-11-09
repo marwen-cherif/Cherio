@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Product } from '@/types/product';
-import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/contexts/CartContext';
@@ -11,6 +10,7 @@ import { useState } from 'react';
 import { formatPrice } from '@/utils/formatPrice';
 import { Button } from '@/components/ui/Button';
 import { ButtonSize } from '@/components/ui/button.types';
+import { useLocale } from '@/hooks/useLocale';
 
 interface ProductCardProps {
   product: Product;
@@ -18,8 +18,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const t = useTranslations('products');
-  const locale = useLocale() as 'fr' | 'en' | 'ar';
-  const isRTL = locale === 'ar';
+  const { locale, isRTL } = useLocale();
   const { addToCart } = useCart();
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [showAddedMessage, setShowAddedMessage] = useState(false);

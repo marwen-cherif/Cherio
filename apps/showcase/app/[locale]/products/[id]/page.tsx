@@ -56,8 +56,6 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: 'products' });
-  const isRTL = locale === 'ar';
   const localeKey = locale as 'fr' | 'en' | 'ar';
 
   const jsonLdData = {
@@ -73,25 +71,10 @@ export default async function ProductDetailPage({
     }
   };
 
-  // Extract translations as strings to pass to client component
-  const translations = {
-    backToProducts: t('backToProducts'),
-    description: t('description'),
-    availableOn: t('availableOn'),
-    addToCart: t('addToCart'),
-    addedToCart: t('addedToCart'),
-    quantity: t('quantity'),
-  };
-
   return (
     <>
       <JsonLd type="Product" data={jsonLdData} />
-      <ProductDetailClient
-        product={product}
-        locale={localeKey}
-        isRTL={isRTL}
-        translations={translations}
-      />
+      <ProductDetailClient product={product} />
     </>
   );
 }

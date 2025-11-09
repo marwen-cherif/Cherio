@@ -12,8 +12,9 @@ import {
   defaultButtonVariants,
   iconButtonVariants,
 } from './button.types';
+import { useIsRTL } from '@/hooks/useLocale';
 
-export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size'>, BaseButtonProps {
+export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size' | 'children'>, BaseButtonProps {
   asChild?: boolean;
 }
 
@@ -21,7 +22,7 @@ export function Button({
   variant = 'primary',
   size = ButtonSize.Normal,
   isLoading = false,
-  isRTL = false,
+  isRTL: isRTLProp,
   leftIcon,
   rightIcon,
   children,
@@ -29,6 +30,9 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
+  const storeIsRTL = useIsRTL();
+  const isRTL = isRTLProp !== undefined ? isRTLProp : storeIsRTL;
+
   const isIconVariant = variant === 'icon' || variant === 'icon-circle';
   const isDisabled = disabled || isLoading;
 
@@ -63,9 +67,9 @@ export function Button({
           />
         </svg>
       )}
-      {!isLoading && leftIcon && <span className={cn(isRTL && 'order-2')}>{leftIcon}</span>}
+      {!isLoading && leftIcon && <span className={isRTL ? 'order-2' : ''}>{leftIcon}</span>}
       {!isLoading && children && (
-        <span className={cn(isRTL && leftIcon && 'order-1')}>{children}</span>
+        <span className={isRTL && leftIcon ? 'order-1' : ''}>{children}</span>
       )}
       {!isLoading && rightIcon && <span>{rightIcon}</span>}
     </>

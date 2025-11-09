@@ -9,19 +9,11 @@ import ImageCarousel from '@/components/ui/ImageCarousel';
 import { formatPrice } from '@/utils/formatPrice';
 import { Button } from '@/components/ui/Button';
 import { ButtonSize } from '@/components/ui/button.types';
+import { useTranslations } from 'next-intl';
+import { useLocale } from '@/hooks/useLocale';
 
 interface ProductDetailClientProps {
   product: Product;
-  locale: 'fr' | 'en' | 'ar';
-  isRTL: boolean;
-  translations: {
-    backToProducts: string;
-    description: string;
-    availableOn: string;
-    addToCart: string;
-    addedToCart: string;
-    quantity: string;
-  };
 }
 
 const imageVariants = {
@@ -54,15 +46,12 @@ const buttonVariants = {
   tap: { scale: 0.95 },
 };
 
-export default function ProductDetailClient({
-  product,
-  locale,
-  isRTL,
-  translations,
-}: ProductDetailClientProps) {
+export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
+  const t = useTranslations('products');
+  const { locale, isRTL } = useLocale();
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
@@ -97,17 +86,13 @@ export default function ProductDetailClient({
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            <span>{translations.backToProducts}</span>
+            <span>{t('backToProducts')}</span>
           </Link>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Product Image Carousel */}
-          <motion.div
-            variants={imageVariants}
-            initial="hidden"
-            animate="visible"
-          >
+          <motion.div variants={imageVariants} initial="hidden" animate="visible">
             <ImageCarousel
               mainImage={product.image}
               images={product.images}
@@ -155,7 +140,7 @@ export default function ProductDetailClient({
               <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                 <div className="flex items-center gap-3">
                   <label htmlFor="quantity" className="text-sm font-medium text-primary">
-                    {translations.quantity}:
+                    {t('quantity')}:
                   </label>
                   <input
                     id="quantity"
@@ -163,7 +148,9 @@ export default function ProductDetailClient({
                     min="1"
                     max="99"
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, Math.min(99, parseInt(e.target.value) || 1)))}
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, Math.min(99, parseInt(e.target.value) || 1)))
+                    }
                     className="w-20 rounded-md border border-border px-3 py-2 text-center text-primary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     dir={isRTL ? 'rtl' : 'ltr'}
                   />
@@ -175,7 +162,7 @@ export default function ProductDetailClient({
                   isRTL={isRTL}
                   className="flex-1 sm:flex-none"
                 >
-                  {showAddedMessage ? translations.addedToCart : translations.addToCart}
+                  {showAddedMessage ? t('addedToCart') : t('addToCart')}
                 </Button>
               </div>
             </motion.div>
@@ -186,9 +173,7 @@ export default function ProductDetailClient({
               transition={{ delay: 0.5, duration: 0.4 }}
               className="mb-8"
             >
-              <h2 className="text-lg font-semibold text-primary mb-3">
-                {translations.description}
-              </h2>
+              <h2 className="text-lg font-semibold text-primary mb-3">{t('description')}</h2>
               <p className="text-secondary leading-relaxed text-base sm:text-lg">
                 {product.description[locale]}
               </p>
@@ -200,9 +185,7 @@ export default function ProductDetailClient({
               transition={{ delay: 0.6, duration: 0.4 }}
               className="mb-8"
             >
-              <h3 className="text-lg font-semibold text-primary mb-4">
-                {translations.availableOn}
-              </h3>
+              <h3 className="text-lg font-semibold text-primary mb-4">{t('availableOn')}</h3>
               <div className="flex flex-wrap gap-3">
                 {product.links.amazon && (
                   <motion.a
@@ -215,12 +198,7 @@ export default function ProductDetailClient({
                     whileTap="tap"
                   >
                     <span>Amazon</span>
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -241,12 +219,7 @@ export default function ProductDetailClient({
                     whileTap="tap"
                   >
                     <span>Etsy</span>
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -267,12 +240,7 @@ export default function ProductDetailClient({
                     whileTap="tap"
                   >
                     <span>Vinted</span>
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -290,4 +258,3 @@ export default function ProductDetailClient({
     </div>
   );
 }
-
