@@ -1,13 +1,13 @@
 services:
   postgres:
     image: postgres:15
-    container_name: syndiccheck_postgres
+    container_name: cherio_postgres
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: syndiccheck
+      POSTGRES_DB: cherio
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d

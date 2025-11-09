@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { extractTokenFromHeader, verifyToken } from '../utils/authUtils';
-import { UserModel } from '../models/User';
+import { prisma } from '../lib/prisma';
 
 // Add user property to Express Request
 declare global {
@@ -33,7 +33,9 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     }
     
     // Check if user exists
-    const user = await UserModel.findById(decoded.id);
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+    });
     
     if (!user) {
       res.status(401).json({ message: 'User not found' });

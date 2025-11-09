@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import { UserModel } from '../models/User';
 import { generateToken } from '../utils/authUtils';
+import { prisma } from '../lib/prisma';
+import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 
 // Login controller
 export const login = async (req: Request, res: Response): Promise<void> => {
@@ -12,29 +14,42 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Check user credentials
-    const user = await UserModel.checkCredentials(email, password);
+    // Find user by email
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
 
     if (!user) {
       res.status(401).json({ message: 'Invalid email or password' });
       return;
     }
 
+    // Verify password using bcrypt
+    const isValidPassword = await bcrypt.compare(password, user.encryptedPassword);
+
+    if (!isValidPassword) {
+      res.status(401).json({ message: 'Invalid email or password' });
+      return;
+    }
+
+    // Update last sign in
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastSignInAt: new Date() },
+    });
+
     // Generate tokens
     const accessToken = generateToken({ id: user.id, role: user.role });
-    const refreshToken = await UserModel.generateRefreshToken(user.id);
-
-    // Get user profile
-    const userProfile = await UserModel.findById(user.id);
+    const refreshToken = await generateRefreshToken(user.id);
 
     res.json({
       message: 'Login successful',
       user: {
-        id: userProfile?.id,
-        email: userProfile?.email,
-        firstName: userProfile?.first_name,
-        lastName: userProfile?.last_name,
-        role: userProfile?.role,
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
       },
       tokens: {
         accessToken,
@@ -58,30 +73,41 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Check if user already exists
-    const existingUser = await UserModel.findByEmail(email);
-
-    console.log(existingUser)
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
 
     if (existingUser) {
       res.status(409).json({ message: 'Email already in use' });
       return;
     }
 
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // Create new user
-    const userId = await UserModel.create(email, password, firstName, lastName);
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        encryptedPassword: hashedPassword,
+        firstName,
+        lastName,
+        role: 'member',
+      },
+    });
 
     // Generate tokens
-    const accessToken = generateToken({ id: userId, role: 'member' });
-    const refreshToken = await UserModel.generateRefreshToken(userId);
+    const accessToken = generateToken({ id: newUser.id, role: newUser.role });
+    const refreshToken = await generateRefreshToken(newUser.id);
 
     res.status(201).json({
       message: 'User registered successfully',
       user: {
-        id: userId,
-        email,
-        firstName,
-        lastName,
-        role: 'member',
+        id: newUser.id,
+        email: newUser.email,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        role: newUser.role,
       },
       tokens: {
         accessToken,
@@ -104,28 +130,37 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
       return;
     }
 
-    // Verify refresh token
-    const userId = await UserModel.verifyRefreshToken(refreshToken);
+    // Find refresh token
+    const tokenRecord = await prisma.refreshToken.findUnique({
+      where: { token: refreshToken },
+      include: { user: true },
+    });
 
-    if (!userId) {
+    if (!tokenRecord) {
       res.status(401).json({ message: 'Invalid or expired refresh token' });
       return;
     }
 
-    // Get user information
-    const user = await UserModel.findById(userId);
-
-    if (!user) {
-      res.status(404).json({ message: 'User not found' });
+    // Check if token is expired
+    if (tokenRecord.expiresAt < new Date()) {
+      // Delete expired token
+      await prisma.refreshToken.delete({
+        where: { id: tokenRecord.id },
+      });
+      res.status(401).json({ message: 'Invalid or expired refresh token' });
       return;
     }
+
+    const user = tokenRecord.user;
 
     // Generate new access token
     const accessToken = generateToken({ id: user.id, role: user.role });
 
-    // Generate new refresh token and delete old one
-    await UserModel.deleteRefreshToken(refreshToken);
-    const newRefreshToken = await UserModel.generateRefreshToken(user.id);
+    // Delete old refresh token and generate new one
+    await prisma.refreshToken.delete({
+      where: { id: tokenRecord.id },
+    });
+    const newRefreshToken = await generateRefreshToken(user.id);
 
     res.json({
       message: 'Token refreshed successfully',
@@ -146,7 +181,9 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
     const { refreshToken } = req.body;
 
     if (refreshToken) {
-      await UserModel.deleteRefreshToken(refreshToken);
+      await prisma.refreshToken.deleteMany({
+        where: { token: refreshToken },
+      });
     }
 
     res.json({ message: 'Logout successful' });
@@ -164,7 +201,9 @@ export const getProfile = async (req: Request, res: Response): Promise<void> => 
       return;
     }
 
-    const user = await UserModel.findById(req.user.id);
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+    });
 
     if (!user) {
       res.status(404).json({ message: 'User not found' });
@@ -175,10 +214,10 @@ export const getProfile = async (req: Request, res: Response): Promise<void> => 
       user: {
         id: user.id,
         email: user.email,
-        firstName: user.first_name,
-        lastName: user.last_name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         role: user.role,
-        emailVerified: user.email_verified,
+        emailVerified: user.emailVerified,
       },
     });
   } catch (error) {
@@ -186,3 +225,20 @@ export const getProfile = async (req: Request, res: Response): Promise<void> => 
     res.status(500).json({ message: 'Failed to get user profile' });
   }
 };
+
+// Helper function to generate refresh token
+async function generateRefreshToken(userId: string): Promise<string> {
+  const token = crypto.randomBytes(32).toString('hex');
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + 30); // 30 days
+
+  await prisma.refreshToken.create({
+    data: {
+      userId,
+      token,
+      expiresAt,
+    },
+  });
+
+  return token;
+}
