@@ -15,7 +15,6 @@ import { pickupPointSearchSchema, type PickupPointSearchData } from './PickupPoi
 import { useTranslations } from 'next-intl';
 import { geocodeAddress } from '@/utils/geocoding';
 
-// Dynamically import the map component to avoid SSR issues
 const PickupPointMap = dynamic(() => import('./PickupPointMap'), {
   ssr: false,
   loading: () => (
@@ -32,7 +31,6 @@ interface PickupPointSelectorProps {
   initialIsOpen?: boolean;
 }
 
-// Mock data for pickup points
 const generateMockPickupPoints = (searchAddress?: string): PickupPoint[] => {
   const basePoints: PickupPoint[] = [
     {
@@ -127,17 +125,13 @@ export default function PickupPointSelector({
   initialIsOpen = true,
 }: PickupPointSelectorProps) {
   const t = useTranslations('cart');
-  // Get isRTL from store
   const isRTL = useIsRTL();
 
-  // Get pickup point from store
   const storePickupPoint = useClientStore((state) => state.pickupPoint);
   const setPickupPoint = useClientStore((state) => state.setPickupPoint);
 
-  // Use store data if available, otherwise use initialData prop
   const savedPoint = storePickupPoint || initialData;
 
-  // Determine initial open state: if we have saved data, start collapsed
   const cardInitialIsOpen = savedPoint ? false : initialIsOpen;
 
   const {
@@ -170,14 +164,12 @@ export default function PickupPointSelector({
     null
   );
 
-  // Update selectedPoint when savedPoint changes
   useEffect(() => {
     if (savedPoint) {
       setSelectedPoint(savedPoint);
     }
   }, [savedPoint]);
 
-  // Track if card is open for focus management
   const [isCardOpen, setIsCardOpen] = useState(cardInitialIsOpen);
 
   // Focus on search input when card opens and input is empty
@@ -196,7 +188,7 @@ export default function PickupPointSelector({
     // Debounce the geocoding to avoid too many API calls
     const debounceTimer = setTimeout(() => {
       setIsLoading(true);
-      
+
       // Geocode the search address
       const geocodeSearch = async () => {
         if (searchAddress && searchAddress.trim()) {
@@ -224,7 +216,7 @@ export default function PickupPointSelector({
       const loadPickupPoints = async () => {
         // Small delay to show loading state
         await new Promise((resolve) => setTimeout(resolve, 300));
-        
+
         const points = generateMockPickupPoints(searchAddress);
         setPickupPoints(points);
         setDisplayedPoints(points.slice(0, itemsPerPage));
@@ -266,19 +258,15 @@ export default function PickupPointSelector({
   );
 
   const handleSelectPoint = (point: PickupPoint) => {
-    setSelectedPoint(point);
-  };
+    if (point) {
+      setSelectedPoint(point);
+      setPickupPoint(point);
+      onSave(point);
 
-  const handleSave = () => {
-    if (selectedPoint) {
-      // Save to Zustand store
-      setPickupPoint(selectedPoint);
-      // Also call the onSave callback for backward compatibility
-      onSave(selectedPoint);
+      setIsCardOpen(false);
     }
   };
 
-  // Summary content to show when collapsed
   const summaryContent = savedPoint ? (
     <>
       <p className="font-medium text-primary">{savedPoint.name}</p>
@@ -298,10 +286,12 @@ export default function PickupPointSelector({
   return (
     <Card
       title={t('pickupPointForm.selectPickupPoint')}
-      initialIsOpen={cardInitialIsOpen}
+      isOpen={isCardOpen}
       summary={summaryContent}
       editLabel={t('editDeliveryInfo')}
-      onToggle={(isOpen) => setIsCardOpen(isOpen)}
+      onToggle={() => {
+        setIsCardOpen(!isCardOpen);
+      }}
     >
       <div className="mb-4">
         <label htmlFor="address-search" className="block text-sm font-medium text-primary mb-2">
@@ -409,16 +399,10 @@ export default function PickupPointSelector({
         </div>
       </div>
 
-      {/* Action Buttons */}
       <div className="flex justify-end gap-3 mt-6">
         <Button onClick={onCancel} variant="secondary" size={ButtonSize.Small} isRTL={isRTL}>
           {t('chooseAnotherDeliveryMethod')}
         </Button>
-        {selectedPoint && (
-          <Button onClick={handleSave} variant="primary" size={ButtonSize.Small} isRTL={isRTL}>
-            {t('pickupPointForm.save')}
-          </Button>
-        )}
       </div>
     </Card>
   );

@@ -8,36 +8,24 @@ import { useIsRTL } from '@/hooks/useLocale';
 
 interface CardProps {
   title: string;
-  initialIsOpen?: boolean;
+  isOpen?: boolean;
   children: React.ReactNode;
-  summary?: React.ReactNode; // Content to show when collapsed
+  summary?: React.ReactNode;
   editLabel?: string;
   className?: string;
-  onToggle?: (isOpen: boolean) => void; // Optional callback when toggled
+  onToggle?: () => void;
 }
 
 export function Card({
   title,
-  initialIsOpen = true,
+  isOpen = false,
   children,
   summary,
   editLabel = 'Edit',
   className,
-  onToggle,
+  onToggle = () => undefined,
 }: CardProps) {
   const isRTL = useIsRTL();
-  const [isOpen, setIsOpen] = useState(initialIsOpen);
-
-  // Update local state when initialIsOpen changes
-  useEffect(() => {
-    setIsOpen(initialIsOpen);
-  }, [initialIsOpen]);
-
-  const handleToggle = () => {
-    const newIsOpen = !isOpen;
-    setIsOpen(newIsOpen);
-    onToggle?.(newIsOpen);
-  };
 
   return (
     <motion.div
@@ -50,23 +38,15 @@ export function Card({
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-primary">{title}</h3>
         {summary && !isOpen && (
-          <Button
-            variant="secondary"
-            size={ButtonSize.Small}
-            onClick={handleToggle}
-          >
+          <Button variant="secondary" size={ButtonSize.Small} onClick={() => onToggle()}>
             {editLabel}
           </Button>
         )}
-        {isOpen && summary && (
-          <Button
-            variant="secondary"
-            size={ButtonSize.Small}
-            onClick={handleToggle}
-          >
-            Collapse
-          </Button>
-        )}
+        {/*{isOpen && summary && (*/}
+        {/*  <Button variant="secondary" size={ButtonSize.Small} onClick={() => onToggle()}>*/}
+        {/*    Collapse*/}
+        {/*  </Button>*/}
+        {/*)}*/}
       </div>
 
       <AnimatePresence mode="wait">
@@ -98,4 +78,3 @@ export function Card({
     </motion.div>
   );
 }
-

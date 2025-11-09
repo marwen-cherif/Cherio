@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DeliveryAddress } from '@shared/index';
@@ -40,8 +40,7 @@ export default function HomeDeliveryForm({
   // Use store data if available, otherwise use initialData prop
   const savedData = storeDeliveryAddress || initialData;
 
-  // Determine initial open state: if we have saved data, start collapsed
-  const cardInitialIsOpen = savedData ? false : initialIsOpen;
+  const [isOpen, setIsOpen] = useState(savedData ? false : initialIsOpen);
 
   // Prepare country options with localized labels
   const countryOptions: SelectOption[] = countries.map((country) => ({
@@ -71,32 +70,15 @@ export default function HomeDeliveryForm({
     },
   });
 
-  // // Update form data when savedData changes
-  // useEffect(() => {
-  //   if (savedData) {
-  //     reset({
-  //       firstName: savedData.firstName || '',
-  //       lastName: savedData.lastName || '',
-  //       addressLine1: savedData.addressLine1 || '',
-  //       addressLine2: savedData.addressLine2 || '',
-  //       city: savedData.city || '',
-  //       postalCode: savedData.postalCode || '',
-  //       country: savedData.country || '',
-  //       department: savedData.department || '',
-  //       phone: savedData.phone || '',
-  //       additionalInfo: savedData.additionalInfo || '',
-  //     });
-  //   }
-  // }, [savedData, reset]);
-
   const onSubmit = (data: HomeDeliveryFormData) => {
     // Save to Zustand store
     setDeliveryAddress(data);
     // Also call the onSave callback for backward compatibility
     onSave(data);
+
+    setIsOpen(false);
   };
 
-  // Summary content to show when collapsed
   const summaryContent = savedData ? (
     <>
       <p>
@@ -125,7 +107,8 @@ export default function HomeDeliveryForm({
   return (
     <Card
       title={t('deliveryInfo')}
-      initialIsOpen={cardInitialIsOpen}
+      isOpen={isOpen}
+      onToggle={() => setIsOpen(!isOpen)}
       summary={summaryContent}
       editLabel={t('editDeliveryInfo')}
     >
