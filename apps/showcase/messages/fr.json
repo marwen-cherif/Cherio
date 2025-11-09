@@ -73,8 +73,18 @@
     "description": "Une sélection rigoureuse de produits tendance, choisis pour leur qualité et leur prix attractif.",
     "about": "A propos",
     "products": "Produits",
-    "contact": "Contactez-nous"
-
+    "contact": "Contactez-nous",
+    "legalSection": "Légal"
+  },
+  "ui": {
+    "video": "Vidéo",
+    "previousImage": "Image précédente",
+    "nextImage": "Image suivante",
+    "videoNotSupported": "Votre navigateur ne supporte pas la lecture de vidéos.",
+    "imageView": "Vue",
+    "openImagePreview": "Ouvrir l'aperçu de l'image",
+    "openVideoPreview": "Ouvrir la vidéo en plein écran",
+    "close": "Fermer"
   },
   "legal": {
     "title": "Mentions Légales",

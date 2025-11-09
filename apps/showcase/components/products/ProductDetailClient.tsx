@@ -6,6 +6,7 @@ import { Product } from '@/types/product';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import ImageCarousel from '@/components/ui/ImageCarousel';
+import { formatPrice } from '@/utils/formatPrice';
 
 interface ProductDetailClientProps {
   product: Product;
@@ -67,7 +68,7 @@ export default function ProductDetailClient({
     setTimeout(() => setShowAddedMessage(false), 2000);
   };
   return (
-    <div className="py-8 sm:py-16">
+    <div className="py-4 sm:py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <motion.div
@@ -119,14 +120,14 @@ export default function ProductDetailClient({
             variants={infoVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col justify-center"
+            className="flex flex-col"
             dir={isRTL ? 'rtl' : 'ltr'}
           >
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-primary mb-4"
+              className="text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-primary mb-2"
             >
               {product.name[locale]}
             </motion.h1>
@@ -138,7 +139,7 @@ export default function ProductDetailClient({
               className="mb-6"
             >
               <span className="text-xl sm:text-xl font-bold text-primary">
-                {product.price} {product.currency}
+                {formatPrice(product.price, product.currency, locale)}
               </span>
             </motion.div>
 
@@ -206,7 +207,7 @@ export default function ProductDetailClient({
                     href={product.links.amazon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md bg-amazon px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-amazon-hover"
+                    className="inline-flex items-center gap-2 rounded-md bg-amazon px-2 py-1.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-amazon-hover"
                     variants={buttonVariants}
                     whileHover="hover"
                     whileTap="tap"
@@ -232,7 +233,7 @@ export default function ProductDetailClient({
                     href={product.links.etsy}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md bg-etsy px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-etsy-hover"
+                    className="inline-flex items-center gap-2 rounded-md bg-etsy px-2 py-1.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-etsy-hover"
                     variants={buttonVariants}
                     whileHover="hover"
                     whileTap="tap"
@@ -258,7 +259,7 @@ export default function ProductDetailClient({
                     href={product.links.vinted}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md bg-vinted px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-vinted-hover"
+                    className="inline-flex items-center gap-2 rounded-md bg-vinted px-2 py-1.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-vinted-hover"
                     variants={buttonVariants}
                     whileHover="hover"
                     whileTap="tap"

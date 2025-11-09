@@ -8,6 +8,7 @@ import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
+import { formatPrice } from '@/utils/formatPrice';
 
 interface ProductCardProps {
   product: Product;
@@ -60,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className={`absolute ${isRTL ? 'left-4' : 'right-4'} top-4 z-10 rounded-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg`}
               >
                 <p className="text-sm font-bold text-primary">
-                  {product.price} {product.currency}
+                  {formatPrice(product.price, product.currency, locale)}
                 </p>
               </motion.div>
             )}
@@ -120,7 +121,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className={`absolute ${isRTL ? 'right-16' : 'left-16'} bottom-4 z-10 rounded-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg whitespace-nowrap`}
               >
                 <p className="text-sm font-bold text-primary">
-                  {product.price} {product.currency}
+                  {formatPrice(product.price, product.currency, locale)}
                 </p>
               </motion.div>
             )}
@@ -141,7 +142,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="mb-4 flex items-center justify-between">
           <span className="text-xl sm:text-2xl font-bold text-primary">
-            {product.price} {product.currency}
+            {formatPrice(product.price, product.currency, locale)}
           </span>
         </div>
 

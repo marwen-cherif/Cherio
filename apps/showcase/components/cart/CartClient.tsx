@@ -7,6 +7,7 @@ import { Link } from '@/i18n/routing';
 import { useCart } from '@/contexts/CartContext';
 import { useLocale } from 'next-intl';
 import { z } from 'zod';
+import { formatPrice } from '@/utils/formatPrice';
 
 interface CartClientProps {
   translations: {
@@ -178,7 +179,7 @@ export default function CartClient({ translations, isRTL }: CartClientProps) {
                             {item.product.shortDescription[locale]}
                           </p>
                           <p className="text-lg font-bold text-primary mt-2">
-                            {item.product.price} {item.product.currency}
+                            {formatPrice(item.product.price, item.product.currency, locale)}
                           </p>
                         </div>
 
@@ -248,7 +249,7 @@ export default function CartClient({ translations, isRTL }: CartClientProps) {
                   <div className="flex justify-between text-secondary">
                     <span>{translations.subtotal}</span>
                     <span className="font-semibold text-primary">
-                      {totalPrice.toFixed(2)} {items[0]?.product.currency || 'EUR'}
+                      {formatPrice(totalPrice, items[0]?.product.currency || 'EUR', locale)}
                     </span>
                   </div>
                 </div>
@@ -257,7 +258,7 @@ export default function CartClient({ translations, isRTL }: CartClientProps) {
                   <div className="flex justify-between text-lg font-bold text-primary">
                     <span>{translations.total}</span>
                     <span>
-                      {totalPrice.toFixed(2)} {items[0]?.product.currency || 'EUR'}
+                      {formatPrice(totalPrice, items[0]?.product.currency || 'EUR', locale)}
                     </span>
                   </div>
                 </div>

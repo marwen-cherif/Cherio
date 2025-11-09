@@ -73,7 +73,18 @@
     "description": "اختيار دقيق لمنتجات عصرية، مختارة لجودتها وسعرها الجذاب.",
     "about": "من نحن",
     "products": "المنتجات",
-    "contact": "اتصل بنا"
+    "contact": "اتصل بنا",
+    "legalSection": "قانوني"
+  },
+  "ui": {
+    "video": "فيديو",
+    "previousImage": "الصورة السابقة",
+    "nextImage": "الصورة التالية",
+    "videoNotSupported": "متصفحك لا يدعم تشغيل الفيديو.",
+    "imageView": "عرض",
+    "openImagePreview": "فتح معاينة الصورة",
+    "openVideoPreview": "فتح الفيديو في وضع ملء الشاشة",
+    "close": "إغلاق"
   },
   "legal": {
     "title": "الإشعار القانوني",

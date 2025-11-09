@@ -73,7 +73,18 @@
     "description": "A careful selection of trendy products, chosen for their quality and attractive price.",
     "about": "About us",
     "products": "Products",
-    "contact": "Contact us"
+    "contact": "Contact us",
+    "legalSection": "Legal"
+  },
+  "ui": {
+    "video": "Video",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "videoNotSupported": "Your browser does not support video playback.",
+    "imageView": "View",
+    "openImagePreview": "Open image preview",
+    "openVideoPreview": "Open video in fullscreen",
+    "close": "Close"
   },
   "legal": {
     "title": "Legal Notice",

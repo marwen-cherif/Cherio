@@ -30,7 +30,6 @@ export const products: Product[] = [
     ],
     video: '/videos/product-1.mp4', // Vidéo optionnelle (sera affichée en premier si présente)
     links: {
-      amazon: 'https://amazon.com/product-1',
       etsy: 'https://etsy.com/product-1',
       vinted: 'https://vinted.com/product-1'
     },
@@ -58,7 +57,6 @@ export const products: Product[] = [
     currency: 'EUR',
     image: '/images/product-2.jpg', // Add your image at public/images/product-2.jpg
     links: {
-      amazon: 'https://amazon.com/product-2',
       etsy: 'https://etsy.com/product-2'
     },
     featured: true,

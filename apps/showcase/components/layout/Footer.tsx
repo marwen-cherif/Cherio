@@ -1,11 +1,10 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 
 export default function Footer() {
   const t = useTranslations('footer');
-  const locale = useLocale();
 
   return (
     <footer className="border-t border-border bg-accent/30">
@@ -57,7 +56,7 @@ export default function Footer() {
 
           <div>
             <h4 className="text-sm font-semibold text-primary mb-4">
-              {locale === 'fr' ? 'Légal' : locale === 'en' ? 'Legal' : 'قانوني'}
+              {t('legalSection')}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
