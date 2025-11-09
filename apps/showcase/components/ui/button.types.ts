@@ -24,6 +24,8 @@ export interface BaseButtonProps {
   isRTL?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
   children?: React.ReactNode;
   className?: string;
   disabled?: boolean;

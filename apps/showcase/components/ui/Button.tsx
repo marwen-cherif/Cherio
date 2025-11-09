@@ -25,6 +25,8 @@ export function Button({
   isRTL: isRTLProp,
   leftIcon,
   rightIcon,
+  icon,
+  iconPosition = 'left',
   children,
   className,
   disabled,
@@ -42,6 +44,11 @@ export function Button({
   const variantClass = variantStyles[variant];
 
   const buttonVariants = isIconVariant ? iconButtonVariants : defaultButtonVariants;
+
+  // Determine icon to display: prioritize icon prop, fallback to leftIcon/rightIcon for backward compatibility
+  const iconToShow = icon || leftIcon || rightIcon;
+  const showIconLeft = icon ? iconPosition === 'left' : !!leftIcon;
+  const showIconRight = icon ? iconPosition === 'right' : !!rightIcon;
 
   const content = (
     <>
@@ -67,11 +74,15 @@ export function Button({
           />
         </svg>
       )}
-      {!isLoading && leftIcon && <span className={isRTL ? 'order-2' : ''}>{leftIcon}</span>}
-      {!isLoading && children && (
-        <span className={isRTL && leftIcon ? 'order-1' : ''}>{children}</span>
+      {!isLoading && iconToShow && showIconLeft && (
+        <span className={isRTL ? 'order-2' : ''}>{iconToShow}</span>
       )}
-      {!isLoading && rightIcon && <span>{rightIcon}</span>}
+      {!isLoading && children && (
+        <span className={isRTL && showIconLeft ? 'order-1' : ''}>{children}</span>
+      )}
+      {!isLoading && iconToShow && showIconRight && (
+        <span>{iconToShow}</span>
+      )}
     </>
   );
 

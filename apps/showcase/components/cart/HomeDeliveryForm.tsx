@@ -311,13 +311,13 @@ export default function HomeDeliveryForm({
           <Button
             type="button"
             variant="secondary"
-            size={ButtonSize.Normal}
+            size={ButtonSize.Small}
             onClick={onCancel}
             isRTL={isRTL}
           >
             {t('chooseAnotherDeliveryMethod')}
           </Button>
-          <Button type="submit" variant="primary" size={ButtonSize.Normal} isRTL={isRTL}>
+          <Button type="submit" variant="primary" size={ButtonSize.Small} isRTL={isRTL}>
             {t('saveDeliveryInfo')}
           </Button>
         </div>

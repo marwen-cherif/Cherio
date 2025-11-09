@@ -13,6 +13,7 @@ import { useClientStore } from '@/stores/clientStore';
 import { useIsRTL } from '@/hooks/useLocale';
 import { pickupPointSearchSchema, type PickupPointSearchData } from './PickupPointSelector.schema';
 import { useTranslations } from 'next-intl';
+import { geocodeAddress } from '@/utils/geocoding';
 
 // Dynamically import the map component to avoid SSR issues
 const PickupPointMap = dynamic(() => import('./PickupPointMap'), {
@@ -128,17 +129,17 @@ export default function PickupPointSelector({
   const t = useTranslations('cart');
   // Get isRTL from store
   const isRTL = useIsRTL();
-  
+
   // Get pickup point from store
   const storePickupPoint = useClientStore((state) => state.pickupPoint);
   const setPickupPoint = useClientStore((state) => state.setPickupPoint);
-  
+
   // Use store data if available, otherwise use initialData prop
   const savedPoint = storePickupPoint || initialData;
-  
+
   // Determine initial open state: if we have saved data, start collapsed
   const cardInitialIsOpen = savedPoint ? false : initialIsOpen;
-  
+
   const {
     register,
     watch,
@@ -152,7 +153,7 @@ export default function PickupPointSelector({
 
   const searchAddress = watch('searchAddress');
   const { ref, ...searchAddressRegister } = register('searchAddress');
-  
+
   const [pickupPoints, setPickupPoints] = useState<PickupPoint[]>([]);
   const [selectedPoint, setSelectedPoint] = useState<PickupPoint | null>(savedPoint || null);
   const [isLoading, setIsLoading] = useState(false);
@@ -163,9 +164,11 @@ export default function PickupPointSelector({
   const loadingRef = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const itemsPerPage = 10;
-  
+
   // Mock coordinates for search address (in real app, use geocoding API)
-  const [searchCoordinates, setSearchCoordinates] = useState<{ lat: number; lng: number } | null>(null);
+  const [searchCoordinates, setSearchCoordinates] = useState<{ lat: number; lng: number } | null>(
+    null
+  );
 
   // Update selectedPoint when savedPoint changes
   useEffect(() => {
@@ -176,7 +179,7 @@ export default function PickupPointSelector({
 
   // Track if card is open for focus management
   const [isCardOpen, setIsCardOpen] = useState(cardInitialIsOpen);
-  
+
   // Focus on search input when card opens and input is empty
   useEffect(() => {
     if (isCardOpen && searchInputRef.current && !searchAddress) {
@@ -188,29 +191,53 @@ export default function PickupPointSelector({
     }
   }, [isCardOpen, searchAddress]);
 
-  // Load pickup points and set search coordinates
+  // Load pickup points and set search coordinates with debounce
   useEffect(() => {
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      const points = generateMockPickupPoints(searchAddress);
-      setPickupPoints(points);
-      setDisplayedPoints(points.slice(0, itemsPerPage));
-      setPage(1);
-      setHasMore(points.length > itemsPerPage);
-      setIsLoading(false);
+    // Debounce the geocoding to avoid too many API calls
+    const debounceTimer = setTimeout(() => {
+      setIsLoading(true);
       
-      // Mock geocoding: if search address exists, set coordinates to a location in Paris
-      if (searchAddress && searchAddress.trim()) {
-        // In real app, use a geocoding API like Nominatim
-        setSearchCoordinates({
-          lat: 48.8566 + (Math.random() - 0.5) * 0.1,
-          lng: 2.3522 + (Math.random() - 0.5) * 0.1,
-        });
-      } else {
-        setSearchCoordinates(null);
-      }
-    }, 500);
+      // Geocode the search address
+      const geocodeSearch = async () => {
+        if (searchAddress && searchAddress.trim()) {
+          try {
+            const geocodeResult = await geocodeAddress(searchAddress);
+            if (geocodeResult) {
+              setSearchCoordinates({
+                lat: geocodeResult.lat,
+                lng: geocodeResult.lng,
+              });
+            } else {
+              // If geocoding fails, clear coordinates
+              setSearchCoordinates(null);
+            }
+          } catch (error) {
+            console.error('Error geocoding address:', error);
+            setSearchCoordinates(null);
+          }
+        } else {
+          setSearchCoordinates(null);
+        }
+      };
+
+      // Simulate API call for pickup points
+      const loadPickupPoints = async () => {
+        // Small delay to show loading state
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        
+        const points = generateMockPickupPoints(searchAddress);
+        setPickupPoints(points);
+        setDisplayedPoints(points.slice(0, itemsPerPage));
+        setPage(1);
+        setHasMore(points.length > itemsPerPage);
+        setIsLoading(false);
+      };
+
+      // Run geocoding and loading in parallel
+      Promise.all([geocodeSearch(), loadPickupPoints()]);
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(debounceTimer);
   }, [searchAddress]);
 
   // Infinite scroll observer
@@ -261,7 +288,8 @@ export default function PickupPointSelector({
       </p>
       {savedPoint.openingHours && (
         <p className="text-sm mt-2">
-          <span className="font-medium">{t('pickupPointForm.openingHours')}:</span> {savedPoint.openingHours}
+          <span className="font-medium">{t('pickupPointForm.openingHours')}:</span>{' '}
+          {savedPoint.openingHours}
         </p>
       )}
     </>
@@ -269,15 +297,13 @@ export default function PickupPointSelector({
 
   return (
     <Card
-      title={t('pickupPoint')}
+      title={t('pickupPointForm.selectPickupPoint')}
       initialIsOpen={cardInitialIsOpen}
       summary={summaryContent}
       editLabel={t('editDeliveryInfo')}
       onToggle={(isOpen) => setIsCardOpen(isOpen)}
     >
-
-      {/* Search Input */}
-      <div className="mb-6">
+      <div className="mb-4">
         <label htmlFor="address-search" className="block text-sm font-medium text-primary mb-2">
           {t('pickupPointForm.searchAddress')}
         </label>
@@ -304,12 +330,12 @@ export default function PickupPointSelector({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Pickup Points List */}
         <div className="space-y-4">
-          <h4 className="text-md font-semibold text-primary">{t('pickupPointForm.selectPickupPoint')}</h4>
-          
           {isLoading && displayedPoints.length === 0 ? (
             <div className="text-center py-8 text-secondary">{t('pickupPointForm.loading')}</div>
           ) : displayedPoints.length === 0 ? (
-            <div className="text-center py-8 text-secondary">{t('pickupPointForm.noPickupPoints')}</div>
+            <div className="text-center py-8 text-secondary">
+              {t('pickupPointForm.noPickupPoints')}
+            </div>
           ) : (
             <div className="space-y-3 max-h-[600px] overflow-y-auto">
               {displayedPoints.map((point, index) => (
@@ -332,7 +358,8 @@ export default function PickupPointSelector({
                       </p>
                       {point.distance !== undefined && (
                         <p className="text-sm text-primary mt-2">
-                          {t('pickupPointForm.distance')}: {point.distance.toFixed(1)} {t('pickupPointForm.km')}
+                          {t('pickupPointForm.distance')}: {point.distance.toFixed(1)}{' '}
+                          {t('pickupPointForm.km')}
                         </p>
                       )}
                       {point.openingHours && (
@@ -348,11 +375,7 @@ export default function PickupPointSelector({
                     </div>
                     {selectedPoint?.id === point.id && (
                       <div className="ml-2 text-primary">
-                        <svg
-                          className="w-6 h-6"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                           <path
                             fillRule="evenodd"
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -388,21 +411,11 @@ export default function PickupPointSelector({
 
       {/* Action Buttons */}
       <div className="flex justify-end gap-3 mt-6">
-        <Button
-          onClick={onCancel}
-          variant="secondary"
-          size={ButtonSize.Normal}
-          isRTL={isRTL}
-        >
+        <Button onClick={onCancel} variant="secondary" size={ButtonSize.Small} isRTL={isRTL}>
           {t('chooseAnotherDeliveryMethod')}
         </Button>
         {selectedPoint && (
-          <Button
-            onClick={handleSave}
-            variant="primary"
-            size={ButtonSize.Normal}
-            isRTL={isRTL}
-          >
+          <Button onClick={handleSave} variant="primary" size={ButtonSize.Small} isRTL={isRTL}>
             {t('pickupPointForm.save')}
           </Button>
         )}
@@ -410,4 +423,3 @@ export default function PickupPointSelector({
     </Card>
   );
 }
-

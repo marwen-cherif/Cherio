@@ -9,6 +9,8 @@ import { ButtonSize } from '@/components/ui/button.types';
 import { useClientStore } from '@/stores/clientStore';
 import { useLocale } from '@/hooks/useLocale';
 import { useTranslations } from 'next-intl';
+import { useCart } from '@/contexts/CartContext';
+import { OrderItemsList } from './OrderItemsList';
 
 interface OrderSummaryProps {
   totalPrice: number;
@@ -31,6 +33,9 @@ export default function OrderSummary({
   // Get locale and isRTL from store
   const { locale, isRTL } = useLocale();
   
+  // Get cart items
+  const { items } = useCart();
+  
   // Get delivery data from Zustand store
   const deliveryAddress = useClientStore((state) => state.deliveryAddress);
   const pickupPoint = useClientStore((state) => state.pickupPoint);
@@ -48,6 +53,9 @@ export default function OrderSummary({
         <h2 className="text-xl font-bold text-primary mb-4">{t('total')}</h2>
         
         <div className="space-y-4 mb-6">
+          {/* Order Items List */}
+          <OrderItemsList items={items} currency={currency} />
+          
           <div className="flex justify-between text-secondary">
             <span>{t('subtotal')}</span>
             <span className="font-semibold text-primary">

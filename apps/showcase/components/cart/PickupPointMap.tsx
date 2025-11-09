@@ -9,9 +9,9 @@ import { PickupPoint } from '@shared/index';
 // Fix for default marker icons in Next.js
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+  iconRetinaUrl: '/images/marker-icon-2x.png',
+  iconUrl: '/images/marker-icon.png',
+  shadowUrl: '/images/marker-shadow.png',
 });
 
 interface PickupPointMapProps {
@@ -22,15 +22,9 @@ interface PickupPointMapProps {
 }
 
 // Component to handle map view updates
-function MapViewUpdater({
-  center,
-  zoom,
-}: {
-  center: [number, number];
-  zoom: number;
-}) {
+function MapViewUpdater({ center, zoom }: { center: [number, number]; zoom: number }) {
   const map = useMap();
-  
+
   useEffect(() => {
     map.setView(center, zoom);
   }, [map, center, zoom]);
@@ -72,16 +66,49 @@ export default function PickupPointMap({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        
+
         <MapViewUpdater center={center} zoom={zoom} />
 
-        {/* Search location marker */}
+        {/* Search location marker - Custom blue icon to differentiate from pickup points */}
         {searchCoordinates && !selectedPoint && (
-          <Marker position={[searchCoordinates.lat, searchCoordinates.lng]}>
+          <Marker
+            position={[searchCoordinates.lat, searchCoordinates.lng]}
+            icon={L.divIcon({
+              className: 'custom-search-marker',
+              html: `
+                <div style="
+                  width: 32px;
+                  height: 40px;
+                  background-color: #3B82F6;
+                  border: 2px solid white;
+                  border-radius: 50% 50% 50% 0;
+                  transform: rotate(-45deg);
+                  position: relative;
+                  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                ">
+                  <div style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                    width: 12px;
+                    height: 12px;
+                    background-color: white;
+                    border-radius: 50%;
+                  "></div>
+                </div>
+              `,
+              iconSize: [32, 40],
+              iconAnchor: [16, 40],
+              popupAnchor: [0, -40],
+            })}
+          >
             <Popup>
               <div>
-                <strong>Recherche</strong>
-                {searchAddress && <p className="text-sm">{searchAddress}</p>}
+                <strong>📍 {searchAddress || 'Adresse recherchée'}</strong>
+                {searchAddress && (
+                  <p className="text-sm mt-1 text-gray-600">{searchAddress}</p>
+                )}
               </div>
             </Popup>
           </Marker>
@@ -111,7 +138,7 @@ export default function PickupPointMap({
               key={point.id}
               position={[point.latitude, point.longitude]}
               icon={L.icon({
-                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+                iconUrl: '/images/marker-icon.png',
                 iconSize: [20, 30],
                 iconAnchor: [10, 30],
                 popupAnchor: [0, -30],
@@ -122,9 +149,7 @@ export default function PickupPointMap({
                   <strong>{point.name}</strong>
                   <p className="text-sm">{point.address}</p>
                   {point.distance !== undefined && (
-                    <p className="text-xs text-gray-500">
-                      {point.distance.toFixed(1)} km
-                    </p>
+                    <p className="text-xs text-gray-500">{point.distance.toFixed(1)} km</p>
                   )}
                 </div>
               </Popup>
@@ -134,4 +159,3 @@ export default function PickupPointMap({
     </div>
   );
 }
-
