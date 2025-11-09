@@ -1,16 +1,19 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DeliveryAddress } from '@shared/index';
 import { Button } from '@/components/ui/Button';
 import { ButtonSize } from '@/components/ui/button.types';
 import { Card } from '@/components/ui/Card';
 import { useClientStore } from '@/stores/clientStore';
-import { useIsRTL } from '@/hooks/useLocale';
+import { useIsRTL, useLocale } from '@/hooks/useLocale';
 import { homeDeliveryFormSchema, type HomeDeliveryFormData } from './HomeDeliveryForm.schema';
 import { useTranslations } from 'next-intl';
+import { Select, type SelectOption } from '@/components/ui/Select';
+import { PhoneInput } from '@/components/ui/PhoneInput';
+import { countries, findCountryByValue, getCountryLabel } from '@/utils/countries';
 
 interface HomeDeliveryFormProps {
   initialData?: DeliveryAddress;
@@ -26,24 +29,32 @@ export default function HomeDeliveryForm({
   initialIsOpen = true,
 }: HomeDeliveryFormProps) {
   const t = useTranslations('cart');
-  // Get isRTL from store
+  // Get isRTL and locale from store
   const isRTL = useIsRTL();
-  
+  const { locale } = useLocale();
+
   // Get delivery address from store
   const storeDeliveryAddress = useClientStore((state) => state.deliveryAddress);
   const setDeliveryAddress = useClientStore((state) => state.setDeliveryAddress);
-  
+
   // Use store data if available, otherwise use initialData prop
   const savedData = storeDeliveryAddress || initialData;
-  
+
   // Determine initial open state: if we have saved data, start collapsed
   const cardInitialIsOpen = savedData ? false : initialIsOpen;
-  
+
+  // Prepare country options with localized labels
+  const countryOptions: SelectOption[] = countries.map((country) => ({
+    value: country.value,
+    label: getCountryLabel(country, locale),
+  }));
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm<HomeDeliveryFormData>({
     resolver: zodResolver(homeDeliveryFormSchema),
     defaultValues: {
@@ -53,28 +64,30 @@ export default function HomeDeliveryForm({
       addressLine2: savedData?.addressLine2 || '',
       city: savedData?.city || '',
       postalCode: savedData?.postalCode || '',
-      country: savedData?.country || '',
+      country: savedData?.country || 'FR',
       department: savedData?.department || '',
+      phone: savedData?.phone || '',
       additionalInfo: savedData?.additionalInfo || '',
     },
   });
 
-  // Update form data when savedData changes
-  useEffect(() => {
-    if (savedData) {
-      reset({
-        firstName: savedData.firstName || '',
-        lastName: savedData.lastName || '',
-        addressLine1: savedData.addressLine1 || '',
-        addressLine2: savedData.addressLine2 || '',
-        city: savedData.city || '',
-        postalCode: savedData.postalCode || '',
-        country: savedData.country || '',
-        department: savedData.department || '',
-        additionalInfo: savedData.additionalInfo || '',
-      });
-    }
-  }, [savedData, reset]);
+  // // Update form data when savedData changes
+  // useEffect(() => {
+  //   if (savedData) {
+  //     reset({
+  //       firstName: savedData.firstName || '',
+  //       lastName: savedData.lastName || '',
+  //       addressLine1: savedData.addressLine1 || '',
+  //       addressLine2: savedData.addressLine2 || '',
+  //       city: savedData.city || '',
+  //       postalCode: savedData.postalCode || '',
+  //       country: savedData.country || '',
+  //       department: savedData.department || '',
+  //       phone: savedData.phone || '',
+  //       additionalInfo: savedData.additionalInfo || '',
+  //     });
+  //   }
+  // }, [savedData, reset]);
 
   const onSubmit = (data: HomeDeliveryFormData) => {
     // Save to Zustand store
@@ -87,7 +100,9 @@ export default function HomeDeliveryForm({
   const summaryContent = savedData ? (
     <>
       <p>
-        <span className="font-medium text-primary">{savedData.firstName} {savedData.lastName}</span>
+        <span className="font-medium text-primary">
+          {savedData.firstName} {savedData.lastName}
+        </span>
       </p>
       <p>{savedData.addressLine1}</p>
       {savedData.addressLine2 && <p>{savedData.addressLine2}</p>}
@@ -95,7 +110,12 @@ export default function HomeDeliveryForm({
         {savedData.postalCode} {savedData.city}
         {savedData.department && `, ${savedData.department}`}
       </p>
-      <p>{savedData.country}</p>
+      <p>
+        {savedData.country
+          ? getCountryLabel(findCountryByValue(savedData.country) || countries[0], locale)
+          : savedData.country}
+      </p>
+      {savedData.phone && <p className="text-sm text-secondary">{savedData.phone}</p>}
       {savedData.additionalInfo && (
         <p className="mt-2 text-sm italic">{savedData.additionalInfo}</p>
       )}
@@ -193,9 +213,7 @@ export default function HomeDeliveryForm({
               } px-3 py-2 text-primary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary`}
               dir={isRTL ? 'rtl' : 'ltr'}
             />
-            {errors.city && (
-              <p className="mt-1 text-sm text-red-600">{errors.city.message}</p>
-            )}
+            {errors.city && <p className="mt-1 text-sm text-red-600">{errors.city.message}</p>}
           </div>
 
           <div>
@@ -222,14 +240,20 @@ export default function HomeDeliveryForm({
             <label htmlFor="country" className="block text-sm font-medium text-primary mb-1">
               {t('deliveryForm.country')} <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              id="country"
-              {...register('country')}
-              className={`w-full rounded-md border ${
-                errors.country ? 'border-red-500' : 'border-border'
-              } px-3 py-2 text-primary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary`}
-              dir={isRTL ? 'rtl' : 'ltr'}
+            <Controller
+              name="country"
+              control={control}
+              rules={{ required: 'Country is required' }}
+              render={({ field }) => (
+                <Select
+                  options={countryOptions}
+                  placeholder={t('deliveryForm.country')}
+                  isSearchable
+                  error={!!errors.country}
+                  value={countryOptions.find((option) => option.value === field.value) || null}
+                  onChange={(option) => field.onChange(option?.value || '')}
+                />
+              )}
             />
             {errors.country && (
               <p className="mt-1 text-sm text-red-600">{errors.country.message}</p>
@@ -248,6 +272,26 @@ export default function HomeDeliveryForm({
               dir={isRTL ? 'rtl' : 'ltr'}
             />
           </div>
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-primary mb-1">
+            {t('deliveryForm.phone')}
+          </label>
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <PhoneInput
+                value={field.value}
+                onChange={field.onChange}
+                defaultCountry="FR"
+                international
+                error={!!errors.phone}
+              />
+            )}
+          />
+          {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
         </div>
 
         <div>
@@ -273,12 +317,7 @@ export default function HomeDeliveryForm({
           >
             {t('chooseAnotherDeliveryMethod')}
           </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            size={ButtonSize.Normal}
-            isRTL={isRTL}
-          >
+          <Button type="submit" variant="primary" size={ButtonSize.Normal} isRTL={isRTL}>
             {t('saveDeliveryInfo')}
           </Button>
         </div>
@@ -286,4 +325,3 @@ export default function HomeDeliveryForm({
     </Card>
   );
 }
-

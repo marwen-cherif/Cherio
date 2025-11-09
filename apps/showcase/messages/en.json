@@ -68,6 +68,7 @@
       "postalCode": "Postal code",
       "country": "Country",
       "department": "Department/Region",
+      "phone": "Phone number",
       "additionalInfo": "Additional information",
       "firstNameRequired": "First name is required",
       "lastNameRequired": "Last name is required",

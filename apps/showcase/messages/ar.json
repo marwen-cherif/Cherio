@@ -68,6 +68,7 @@
       "postalCode": "الرمز البريدي",
       "country": "البلد",
       "department": "القسم/المنطقة",
+      "phone": "رقم الهاتف",
       "additionalInfo": "معلومات إضافية",
       "firstNameRequired": "الاسم الأول مطلوب",
       "lastNameRequired": "اسم العائلة مطلوب",

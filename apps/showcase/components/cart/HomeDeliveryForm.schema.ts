@@ -10,6 +10,7 @@ export const homeDeliveryFormSchema = z.object({
   postalCode: z.string().min(1, 'Postal code is required'),
   country: z.string().min(1, 'Country is required'),
   department: z.string().optional(),
+  phone: z.string().optional(),
   additionalInfo: z.string().optional(),
 }) satisfies z.ZodType<DeliveryAddress>;
 

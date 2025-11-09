@@ -39,6 +39,7 @@ export interface DeliveryAddress {
   postalCode: string;
   country: string;
   department?: string; // Department/Region
+  phone?: string; // Phone number (optional)
   additionalInfo?: string; // Additional delivery information
 }
 
