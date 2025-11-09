@@ -43,22 +43,22 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <p className="text-secondary leading-relaxed">
               {locale === 'fr' && (
                 <>
-                  Notre histoire commence avec une passion pour l'artisanat et le désir de créer des produits uniques qui allient tradition et modernité. 
-                  Chaque pièce que nous créons est le fruit d'un savoir-faire transmis de génération en génération, 
+                  Notre histoire commence avec une passion pour l'artisanat et le désir de créer des produits uniques qui allient tradition et modernité.
+                  Chaque pièce que nous créons est le fruit d'un savoir-faire transmis de génération en génération,
                   enrichi par notre vision contemporaine de la qualité et de l'esthétique.
                 </>
               )}
               {locale === 'en' && (
                 <>
-                  Our story begins with a passion for craftsmanship and the desire to create unique products that combine tradition and modernity. 
-                  Each piece we create is the result of know-how passed down from generation to generation, 
+                  Our story begins with a passion for craftsmanship and the desire to create unique products that combine tradition and modernity.
+                  Each piece we create is the result of know-how passed down from generation to generation,
                   enriched by our contemporary vision of quality and aesthetics.
                 </>
               )}
               {locale === 'ar' && (
                 <>
-                  تبدأ قصتنا بشغف بالحرفية والرغبة في إنشاء منتجات فريدة تجمع بين التقليد والحداثة. 
-                  كل قطعة نصنعها هي ثمرة معرفة متوارثة من جيل إلى جيل، 
+                  تبدأ قصتنا بشغف بالحرفية والرغبة في إنشاء منتجات فريدة تجمع بين التقليد والحداثة.
+                  كل قطعة نصنعها هي ثمرة معرفة متوارثة من جيل إلى جيل،
                   مثراة برؤيتنا المعاصرة للجودة والجماليات.
                 </>
               )}
@@ -104,21 +104,17 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <p className="text-secondary leading-relaxed">
               {locale === 'fr' && (
                 <>
-                  Notre mission est de créer des produits qui enrichissent la vie quotidienne tout en préservant 
-                  les techniques artisanales traditionnelles. Nous nous engageons à offrir à nos clients des produits 
-                  de qualité exceptionnelle, fabriqués avec soin et attention aux détails.
+                    Notre mission est de rendre la qualité accessible à tous. Nous sélectionnons des produits fiables, tendances et abordables pour simplifier et embellir votre vie quotidienne.
                 </>
               )}
               {locale === 'en' && (
                 <>
-                  Our mission is to create products that enrich daily life while preserving traditional artisanal techniques. 
-                  We are committed to offering our customers products of exceptional quality, made with care and attention to detail.
+                    Our mission is to make quality accessible to everyone. We carefully select reliable, trendy, and affordable products to simplify and enhance your everyday life.
                 </>
               )}
               {locale === 'ar' && (
                 <>
-                  مهمتنا هي إنشاء منتجات تثري الحياة اليومية مع الحفاظ على التقنيات الحرفية التقليدية. 
-                  نحن ملتزمون بتقديم منتجات عالية الجودة لعملائنا، مصنوعة بعناية واهتمام بالتفاصيل.
+                    مهمتنا هي جعل الجودة في متناول الجميع. نختار بعناية منتجات موثوقة وعصرية وبأسعار مناسبة لتبسيط حياتك اليومية وجعلها أكثر جمالاً.
                 </>
               )}
             </p>

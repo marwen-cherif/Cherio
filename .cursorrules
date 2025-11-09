@@ -1,0 +1,220 @@
+# Cursor Rules for Cherio Project
+
+## Project Overview
+This is a monorepo workspace using pnpm workspaces and Turbo for build orchestration. The project consists of:
+- `apps/showcase`: Next.js 16 showcase website with internationalization
+- `apps/frontend`: React + Vite frontend application with Mantine UI
+- `apps/backend`: Express.js backend with PostgreSQL
+- `packages/shared`: Shared TypeScript code
+
+## General Principles
+
+### Code Style
+- Use TypeScript for all new code
+- Prefer explicit types over `any`
+- Use strict TypeScript settings
+- Follow existing code patterns and conventions
+- Use meaningful variable and function names
+- Keep functions small and focused
+- Add comments for complex logic only
+
+### File Organization
+- Follow the existing directory structure
+- Group related files together
+- Use consistent naming conventions (camelCase for variables/functions, PascalCase for components)
+- Place components in appropriate directories (`components/`, `pages/`, etc.)
+
+## Next.js Showcase App (`apps/showcase`)
+
+### Internationalization (i18n)
+- **ALWAYS use next-intl for all user-facing text** - never hardcode strings
+- Use `useTranslations()` hook in client components
+- Use `getTranslations()` in server components
+- All translations must be added to `messages/fr.json`, `messages/en.json`, and `messages/ar.json`
+- Use namespace-based translations (e.g., `useTranslations('footer')`)
+- Support RTL layout for Arabic (`locale === 'ar'`)
+- Always set `dir={isRTL ? 'rtl' : 'ltr'}` on content containers when needed
+- Use the `Link` component from `@/i18n/routing` instead of Next.js `Link` for navigation
+- Locales: `fr` (default), `en`, `ar`
+
+### Server vs Client Components
+- Default to Server Components unless interactivity is needed
+- Use `'use client'` directive only when necessary (hooks, event handlers, browser APIs)
+- Server Components should use `async` and `await getTranslations()` for i18n
+- Client Components should use `useTranslations()` hook
+
+### Routing
+- Use App Router structure: `app/[locale]/...`
+- All routes must be under `[locale]` directory
+- Use `generateMetadata()` for SEO in page components
+- Include `alternates.languages` in metadata for all locales
+- Use `generateStaticParams()` when needed for static generation
+
+### Styling
+- Use Tailwind CSS v4 utility classes
+- Follow existing design system (use theme colors: `text-primary`, `text-secondary`, `bg-accent`, etc.)
+- Use responsive classes (`sm:`, `md:`, `lg:`, etc.)
+- Maintain consistent spacing and typography
+- Use CSS variables for theming when appropriate
+
+### Component Patterns
+- Export default for page components
+- Use named exports for reusable components
+- Keep components focused and composable
+- Pass props explicitly with TypeScript interfaces
+- Use proper TypeScript types for all props
+
+### Example Server Component Pattern:
+```typescript
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pageName' });
+  return { title: t('title'), description: t('subtitle') };
+}
+
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pageName' });
+  const isRTL = locale === 'ar';
+  // ... component code
+}
+```
+
+### Example Client Component Pattern:
+```typescript
+'use client';
+
+import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/routing';
+
+export default function Component() {
+  const t = useTranslations('namespace');
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
+  // ... component code
+}
+```
+
+## Frontend App (`apps/frontend`)
+
+### UI Library
+- Use Mantine UI components (`@mantine/core`, `@mantine/hooks`)
+- Follow Mantine's design patterns and conventions
+- Use Mantine's form handling with `@mantine/form`
+
+### Routing
+- Use React Router v7 for navigation
+- Define routes in appropriate route files
+- Use protected routes for authenticated pages
+
+### State Management
+- Use React Context for global state (e.g., AuthContext)
+- Use local state with `useState` for component-specific state
+- Avoid prop drilling - use context when appropriate
+
+## Backend App (`apps/backend`)
+
+### API Structure
+- Use Express.js with TypeScript
+- Organize routes in `routes/` directory
+- Use controllers in `controllers/` directory
+- Use middleware for authentication and validation
+- Follow RESTful conventions
+
+### Database
+- Use PostgreSQL with `pg` library
+- Use parameterized queries to prevent SQL injection
+- Organize database logic in models
+- Use transactions for multi-step operations
+
+### Authentication
+- Use JWT tokens for authentication
+- Store tokens securely (httpOnly cookies recommended)
+- Use bcrypt for password hashing
+- Implement proper middleware for protected routes
+
+## Shared Package (`packages/shared`)
+
+### Purpose
+- Share TypeScript types and interfaces
+- Share utility functions used across apps
+- Keep dependencies minimal
+- Export through `src/index.ts`
+
+## Code Quality
+
+### TypeScript
+- Always define proper types for function parameters and return values
+- Use interfaces for object shapes
+- Use type unions for limited value sets
+- Avoid `any` - use `unknown` if type is truly unknown
+- Use type guards when needed
+
+### Error Handling
+- Handle errors gracefully
+- Provide meaningful error messages
+- Use try-catch blocks for async operations
+- Log errors appropriately
+
+### Performance
+- Use Next.js Image component for images
+- Implement proper loading states
+- Use React.memo() when appropriate for expensive renders
+- Lazy load components when beneficial
+- Optimize bundle size
+
+### Accessibility
+- Use semantic HTML elements
+- Include proper ARIA labels when needed
+- Ensure keyboard navigation works
+- Maintain proper heading hierarchy
+- Test with screen readers when possible
+
+## Testing
+- Write tests for critical business logic
+- Test components in isolation
+- Use appropriate testing libraries for each app
+
+## Git Workflow
+- Use descriptive commit messages
+- Keep commits focused and atomic
+- Follow existing branch naming conventions
+
+## Dependencies
+- Use pnpm for package management
+- Keep dependencies up to date
+- Avoid adding unnecessary dependencies
+- Use workspace protocol (`workspace:*`) for internal packages
+
+## When Making Changes
+
+1. **For Showcase App:**
+   - Always add translations to all three language files
+   - Test with all locales (fr, en, ar)
+   - Ensure RTL layout works for Arabic
+   - Use proper Link component from i18n routing
+   - Add metadata for SEO
+
+2. **For New Features:**
+   - Follow existing patterns in the codebase
+   - Maintain consistency with current code style
+   - Update relevant documentation if needed
+   - Consider impact on all apps in monorepo
+
+3. **For Bug Fixes:**
+   - Understand the root cause
+   - Fix the issue without breaking existing functionality
+   - Test thoroughly before considering complete
+
+## Important Reminders
+
+- **NEVER hardcode user-facing strings** - always use i18n translations
+- **ALWAYS support all three locales** (fr, en, ar) when adding new content
+- **ALWAYS use the i18n Link component** for navigation in showcase app
+- **ALWAYS handle RTL layout** for Arabic locale
+- **ALWAYS add proper TypeScript types** - avoid `any`
+- **ALWAYS follow existing code patterns** - consistency is key
+- **ALWAYS test changes** before marking as complete
+

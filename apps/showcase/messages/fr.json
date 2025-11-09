@@ -60,10 +60,23 @@
     "title": "Mentions Légales",
     "subtitle": "Informations légales et conditions d'utilisation",
     "companyInfo": {
-      "title": "Informations sur l'entreprise"
+      "title": "Informations sur l'entreprise",
+      "companyName": "Raison sociale",
+      "legalForm": "Forme juridique",
+      "registeredOffice": "Siège social",
+      "registrationNumber": "Numéro SIRET",
+      "publicationDirector": "Directeur de publication",
+      "companyNameValue": "Eva Accessories",
+      "legalFormValue": "Micro-entreprise",
+      "registeredOfficeValue": "76 Rue dian fossey, 7000 Melun France",
+      "registrationNumberValue": "993 121 466",
+      "publicationDirectorValue": "Marwen Cherif"
     },
     "hosting": {
-      "title": "Hébergement"
+      "title": "Hébergement",
+      "hostName": "Hébergeur",
+      "hostAddress": "Adresse",
+      "hostPhone": "Téléphone"
     },
     "intellectualProperty": {
       "title": "Propriété Intellectuelle",
@@ -83,11 +96,24 @@
     "subtitle": "Comment nous collectons, utilisons et protégeons vos données personnelles",
     "dataCollection": {
       "title": "Collecte de Données",
-      "content": "Nous collectons des informations personnelles que vous nous fournissez volontairement lorsque vous :"
+      "content": "Nous collectons des informations personnelles que vous nous fournissez volontairement lorsque vous :",
+      "items": {
+        "name": "Nom et prénom",
+        "email": "Adresse e-mail",
+        "phone": "Numéro de téléphone (si fourni)",
+        "address": "Adresse postale (si fournie)",
+        "browsing": "Données de navigation et cookies"
+      }
     },
     "dataUsage": {
       "title": "Utilisation de Vos Données",
-      "content": "Nous utilisons les données collectées aux fins suivantes :"
+      "content": "Nous utilisons les données collectées aux fins suivantes :",
+      "items": {
+        "orders": "Traiter vos commandes et demandes",
+        "contact": "Vous contacter concernant nos produits et services",
+        "improve": "Améliorer notre site web et nos services",
+        "marketing": "Vous envoyer des communications marketing (avec votre consentement)"
+      }
     },
     "dataProtection": {
       "title": "Protection des Données",
@@ -99,7 +125,14 @@
     },
     "rights": {
       "title": "Vos Droits",
-      "content": "Conformément aux lois applicables sur la protection des données, vous disposez des droits suivants concernant vos données personnelles :"
+      "content": "Conformément aux lois applicables sur la protection des données, vous disposez des droits suivants concernant vos données personnelles :",
+      "items": {
+        "access": "Droit d'accès à vos données personnelles",
+        "rectify": "Droit de rectification de vos données",
+        "erasure": "Droit à l'effacement de vos données",
+        "object": "Droit d'opposition au traitement de vos données",
+        "portability": "Droit à la portabilité de vos données"
+      }
     },
     "contact": {
       "title": "Contact",

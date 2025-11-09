@@ -59,10 +59,23 @@
     "title": "Legal Notice",
     "subtitle": "Legal information and terms of use",
     "companyInfo": {
-      "title": "Company Information"
+      "title": "Company Information",
+      "companyName": "Company name",
+      "legalForm": "Legal form",
+      "registeredOffice": "Registered office",
+      "registrationNumber": "Registration number",
+      "publicationDirector": "Publication director",
+      "companyNameValue": "Eva Accessories",
+      "legalFormValue": "Micro-business",
+      "registeredOfficeValue": "76 Rue dian fossey, 7000 Melun France",
+      "registrationNumberValue": "993 121 466",
+      "publicationDirectorValue": "Marwen Cherif"
     },
     "hosting": {
-      "title": "Hosting"
+      "title": "Hosting",
+      "hostName": "Hosting provider",
+      "hostAddress": "Address",
+      "hostPhone": "Phone"
     },
     "intellectualProperty": {
       "title": "Intellectual Property",
@@ -82,11 +95,24 @@
     "subtitle": "How we collect, use, and protect your personal data",
     "dataCollection": {
       "title": "Data Collection",
-      "content": "We collect personal information that you voluntarily provide to us when you:"
+      "content": "We collect personal information that you voluntarily provide to us when you:",
+      "items": {
+        "name": "First and last name",
+        "email": "Email address",
+        "phone": "Phone number (if provided)",
+        "address": "Postal address (if provided)",
+        "browsing": "Browsing data and cookies"
+      }
     },
     "dataUsage": {
       "title": "Use of Your Data",
-      "content": "We use the collected data for the following purposes:"
+      "content": "We use the collected data for the following purposes:",
+      "items": {
+        "orders": "Process your orders and requests",
+        "contact": "Contact you regarding our products and services",
+        "improve": "Improve our website and services",
+        "marketing": "Send you marketing communications (with your consent)"
+      }
     },
     "dataProtection": {
       "title": "Data Protection",
@@ -98,7 +124,14 @@
     },
     "rights": {
       "title": "Your Rights",
-      "content": "In accordance with applicable data protection laws, you have the following rights regarding your personal data:"
+      "content": "In accordance with applicable data protection laws, you have the following rights regarding your personal data:",
+      "items": {
+        "access": "Right to access your personal data",
+        "rectify": "Right to rectify your data",
+        "erasure": "Right to erasure of your data",
+        "object": "Right to object to processing of your data",
+        "portability": "Right to data portability"
+      }
     },
     "contact": {
       "title": "Contact",

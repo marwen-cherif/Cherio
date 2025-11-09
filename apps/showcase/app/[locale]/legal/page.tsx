@@ -41,33 +41,11 @@ export default async function LegalPage({ params }: { params: Promise<{ locale: 
               {t('companyInfo.title')}
             </h2>
             <div className="text-secondary leading-relaxed space-y-2">
-              {locale === 'fr' && (
-                <>
-                  <p><strong>Raison sociale :</strong> Eva Accessories</p>
-                  <p><strong>Forme juridique :</strong> Micro-entreprise</p>
-                  <p><strong>Siège social :</strong> 76 Rue dian fossey, 7000 Melun France</p>
-                  <p><strong>Numéro SIRET :</strong> 993 121 466</p>
-                  <p><strong>Directeur de publication :</strong> Marwen Cherif</p>
-                </>
-              )}
-              {locale === 'en' && (
-                <>
-                  <p><strong>Company name :</strong> Eva Accessories</p>
-                  <p><strong>Legal form :</strong> Micro-business</p>
-                  <p><strong>Registered office :</strong> 76 Rue dian fossey, 7000 Melun France</p>
-                  <p><strong>Registration number :</strong> 993 121 466</p>
-                  <p><strong>Publication director :</strong> Marwen Cherif</p>
-                </>
-              )}
-              {locale === 'ar' && (
-                <>
-                  <p><strong>اسم الشركة :</strong>Eva Accessories</p>
-                  <p><strong>الشكل القانوني :</strong> مشروع صغير </p>
-                  <p><strong>المقر الاجتماعي :</strong>76 Rue dian fossey, 7000 Melun France</p>
-                  <p><strong>رقم التسجيل :</strong>993 121 466</p>
-                  <p><strong>مدير النشر :</strong> مروان الشريف</p>
-                </>
-              )}
+              <p><strong>{t('companyInfo.companyName')} :</strong> {t('companyInfo.companyNameValue')}</p>
+              <p><strong>{t('companyInfo.legalForm')} :</strong> {t('companyInfo.legalFormValue')}</p>
+              <p><strong>{t('companyInfo.registeredOffice')} :</strong> {t('companyInfo.registeredOfficeValue')}</p>
+              <p><strong>{t('companyInfo.registrationNumber')} :</strong> {t('companyInfo.registrationNumberValue')}</p>
+              <p><strong>{t('companyInfo.publicationDirector')} :</strong> {t('companyInfo.publicationDirectorValue')}</p>
             </div>
           </section>
 
@@ -102,4 +80,5 @@ export default async function LegalPage({ params }: { params: Promise<{ locale: 
     </div>
   );
 }
+
 

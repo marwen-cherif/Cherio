@@ -44,33 +44,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               {t('dataCollection.content')}
             </p>
             <ul className="list-disc list-inside space-y-2 text-secondary">
-              {locale === 'fr' && (
-                <>
-                  <li>Nom et prénom</li>
-                  <li>Adresse e-mail</li>
-                  <li>Numéro de téléphone (si fourni)</li>
-                  <li>Adresse postale (si fournie)</li>
-                  <li>Données de navigation et cookies</li>
-                </>
-              )}
-              {locale === 'en' && (
-                <>
-                  <li>First and last name</li>
-                  <li>Email address</li>
-                  <li>Phone number (if provided)</li>
-                  <li>Postal address (if provided)</li>
-                  <li>Browsing data and cookies</li>
-                </>
-              )}
-              {locale === 'ar' && (
-                <>
-                  <li>الاسم الأول والأخير</li>
-                  <li>عنوان البريد الإلكتروني</li>
-                  <li>رقم الهاتف (إن تم توفيره)</li>
-                  <li>العنوان البريدي (إن تم توفيره)</li>
-                  <li>بيانات التصفح والكوكيز</li>
-                </>
-              )}
+              <li>{t('dataCollection.items.name')}</li>
+              <li>{t('dataCollection.items.email')}</li>
+              <li>{t('dataCollection.items.phone')}</li>
+              <li>{t('dataCollection.items.address')}</li>
+              <li>{t('dataCollection.items.browsing')}</li>
             </ul>
           </section>
 
@@ -82,30 +60,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               {t('dataUsage.content')}
             </p>
             <ul className="list-disc list-inside space-y-2 text-secondary">
-              {locale === 'fr' && (
-                <>
-                  <li>Traiter vos commandes et demandes</li>
-                  <li>Vous contacter concernant nos produits et services</li>
-                  <li>Améliorer notre site web et nos services</li>
-                  <li>Vous envoyer des communications marketing (avec votre consentement)</li>
-                </>
-              )}
-              {locale === 'en' && (
-                <>
-                  <li>Process your orders and requests</li>
-                  <li>Contact you regarding our products and services</li>
-                  <li>Improve our website and services</li>
-                  <li>Send you marketing communications (with your consent)</li>
-                </>
-              )}
-              {locale === 'ar' && (
-                <>
-                  <li>معالجة طلباتك وطلباتك</li>
-                  <li>التواصل معك بخصوص منتجاتنا وخدماتنا</li>
-                  <li>تحسين موقعنا وخدماتنا</li>
-                  <li>إرسال رسائل تسويقية لك (بموافقتك)</li>
-                </>
-              )}
+              <li>{t('dataUsage.items.orders')}</li>
+              <li>{t('dataUsage.items.contact')}</li>
+              <li>{t('dataUsage.items.improve')}</li>
+              <li>{t('dataUsage.items.marketing')}</li>
             </ul>
           </section>
 
@@ -135,33 +93,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               {t('rights.content')}
             </p>
             <ul className="list-disc list-inside space-y-2 text-secondary">
-              {locale === 'fr' && (
-                <>
-                  <li>Droit d'accès à vos données personnelles</li>
-                  <li>Droit de rectification de vos données</li>
-                  <li>Droit à l'effacement de vos données</li>
-                  <li>Droit d'opposition au traitement de vos données</li>
-                  <li>Droit à la portabilité de vos données</li>
-                </>
-              )}
-              {locale === 'en' && (
-                <>
-                  <li>Right to access your personal data</li>
-                  <li>Right to rectify your data</li>
-                  <li>Right to erasure of your data</li>
-                  <li>Right to object to processing of your data</li>
-                  <li>Right to data portability</li>
-                </>
-              )}
-              {locale === 'ar' && (
-                <>
-                  <li>حق الوصول إلى بياناتك الشخصية</li>
-                  <li>حق تصحيح بياناتك</li>
-                  <li>حق حذف بياناتك</li>
-                  <li>حق الاعتراض على معالجة بياناتك</li>
-                  <li>حق نقل بياناتك</li>
-                </>
-              )}
+              <li>{t('rights.items.access')}</li>
+              <li>{t('rights.items.rectify')}</li>
+              <li>{t('rights.items.erasure')}</li>
+              <li>{t('rights.items.object')}</li>
+              <li>{t('rights.items.portability')}</li>
             </ul>
           </section>
 
@@ -178,4 +114,5 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
     </div>
   );
 }
+
 
