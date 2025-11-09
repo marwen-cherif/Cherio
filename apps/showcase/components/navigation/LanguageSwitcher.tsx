@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { routing } from '@/i18n/routing';
+import { ButtonPlain } from '@/components/ui/ButtonPlain';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -21,8 +22,10 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="relative group">
-      <button
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-secondary hover:text-primary transition-colors rounded-lg hover:bg-accent/30"
+      <ButtonPlain
+        variant="ghost"
+        size="sm"
+        className="flex items-center gap-2"
         aria-label="Change language"
       >
         <span className="hidden sm:inline">
@@ -40,22 +43,24 @@ export default function LanguageSwitcher() {
         >
           <path d="M19 9l-7 7-7-7" />
         </svg>
-      </button>
+      </ButtonPlain>
 
       <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
         <div className="py-1">
           {languages.map((lang) => (
-            <button
+            <ButtonPlain
               key={lang.code}
+              variant="ghost"
+              size="sm"
               onClick={() => handleLanguageChange(lang.code)}
-              className={`w-full text-left px-4 py-2 text-sm flex items-center gap-2 transition-colors ${
+              className={`w-full text-left px-4 py-2 ${
                 locale === lang.code
                   ? 'bg-accent/30 text-primary'
-                  : 'text-secondary hover:bg-accent/20'
+                  : ''
               }`}
             >
               <span>{lang.name}</span>
-            </button>
+            </ButtonPlain>
           ))}
         </div>
       </div>

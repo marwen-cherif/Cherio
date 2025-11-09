@@ -8,6 +8,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useLocale } from 'next-intl';
 import { z } from 'zod';
 import { formatPrice } from '@/utils/formatPrice';
+import { Button } from '@/components/ui/Button';
 
 interface CartClientProps {
   translations: {
@@ -206,11 +207,11 @@ export default function CartClient({ translations, isRTL }: CartClientProps) {
                             />
                           </div>
 
-                          <motion.button
+                          <Button
+                            variant="icon"
+                            size="sm"
                             onClick={() => handleRemove(item.product.id)}
-                            className="p-2 text-secondary hover:text-primary transition-colors"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
+                            isRTL={isRTL}
                             aria-label={translations.remove}
                           >
                             <svg
@@ -226,7 +227,7 @@ export default function CartClient({ translations, isRTL }: CartClientProps) {
                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                               />
                             </svg>
-                          </motion.button>
+                          </Button>
                         </div>
                       </div>
                     </motion.div>
@@ -273,15 +274,16 @@ export default function CartClient({ translations, isRTL }: CartClientProps) {
                   </motion.div>
                 )}
 
-                <motion.button
+                <Button
                   onClick={handleCheckout}
-                  className="w-full rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                  whileHover={isCartValid ? { scale: 1.02 } : {}}
-                  whileTap={isCartValid ? { scale: 0.98 } : {}}
+                  variant="primary"
+                  size="md"
+                  isRTL={isRTL}
                   disabled={!isCartValid}
+                  className="w-full"
                 >
                   {translations.checkout}
-                </motion.button>
+                </Button>
 
                 <Link
                   href="/"

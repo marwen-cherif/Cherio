@@ -7,6 +7,7 @@ import { NavLink } from '@/components/navigation/NavLink';
 import { MobileMenu } from '@/components/navigation/MobileMenu';
 import LanguageSwitcher from '@/components/navigation/LanguageSwitcher';
 import CartIcon from '@/components/cart/CartIcon';
+import { ButtonPlain } from '@/components/ui/ButtonPlain';
 
 export default function Header() {
   const t = useTranslations('common');
@@ -36,10 +37,12 @@ export default function Header() {
           <LanguageSwitcher />
 
           {/* Mobile Menu Button */}
-          <button
+          <ButtonPlain
+            variant="icon"
+            size="md"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-secondary"
             aria-label={t('menu')}
+            className="md:hidden"
           >
             <svg
               className="h-6 w-6"
@@ -56,7 +59,7 @@ export default function Header() {
                 <path d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
-          </button>
+          </ButtonPlain>
         </div>
       </nav>
 

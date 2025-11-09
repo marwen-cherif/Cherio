@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import { formatPrice } from '@/utils/formatPrice';
+import { Button } from '@/components/ui/Button';
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +21,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const isRTL = locale === 'ar';
   const { addToCart } = useCart();
   const [isImageHovered, setIsImageHovered] = useState(false);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             alt={product.name[locale]}
             width={400}
             height={400}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover"
           />
 
           {/* Price Tooltip on Image Hover */}
@@ -68,64 +68,48 @@ export default function ProductCard({ product }: ProductCardProps) {
           </AnimatePresence>
 
           {/* Add to Cart Button in Corner */}
-          <motion.button
-            onClick={handleAddToCart}
-            onMouseEnter={() => setIsButtonHovered(true)}
-            onMouseLeave={() => setIsButtonHovered(false)}
-            className={`absolute ${isRTL ? 'left-4' : 'right-4'} bottom-4 z-10 flex items-center justify-center rounded-full bg-primary p-3 shadow-lg transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2`}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label={t('addToCart')}
-          >
-            {showAddedMessage ? (
-              <motion.svg
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </motion.svg>
-            ) : (
-              <svg
-                className="h-6 w-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-            )}
-          </motion.button>
-
-          {/* Price Tooltip on Button Hover */}
-          <AnimatePresence>
-            {isButtonHovered && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.2 }}
-                className={`absolute ${isRTL ? 'right-16' : 'left-16'} bottom-4 z-10 rounded-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg whitespace-nowrap`}
-              >
-                <p className="text-sm font-bold text-primary">
-                  {formatPrice(product.price, product.currency, locale)}
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className={`absolute ${isRTL ? 'left-4' : 'right-4'} bottom-4 z-10`}>
+            <Button
+              variant="icon-circle"
+              size="md"
+              onClick={handleAddToCart}
+              isRTL={isRTL}
+              aria-label={t('addToCart')}
+              className="h-12 w-12"
+            >
+              {showAddedMessage ? (
+                <motion.svg
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="h-6 w-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </motion.svg>
+              ) : (
+                <svg
+                  className="h-6 w-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              )}
+            </Button>
+          </div>
         </div>
       </Link>
 
@@ -152,7 +136,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links.amazon}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-md bg-amazon px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-amazon-hover"
+              className="inline-flex items-center gap-1 rounded-md bg-amazon px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-amazon-hover"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -164,7 +148,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links.etsy}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-md bg-etsy px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-etsy-hover"
+              className="inline-flex items-center gap-1 rounded-md bg-etsy px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-etsy-hover"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -176,7 +160,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links.vinted}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-md bg-vinted px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-vinted-hover"
+              className="inline-flex items-center gap-1 rounded-md bg-vinted px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-vinted-hover"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

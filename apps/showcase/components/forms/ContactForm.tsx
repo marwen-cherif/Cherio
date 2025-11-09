@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { socialLinks } from '@/config/socialLinks';
+import { Button } from '@/components/ui/Button';
 
 interface ContactFormProps {
   isRTL: boolean;
@@ -85,13 +86,17 @@ export function ContactForm({ isRTL }: ContactFormProps) {
           />
         </div>
 
-        <button
+        <Button
           type="submit"
+          variant="primary"
+          size="md"
+          isRTL={isRTL}
+          isLoading={status === 'sending'}
           disabled={status === 'sending'}
-          className="w-full rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full"
         >
           {status === 'sending' ? t('sending') : t('send')}
-        </button>
+        </Button>
 
         {status === 'success' && (
           <div className="rounded-md bg-accent p-4 text-primary">

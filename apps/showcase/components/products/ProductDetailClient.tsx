@@ -7,6 +7,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import { formatPrice } from '@/utils/formatPrice';
+import { Button } from '@/components/ui/Button';
 
 interface ProductDetailClientProps {
   product: Product;
@@ -166,15 +167,15 @@ export default function ProductDetailClient({
                     dir={isRTL ? 'rtl' : 'ltr'}
                   />
                 </div>
-                <motion.button
+                <Button
                   onClick={handleAddToCart}
-                  className="flex-1 sm:flex-none rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                  variants={buttonVariants}
-                  whileHover="hover"
-                  whileTap="tap"
+                  variant="primary"
+                  size="md"
+                  isRTL={isRTL}
+                  className="flex-1 sm:flex-none"
                 >
                   {showAddedMessage ? translations.addedToCart : translations.addToCart}
-                </motion.button>
+                </Button>
               </div>
             </motion.div>
 
