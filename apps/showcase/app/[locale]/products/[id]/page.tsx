@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { products } from '@/data/products';
 import JsonLd from '@/components/JsonLd';
-import ProductDetailClient from '@/components/ProductDetailClient';
+import ProductDetailClient from '@/components/ProductsGrid/ProductDetailClient';
 
 export async function generateStaticParams() {
   return products.map((product) => ({
@@ -11,14 +11,14 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ locale: string; id: string }> 
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ locale: string; id: string }>
 }) {
   const { locale, id } = await params;
   const product = products.find(p => p.id === id);
-  
+
   if (!product) {
     return {};
   }
@@ -44,14 +44,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductDetailPage({ 
-  params 
-}: { 
-  params: Promise<{ locale: string; id: string }> 
+export default async function ProductDetailPage({
+  params
+}: {
+  params: Promise<{ locale: string; id: string }>
 }) {
   const { locale, id } = await params;
   const product = products.find(p => p.id === id);
-  
+
   if (!product) {
     notFound();
   }
@@ -86,11 +86,11 @@ export default async function ProductDetailPage({
   return (
     <>
       <JsonLd type="Product" data={jsonLdData} />
-      <ProductDetailClient 
-        product={product} 
-        locale={localeKey} 
-        isRTL={isRTL} 
-        translations={translations} 
+      <ProductDetailClient
+        product={product}
+        locale={localeKey}
+        isRTL={isRTL}
+        translations={translations}
       />
     </>
   );

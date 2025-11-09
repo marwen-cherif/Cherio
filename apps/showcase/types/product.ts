@@ -19,6 +19,7 @@ export interface Product {
   currency: string;
   image: string;
   images?: string[];
+  video?: string;
   links: {
     amazon?: string;
     etsy?: string;

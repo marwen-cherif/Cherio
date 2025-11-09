@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
-import ProductsGrid from '@/components/ProductsGrid';
+import ProductsGrid from '@/components/ProductsGrid/ProductsGrid';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

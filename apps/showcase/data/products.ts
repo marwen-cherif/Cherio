@@ -20,7 +20,13 @@ export const products: Product[] = [
     },
     price: 49.99,
     currency: 'EUR',
-    image: '/images/product-1.jpg', // Add your image at public/images/product-1.jpg
+    image: '/images/product-1.jpg', // Image principale
+    images: [
+      '/images/product-1-2.jpg', // Images supplémentaires
+      '/images/product-1-3.jpg',
+      '/images/product-1-4.jpg'
+    ],
+    video: '/videos/product-1.mp4', // Vidéo optionnelle (sera affichée en premier si présente)
     links: {
       amazon: 'https://amazon.com/product-1',
       etsy: 'https://etsy.com/product-1',

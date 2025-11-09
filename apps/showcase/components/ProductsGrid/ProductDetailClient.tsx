@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { Product } from '@/types/product';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
+import ImageCarousel from '../ImageCarousel';
 
 interface ProductDetailClientProps {
   product: Product;
@@ -99,22 +99,19 @@ export default function ProductDetailClient({
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Product Image */}
+          {/* Product Image Carousel */}
           <motion.div
             variants={imageVariants}
             initial="hidden"
             animate="visible"
-            className="relative aspect-square overflow-hidden rounded-lg bg-accent/20 border border-border group"
           >
-            <Image
-              src={product.image || '/images/placeholder.jpg'}
-              alt={product.name[locale]}
-              width={800}
-              height={800}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              priority
+            <ImageCarousel
+              mainImage={product.image}
+              images={product.images}
+              video={product.video}
+              productName={product.name[locale]}
+              isRTL={isRTL}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.div>
 
           {/* Product Info */}
@@ -129,7 +126,7 @@ export default function ProductDetailClient({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary mb-4"
+              className="text-xl sm:text-xl lg:text-2xl font-bold tracking-tight text-primary mb-4"
             >
               {product.name[locale]}
             </motion.h1>
@@ -140,7 +137,7 @@ export default function ProductDetailClient({
               transition={{ delay: 0.4, duration: 0.4 }}
               className="mb-6"
             >
-              <span className="text-3xl sm:text-4xl font-bold text-primary">
+              <span className="text-xl sm:text-xl font-bold text-primary">
                 {product.price} {product.currency}
               </span>
             </motion.div>
