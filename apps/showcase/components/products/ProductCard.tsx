@@ -10,6 +10,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import { formatPrice } from '@/utils/formatPrice';
 import { Button } from '@/components/ui/Button';
+import { ButtonSize } from '@/components/ui/button.types';
 
 interface ProductCardProps {
   product: Product;
@@ -71,7 +72,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className={`absolute ${isRTL ? 'left-4' : 'right-4'} bottom-4 z-10`}>
             <Button
               variant="icon-circle"
-              size="md"
+              size={ButtonSize.Normal}
               onClick={handleAddToCart}
               isRTL={isRTL}
               aria-label={t('addToCart')}

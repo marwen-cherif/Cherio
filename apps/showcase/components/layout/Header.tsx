@@ -8,6 +8,7 @@ import { MobileMenu } from '@/components/navigation/MobileMenu';
 import LanguageSwitcher from '@/components/navigation/LanguageSwitcher';
 import CartIcon from '@/components/cart/CartIcon';
 import { ButtonPlain } from '@/components/ui/ButtonPlain';
+import { ButtonSize } from '@/components/ui/button.types';
 
 export default function Header() {
   const t = useTranslations('common');
@@ -39,7 +40,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <ButtonPlain
             variant="icon"
-            size="md"
+            size={ButtonSize.Normal}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={t('menu')}
             className="md:hidden"

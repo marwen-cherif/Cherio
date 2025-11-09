@@ -5,6 +5,7 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import {
   BaseButtonProps,
+  ButtonSize,
   variantStyles,
   sizeStyles,
   iconSizeStyles,
@@ -18,7 +19,7 @@ export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size'>, Ba
 
 export function Button({
   variant = 'primary',
-  size = 'md',
+  size = ButtonSize.Normal,
   isLoading = false,
   isRTL = false,
   leftIcon,

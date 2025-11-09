@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { socialLinks } from '@/config/socialLinks';
 import { Button } from '@/components/ui/Button';
+import { ButtonSize } from '@/components/ui/button.types';
 
 interface ContactFormProps {
   isRTL: boolean;
@@ -89,7 +90,7 @@ export function ContactForm({ isRTL }: ContactFormProps) {
         <Button
           type="submit"
           variant="primary"
-          size="md"
+          size={ButtonSize.Normal}
           isRTL={isRTL}
           isLoading={status === 'sending'}
           disabled={status === 'sending'}

@@ -11,7 +11,11 @@ export type ButtonVariant =
   | 'etsy'
   | 'vinted';
 
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export enum ButtonSize {
+  Small = 'small',
+  Normal = 'normal',
+  Big = 'big',
+}
 
 export interface BaseButtonProps {
   variant?: ButtonVariant;
@@ -38,15 +42,15 @@ export const variantStyles: Record<ButtonVariant, string> = {
 };
 
 export const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-3 py-1.5 text-xs',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
+  [ButtonSize.Small]: 'px-3 py-1.5 text-xs',
+  [ButtonSize.Normal]: 'px-6 py-3 text-base',
+  [ButtonSize.Big]: 'px-8 py-4 text-lg',
 };
 
 export const iconSizeStyles: Record<ButtonSize, string> = {
-  sm: 'p-1.5',
-  md: 'p-3',
-  lg: 'p-4',
+  [ButtonSize.Small]: 'p-1.5',
+  [ButtonSize.Normal]: 'p-3',
+  [ButtonSize.Big]: 'p-4',
 };
 
 export const defaultButtonVariants = {

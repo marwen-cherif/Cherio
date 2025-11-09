@@ -24,3 +24,27 @@ export interface User {
     email: string;
     role: 'admin' | 'member';
 }
+export interface DeliveryAddress {
+    firstName: string;
+    lastName: string;
+    addressLine1: string;
+    addressLine2?: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    department?: string;
+    additionalInfo?: string;
+}
+export interface PickupPoint {
+    id: string;
+    name: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+    openingHours?: string;
+    phone?: string;
+    distance?: number;
+}

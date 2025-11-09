@@ -4,6 +4,7 @@ import React from 'react';
 import { cn } from '@/utils/cn';
 import {
   BaseButtonProps,
+  ButtonSize,
   variantStyles,
   sizeStyles,
   iconSizeStyles,
@@ -13,7 +14,7 @@ export interface ButtonPlainProps extends React.ButtonHTMLAttributes<HTMLButtonE
 
 export function ButtonPlain({
   variant = 'primary',
-  size = 'md',
+  size = ButtonSize.Normal,
   isLoading = false,
   isRTL = false,
   leftIcon,

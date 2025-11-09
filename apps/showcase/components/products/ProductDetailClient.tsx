@@ -8,6 +8,7 @@ import { useState } from 'react';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import { formatPrice } from '@/utils/formatPrice';
 import { Button } from '@/components/ui/Button';
+import { ButtonSize } from '@/components/ui/button.types';
 
 interface ProductDetailClientProps {
   product: Product;
@@ -170,7 +171,7 @@ export default function ProductDetailClient({
                 <Button
                   onClick={handleAddToCart}
                   variant="primary"
-                  size="md"
+                  size={ButtonSize.Normal}
                   isRTL={isRTL}
                   className="flex-1 sm:flex-none"
                 >

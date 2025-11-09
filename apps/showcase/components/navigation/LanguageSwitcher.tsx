@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { routing } from '@/i18n/routing';
 import { ButtonPlain } from '@/components/ui/ButtonPlain';
+import { ButtonSize } from '@/components/ui/button.types';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -24,7 +25,7 @@ export default function LanguageSwitcher() {
     <div className="relative group">
       <ButtonPlain
         variant="ghost"
-        size="sm"
+        size={ButtonSize.Small}
         className="flex items-center gap-2"
         aria-label="Change language"
       >
@@ -51,7 +52,7 @@ export default function LanguageSwitcher() {
             <ButtonPlain
               key={lang.code}
               variant="ghost"
-              size="sm"
+              size={ButtonSize.Small}
               onClick={() => handleLanguageChange(lang.code)}
               className={`w-full text-left px-4 py-2 ${
                 locale === lang.code
