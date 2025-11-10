@@ -19,7 +19,7 @@ export interface PhoneInputProps {
 
 export function PhoneInput({
   value,
-  onChange,
+  onChange = () => undefined,
   defaultCountry = 'FR',
   international = true,
   className,
@@ -29,10 +29,7 @@ export function PhoneInput({
   placeholder,
 }: PhoneInputProps) {
   return (
-    <div
-      dir={isRTL ? 'rtl' : 'ltr'}
-      className={cn('phone-input', error && 'error', className)}
-    >
+    <div dir={isRTL ? 'rtl' : 'ltr'} className={cn('phone-input', error && 'error', className)}>
       <ReactPhoneInput
         value={value}
         onChange={onChange}
@@ -43,12 +40,13 @@ export function PhoneInput({
         numberInputProps={{
           className: 'phone-input-number',
         }}
-        style={{
-          '--PhoneInputCountryFlag-height': '1.5em',
-          '--PhoneInputCountryFlag-width': '2em',
-        } as React.CSSProperties}
+        style={
+          {
+            '--PhoneInputCountryFlag-height': '1.5em',
+            '--PhoneInputCountryFlag-width': '2em',
+          } as React.CSSProperties
+        }
       />
     </div>
   );
 }
-

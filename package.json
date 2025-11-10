@@ -8,6 +8,7 @@
     "dev:backend": "turbo dev --filter=backend",
     "dev:showcase": "turbo dev --filter=showcase",
     "dev:all": "turbo dev --parallel",
+    "tsc:all": "turbo run tsc --parallel",
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",

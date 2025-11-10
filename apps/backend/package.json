@@ -20,7 +20,8 @@
     "db:push": "prisma db push",
     "db:pull": "prisma db pull",
     "db:seed": "ts-node prisma/seed.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "tsc": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
