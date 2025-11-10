@@ -20,7 +20,7 @@ const theme = createTheme({
 
 function App() {
   useEffect(() => {
-    document.title = 'SyndicCheck';
+    document.title = 'Cherio - Back-office';
   }, []);
 
   return (
@@ -31,7 +31,7 @@ function App() {
             {/* Public routes */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            
+
             {/* Protected routes */}
             <Route
               path="/"
@@ -83,7 +83,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            
+
             {/* Redirect to home if path doesn't match */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import { 
-  AppShell, 
-  Burger, 
-  Group, 
-  NavLink, 
-  useMantineTheme, 
+import {
+  AppShell,
+  Burger,
+  Group,
+  NavLink,
+  useMantineTheme,
   Title,
   rem,
   Text,
   Button,
   Avatar,
   Box,
-  Divider
+  Divider,
 } from '@mantine/core';
-import { 
-  IconHome, 
-  IconFileInvoice, 
-  IconFileDescription, 
-  IconUsers, 
+import {
+  IconHome,
+  IconFileInvoice,
+  IconFileDescription,
+  IconUsers,
   IconSettings,
-  IconLogout 
+  IconLogout,
 } from '@tabler/icons-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -39,34 +39,34 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
   const { user, logout } = useAuth();
 
   const mainNavItems: NavItem[] = [
-    { 
-      label: 'Accueil', 
-      icon: <IconHome style={{ width: rem(20), height: rem(20) }} />, 
-      path: '/' 
+    {
+      label: 'Accueil',
+      icon: <IconHome style={{ width: rem(20), height: rem(20) }} />,
+      path: '/',
     },
-    { 
-      label: 'Factures', 
-      icon: <IconFileInvoice style={{ width: rem(20), height: rem(20) }} />, 
-      path: '/bills' 
+    {
+      label: 'Factures',
+      icon: <IconFileInvoice style={{ width: rem(20), height: rem(20) }} />,
+      path: '/bills',
     },
-    { 
-      label: 'Contrats', 
-      icon: <IconFileDescription style={{ width: rem(20), height: rem(20) }} />, 
-      path: '/contracts' 
+    {
+      label: 'Contrats',
+      icon: <IconFileDescription style={{ width: rem(20), height: rem(20) }} />,
+      path: '/contracts',
     },
   ];
 
   const secondaryNavItems: NavItem[] = [
-    { 
-      label: 'Utilisateurs', 
-      icon: <IconUsers style={{ width: rem(20), height: rem(20) }} />, 
+    {
+      label: 'Utilisateurs',
+      icon: <IconUsers style={{ width: rem(20), height: rem(20) }} />,
       path: '/users',
-      requiredRole: 'admin'
+      requiredRole: 'admin',
     },
-    { 
-      label: 'Paramètres', 
-      icon: <IconSettings style={{ width: rem(20), height: rem(20) }} />, 
-      path: '/settings' 
+    {
+      label: 'Paramètres',
+      icon: <IconSettings style={{ width: rem(20), height: rem(20) }} />,
+      path: '/settings',
     },
   ];
 
@@ -77,7 +77,7 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
 
   const renderNavItems = (items: NavItem[]) => {
     return items
-      .filter(item => !item.requiredRole || user?.role === item.requiredRole)
+      .filter((item) => !item.requiredRole || user?.role === item.requiredRole)
       .map((item) => (
         <NavLink
           key={item.path}
@@ -96,10 +96,10 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
   // Generate initials from user's name
   const getUserInitials = () => {
     if (!user) return '?';
-    
+
     const firstName = user.firstName || '';
     const lastName = user.lastName || '';
-    
+
     if (firstName && lastName) {
       return `${firstName.charAt(0)}${lastName.charAt(0)}`;
     } else if (firstName) {
@@ -124,13 +124,8 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
           <Group>
-            <Burger
-              opened={opened}
-              onClick={() => setOpened(!opened)}
-              hiddenFrom="sm"
-              size="sm"
-            />
-            <Title order={3}>SyndicCheck</Title>
+            <Burger opened={opened} onClick={() => setOpened(!opened)} hiddenFrom="sm" size="sm" />
+            <Title order={3}>Cherio - Backoffice</Title>
           </Group>
         </Group>
       </AppShell.Header>
@@ -155,18 +150,16 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
           </Box>
           <Divider mb="md" />
         </AppShell.Section>
-        
-        <AppShell.Section grow>
-          {renderNavItems(mainNavItems)}
-        </AppShell.Section>
-        
+
+        <AppShell.Section grow>{renderNavItems(mainNavItems)}</AppShell.Section>
+
         <AppShell.Section>
           {renderNavItems(secondaryNavItems)}
           <Divider my="sm" />
-          <Button 
-            variant="subtle" 
-            color="red" 
-            fullWidth 
+          <Button
+            variant="subtle"
+            color="red"
+            fullWidth
             leftSection={<IconLogout style={{ width: rem(20), height: rem(20) }} />}
             onClick={handleLogout}
           >

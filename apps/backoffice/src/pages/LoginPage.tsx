@@ -29,7 +29,8 @@ export default function LoginPage() {
     },
     validate: {
       email: (value) => (/^\S+@\S+\.\S+$/.test(value) ? null : 'Email invalide'),
-      password: (value) => (value.length < 6 ? 'Le mot de passe doit comporter au moins 6 caractères' : null),
+      password: (value) =>
+        value.length < 6 ? 'Le mot de passe doit comporter au moins 6 caractères' : null,
     },
   });
 
@@ -52,7 +53,7 @@ export default function LoginPage() {
     <Container size="xs" py="xl">
       <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
         <Title order={2} ta="center" mb="md">
-          Connexion à SyndicCheck
+          Connexion à Cherio Back-office
         </Title>
 
         {error && (

@@ -32,10 +32,13 @@ export default function RegisterPage() {
       confirmPassword: '',
     },
     validate: {
-      firstName: (value) => (value.length < 2 ? 'Le prénom doit comporter au moins 2 caractères' : null),
-      lastName: (value) => (value.length < 2 ? 'Le nom doit comporter au moins 2 caractères' : null),
+      firstName: (value) =>
+        value.length < 2 ? 'Le prénom doit comporter au moins 2 caractères' : null,
+      lastName: (value) =>
+        value.length < 2 ? 'Le nom doit comporter au moins 2 caractères' : null,
       email: (value) => (/^\S+@\S+\.\S+$/.test(value) ? null : 'Email invalide'),
-      password: (value) => (value.length < 6 ? 'Le mot de passe doit comporter au moins 6 caractères' : null),
+      password: (value) =>
+        value.length < 6 ? 'Le mot de passe doit comporter au moins 6 caractères' : null,
       confirmPassword: (value, values) =>
         value !== values.password ? 'Les mots de passe ne correspondent pas' : null,
     },
@@ -54,8 +57,8 @@ export default function RegisterPage() {
       await register(values.email, values.password, values.firstName, values.lastName);
       navigate('/');
     } catch (error) {
-      console.error('Erreur d\'inscription:', error);
-      setError('L\'inscription a échoué. Cet email est peut-être déjà utilisé.');
+      console.error("Erreur d'inscription:", error);
+      setError("L'inscription a échoué. Cet email est peut-être déjà utilisé.");
     } finally {
       setIsLoading(false);
     }
@@ -65,7 +68,7 @@ export default function RegisterPage() {
     <Container size="sm" py="xl">
       <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
         <Title order={2} ta="center" mb="md">
-          Créer un compte SyndicCheck
+          Créer un compte Cherio Back-office
         </Title>
 
         {error && (

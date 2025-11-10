@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "turbo dev",
-    "dev:frontend": "turbo dev --filter=frontend",
+    "dev:backoffice": "turbo dev --filter=backoffice",
     "dev:backend": "turbo dev --filter=backend",
     "dev:showcase": "turbo dev --filter=showcase",
     "dev:all": "turbo dev --parallel",
