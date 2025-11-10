@@ -215,4 +215,34 @@ export const api = {
       return `${API_URL}/contracts/${id}/download?token=${accessToken}`;
     },
   },
+  
+  // Products endpoints
+  products: {
+    search: (params: {
+      keyword?: string;
+      page?: number;
+      limit?: number;
+      minPrice?: number;
+      maxPrice?: number;
+      isActive?: boolean;
+      featured?: boolean;
+      category?: string;
+      locale?: string;
+    }) => fetchWithAuth('/products/search', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    }),
+    getById: (id: string) => fetchWithAuth(`/products/${id}`),
+    create: (data: any) => fetchWithAuth('/products', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+    update: (id: string, data: any) => fetchWithAuth(`/products/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+    delete: (id: string) => fetchWithAuth(`/products/${id}`, {
+      method: 'DELETE',
+    }),
+  },
 };

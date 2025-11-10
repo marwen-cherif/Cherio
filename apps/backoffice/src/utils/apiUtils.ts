@@ -194,5 +194,80 @@ export const apiUtils = {
         throw error;
       }
     }
+  },
+  
+  /**
+   * Products API utilities with error handling
+   */
+  products: {
+    async search(params: {
+      keyword?: string;
+      page?: number;
+      limit?: number;
+      minPrice?: number;
+      maxPrice?: number;
+      isActive?: boolean;
+      featured?: boolean;
+      category?: string;
+      locale?: string;
+    }) {
+      try {
+        const response = await api.products.search(params);
+        return apiUtils.handleResponse<{
+          products: any[];
+          pagination: {
+            page: number;
+            limit: number;
+            total: number;
+            totalPages: number;
+            hasNextPage: boolean;
+            hasPreviousPage: boolean;
+          };
+        }>(response);
+      } catch (error) {
+        console.error('Error searching products:', error);
+        throw error;
+      }
+    },
+    
+    async getById(id: string) {
+      try {
+        const response = await api.products.getById(id);
+        return apiUtils.handleResponse<{ product: any }>(response);
+      } catch (error) {
+        console.error(`Error fetching product ${id}:`, error);
+        throw error;
+      }
+    },
+    
+    async create(data: any) {
+      try {
+        const response = await api.products.create(data);
+        return apiUtils.handleResponse<{ message: string; product: any }>(response);
+      } catch (error) {
+        console.error('Error creating product:', error);
+        throw error;
+      }
+    },
+    
+    async update(id: string, data: any) {
+      try {
+        const response = await api.products.update(id, data);
+        return apiUtils.handleResponse<{ message: string; product: any }>(response);
+      } catch (error) {
+        console.error(`Error updating product ${id}:`, error);
+        throw error;
+      }
+    },
+    
+    async delete(id: string) {
+      try {
+        const response = await api.products.delete(id);
+        return apiUtils.handleResponse<{ message: string }>(response);
+      } catch (error) {
+        console.error(`Error deleting product ${id}:`, error);
+        throw error;
+      }
+    }
   }
 };

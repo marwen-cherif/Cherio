@@ -20,6 +20,7 @@ import {
   IconUsers,
   IconSettings,
   IconLogout,
+  IconPackage,
 } from '@tabler/icons-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -57,6 +58,12 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
   ];
 
   const secondaryNavItems: NavItem[] = [
+    {
+      label: 'Produits',
+      icon: <IconPackage style={{ width: rem(20), height: rem(20) }} />,
+      path: '/products',
+      requiredRole: 'admin',
+    },
     {
       label: 'Utilisateurs',
       icon: <IconUsers style={{ width: rem(20), height: rem(20) }} />,
