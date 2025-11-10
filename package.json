@@ -1,5 +1,5 @@
 {
-  "name": "syndiccheck",
+  "name": "cherio",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Syndical council platform for verifying bills",
+  "description": "Cherio platform",
   "devDependencies": {
     "prettier": "^3.6.2",
     "turbo": "^2.4.4"
