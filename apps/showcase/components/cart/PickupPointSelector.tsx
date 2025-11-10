@@ -4,11 +4,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
-import { PickupPoint } from '@shared/index';
-import { Button } from '@/components/ui/Button';
-import { ButtonSize } from '@/components/ui/button.types';
-import { Card } from '@/components/ui/Card';
+import { PickupPoint } from '@shared/types';
+import { Button, ButtonSize } from '@shared/atoms/Button';
+import { Card } from '@shared/atoms/Card';
 import { useClientStore } from '@/stores/clientStore';
 import { useIsRTL } from '@/hooks/useLocale';
 import { pickupPointSearchSchema, type PickupPointSearchData } from './PickupPointSelector.schema';
@@ -292,6 +290,7 @@ export default function PickupPointSelector({
       onToggle={() => {
         setIsCardOpen(!isCardOpen);
       }}
+      isRTL={isRTL}
     >
       <div className="mb-4">
         <label htmlFor="address-search" className="block text-sm font-medium text-primary mb-2">

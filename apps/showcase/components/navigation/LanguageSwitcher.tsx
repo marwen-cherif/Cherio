@@ -2,9 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
-import { routing } from '@/i18n/routing';
-import { ButtonPlain } from '@/components/ui/ButtonPlain';
-import { ButtonSize } from '@/components/ui/button.types';
+import { ButtonPlain, ButtonSize } from '@shared/atoms/Button';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -14,7 +12,7 @@ export default function LanguageSwitcher() {
   const languages = [
     { code: 'fr', name: 'Français' },
     { code: 'en', name: 'English' },
-    { code: 'ar', name: 'العربية' }
+    { code: 'ar', name: 'العربية' },
   ];
 
   const handleLanguageChange = (newLocale: string) => {
@@ -30,7 +28,7 @@ export default function LanguageSwitcher() {
         aria-label="Change language"
       >
         <span className="hidden sm:inline">
-          {languages.find(l => l.code === locale)?.code.toUpperCase() || locale.toUpperCase()}
+          {languages.find((l) => l.code === locale)?.code.toUpperCase() || locale.toUpperCase()}
         </span>
 
         <svg
@@ -55,9 +53,7 @@ export default function LanguageSwitcher() {
               size={ButtonSize.Small}
               onClick={() => handleLanguageChange(lang.code)}
               className={`w-full text-left px-4 py-2 ${
-                locale === lang.code
-                  ? 'bg-accent/30 text-primary'
-                  : ''
+                locale === lang.code ? 'bg-accent/30 text-primary' : ''
               }`}
             >
               <span>{lang.name}</span>
@@ -68,4 +64,3 @@ export default function LanguageSwitcher() {
     </div>
   );
 }
-

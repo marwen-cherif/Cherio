@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { DeliveryAddress } from '@shared/index';
+import { DeliveryAddress } from '@shared/types';
 
 export const homeDeliveryFormSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -15,4 +15,3 @@ export const homeDeliveryFormSchema = z.object({
 }) satisfies z.ZodType<DeliveryAddress>;
 
 export type HomeDeliveryFormData = z.infer<typeof homeDeliveryFormSchema>;
-

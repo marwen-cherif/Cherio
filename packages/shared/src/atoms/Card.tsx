@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from './Button';
-import { ButtonSize } from './button.types';
-import { useIsRTL } from '@/hooks/useLocale';
+import { Button } from './Button/Button';
+import { ButtonSize } from './Button/button.types';
 
 interface CardProps {
   title: string;
@@ -14,6 +13,7 @@ interface CardProps {
   editLabel?: string;
   className?: string;
   onToggle?: () => void;
+  isRTL?: boolean;
 }
 
 export function Card({
@@ -24,9 +24,8 @@ export function Card({
   editLabel = 'Edit',
   className,
   onToggle = () => undefined,
+  isRTL = false,
 }: CardProps) {
-  const isRTL = useIsRTL();
-
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
@@ -38,15 +37,15 @@ export function Card({
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-primary">{title}</h3>
         {summary && !isOpen && (
-          <Button variant="secondary" size={ButtonSize.Small} onClick={() => onToggle()}>
+          <Button
+            variant="secondary"
+            size={ButtonSize.Small}
+            onClick={() => onToggle()}
+            isRTL={isRTL}
+          >
             {editLabel}
           </Button>
         )}
-        {/*{isOpen && summary && (*/}
-        {/*  <Button variant="secondary" size={ButtonSize.Small} onClick={() => onToggle()}>*/}
-        {/*    Collapse*/}
-        {/*  </Button>*/}
-        {/*)}*/}
       </div>
 
       <AnimatePresence mode="wait">

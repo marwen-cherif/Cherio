@@ -2,8 +2,7 @@
 
 import React from 'react';
 import ReactSelect, { StylesConfig, GroupBase, OptionsOrGroups } from 'react-select';
-import { useIsRTL } from '@/hooks/useLocale';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
 export interface SelectOption {
   value: string;
@@ -31,24 +30,15 @@ export function Select({
   isDisabled = false,
   className,
   error = false,
-  isRTL: isRTLProp,
+  isRTL = false,
 }: SelectProps) {
-  const isRTL = useIsRTL();
-  const finalIsRTL = isRTLProp ?? isRTL;
-
   const customStyles: StylesConfig<SelectOption, false> = {
     control: (base, state) => ({
       ...base,
       minHeight: '42px',
       borderRadius: '0.375rem',
-      borderColor: error
-        ? '#ef4444'
-        : state.isFocused
-        ? 'var(--primary)'
-        : 'var(--border)',
-      boxShadow: state.isFocused
-        ? '0 0 0 1px var(--primary)'
-        : 'none',
+      borderColor: error ? '#ef4444' : state.isFocused ? 'var(--primary)' : 'var(--border)',
+      boxShadow: state.isFocused ? '0 0 0 1px var(--primary)' : 'none',
       backgroundColor: 'var(--white)',
       '&:hover': {
         borderColor: error ? '#ef4444' : 'var(--primary)',
@@ -84,8 +74,8 @@ export function Select({
       backgroundColor: state.isSelected
         ? 'var(--primary)'
         : state.isFocused
-        ? 'var(--accent)'
-        : 'transparent',
+          ? 'var(--accent)'
+          : 'transparent',
       padding: '0.5rem 0.75rem',
       cursor: 'pointer',
       '&:hover': {
@@ -102,11 +92,10 @@ export function Select({
       placeholder={placeholder}
       isSearchable={isSearchable}
       isDisabled={isDisabled}
-      isRtl={finalIsRTL}
+      isRtl={isRTL}
       classNamePrefix="react-select"
       className={cn('react-select-container', error && 'error', className)}
       styles={customStyles}
     />
   );
 }
-

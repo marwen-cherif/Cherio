@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 import {
   BaseButtonProps,
   ButtonSize,
@@ -12,9 +12,10 @@ import {
   defaultButtonVariants,
   iconButtonVariants,
 } from './button.types';
-import { useIsRTL } from '@/hooks/useLocale';
 
-export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size' | 'children'>, BaseButtonProps {
+export interface ButtonProps
+  extends Omit<HTMLMotionProps<'button'>, 'size' | 'children'>,
+    BaseButtonProps {
   asChild?: boolean;
 }
 
@@ -22,7 +23,7 @@ export function Button({
   variant = 'primary',
   size = ButtonSize.Normal,
   isLoading = false,
-  isRTL: isRTLProp,
+  isRTL = false,
   leftIcon,
   rightIcon,
   icon,
@@ -32,13 +33,11 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const storeIsRTL = useIsRTL();
-  const isRTL = isRTLProp !== undefined ? isRTLProp : storeIsRTL;
-
   const isIconVariant = variant === 'icon' || variant === 'icon-circle';
   const isDisabled = disabled || isLoading;
 
-  const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles =
+    'inline-flex items-center justify-center gap-2 font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
   const roundedStyles = variant === 'icon-circle' ? 'rounded-full' : 'rounded-md';
   const sizeClass = isIconVariant ? iconSizeStyles[size] : sizeStyles[size];
   const variantClass = variantStyles[variant];
@@ -80,21 +79,13 @@ export function Button({
       {!isLoading && children && (
         <span className={isRTL && showIconLeft ? 'order-1' : ''}>{children}</span>
       )}
-      {!isLoading && iconToShow && showIconRight && (
-        <span>{iconToShow}</span>
-      )}
+      {!isLoading && iconToShow && showIconRight && <span>{iconToShow}</span>}
     </>
   );
 
   return (
     <motion.button
-      className={cn(
-        baseStyles,
-        roundedStyles,
-        sizeClass,
-        variantClass,
-        className
-      )}
+      className={cn(baseStyles, roundedStyles, sizeClass, variantClass, className)}
       disabled={isDisabled}
       variants={buttonVariants}
       whileHover={!isDisabled ? 'hover' : undefined}

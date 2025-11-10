@@ -7,8 +7,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import { formatPrice } from '@/utils/formatPrice';
-import { Button } from '@/components/ui/Button';
-import { ButtonSize } from '@/components/ui/button.types';
+import { Button, ButtonSize } from '@shared/atoms/Button';
 import { useTranslations } from 'next-intl';
 import { useLocale } from '@/hooks/useLocale';
 

@@ -5,6 +5,7 @@ import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import authRoutes from './routes/authRoutes';
 import productRoutes from './routes/productRoutes';
+import categoryRoutes from './routes/categoryRoutes';
 import { authenticate } from './middlewares/auth';
 import { swaggerSpec } from './config/swagger';
 
@@ -39,6 +40,7 @@ app.get('/', (req, res) => {
 // Routes
 app.use(authRoutes);
 app.use(productRoutes);
+app.use(categoryRoutes);
 
 // Serve static files from the uploads directory (with authentication)
 app.use('/api/uploads', authenticate, express.static(path.join(__dirname, '../uploads')));

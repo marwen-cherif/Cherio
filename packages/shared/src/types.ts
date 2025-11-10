@@ -1,5 +1,3 @@
-// Shared types for both frontend and backend
-
 export interface Bill {
   id: string;
   title: string;
@@ -8,7 +6,7 @@ export interface Bill {
   category: string;
   contractId: string;
   status: 'pending' | 'verified' | 'rejected';
-  filePath?: string; // Path to the uploaded bill file
+  filePath?: string;
 }
 
 export interface Contract {
@@ -19,7 +17,7 @@ export interface Contract {
   endDate: string;
   provider: string;
   category: string;
-  filePath?: string; // Path to the uploaded contract file
+  filePath?: string;
 }
 
 export interface User {
@@ -29,7 +27,6 @@ export interface User {
   role: 'admin' | 'member';
 }
 
-// Delivery address interfaces
 export interface DeliveryAddress {
   firstName: string;
   lastName: string;
@@ -38,12 +35,11 @@ export interface DeliveryAddress {
   city: string;
   postalCode: string;
   country: string;
-  department?: string; // Department/Region
-  phone?: string; // Phone number (optional)
-  additionalInfo?: string; // Additional delivery information
+  department?: string;
+  phone?: string;
+  additionalInfo?: string;
 }
 
-// Pickup point interface
 export interface PickupPoint {
   id: string;
   name: string;
@@ -55,5 +51,5 @@ export interface PickupPoint {
   longitude: number;
   openingHours?: string;
   phone?: string;
-  distance?: number; // Distance in km from search location
+  distance?: number;
 }

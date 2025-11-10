@@ -16,7 +16,12 @@ const formatProduct = (product: any) => {
     video: product.video,
     links: product.links,
     featured: product.featured,
-    category: product.category,
+    categoryId: product.categoryId,
+    category: product.category ? {
+      id: product.category.id,
+      name: product.category.name,
+      slug: product.category.slug,
+    } : null,
     sku: product.sku,
     stock: product.stock,
     isActive: product.isActive,
@@ -39,7 +44,7 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
       video,
       links,
       featured = false,
-      category,
+      categoryId,
       sku,
       stock = 0,
       isActive = true,
@@ -51,6 +56,17 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
         message: 'Name, description, price, image, and links are required',
       });
       return;
+    }
+
+    // Validate categoryId if provided
+    if (categoryId) {
+      const category = await prisma.category.findUnique({
+        where: { id: categoryId },
+      });
+      if (!category) {
+        res.status(404).json({ message: 'Category not found' });
+        return;
+      }
     }
 
     // Validate multilingual fields structure
@@ -84,7 +100,7 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
         video,
         links,
         featured,
-        category,
+        categoryId,
         sku,
         stock,
         isActive,
@@ -119,13 +135,13 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
       currency,
       image,
       images,
-      video,
-      links,
-      featured,
-      category,
-      sku,
-      stock,
-      isActive,
+        video,
+        links,
+        featured,
+        categoryId,
+        sku,
+        stock,
+        isActive,
     } = req.body;
 
     // Check if product exists
@@ -166,7 +182,21 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
     if (video !== undefined) updateData.video = video;
     if (links !== undefined) updateData.links = links;
     if (featured !== undefined) updateData.featured = featured;
-    if (category !== undefined) updateData.category = category;
+    if (categoryId !== undefined) {
+      if (categoryId === null) {
+        updateData.categoryId = null;
+      } else {
+        // Validate categoryId if provided
+        const category = await prisma.category.findUnique({
+          where: { id: categoryId },
+        });
+        if (!category) {
+          res.status(404).json({ message: 'Category not found' });
+          return;
+        }
+        updateData.categoryId = categoryId;
+      }
+    }
     if (sku !== undefined) updateData.sku = sku;
     if (stock !== undefined) updateData.stock = stock;
     if (isActive !== undefined) updateData.isActive = isActive;
@@ -227,6 +257,7 @@ export const getProductById = async (req: Request, res: Response): Promise<void>
 
     const product = await prisma.product.findUnique({
       where: { id },
+      include: { category: true },
     });
 
     if (!product) {
@@ -337,7 +368,18 @@ export const searchProducts = async (req: Request, res: Response): Promise<void>
 
     // Category filter
     if (category) {
-      where.category = category;
+      // Support both categoryId (UUID) and legacy category string
+      if (category.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)) {
+        where.categoryId = category;
+      } else {
+        // Legacy support: search by category name (if needed)
+        where.category = {
+          name: {
+            path: ['en'],
+            string_contains: category,
+          },
+        };
+      }
     }
 
     // Get products and total count
@@ -346,6 +388,7 @@ export const searchProducts = async (req: Request, res: Response): Promise<void>
         where,
         skip,
         take: limitNumber,
+        include: { category: true },
         orderBy: [{ featured: 'desc' }, { createdAt: 'desc' }],
       }),
       prisma.product.count({ where }),

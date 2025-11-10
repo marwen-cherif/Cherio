@@ -8,8 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import { formatPrice } from '@/utils/formatPrice';
-import { Button } from '@/components/ui/Button';
-import { ButtonSize } from '@/components/ui/button.types';
+import { Button, ButtonSize } from '@shared/atoms/Button';
 import { useLocale } from '@/hooks/useLocale';
 
 interface ProductCardProps {
@@ -172,4 +171,3 @@ export default function ProductCard({ product }: ProductCardProps) {
     </motion.div>
   );
 }
-

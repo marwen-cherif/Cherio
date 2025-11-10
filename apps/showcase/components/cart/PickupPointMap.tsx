@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { PickupPoint } from '@shared/index';
+import { PickupPoint } from '@shared/types';
 
 // Fix for default marker icons in Next.js
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -106,9 +106,7 @@ export default function PickupPointMap({
             <Popup>
               <div>
                 <strong>📍 {searchAddress || 'Adresse recherchée'}</strong>
-                {searchAddress && (
-                  <p className="text-sm mt-1 text-gray-600">{searchAddress}</p>
-                )}
+                {searchAddress && <p className="text-sm mt-1 text-gray-600">{searchAddress}</p>}
               </div>
             </Popup>
           </Marker>

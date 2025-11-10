@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 enum UserRole {
@@ -39,25 +40,25 @@ enum InvoiceStatus {
 }
 
 model User {
-  id                    String    @id @default(uuid())
-  email                 String    @unique
-  emailVerified         Boolean   @default(false) @map("email_verified")
-  encryptedPassword     String    @map("encrypted_password")
-  firstName             String?   @map("first_name")
-  lastName              String?   @map("last_name")
-  role                  UserRole  @default(client)
-  createdAt             DateTime  @default(now()) @map("created_at")
-  updatedAt             DateTime  @updatedAt @map("updated_at")
-  lastSignInAt          DateTime? @map("last_sign_in_at")
-  resetPasswordToken    String?   @map("reset_password_token")
-  resetPasswordSentAt   DateTime? @map("reset_password_sent_at")
+  id                  String    @id @default(uuid())
+  email               String    @unique
+  emailVerified       Boolean   @default(false) @map("email_verified")
+  encryptedPassword   String    @map("encrypted_password")
+  firstName           String?   @map("first_name")
+  lastName            String?   @map("last_name")
+  role                UserRole  @default(client)
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+  lastSignInAt        DateTime? @map("last_sign_in_at")
+  resetPasswordToken  String?   @map("reset_password_token")
+  resetPasswordSentAt DateTime? @map("reset_password_sent_at")
 
   // Relations
-  refreshTokens         RefreshToken[]
-  clients               Client[]
-  orders                Order[]
-  invoices              Invoice[]
-  receipts              Receipt[]
+  refreshTokens RefreshToken[]
+  clients       Client[]
+  orders        Order[]
+  invoices      Invoice[]
+  receipts      Receipt[]
 
   @@map("users")
 }
@@ -76,63 +77,88 @@ model RefreshToken {
 }
 
 model Client {
-  id          String   @id @default(uuid())
-  userId      String   @map("user_id")
-  firstName   String   @map("first_name")
-  lastName    String   @map("last_name")
-  email       String
-  phone       String?
-  address     String?
-  city        String?
-  postalCode  String?  @map("postal_code")
-  country     String?
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  firstName  String   @map("first_name")
+  lastName   String   @map("last_name")
+  email      String
+  phone      String?
+  address    String?
+  city       String?
+  postalCode String?  @map("postal_code")
+  country    String?
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
   // Relations
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  orders      Order[]
-  invoices    Invoice[]
-  receipts    Receipt[]
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders   Order[]
+  invoices Invoice[]
+  receipts Receipt[]
 
   @@map("clients")
 }
 
-model Product {
-  id                String   @id @default(uuid())
-  name              Json     // { fr: string, en: string, ar: string }
-  description       Json     // { fr: string, en: string, ar: string }
-  shortDescription  Json?    @map("short_description") // { fr: string, en: string, ar: string }
-  price             Decimal  @db.Decimal(10, 2)
-  currency          String   @default("EUR")
-  image             String
-  images            Json?    // string[]
-  video             String?
-  links             Json     // { amazon?: string, etsy?: string, vinted?: string }
-  featured          Boolean  @default(false)
-  category          String?
-  sku               String?  @unique
-  stock             Int      @default(0)
-  isActive          Boolean  @default(true) @map("is_active")
-  createdAt         DateTime @default(now()) @map("created_at")
-  updatedAt         DateTime @updatedAt @map("updated_at")
+model Category {
+  id          String   @id @default(uuid())
+  name        Json // { fr: string, en: string, ar: string }
+  slug        Json // { fr: string, en: string, ar: string }
+  description Json? // { fr: string, en: string, ar: string }
+  image       String?
+  parentId    String?  @map("parent_id")
+  isActive    Boolean  @default(true) @map("is_active")
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Self-referential relation for hierarchical structure
+  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children Category[] @relation("CategoryTree")
 
   // Relations
-  cartItems         CartItem[]
-  orderLines        OrderLine[]
+  products Product[]
 
+  @@index([parentId])
+  @@map("categories")
+}
+
+model Product {
+  id               String   @id @default(uuid())
+  name             Json // { fr: string, en: string, ar: string }
+  description      Json // { fr: string, en: string, ar: string }
+  shortDescription Json?    @map("short_description") // { fr: string, en: string, ar: string }
+  price            Decimal  @db.Decimal(10, 2)
+  currency         String   @default("EUR")
+  image            String
+  images           Json? // string[]
+  video            String?
+  links            Json // { amazon?: string, etsy?: string, vinted?: string }
+  featured         Boolean  @default(false)
+  categoryId       String?  @map("category_id")
+  sku              String?  @unique
+  stock            Int      @default(0)
+  isActive         Boolean  @default(true) @map("is_active")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  category   Category?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  cartItems  CartItem[]
+  orderLines OrderLine[]
+
+  @@index([categoryId])
   @@map("products")
 }
 
 model Cart {
-  id        String     @id @default(uuid())
-  userId    String?    @map("user_id")
-  sessionId String?    @map("session_id")
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
+  id        String   @id @default(uuid())
+  userId    String?  @map("user_id")
+  sessionId String?  @map("session_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   // Relations
-  items     CartItem[]
+  items CartItem[]
 
   @@map("carts")
 }
@@ -146,35 +172,35 @@ model CartItem {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   // Relations
-  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([cartId, productId])
   @@map("cart_items")
 }
 
 model Order {
-  id            String        @id @default(uuid())
-  userId        String        @map("user_id")
-  clientId      String?       @map("client_id")
-  orderNumber   String        @unique @map("order_number")
-  status        OrderStatus   @default(pending)
-  paymentStatus PaymentStatus @default(pending) @map("payment_status")
-  totalAmount   Decimal       @db.Decimal(10, 2) @map("total_amount")
-  shippingAddress String?     @map("shipping_address")
-  shippingCity   String?      @map("shipping_city")
-  shippingPostalCode String?  @map("shipping_postal_code")
-  shippingCountry   String?   @map("shipping_country")
-  notes         String?
-  createdAt     DateTime      @default(now()) @map("created_at")
-  updatedAt     DateTime      @updatedAt @map("updated_at")
+  id                 String        @id @default(uuid())
+  userId             String        @map("user_id")
+  clientId           String?       @map("client_id")
+  orderNumber        String        @unique @map("order_number")
+  status             OrderStatus   @default(pending)
+  paymentStatus      PaymentStatus @default(pending) @map("payment_status")
+  totalAmount        Decimal       @db.Decimal(10, 2) @map("total_amount")
+  shippingAddress    String?       @map("shipping_address")
+  shippingCity       String?       @map("shipping_city")
+  shippingPostalCode String?       @map("shipping_postal_code")
+  shippingCountry    String?       @map("shipping_country")
+  notes              String?
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
 
   // Relations
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  client        Client?       @relation(fields: [clientId], references: [id], onDelete: SetNull)
-  orderLines    OrderLine[]
-  invoices      Invoice[]
-  receipts      Receipt[]
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client     Client?     @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  orderLines OrderLine[]
+  invoices   Invoice[]
+  receipts   Receipt[]
 
   @@map("orders")
 }
@@ -190,8 +216,8 @@ model OrderLine {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   // Relations
-  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("order_lines")
 }
@@ -213,9 +239,9 @@ model Invoice {
   updatedAt     DateTime      @updatedAt @map("updated_at")
 
   // Relations
-  order         Order?        @relation(fields: [orderId], references: [id], onDelete: SetNull)
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  client        Client?       @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  order  Order?  @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
 
   @@map("invoices")
 }
@@ -234,10 +260,9 @@ model Receipt {
   updatedAt     DateTime @updatedAt @map("updated_at")
 
   // Relations
-  order         Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  client        Client?  @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  order  Order?  @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
 
   @@map("receipts")
 }
-

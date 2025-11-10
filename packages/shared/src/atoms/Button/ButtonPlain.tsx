@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 import {
   BaseButtonProps,
   ButtonSize,
@@ -9,15 +9,16 @@ import {
   sizeStyles,
   iconSizeStyles,
 } from './button.types';
-import { useIsRTL } from '@/hooks/useLocale';
 
-export interface ButtonPlainProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, BaseButtonProps {}
+export interface ButtonPlainProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    BaseButtonProps {}
 
 export function ButtonPlain({
   variant = 'primary',
   size = ButtonSize.Normal,
   isLoading = false,
-  isRTL: isRTLProp,
+  isRTL = false,
   leftIcon,
   rightIcon,
   children,
@@ -25,14 +26,11 @@ export function ButtonPlain({
   disabled,
   ...props
 }: ButtonPlainProps) {
-  // Use store isRTL by default, but allow override via prop
-  const storeIsRTL = useIsRTL();
-  const isRTL = isRTLProp !== undefined ? isRTLProp : storeIsRTL;
-  
   const isIconVariant = variant === 'icon' || variant === 'icon-circle';
   const isDisabled = disabled || isLoading;
 
-  const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles =
+    'inline-flex items-center justify-center gap-2 font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
   const roundedStyles = variant === 'icon-circle' ? 'rounded-full' : 'rounded-md';
   const sizeClass = isIconVariant ? iconSizeStyles[size] : sizeStyles[size];
   const variantClass = variantStyles[variant];
@@ -71,13 +69,7 @@ export function ButtonPlain({
 
   return (
     <button
-      className={cn(
-        baseStyles,
-        roundedStyles,
-        sizeClass,
-        variantClass,
-        className
-      )}
+      className={cn(baseStyles, roundedStyles, sizeClass, variantClass, className)}
       disabled={isDisabled}
       {...props}
     >
@@ -85,4 +77,3 @@ export function ButtonPlain({
     </button>
   );
 }
-

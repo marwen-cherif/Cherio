@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
 import { products } from '@/data/products';
-import JsonLd from '@/components/ui/JsonLd';
+import { JsonLd } from '@shared/atoms/JsonLd';
 import ProductDetailClient from '@/components/products/ProductDetailClient';
 
 export async function generateStaticParams() {
@@ -12,12 +11,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: Promise<{ locale: string; id: string }>
+  params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
-  const product = products.find(p => p.id === id);
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
     return {};
@@ -30,27 +29,27 @@ export async function generateMetadata({
     description: product.shortDescription[locale as 'fr' | 'en' | 'ar'],
     alternates: {
       languages: {
-        'fr': `/fr/products/${id}`,
-        'en': `/en/products/${id}`,
-        'ar': `/ar/products/${id}`,
-        'x-default': `/products/${id}`
-      }
+        fr: `/fr/products/${id}`,
+        en: `/en/products/${id}`,
+        ar: `/ar/products/${id}`,
+        'x-default': `/products/${id}`,
+      },
     },
     openGraph: {
       title: product.name[locale as 'fr' | 'en' | 'ar'],
       description: product.shortDescription[locale as 'fr' | 'en' | 'ar'],
       images: [product.image],
-    }
+    },
   };
 }
 
 export default async function ProductDetailPage({
-  params
+  params,
 }: {
-  params: Promise<{ locale: string; id: string }>
+  params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
-  const product = products.find(p => p.id === id);
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
     notFound();
@@ -67,8 +66,8 @@ export default async function ProductDetailPage({
       price: product.price,
       priceCurrency: product.currency,
       availability: 'https://schema.org/InStock',
-      url: product.links.amazon || product.links.etsy || product.links.vinted
-    }
+      url: product.links.amazon || product.links.etsy || product.links.vinted,
+    },
   };
 
   return (
@@ -78,4 +77,3 @@ export default async function ProductDetailPage({
     </>
   );
 }
-

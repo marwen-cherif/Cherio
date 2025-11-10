@@ -3,16 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DeliveryAddress } from '@shared/index';
-import { Button } from '@/components/ui/Button';
-import { ButtonSize } from '@/components/ui/button.types';
-import { Card } from '@/components/ui/Card';
+import { DeliveryAddress } from '@shared/types';
+import { Card } from '@shared/atoms/Card';
+import { Select, type SelectOption } from '@shared/atoms/Select/Select';
+import { PhoneInput } from '@shared/atoms/PhoneInput';
+import { Button, ButtonSize } from '@shared/atoms/Button';
 import { useClientStore } from '@/stores/clientStore';
 import { useIsRTL, useLocale } from '@/hooks/useLocale';
 import { homeDeliveryFormSchema, type HomeDeliveryFormData } from './HomeDeliveryForm.schema';
 import { useTranslations } from 'next-intl';
-import { Select, type SelectOption } from '@/components/ui/Select';
-import { PhoneInput } from '@/components/ui/PhoneInput';
 import { countries, findCountryByValue, getCountryLabel } from '@/utils/countries';
 
 interface HomeDeliveryFormProps {
@@ -111,6 +110,7 @@ export default function HomeDeliveryForm({
       onToggle={() => setIsOpen(!isOpen)}
       summary={summaryContent}
       editLabel={t('editDeliveryInfo')}
+      isRTL={isRTL}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -235,6 +235,7 @@ export default function HomeDeliveryForm({
                   error={!!errors.country}
                   value={countryOptions.find((option) => option.value === field.value) || null}
                   onChange={(option) => field.onChange(option?.value || '')}
+                  isRTL={isRTL}
                 />
               )}
             />
@@ -270,6 +271,7 @@ export default function HomeDeliveryForm({
                 onChange={field.onChange}
                 defaultCountry="FR"
                 international
+                isRTL={isRTL}
                 error={!!errors.phone}
               />
             )}

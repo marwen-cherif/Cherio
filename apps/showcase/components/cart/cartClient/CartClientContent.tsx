@@ -3,11 +3,11 @@ import { useLocale } from '../../../hooks/useLocale';
 import React, { useEffect, useState } from 'react';
 import { DeliveryType, useClientStore } from '../../../stores/clientStore';
 import { useCheckout } from '../CheckoutContext';
-import { DeliveryAddress, PickupPoint } from '@shared/index';
+import { DeliveryAddress, PickupPoint } from '@shared/types';
 import { motion } from 'framer-motion';
-import { Link } from '../../../i18n/routing';
-import { Button } from '../../ui/Button';
-import { ButtonSize } from '../../ui/button.types';
+import { Button } from '@shared/atoms/Button';
+import { ButtonSize } from '@shared/atoms/Button';
+
 import HomeDeliveryForm from '../HomeDeliveryForm';
 import PickupPointSelector from '../PickupPointSelector';
 import PaymentBlock from '../PaymentBlock';

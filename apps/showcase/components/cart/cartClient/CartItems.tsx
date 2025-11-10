@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '../../../i18n/routing';
-import { Button } from '../../ui/Button';
-import { ButtonSize } from '../../ui/button.types';
+import { Button, ButtonSize } from '@shared/atoms/Button';
 import Image from 'next/image';
 import { formatPrice } from '../../../utils/formatPrice';
 import { CartItem } from '../../../contexts/CartContext';

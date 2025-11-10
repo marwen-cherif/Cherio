@@ -2,8 +2,7 @@
 
 import React from 'react';
 import ReactPhoneInput from 'react-phone-number-input';
-import { useIsRTL } from '@/hooks/useLocale';
-import { cn } from '@/utils/cn';
+import { cn } from '../utils/cn';
 import 'react-phone-number-input/style.css';
 
 export interface PhoneInputProps {
@@ -25,16 +24,13 @@ export function PhoneInput({
   international = true,
   className,
   error = false,
-  isRTL: isRTLProp,
+  isRTL = false,
   disabled = false,
   placeholder,
 }: PhoneInputProps) {
-  const isRTL = useIsRTL();
-  const finalIsRTL = isRTLProp ?? isRTL;
-
   return (
     <div
-      dir={finalIsRTL ? 'rtl' : 'ltr'}
+      dir={isRTL ? 'rtl' : 'ltr'}
       className={cn('phone-input', error && 'error', className)}
     >
       <ReactPhoneInput

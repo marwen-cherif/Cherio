@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { DeliveryAddress, PickupPoint } from '@shared/index';
+import { DeliveryAddress, PickupPoint } from '@shared/types';
 
 export type DeliveryType = 'home' | 'pickup' | undefined | null;
 

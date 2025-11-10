@@ -6,8 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { socialLinks } from '@/config/socialLinks';
-import { Button } from '@/components/ui/Button';
-import { ButtonSize } from '@/components/ui/button.types';
+import { Button, ButtonSize } from '@shared/atoms/Button';
 import { contactFormSchema, type ContactFormData } from './ContactForm.schema';
 
 interface ContactFormProps {
@@ -34,7 +33,7 @@ export function ContactForm({ isRTL }: ContactFormProps) {
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus('sending');
-    
+
     // Simulate form submission
     setTimeout(() => {
       setStatus('success');
@@ -44,7 +43,10 @@ export function ContactForm({ isRTL }: ContactFormProps) {
   };
 
   return (
-    <div className="rounded-lg bg-white p-8 shadow-lg border border-border" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div
+      className="rounded-lg bg-white p-8 shadow-lg border border-border"
+      dir={isRTL ? 'rtl' : 'ltr'}
+    >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
@@ -58,9 +60,7 @@ export function ContactForm({ isRTL }: ContactFormProps) {
               errors.name ? 'border-red-500' : 'border-border'
             } px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background`}
           />
-          {errors.name && (
-            <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
         </div>
 
         <div>
@@ -75,9 +75,7 @@ export function ContactForm({ isRTL }: ContactFormProps) {
               errors.email ? 'border-red-500' : 'border-border'
             } px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background`}
           />
-          {errors.email && (
-            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-          )}
+          {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
         </div>
 
         <div>
@@ -92,9 +90,7 @@ export function ContactForm({ isRTL }: ContactFormProps) {
               errors.message ? 'border-red-500' : 'border-border'
             } px-4 py-2 text-primary shadow-sm focus:border-secondary focus:ring-secondary bg-background`}
           />
-          {errors.message && (
-            <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
-          )}
+          {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
         </div>
 
         <Button
@@ -110,22 +106,16 @@ export function ContactForm({ isRTL }: ContactFormProps) {
         </Button>
 
         {status === 'success' && (
-          <div className="rounded-md bg-accent p-4 text-primary">
-            {t('success')}
-          </div>
+          <div className="rounded-md bg-accent p-4 text-primary">{t('success')}</div>
         )}
 
         {status === 'error' && (
-          <div className="rounded-md bg-accent p-4 text-secondary">
-            {t('error')}
-          </div>
+          <div className="rounded-md bg-accent p-4 text-secondary">{t('error')}</div>
         )}
       </form>
 
       <div className="mt-8 border-t border-border pt-8">
-        <h3 className="text-lg font-semibold text-primary mb-4">
-          {t('socialMedia')}
-        </h3>
+        <h3 className="text-lg font-semibold text-primary mb-4">{t('socialMedia')}</h3>
         <div className="flex gap-4">
           {socialLinks.map((link) => (
             <a
@@ -144,4 +134,3 @@ export function ContactForm({ isRTL }: ContactFormProps) {
     </div>
   );
 }
-

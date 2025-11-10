@@ -7,8 +7,7 @@ import { NavLink } from '@/components/navigation/NavLink';
 import { MobileMenu } from '@/components/navigation/MobileMenu';
 import LanguageSwitcher from '@/components/navigation/LanguageSwitcher';
 import CartIcon from '@/components/cart/CartIcon';
-import { ButtonPlain } from '@/components/ui/ButtonPlain';
-import { ButtonSize } from '@/components/ui/button.types';
+import { ButtonSize, ButtonPlain } from '@shared/atoms/Button';
 
 export default function Header() {
   const t = useTranslations('common');
@@ -69,4 +68,3 @@ export default function Header() {
     </header>
   );
 }
-
