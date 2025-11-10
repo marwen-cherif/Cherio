@@ -11,7 +11,7 @@ datasource db {
 }
 
 enum UserRole {
-  member
+  client
   admin
 }
 
@@ -45,7 +45,7 @@ model User {
   encryptedPassword     String    @map("encrypted_password")
   firstName             String?   @map("first_name")
   lastName              String?   @map("last_name")
-  role                  UserRole  @default(member)
+  role                  UserRole  @default(client)
   createdAt             DateTime  @default(now()) @map("created_at")
   updatedAt             DateTime  @updatedAt @map("updated_at")
   lastSignInAt          DateTime? @map("last_sign_in_at")
@@ -99,20 +99,27 @@ model Client {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String
-  description String?
-  price       Decimal  @db.Decimal(10, 2)
-  sku         String?  @unique
-  imageUrl    String?  @map("image_url")
-  stock       Int      @default(0)
-  isActive    Boolean  @default(true) @map("is_active")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id                String   @id @default(uuid())
+  name              Json     // { fr: string, en: string, ar: string }
+  description       Json     // { fr: string, en: string, ar: string }
+  shortDescription  Json?    @map("short_description") // { fr: string, en: string, ar: string }
+  price             Decimal  @db.Decimal(10, 2)
+  currency          String   @default("EUR")
+  image             String
+  images            Json?    // string[]
+  video             String?
+  links             Json     // { amazon?: string, etsy?: string, vinted?: string }
+  featured          Boolean  @default(false)
+  category          String?
+  sku               String?  @unique
+  stock             Int      @default(0)
+  isActive          Boolean  @default(true) @map("is_active")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   // Relations
-  cartItems   CartItem[]
-  orderLines  OrderLine[]
+  cartItems         CartItem[]
+  orderLines        OrderLine[]
 
   @@map("products")
 }

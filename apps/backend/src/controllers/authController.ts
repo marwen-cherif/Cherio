@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { generateToken } from '../utils/authUtils';
 import { prisma } from '../lib/prisma';
-import bcrypt from 'bcrypt';
+import { UserRole } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 
 // Login controller
@@ -92,7 +93,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         encryptedPassword: hashedPassword,
         firstName,
         lastName,
-        role: 'member',
+        role: UserRole.client,
       },
     });
 

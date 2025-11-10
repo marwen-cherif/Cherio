@@ -4,8 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import authRoutes from './routes/authRoutes';
-import contractRoutes from './routes/contractRoutes';
-import billRoutes from './routes/billRoutes';
+import productRoutes from './routes/productRoutes';
 import { authenticate } from './middlewares/auth';
 import { swaggerSpec } from './config/swagger';
 
@@ -20,23 +19,26 @@ app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 
 // Swagger documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-  customCss: '.swagger-ui .topbar { display: none }',
-  customSiteTitle: 'Cherio API Documentation',
-}));
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Cherio API Documentation',
+  })
+);
 
 // Health check route
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'Cherio API is running',
-    documentation: '/api-docs'
+    documentation: '/api-docs',
   });
 });
 
 // Routes
 app.use(authRoutes);
-app.use(contractRoutes);
-app.use(billRoutes);
+app.use(productRoutes);
 
 // Serve static files from the uploads directory (with authentication)
 app.use('/api/uploads', authenticate, express.static(path.join(__dirname, '../uploads')));
