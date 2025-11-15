@@ -1,7 +1,9 @@
+'use client';
+
 import { Link } from '../../../i18n/routing';
 import { routing } from '../../../i18n/routing';
 
-export default async function LanguageSwitcher({ locale }: { locale: string }) {
+export default function LanguageSwitcher({ locale }: { locale: string }) {
   return (
     <div className="flex items-center gap-2">
       {routing.locales.map((loc) => {
