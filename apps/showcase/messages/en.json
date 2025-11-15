@@ -1,0 +1,216 @@
+{
+  "common": {
+    "language": "Language",
+    "menu": "Menu",
+    "close": "Close",
+    "readMore": "Discover",
+    "buyNow": "Buy now",
+    "contact": "Contact",
+    "about": "About",
+    "products": "Products",
+    "home": "Home",
+    "news": "News"
+  },
+  "hero": {
+    "title": "Quality products at the best price",
+    "subtitle": "Explore our trendy and affordable selection",
+    "cta": "View products",
+    "description": "We offer a wide range of products that combine style, reliability, and great value. Enjoy shopping without compromise."
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "New arrivals added regularly for every taste",
+    "viewAll": "See all products",
+    "price": "Price",
+    "availableOn": "Available on",
+    "description": "Description",
+    "backToProducts": "Back to products",
+    "addToCart": "Add to cart",
+    "addedToCart": "Added to cart!",
+    "quantity": "Quantity",
+    "noProducts": "No products available at the moment. Check back soon for new arrivals."
+  },
+  "cart": {
+    "title": "Cart",
+    "description": "Your shopping cart",
+    "emptyCart": "Your cart is empty",
+    "emptyCartDescription": "Add products to your cart to start shopping.",
+    "continueShopping": "Continue shopping",
+    "yourCart": "Your cart",
+    "product": "product",
+    "quantity": "Quantity",
+    "price": "Price",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "remove": "Remove",
+    "checkout": "Checkout",
+    "chooseDeliveryMethod": "Choose delivery",
+    "pay": "Pay",
+    "payment": "Payment",
+    "updateQuantity": "Update quantity",
+    "productsList": "Products list",
+    "expandProducts": "Expand to modify products",
+    "collapseProducts": "Collapse products list",
+    "deliveryInfo": "Delivery information",
+    "editDeliveryInfo": "Edit",
+    "saveDeliveryInfo": "Save",
+    "cancel": "Cancel",
+    "chooseAnotherDeliveryMethod": "Choose another delivery method",
+    "homeDelivery": "Home delivery",
+    "pickupPoint": "Pickup point",
+    "deliveryMethod": "Delivery method",
+    "deliveryForm": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "addressLine1": "Address (line 1)",
+      "addressLine2": "Address (line 2)",
+      "city": "City",
+      "postalCode": "Postal code",
+      "country": "Country",
+      "department": "Department/Region",
+      "phone": "Phone number",
+      "additionalInfo": "Additional information",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "addressLine1Required": "Address is required",
+      "cityRequired": "City is required",
+      "postalCodeRequired": "Postal code is required",
+      "countryRequired": "Country is required"
+    },
+    "pickupPointForm": {
+      "searchAddress": "Search for an address",
+      "selectPickupPoint": "Select a pickup point",
+      "save": "Save",
+      "cancel": "Cancel",
+      "noPickupPoints": "No pickup points found",
+      "loading": "Loading...",
+      "distance": "Distance",
+      "openingHours": "Opening hours",
+      "phone": "Phone",
+      "km": "km"
+    }
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Our commitment: quality and affordability",
+    "story": "We believe everyone deserves access to stylish and reliable products without overpaying. Our goal is simple: offer great prices without compromising quality.",
+    "values": "Transparency, reliability, and customer satisfaction are at the heart of what we do.",
+    "mission": "To make online shopping simple, enjoyable, and accessible to everyone."
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Need help or information? We’re here for you.",
+    "name": "Full name",
+    "email": "Email address",
+    "message": "Your message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Your message has been sent! We’ll get back to you shortly.",
+    "error": "An error occurred. Please try again later.",
+    "socialMedia": "Follow our latest offers on social media"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "links": "Useful links",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "description": "A careful selection of trendy products, chosen for their quality and attractive price.",
+    "about": "About us",
+    "products": "Products",
+    "contact": "Contact us",
+    "legalSection": "Legal"
+  },
+  "ui": {
+    "video": "Video",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "videoNotSupported": "Your browser does not support video playback.",
+    "imageView": "View",
+    "openImagePreview": "Open image preview",
+    "openVideoPreview": "Open video in fullscreen",
+    "close": "Close"
+  },
+  "legal": {
+    "title": "Legal Notice",
+    "subtitle": "Legal information and terms of use",
+    "companyInfo": {
+      "title": "Company Information",
+      "companyName": "Company name",
+      "legalForm": "Legal form",
+      "registeredOffice": "Registered office",
+      "registrationNumber": "Registration number",
+      "publicationDirector": "Publication director",
+      "companyNameValue": "Eva Accessories",
+      "legalFormValue": "Micro-business",
+      "registeredOfficeValue": "76 Rue dian fossey, 7000 Melun France",
+      "registrationNumberValue": "993 121 466",
+      "publicationDirectorValue": "Marwen Cherif"
+    },
+    "hosting": {
+      "title": "Hosting",
+      "hostName": "Hosting provider",
+      "hostAddress": "Address",
+      "hostPhone": "Phone"
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property",
+      "content": "All content on this website, including but not limited to text, graphics, logos, images, and software, is the property of Cherio or its content suppliers and is protected by international copyright laws. Any reproduction, distribution, modification, or use of this content without prior written authorization is strictly prohibited."
+    },
+    "liability": {
+      "title": "Liability",
+      "content": "Cherio strives to ensure the accuracy of the information on this website. However, we cannot guarantee that all information is complete, accurate, or up-to-date. Cherio shall not be liable for any direct or indirect damage resulting from the use of this website or the inability to use it."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "For any questions regarding this legal notice, please contact us through our contact page."
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we collect, use, and protect your personal data",
+    "dataCollection": {
+      "title": "Data Collection",
+      "content": "We collect personal information that you voluntarily provide to us when you:",
+      "items": {
+        "name": "First and last name",
+        "email": "Email address",
+        "phone": "Phone number (if provided)",
+        "address": "Postal address (if provided)",
+        "browsing": "Browsing data and cookies"
+      }
+    },
+    "dataUsage": {
+      "title": "Use of Your Data",
+      "content": "We use the collected data for the following purposes:",
+      "items": {
+        "orders": "Process your orders and requests",
+        "contact": "Contact you regarding our products and services",
+        "improve": "Improve our website and services",
+        "marketing": "Send you marketing communications (with your consent)"
+      }
+    },
+    "dataProtection": {
+      "title": "Data Protection",
+      "content": "We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. Your data is stored securely and is only accessible to authorized personnel."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Our website uses cookies to improve your browsing experience and analyze site traffic. You can control cookies through your browser settings. However, disabling cookies may affect the functionality of certain parts of our website."
+    },
+    "rights": {
+      "title": "Your Rights",
+      "content": "In accordance with applicable data protection laws, you have the following rights regarding your personal data:",
+      "items": {
+        "access": "Right to access your personal data",
+        "rectify": "Right to rectify your data",
+        "erasure": "Right to erasure of your data",
+        "object": "Right to object to processing of your data",
+        "portability": "Right to data portability"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "If you have any questions about this privacy policy or wish to exercise your rights, please contact us through our contact page."
+    }
+  }
+}

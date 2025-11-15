@@ -2,10 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import authRoutes from './routes/authRoutes';
-import contractRoutes from './routes/contractRoutes';
-import billRoutes from './routes/billRoutes';
+import productRoutes from './routes/productRoutes';
+import categoryRoutes from './routes/categoryRoutes';
 import { authenticate } from './middlewares/auth';
+import { swaggerSpec } from './config/swagger';
 
 // Load environment variables
 dotenv.config();
@@ -17,15 +19,28 @@ const port = process.env.PORT || 3001;
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 
+// Swagger documentation
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Cherio API Documentation',
+  })
+);
+
 // Health check route
 app.get('/', (req, res) => {
-  res.json({ message: 'SyndicCheck API is running' });
+  res.json({
+    message: 'Cherio API is running',
+    documentation: '/api-docs',
+  });
 });
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/contracts', contractRoutes);
-app.use('/api/bills', billRoutes);
+app.use(authRoutes);
+app.use(productRoutes);
+app.use(categoryRoutes);
 
 // Serve static files from the uploads directory (with authentication)
 app.use('/api/uploads', authenticate, express.static(path.join(__dirname, '../uploads')));
@@ -33,4 +48,5 @@ app.use('/api/uploads', authenticate, express.static(path.join(__dirname, '../up
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  console.log(`API Documentation available at http://localhost:${port}/api-docs`);
 });

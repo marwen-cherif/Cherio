@@ -1,0 +1,216 @@
+{
+  "common": {
+    "language": "Langue",
+    "menu": "Menu",
+    "close": "Fermer",
+    "readMore": "Découvrir",
+    "buyNow": "Acheter maintenant",
+    "contact": "Contact",
+    "about": "À propos",
+    "products": "Produits",
+    "home": "Accueil",
+    "news": "Actualités"
+  },
+  "hero": {
+    "title": "Des produits de qualité au meilleur prix",
+    "subtitle": "Découvrez une sélection tendance à prix compétitifs",
+    "cta": "Voir les produits",
+    "description": "Nous proposons une gamme variée de produits alliant style, fiabilité et prix abordables. Faites-vous plaisir sans compromis."
+  },
+  "products": {
+    "title": "Nos Produits",
+    "subtitle": "Des nouveautés régulièrement ajoutées pour tous les goûts",
+    "viewAll": "Voir tous les produits",
+    "price": "Prix",
+    "availableOn": "Disponible sur",
+    "description": "Description",
+    "backToProducts": "Retour aux produits",
+    "addToCart": "Ajouter au panier",
+    "addedToCart": "Ajouté au panier !",
+    "quantity": "Quantité",
+    "noProducts": "Aucun produit disponible pour le moment. Revenez bientôt pour découvrir nos nouveautés."
+  },
+  "cart": {
+    "title": "Panier",
+    "description": "Votre panier d'achat",
+    "emptyCart": "Votre panier est vide",
+    "emptyCartDescription": "Ajoutez des produits à votre panier pour commencer vos achats.",
+    "continueShopping": "Continuer les achats",
+    "yourCart": "Votre panier",
+    "product": "produit",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "total": "Total",
+    "subtotal": "Sous-total",
+    "remove": "Retirer",
+    "checkout": "Passer la commande",
+    "chooseDeliveryMethod": "Choisir la livraison",
+    "pay": "Payer",
+    "payment": "Paiement",
+    "updateQuantity": "Mettre à jour la quantité",
+    "productsList": "Liste des produits",
+    "expandProducts": "Modifier",
+    "collapseProducts": "Sauvegarder",
+    "deliveryInfo": "Informations de livraison",
+    "editDeliveryInfo": "Modifier",
+    "saveDeliveryInfo": "Sauvegarder",
+    "cancel": "Annuler",
+    "chooseAnotherDeliveryMethod": "Choisir un autre mode de livraison",
+    "homeDelivery": "Livraison à domicile",
+    "pickupPoint": "Point relais",
+    "deliveryMethod": "Méthode de livraison",
+    "deliveryForm": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "addressLine1": "Adresse (ligne 1)",
+      "addressLine2": "Adresse (ligne 2)",
+      "city": "Ville",
+      "postalCode": "Code postal",
+      "country": "Pays",
+      "department": "Département/Région",
+      "phone": "Numéro de téléphone",
+      "additionalInfo": "Informations supplémentaires",
+      "firstNameRequired": "Le prénom est requis",
+      "lastNameRequired": "Le nom est requis",
+      "addressLine1Required": "L'adresse est requise",
+      "cityRequired": "La ville est requise",
+      "postalCodeRequired": "Le code postal est requis",
+      "countryRequired": "Le pays est requis"
+    },
+    "pickupPointForm": {
+      "searchAddress": "Rechercher une adresse",
+      "selectPickupPoint": "Sélectionner un point relais",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "noPickupPoints": "Aucun point relais trouvé",
+      "loading": "Chargement...",
+      "distance": "Distance",
+      "openingHours": "Horaires",
+      "phone": "Téléphone",
+      "km": "km"
+    }
+  },
+  "about": {
+    "title": "À Propos",
+    "subtitle": "Notre engagement : qualité et accessibilité",
+    "story": "Nous croyons que tout le monde mérite d’avoir accès à des produits modernes et fiables sans payer trop cher. Notre objectif est simple : vous proposer les meilleurs prix sans sacrifier la qualité.",
+    "values": "Transparence, fiabilité et satisfaction client sont au cœur de notre démarche.",
+    "mission": "Rendre le shopping en ligne simple, agréable et accessible à tous."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Besoin d’aide ou d’informations ? Nous sommes là pour vous.",
+    "name": "Nom complet",
+    "email": "Adresse email",
+    "message": "Votre message",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success": "Message envoyé avec succès ! Nous vous répondrons rapidement.",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "socialMedia": "Suivez nos dernières offres sur les réseaux sociaux"
+  },
+  "footer": {
+    "rights": "Tous droits réservés",
+    "links": "Liens utiles",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "description": "Une sélection rigoureuse de produits tendance, choisis pour leur qualité et leur prix attractif.",
+    "about": "A propos",
+    "products": "Produits",
+    "contact": "Contactez-nous",
+    "legalSection": "Légal"
+  },
+  "ui": {
+    "video": "Vidéo",
+    "previousImage": "Image précédente",
+    "nextImage": "Image suivante",
+    "videoNotSupported": "Votre navigateur ne supporte pas la lecture de vidéos.",
+    "imageView": "Vue",
+    "openImagePreview": "Ouvrir l'aperçu de l'image",
+    "openVideoPreview": "Ouvrir la vidéo en plein écran",
+    "close": "Fermer"
+  },
+  "legal": {
+    "title": "Mentions Légales",
+    "subtitle": "Informations légales et conditions d'utilisation",
+    "companyInfo": {
+      "title": "Informations sur l'entreprise",
+      "companyName": "Raison sociale",
+      "legalForm": "Forme juridique",
+      "registeredOffice": "Siège social",
+      "registrationNumber": "Numéro SIRET",
+      "publicationDirector": "Directeur de publication",
+      "companyNameValue": "Eva Accessories",
+      "legalFormValue": "Micro-entreprise",
+      "registeredOfficeValue": "76 Rue dian fossey, 7000 Melun France",
+      "registrationNumberValue": "993 121 466",
+      "publicationDirectorValue": "Marwen Cherif"
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "hostName": "Hébergeur",
+      "hostAddress": "Adresse",
+      "hostPhone": "Téléphone"
+    },
+    "intellectualProperty": {
+      "title": "Propriété Intellectuelle",
+      "content": "L'ensemble du contenu de ce site web, y compris mais sans s'y limiter, les textes, graphiques, logos, images et logiciels, est la propriété de Cherio ou de ses fournisseurs de contenu et est protégé par les lois internationales sur le droit d'auteur. Toute reproduction, distribution, modification ou utilisation de ce contenu sans autorisation écrite préalable est strictement interdite."
+    },
+    "liability": {
+      "title": "Responsabilité",
+      "content": "Cherio s'efforce d'assurer l'exactitude des informations sur ce site web. Cependant, nous ne pouvons garantir que toutes les informations sont complètes, exactes ou à jour. Cherio ne sera pas responsable de tout dommage direct ou indirect résultant de l'utilisation de ce site web ou de l'impossibilité de l'utiliser."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Pour toute question concernant ces mentions légales, veuillez nous contacter via notre page de contact."
+    }
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "subtitle": "Comment nous collectons, utilisons et protégeons vos données personnelles",
+    "dataCollection": {
+      "title": "Collecte de Données",
+      "content": "Nous collectons des informations personnelles que vous nous fournissez volontairement lorsque vous :",
+      "items": {
+        "name": "Nom et prénom",
+        "email": "Adresse e-mail",
+        "phone": "Numéro de téléphone (si fourni)",
+        "address": "Adresse postale (si fournie)",
+        "browsing": "Données de navigation et cookies"
+      }
+    },
+    "dataUsage": {
+      "title": "Utilisation de Vos Données",
+      "content": "Nous utilisons les données collectées aux fins suivantes :",
+      "items": {
+        "orders": "Traiter vos commandes et demandes",
+        "contact": "Vous contacter concernant nos produits et services",
+        "improve": "Améliorer notre site web et nos services",
+        "marketing": "Vous envoyer des communications marketing (avec votre consentement)"
+      }
+    },
+    "dataProtection": {
+      "title": "Protection des Données",
+      "content": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre l'accès non autorisé, l'altération, la divulgation ou la destruction. Vos données sont stockées en toute sécurité et ne sont accessibles qu'au personnel autorisé."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Notre site web utilise des cookies pour améliorer votre expérience de navigation et analyser le trafic du site. Vous pouvez contrôler les cookies via les paramètres de votre navigateur. Cependant, la désactivation des cookies peut affecter le fonctionnement de certaines parties de notre site web."
+    },
+    "rights": {
+      "title": "Vos Droits",
+      "content": "Conformément aux lois applicables sur la protection des données, vous disposez des droits suivants concernant vos données personnelles :",
+      "items": {
+        "access": "Droit d'accès à vos données personnelles",
+        "rectify": "Droit de rectification de vos données",
+        "erasure": "Droit à l'effacement de vos données",
+        "object": "Droit d'opposition au traitement de vos données",
+        "portability": "Droit à la portabilité de vos données"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Si vous avez des questions concernant cette politique de confidentialité ou souhaitez exercer vos droits, veuillez nous contacter via notre page de contact."
+    }
+  }
+}

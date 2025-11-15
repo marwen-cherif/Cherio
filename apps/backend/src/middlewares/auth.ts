@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { extractTokenFromHeader, verifyToken } from '../utils/authUtils';
-import { UserModel } from '../models/User';
+import { prisma } from '../lib/prisma';
 
 // Add user property to Express Request
 declare global {
@@ -15,55 +15,65 @@ declare global {
 }
 
 // Middleware to authenticate user
-export const authenticate = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const authenticate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
     const token = extractTokenFromHeader(authHeader);
-    
+
     if (!token) {
       res.status(401).json({ message: 'Authentication required' });
       return;
     }
-    
+
     const decoded = verifyToken(token);
-    
+
     if (!decoded) {
       res.status(401).json({ message: 'Invalid or expired token' });
       return;
     }
-    
+
     // Check if user exists
-    const user = await UserModel.findById(decoded.id);
-    
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+    });
+
     if (!user) {
       res.status(401).json({ message: 'User not found' });
       return;
     }
-    
+
     // Set user info in request
     req.user = {
       id: decoded.id,
-      role: decoded.role
+      role: decoded.role,
     };
-    
+
     next();
+    return;
   } catch (error) {
     console.error('Authentication error:', error);
     res.status(500).json({ message: 'Authentication failed' });
+    return;
   }
 };
 
 // Middleware to restrict access by role
 export const restrictTo = (...roles: string[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {
-      return res.status(401).json({ message: 'Authentication required' });
+      res.status(401).json({ message: 'Authentication required' });
+      return;
     }
-    
+
     if (!roles.includes(req.user.role)) {
-      return res.status(403).json({ message: 'Access denied' });
+      res.status(403).json({ message: 'Access denied' });
+      return;
     }
-    
+
     next();
   };
 };

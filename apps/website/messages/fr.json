@@ -1,0 +1,75 @@
+{
+  "common": {
+    "language": "Langue",
+    "menu": "Menu",
+    "close": "Fermer",
+    "contact": "Contact",
+    "about": "À propos",
+    "home": "Accueil",
+    "apps": "Applications"
+  },
+  "hero": {
+    "title": "Cherio - L'écosystème créatif qui vous accompagne",
+    "subtitle": "Découvrez nos applications dédiées à la création, au commerce et à l'innovation",
+    "cta": "Découvrir nos applications"
+  },
+  "vision": {
+    "title": "Notre Vision",
+    "content": "Cherio est né d'une vision simple : créer un écosystème d'applications qui facilitent la création, le commerce et l'innovation. Nous croyons en la puissance de la technologie pour transformer les idées en réalité, et nous construisons des outils qui permettent à chacun de donner vie à ses projets, qu'il s'agisse de vendre des produits, de créer du contenu numérique ou de développer des solutions techniques innovantes."
+  },
+  "apps": {
+    "title": "Applications Cherio",
+    "subtitle": "Découvrez notre écosystème d'applications conçues pour répondre à tous vos besoins",
+    "comingSoon": "Bientôt disponible"
+  },
+  "why": {
+    "title": "Pourquoi Cherio ?",
+    "subtitle": "Un écosystème pensé pour vous",
+    "innovation": {
+      "title": "Innovation",
+      "description": "Nous développons des solutions à la pointe de la technologie, intégrant l'intelligence artificielle et les dernières avancées pour vous offrir une expérience optimale."
+    },
+    "simplicity": {
+      "title": "Simplicité",
+      "description": "Nos applications sont conçues pour être intuitives et faciles à utiliser, sans compromis sur la puissance et les fonctionnalités."
+    },
+    "ecosystem": {
+      "title": "Écosystème unifié",
+      "description": "Toutes nos applications fonctionnent ensemble de manière harmonieuse, partageant une infrastructure commune et des services intégrés."
+    },
+    "quality": {
+      "title": "Qualité",
+      "description": "Nous nous engageons à fournir des produits de haute qualité, soigneusement conçus et testés pour garantir la meilleure expérience utilisateur."
+    }
+  },
+  "about": {
+    "title": "À propos de Cherio",
+    "content": "Cherio est un écosystème d'applications modernes conçu pour répondre aux besoins variés des créateurs, entrepreneurs et développeurs. De la boutique en ligne à la suite d'outils créatifs, en passant par les services techniques et le portfolio de projets, Cherio offre une gamme complète de solutions intégrées. Notre mission est de simplifier la création, le commerce et l'innovation en proposant des outils puissants, accessibles et élégants."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous serions ravis d'avoir de vos nouvelles",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "submit": "Envoyer",
+      "namePlaceholder": "Votre nom",
+      "emailPlaceholder": "votre@email.com",
+      "subjectPlaceholder": "Sujet de votre message",
+      "messagePlaceholder": "Votre message..."
+    },
+    "description": "Vous avez une question, une suggestion ou souhaitez simplement nous dire bonjour ? N'hésitez pas à nous contacter via le formulaire ci-dessous. Nous vous répondrons dans les plus brefs délais."
+  },
+  "footer": {
+    "description": "Cherio - Écosystème d'applications pour la création, le commerce et l'innovation",
+    "links": {
+      "home": "Accueil",
+      "contact": "Contact",
+      "about": "À propos"
+    },
+    "copyright": "© 2025 Cherio. Tous droits réservés."
+  }
+}
+
