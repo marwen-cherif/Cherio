@@ -1,0 +1,74 @@
+{
+  "common": {
+    "language": "Language",
+    "menu": "Menu",
+    "close": "Close",
+    "contact": "Contact",
+    "about": "About",
+    "home": "Home"
+  },
+  "hero": {
+    "title": "Cherio - The Creative Ecosystem That Supports You",
+    "subtitle": "Discover our applications dedicated to creation, commerce, and innovation",
+    "cta": "Discover our applications"
+  },
+  "vision": {
+    "title": "Our Vision",
+    "content": "Cherio was born from a simple vision: creating an ecosystem of applications that facilitate creation, commerce, and innovation. We believe in the power of technology to transform ideas into reality, and we build tools that enable everyone to bring their projects to life, whether it's selling products, creating digital content, or developing innovative technical solutions."
+  },
+  "apps": {
+    "title": "Cherio Applications",
+    "subtitle": "Discover our ecosystem of applications designed to meet all your needs",
+    "comingSoon": "Coming soon"
+  },
+  "why": {
+    "title": "Why Cherio?",
+    "subtitle": "An ecosystem designed for you",
+    "innovation": {
+      "title": "Innovation",
+      "description": "We develop cutting-edge technology solutions, integrating artificial intelligence and the latest advances to provide you with an optimal experience."
+    },
+    "simplicity": {
+      "title": "Simplicity",
+      "description": "Our applications are designed to be intuitive and easy to use, without compromising on power and functionality."
+    },
+    "ecosystem": {
+      "title": "Unified ecosystem",
+      "description": "All our applications work together harmoniously, sharing a common infrastructure and integrated services."
+    },
+    "quality": {
+      "title": "Quality",
+      "description": "We are committed to providing high-quality products, carefully designed and tested to ensure the best user experience."
+    }
+  },
+  "about": {
+    "title": "About Cherio",
+    "content": "Cherio is a modern application ecosystem designed to meet the diverse needs of creators, entrepreneurs, and developers. From the online store to the creative tools suite, through technical services and the project portfolio, Cherio offers a complete range of integrated solutions. Our mission is to simplify creation, commerce, and innovation by providing powerful, accessible, and elegant tools."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your@email.com",
+      "subjectPlaceholder": "Subject of your message",
+      "messagePlaceholder": "Your message..."
+    },
+    "description": "Have a question, suggestion, or just want to say hello? Feel free to contact us using the form below. We'll get back to you as soon as possible."
+  },
+  "footer": {
+    "description": "Cherio - Application ecosystem for creation, commerce, and innovation",
+    "links": {
+      "home": "Home",
+      "contact": "Contact",
+      "about": "About"
+    },
+    "copyright": "© 2025 Cherio. All rights reserved."
+  }
+}
+
