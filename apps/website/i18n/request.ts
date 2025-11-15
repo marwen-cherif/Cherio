@@ -10,12 +10,30 @@ const messages = {
   en: enMessages,
 } as const;
 
-// For static export, we return default config
-// The actual locale is managed by NextIntlClientProvider in the layout
+// For static export, we need to handle requestLocale carefully
+// During build, requestLocale may call headers() which isn't available
+// So we catch the error and use defaultLocale as fallback
+// The layout will call setRequestLocale() which ensures getTranslations() 
+// uses the correct locale from route params
 export default getRequestConfig(async ({ requestLocale }) => {
-  // Typically corresponds to the `[locale]` segment
-  const requested = await requestLocale;
-  const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
+  let locale: string;
+  
+  try {
+    // Try to get locale from requestLocale (resolved from route params during static generation)
+    const requested = await requestLocale;
+    
+    // Validate the locale
+    if (requested && hasLocale(routing.locales, requested)) {
+      locale = requested;
+    } else {
+      locale = routing.defaultLocale;
+    }
+  } catch (error) {
+    // If requestLocale fails (e.g., calls headers() during static export),
+    // use defaultLocale. The layout will call setRequestLocale() with the correct
+    // locale from params, which will make getTranslations() work correctly.
+    locale = routing.defaultLocale;
+  }
 
   return {
     locale,
