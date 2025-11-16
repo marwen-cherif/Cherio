@@ -4,11 +4,9 @@ const path = require('path');
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
-  // Note: output: 'export' est désactivé pour permettre les routes API
-  // Si vous avez besoin d'un export statique, vous devrez utiliser un service externe
-  // ou un backend séparé pour gérer l'envoi d'emails
+  output: 'export', // Static export
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static export
   },
   turbopack: {
     root: path.join(__dirname, '../../..'),
