@@ -1,0 +1,17 @@
+{
+  "common": {
+    "title": "CleanMyText",
+    "description": "Clean hidden characters and invisible scripts from your text",
+    "pasteText": "Paste your text here...",
+    "cleanedText": "Cleaned text",
+    "clean": "Clean Text",
+    "cleanAndCopy": "Clean & Copy",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "clear": "Clear",
+    "characters": "characters",
+    "words": "words",
+    "lines": "lines"
+  }
+}
+
