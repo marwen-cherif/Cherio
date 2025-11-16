@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cleanText } from "@/utils/textCleaner";
@@ -12,6 +12,14 @@ export default function HomePage() {
   const { toast } = useToast();
   const [inputText, setInputText] = useState("");
   const [cleanedText, setCleanedText] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    // Auto-focus on the input textarea when component mounts
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, []);
 
   const handleClean = () => {
     const cleaned = cleanText(inputText);
@@ -99,6 +107,7 @@ export default function HomePage() {
                 )}
               </div>
               <textarea
+                ref={textareaRef}
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder={t("pasteText")}
