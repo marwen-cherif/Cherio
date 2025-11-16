@@ -37,14 +37,6 @@ export default function RootLayout({
             gtag('config', 'G-HN1V9N4WXG');
           `}
         </Script>
-        <script
-          type="text/javascript"
-          data-cmp-ab="1"
-          src="https://cdn.consentmanager.net/delivery/autoblocking/6879d1e9121c6.js"
-          data-cmp-host="d.delivery.consentmanager.net"
-          data-cmp-cdn="cdn.consentmanager.net"
-          data-cmp-codesrc="16"
-        ></script>
       </body>
     </html>
   );
