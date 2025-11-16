@@ -55,10 +55,15 @@
       "subject": "Sujet",
       "message": "Message",
       "submit": "Envoyer",
+      "submitting": "Envoi en cours...",
       "namePlaceholder": "Votre nom",
       "emailPlaceholder": "votre@email.com",
       "subjectPlaceholder": "Sujet de votre message",
       "messagePlaceholder": "Votre message..."
+    },
+    "messages": {
+      "success": "Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.",
+      "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer plus tard."
     },
     "description": "Vous avez une question, une suggestion ou souhaitez simplement nous dire bonjour ? N'hésitez pas à nous contacter via le formulaire ci-dessous. Nous vous répondrons dans les plus brefs délais."
   },

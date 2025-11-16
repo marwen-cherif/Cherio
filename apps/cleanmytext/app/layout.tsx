@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 
+// Google AdSense Publisher ID - À remplacer par votre ID
+const ADSENSE_PUBLISHER_ID = 'ca-pub-XXXXXXXXXX';
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -37,6 +40,12 @@ export default function RootLayout({
             gtag('config', 'G-HN1V9N4WXG');
           `}
         </Script>
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3845498897700887"
+          crossOrigin="anonymous"
+        ></script>
       </body>
     </html>
   );

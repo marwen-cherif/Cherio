@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cleanText } from "@/utils/textCleaner";
 import { useToast } from "@/hooks/use-toast";
 import { Copy, Sparkles, Trash2 } from "lucide-react";
+import AdBanner from "@/components/AdBanner";
 
 export default function HomePage() {
   const t = useTranslations("common");
@@ -81,6 +82,16 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 py-8 sm:py-12 max-w-6xl">
+        {/* Top Ad Banner - Desktop only */}
+        <div className="hidden lg:block mb-6">
+          <AdBanner
+            adSlot="XXXXXXXXXX" // À remplacer par votre Ad Slot ID
+            adFormat="horizontal"
+            className="w-full"
+            style={{ minHeight: "90px" }}
+          />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-slate-900 dark:text-slate-100">
@@ -95,6 +106,15 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Input Section */}
           <div className="space-y-4">
+            {/* Mobile Ad Banner - Top */}
+            <div className="lg:hidden mb-4">
+              <AdBanner
+                adSlot="XXXXXXXXXX" // À remplacer par votre Ad Slot ID
+                adFormat="horizontal"
+                className="w-full"
+                style={{ minHeight: "90px" }}
+              />
+            </div>
             <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-4 sm:p-6">
               <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
@@ -148,10 +168,29 @@ export default function HomePage() {
                 <span className="sm:hidden">Clear</span>
               </Button>
             </div>
+
+            {/* Mobile Ad Banner - Bottom */}
+            <div className="lg:hidden mt-4">
+              <AdBanner
+                adSlot="XXXXXXXXXX" // À remplacer par votre Ad Slot ID
+                adFormat="horizontal"
+                className="w-full"
+                style={{ minHeight: "90px" }}
+              />
+            </div>
           </div>
 
           {/* Output Section */}
           <div className="space-y-4">
+            {/* Desktop Sidebar Ad - Right side */}
+            <div className="hidden lg:block">
+              <AdBanner
+                adSlot="XXXXXXXXXX" // À remplacer par votre Ad Slot ID
+                adFormat="vertical"
+                className="w-full sticky top-4"
+                style={{ minHeight: "250px", maxWidth: "300px", margin: "0 auto" }}
+              />
+            </div>
             <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-4 sm:p-6">
               <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
@@ -182,6 +221,16 @@ export default function HomePage() {
               />
             </div>
           </div>
+        </div>
+
+        {/* Bottom Ad Banner */}
+        <div className="mt-8">
+          <AdBanner
+            adSlot="XXXXXXXXXX" // À remplacer par votre Ad Slot ID
+            adFormat="horizontal"
+            className="w-full"
+            style={{ minHeight: "90px" }}
+          />
         </div>
       </div>
     </div>
