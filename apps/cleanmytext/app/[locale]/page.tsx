@@ -152,7 +152,7 @@ export default function HomePage() {
                 <Button
                   onClick={handleClean}
                   disabled={!inputText}
-                  className="flex-1 sm:flex-none"
+                  className="flex-1 sm:flex-none shadow-md dark:shadow-lg"
                   variant="default"
                 >
                   <Sparkles className="h-4 w-4" />
@@ -162,7 +162,7 @@ export default function HomePage() {
                 <Button
                   onClick={handleCleanAndCopy}
                   disabled={!inputText}
-                  className="flex-1 sm:flex-none"
+                  className="flex-1 sm:flex-none shadow-md dark:shadow-lg"
                   variant="default"
                 >
                   <Copy className="h-4 w-4" />
@@ -173,7 +173,7 @@ export default function HomePage() {
                   onClick={handleClear}
                   disabled={!inputText && !cleanedText}
                   variant="outline"
-                  className="flex-1 sm:flex-none"
+                  className="flex-1 sm:flex-none border-2 shadow-md dark:shadow-lg"
                 >
                   <Trash2 className="h-4 w-4" />
                   <span className="hidden sm:inline">{t('clear')}</span>
@@ -209,7 +209,7 @@ export default function HomePage() {
                         onClick={handleCopy}
                         size="sm"
                         variant="outline"
-                        className="h-8 px-2 sm:px-3"
+                        className="h-8 px-2 sm:px-3 border-2 shadow-sm dark:shadow-md"
                       >
                         <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
                         <span className="hidden sm:inline ml-1">{t('copy')}</span>
