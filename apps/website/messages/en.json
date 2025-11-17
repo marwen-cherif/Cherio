@@ -55,10 +55,14 @@
       "subject": "Subject",
       "message": "Message",
       "submit": "Send",
+      "submitting": "Sending...",
       "namePlaceholder": "Your name",
       "emailPlaceholder": "your@email.com",
       "subjectPlaceholder": "Subject of your message",
-      "messagePlaceholder": "Your message..."
+      "messagePlaceholder": "Your message...",
+      "success": "Message sent successfully! We'll get back to you as soon as possible.",
+      "error": "An error occurred while sending. Please try again later.",
+      "validationError": "Please fill in all fields correctly."
     },
     "description": "Have a question, suggestion, or just want to say hello? Feel free to contact us using the form below. We'll get back to you as soon as possible."
   },
