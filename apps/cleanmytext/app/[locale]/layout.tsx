@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import frMessages from '@/messages/fr.json';
 import enMessages from '@/messages/en.json';
 import { Toaster } from '@/components/ui/toaster';
+import Navigation from '@/components/Navigation';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <Navigation />
       {children}
       <Toaster />
     </NextIntlClientProvider>

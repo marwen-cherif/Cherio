@@ -12,6 +12,44 @@
     "characters": "caractères",
     "words": "mots",
     "lines": "lignes"
+  },
+  "jsonToon": {
+    "title": "Convertisseur JSON vers TOON - Outil de conversion bidirectionnelle",
+    "description": "Convertissez JSON en format TOON et vice versa. TOON (Token-Oriented Object Notation) réduit l'utilisation de tokens LLM jusqu'à 60% tout en conservant la structure des données.",
+    "seoDescription": "Convertisseur JSON vers TOON gratuit en ligne. Optimisez vos données JSON pour l'utilisation de tokens LLM. Convertissez JSON en TOON et TOON en JSON instantanément.",
+    "jsonToToon": "JSON → TOON",
+    "toonToJson": "TOON → JSON",
+    "convert": "Convertir",
+    "swap": "Échanger",
+    "clear": "Effacer",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "copiedToClipboard": "{type} copié dans le presse-papiers",
+    "pasteJsonPlaceholder": "Collez votre JSON ici...",
+    "pasteToonPlaceholder": "Collez votre format TOON ici...",
+    "toonOutputPlaceholder": "Le format TOON apparaîtra ici...",
+    "jsonOutputPlaceholder": "Le JSON apparaîtra ici...",
+    "characters": "caractères",
+    "lines": "lignes",
+    "error": "Erreur",
+    "emptyInput": "Veuillez entrer du texte à convertir",
+    "conversionError": "Échec de la conversion. Veuillez vérifier le format.",
+    "copyError": "Échec de la copie dans le presse-papiers",
+    "backToHome": "Retour à l'accueil",
+    "aboutTitle": "À propos du format TOON",
+    "aboutDescription": "TOON (Token-Oriented Object Notation) est un format de données compact et lisible par l'homme conçu pour réduire l'utilisation de tokens dans les modèles de langage (LLM) jusqu'à 60%. Il élimine la syntaxe JSON redondante comme les crochets et les guillemets tout en préservant la structure des données grâce à l'indentation.",
+    "benefit1": "Réduit l'utilisation de tokens LLM jusqu'à 60%",
+    "benefit2": "Maintient la structure complète des données et la lisibilité",
+    "benefit3": "Parfait pour les appels API et l'optimisation des prompts",
+    "seoKeywords": "Mots-clés : JSON vers TOON, TOON vers JSON, convertisseur JSON, format TOON, optimisation de tokens LLM, optimisation JSON, convertisseur de format de données, convertisseur JSON bidirectionnel, réduire les coûts API, format efficace en tokens"
+  },
+  "navigation": {
+    "home": "Nettoyeur de texte",
+    "homeDescription": "Nettoyer les caractères cachés et scripts invisibles",
+    "jsonToon": "JSON ↔ TOON",
+    "jsonToonDescription": "Convertir JSON en TOON et vice versa",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   }
 }
 

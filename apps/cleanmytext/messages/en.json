@@ -12,6 +12,44 @@
     "characters": "characters",
     "words": "words",
     "lines": "lines"
+  },
+  "jsonToon": {
+    "title": "JSON to TOON Converter - Bidirectional Conversion Tool",
+    "description": "Convert JSON to TOON format and vice versa. TOON (Token-Oriented Object Notation) reduces LLM token usage by up to 60% while maintaining data structure.",
+    "seoDescription": "Free online JSON to TOON converter. Optimize your JSON data for LLM token usage. Convert JSON to TOON format and TOON to JSON instantly.",
+    "jsonToToon": "JSON → TOON",
+    "toonToJson": "TOON → JSON",
+    "convert": "Convert",
+    "swap": "Swap",
+    "clear": "Clear",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copiedToClipboard": "Copied {type} to clipboard",
+    "pasteJsonPlaceholder": "Paste your JSON here...",
+    "pasteToonPlaceholder": "Paste your TOON format here...",
+    "toonOutputPlaceholder": "TOON format will appear here...",
+    "jsonOutputPlaceholder": "JSON will appear here...",
+    "characters": "characters",
+    "lines": "lines",
+    "error": "Error",
+    "emptyInput": "Please enter some text to convert",
+    "conversionError": "Failed to convert. Please check the format.",
+    "copyError": "Failed to copy to clipboard",
+    "backToHome": "Back to Home",
+    "aboutTitle": "About TOON Format",
+    "aboutDescription": "TOON (Token-Oriented Object Notation) is a compact, human-readable data format designed to reduce token usage in Large Language Models (LLMs) by up to 60%. It eliminates redundant JSON syntax like brackets and quotes while preserving data structure through indentation.",
+    "benefit1": "Reduces LLM token usage by up to 60%",
+    "benefit2": "Maintains full data structure and readability",
+    "benefit3": "Perfect for API calls and prompt optimization",
+    "seoKeywords": "Keywords: JSON to TOON, TOON to JSON, JSON converter, TOON format, LLM token optimization, JSON optimization, data format converter, bidirectional JSON converter, reduce API costs, token-efficient format"
+  },
+  "navigation": {
+    "home": "Text Cleaner",
+    "homeDescription": "Clean hidden characters and invisible scripts",
+    "jsonToon": "JSON ↔ TOON",
+    "jsonToonDescription": "Convert JSON to TOON format and vice versa",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   }
 }
 
