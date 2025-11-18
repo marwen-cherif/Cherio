@@ -19,7 +19,9 @@ const getMailjetClient = () => {
   const apiSecret = process.env.MJ_APIKEY_PRIVATE;
 
   if (!apiKey || !apiSecret) {
-    throw new Error('Mailjet API keys are not configured. Please set MJ_APIKEY_PUBLIC and MJ_APIKEY_PRIVATE environment variables.');
+    throw new Error(
+      'Mailjet API keys are not configured. Please set MJ_APIKEY_PUBLIC and MJ_APIKEY_PRIVATE environment variables.'
+    );
   }
 
   return new Mailjet({
@@ -48,16 +50,17 @@ export const sendContactEmail = async (req: Request, res: Response) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: 'Format d\'email invalide',
+        message: "Format d'email invalide",
       });
     }
 
     // Determine locale (from request body, Accept-Language header, or default to 'fr')
-    const detectedLocale: 'fr' | 'en' = locale || 
-      (req.headers['accept-language']?.includes('en') ? 'en' : 'fr');
+    const detectedLocale: 'fr' | 'en' =
+      locale || (req.headers['accept-language']?.includes('en') ? 'en' : 'fr');
 
     // Get recipient email from environment or use default
-    const recipientEmail = process.env.CONTACT_EMAIL || process.env.MJ_FROM_EMAIL || 'contact@cherio.me';
+    const recipientEmail =
+      process.env.CONTACT_EMAIL || process.env.MJ_FROM_EMAIL || 'reply.cherio@gmail.com';
 
     // Get Mailjet client
     const mailjet = getMailjetClient();
@@ -117,9 +120,10 @@ export const sendContactEmail = async (req: Request, res: Response) => {
                 Name: name,
               },
             ],
-            Subject: detectedLocale === 'fr'
-              ? 'Confirmation de réception - Cherio'
-              : 'Confirmation of receipt - Cherio',
+            Subject:
+              detectedLocale === 'fr'
+                ? 'Confirmation de réception - Cherio'
+                : 'Confirmation of receipt - Cherio',
             TextPart: confirmationTemplate.text,
             HTMLPart: confirmationTemplate.html,
           },
@@ -134,21 +138,20 @@ export const sendContactEmail = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     console.error('Error sending contact email:', error);
-    
+
     // Check if it's a configuration error
     if (error.message && error.message.includes('Mailjet API keys')) {
       return res.status(500).json({
         success: false,
-        message: 'Configuration Mailjet manquante. Veuillez contacter l\'administrateur.',
+        message: "Configuration Mailjet manquante. Veuillez contacter l'administrateur.",
         error: process.env.NODE_ENV === 'development' ? error.message : undefined,
       });
     }
 
     return res.status(500).json({
       success: false,
-      message: 'Erreur lors de l\'envoi du message',
+      message: "Erreur lors de l'envoi du message",
       error: process.env.NODE_ENV === 'development' ? error.message : undefined,
     });
   }
 };
-
