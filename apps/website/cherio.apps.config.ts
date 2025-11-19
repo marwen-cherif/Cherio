@@ -79,7 +79,7 @@ export const cherioApps: CherioAppConfig[] = [
       {
         type: 'video',
         url: '/videos/cleanmytext-demo.mp4',
-        thumbnail: '/images/cleanmytext-video-thumb.jpg',
+        thumbnail: '/images/cleanmytext-screenshot-1.png',
         alt: {
           fr: 'Démonstration Text AI tools',
           en: 'Text AI tools demonstration',
