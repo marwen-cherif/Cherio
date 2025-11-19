@@ -1,0 +1,71 @@
+{
+  "common": {
+    "language": "Langue",
+    "menu": "Menu",
+    "close": "Fermer",
+    "contact": "Contact",
+    "about": "À propos",
+    "home": "Accueil",
+    "experience": "Expérience",
+    "education": "Formation",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "downloadCV": "Télécharger le CV",
+    "viewProject": "Voir le projet",
+    "current": "Actuel",
+    "present": "Présent"
+  },
+  "hero": {
+    "title": "Team Lead Front-End",
+    "subtitle": "Diriger l'architecture front-end et créer des applications modernes et évolutives avec passion",
+    "cta": "Voir mes réalisations",
+    "scrollDown": "Défiler vers le bas"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Apprenez à mieux me connaître",
+    "bio": "Impliqué dans le développement web depuis 2014. Je suis opérationnel avec JavaScript et passionné par la création d'applications modernes et évolutives. J'aime créer des solutions qui allient innovation, qualité et expérience utilisateur."
+  },
+  "experience": {
+    "title": "Expérience Professionnelle",
+    "subtitle": "Mon parcours professionnel",
+    "viewDetails": "Voir les détails"
+  },
+  "education": {
+    "title": "Formation",
+    "subtitle": "Parcours académique"
+  },
+  "projects": {
+    "title": "Projets Phares",
+    "subtitle": "Quelques-unes de mes réalisations récentes",
+    "viewAll": "Voir tous les projets",
+    "technologies": "Technologies",
+    "highlights": "Points clés"
+  },
+  "skills": {
+    "title": "Compétences & Technologies",
+    "subtitle": "Technologies avec lesquelles je travaille"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Travaillons ensemble",
+    "description": "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités pour faire partie de vos visions.",
+    "email": "Email",
+    "location": "Localisation",
+    "website": "Site web",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "upwork": "Upwork"
+  },
+  "footer": {
+    "description": "Team Lead Front-End passionné par la création de solutions innovantes",
+    "copyright": "© 2025 Marwen Cherif. Tous droits réservés.",
+    "builtWith": "Construit avec Next.js, TypeScript et Tailwind CSS"
+  },
+  "seo": {
+    "title": "Marwen Cherif - Portfolio Team Lead Front-End",
+    "description": "Team Lead Front-End avec plus de 10 ans d'expérience en développement web. Spécialisé en React, TypeScript, Vite et création d'applications SaaS modernes et évolutives. Expert en architecture front-end, optimisation des performances et leadership d'équipe.",
+    "keywords": "Team Lead Front-End, Ingénieur Logiciel, Développeur Web, JavaScript, React, TypeScript, Vite, Node.js, Développeur Full Stack, Portfolio, React 19, TanStack Query"
+  }
+}
+

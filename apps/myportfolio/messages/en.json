@@ -1,0 +1,71 @@
+{
+  "common": {
+    "language": "Language",
+    "menu": "Menu",
+    "close": "Close",
+    "contact": "Contact",
+    "about": "About",
+    "home": "Home",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "skills": "Skills",
+    "downloadCV": "Download CV",
+    "viewProject": "View Project",
+    "current": "Current",
+    "present": "Present"
+  },
+  "hero": {
+    "title": "Front-End Team Lead",
+    "subtitle": "Leading front-end architecture and building modern, scalable applications with passion",
+    "cta": "View My Work",
+    "scrollDown": "Scroll down"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Get to know me better",
+    "bio": "Involved in web development since 2014. I'm operational using JavaScript and passionate about building modern, scalable applications. I love creating solutions that combine innovation, quality, and user experience."
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "subtitle": "My career journey",
+    "viewDetails": "View Details"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Academic background"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Some of my recent work",
+    "viewAll": "View All Projects",
+    "technologies": "Technologies",
+    "highlights": "Key Highlights"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "Technologies I work with"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's work together",
+    "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    "email": "Email",
+    "location": "Location",
+    "website": "Website",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "upwork": "Upwork"
+  },
+  "footer": {
+    "description": "Front-End Team Lead passionate about building innovative solutions",
+    "copyright": "© 2025 Marwen Cherif. All rights reserved.",
+    "builtWith": "Built with Next.js, TypeScript, and Tailwind CSS"
+  },
+  "seo": {
+    "title": "Marwen Cherif - Front-End Team Lead Portfolio",
+    "description": "Front-End Team Lead with 10+ years of experience in web development. Specialized in React, TypeScript, Vite, and building modern, scalable SaaS applications. Expert in front-end architecture, performance optimization, and team leadership.",
+    "keywords": "Front-End Team Lead, Software Engineer, Web Developer, JavaScript, React, TypeScript, Vite, Node.js, Full Stack Developer, Portfolio, React 19, TanStack Query"
+  }
+}
+
