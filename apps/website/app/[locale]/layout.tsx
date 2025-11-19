@@ -59,10 +59,6 @@ export default async function LocaleLayout({
 
   const messages = messagesMap[locale as keyof typeof messagesMap] || messagesMap.fr;
 
-  console.log({
-    locale,
-  });
-
   return (
     <>
       <link rel="alternate" hrefLang="fr" href="https://cherio.me/fr" />

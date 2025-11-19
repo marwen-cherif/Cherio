@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { cherioApps } from '../../../cherio.apps.config';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 export default function Apps() {
   const t = useTranslations('apps');
@@ -44,25 +45,28 @@ export default function Apps() {
           {cherioApps.map((app, index) => (
             <div
               key={app.id}
-              className={`bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 ${
+              className={`bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 cursor-pointer ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{
                 transitionDelay: `${index * 100}ms`,
               }}
             >
-              <div className="mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center mb-4 transform transition-transform duration-300 hover:rotate-6">
-                  <span className="text-2xl">📱</span>
+              <Link href={`/${locale}/apps/${app.slug}`} className="block">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center mb-4 transform transition-transform duration-300 hover:rotate-6">
+                    <span className="text-2xl">📱</span>
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">{app.publicName[locale]}</h3>
-              <p className="text-gray-600 text-sm mb-4">{app.description[locale]}</p>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">{app.publicName[locale]}</h3>
+                <p className="text-gray-600 text-sm mb-4">{app.description[locale]}</p>
+              </Link>
               {app.published ? (
                 <a
                   href={app.urls[locale]}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   className="inline-block bg-gray-900 text-white px-4 py-2 rounded text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
                 >
                   {locale === 'fr' ? 'Visiter' : 'Visit'}
