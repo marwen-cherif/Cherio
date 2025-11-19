@@ -7,6 +7,7 @@ import { jsonToToon, toonToJson } from '@/utils/jsonToonConverter';
 import { useToast } from '@/hooks/use-toast';
 import { Copy, ArrowLeftRight, Trash2, FileJson, FileText } from 'lucide-react';
 import AdBanner from '@/components/AdBanner';
+import Script from 'next/script';
 
 export default function JsonToonPage() {
   const t = useTranslations('jsonToon');
@@ -90,8 +91,35 @@ export default function JsonToonPage() {
   const inputStats = getStats(inputText);
   const outputStats = getStats(outputText);
 
+  // Structured Data for SEO
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: t.title,
+    description: t.seoDescription || t.description,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: [
+      'JSON to TOON conversion',
+      'TOON to JSON conversion',
+      'LLM token optimization',
+      'Free online converter',
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <>
+      <Script
+        id="structured-data-json-toon"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 py-8 sm:py-12 max-w-6xl">
         {/* Top Ad Banner - Desktop only */}
         <div className="hidden lg:block mb-6">
@@ -337,6 +365,7 @@ export default function JsonToonPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
