@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/marou/WebstormProjects/Cherio/apps/myportfolio/app/%5Blocale%5D/not-found.tsx"],"sourcesContent":["'use client';\r\n\r\nexport default function NotFound() {\r\n  return (\r\n    <div className=\"flex min-h-screen items-center justify-center\">\r\n      <div className=\"text-center\">\r\n        <h1 className=\"text-4xl font-bold mb-4\">404</h1>\r\n        <p className=\"text-xl\">Page not found</p>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n\r\n"],"names":[],"mappings":";;;;;AAAA;;AAEe,SAAS;IACtB,qBACE,sUAAC;QAAI,WAAU;kBACb,cAAA,sUAAC;YAAI,WAAU;;8BACb,sUAAC;oBAAG,WAAU;8BAA0B;;;;;;8BACxC,sUAAC;oBAAE,WAAU;8BAAU;;;;;;;;;;;;;;;;;AAI/B;KATwB","debugId":null}}]
-}
