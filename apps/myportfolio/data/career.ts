@@ -66,8 +66,8 @@ export const personalInfo: PersonalInfo = {
   upwork: 'https://www.upwork.com/freelancers/~0156bc098f503b1e3a',
   nationality: 'Tunisia, France',
   bio: {
-    en: 'Seeking a position as a Software Developer where I can contribute to challenging, innovative projects and apply my technical expertise to build high-quality, scalable solutions. Front-End Team Lead with expertise in React, TypeScript, and modern web architecture.',
-    fr: 'Recherche un poste de développeur logiciel où je peux contribuer à des projets innovants et stimulants, et appliquer mon expertise technique pour créer des solutions de haute qualité et évolutives. Team Lead Front-End avec expertise en React, TypeScript et architecture web moderne.',
+    en: 'Software Developer with 10+ years of hands-on experience spanning front-end, back-end, and automation. I’ve built and scaled applications across the full stack, from modern React/TypeScript front-ends to Node.js back-end services and RPA workflows. My expertise as a Front-End Team Lead includes driving architecture decisions, optimizing developer experience, and delivering robust, scalable interfaces used in production at scale. Above all, I’m deeply passionate about engineering, problem-solving, and crafting elegant technical solutions that stand the test of time.',
+    fr: 'Développeur logiciel avec plus de 10 ans d’expérience couvrant le front-end, le back-end et l’automatisation. J’ai conçu, développé et fait évoluer des applications sur l’ensemble de la stack, depuis des interfaces modernes en React/TypeScript jusqu’à des services back-end en Node.js et des workflows RPA. En tant que Front-End Team Lead, j’ai piloté des choix d’architecture, amélioré l’expérience développeur et livré des interfaces robustes et scalables utilisées en production à grande échelle. Avant tout, je suis un passionné d’ingénierie et de résolution de problèmes, animé par la volonté de créer des solutions élégantes et durables.',
   },
 };
 
