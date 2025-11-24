@@ -66,8 +66,8 @@ export const personalInfo: PersonalInfo = {
   upwork: 'https://www.upwork.com/freelancers/~0156bc098f503b1e3a',
   nationality: 'Tunisia, France',
   bio: {
-    en: 'Software Developer with 10+ years of hands-on experience spanning front-end, back-end, and automation. I’ve built and scaled applications across the full stack, from modern React/TypeScript front-ends to Node.js back-end services and RPA workflows. My expertise as a Front-End Team Lead includes driving architecture decisions, optimizing developer experience, and delivering robust, scalable interfaces used in production at scale. Above all, I’m deeply passionate about engineering, problem-solving, and crafting elegant technical solutions that stand the test of time.',
-    fr: 'Développeur logiciel avec plus de 10 ans d’expérience couvrant le front-end, le back-end et l’automatisation. J’ai conçu, développé et fait évoluer des applications sur l’ensemble de la stack, depuis des interfaces modernes en React/TypeScript jusqu’à des services back-end en Node.js et des workflows RPA. En tant que Front-End Team Lead, j’ai piloté des choix d’architecture, amélioré l’expérience développeur et livré des interfaces robustes et scalables utilisées en production à grande échelle. Avant tout, je suis un passionné d’ingénierie et de résolution de problèmes, animé par la volonté de créer des solutions élégantes et durables.',
+    en: 'Software Developer with 11 years of hands-on experience spanning front-end, back-end, and automation. I’ve built and scaled applications across the full stack, from modern React/TypeScript front-ends to Node.js back-end services and RPA workflows. My expertise as a Front-End Team Lead includes driving architecture decisions, optimizing developer experience, and delivering robust, scalable interfaces used in production at scale. Above all, I’m deeply passionate about engineering, problem-solving, and crafting elegant technical solutions that stand the test of time.',
+    fr: 'Développeur logiciel avec plus de 11 ans d’expérience couvrant le front-end, le back-end et l’automatisation. J’ai conçu, développé et fait évoluer des applications sur l’ensemble de la stack, depuis des interfaces modernes en React/TypeScript jusqu’à des services back-end en Node.js et des workflows RPA. En tant que Front-End Team Lead, j’ai piloté des choix d’architecture, amélioré l’expérience développeur et livré des interfaces robustes et scalables utilisées en production à grande échelle. Avant tout, je suis un passionné d’ingénierie et de résolution de problèmes, animé par la volonté de créer des solutions élégantes et durables.',
   },
 };
 
@@ -89,15 +89,14 @@ export const experiences: Experience[] = [
       'Collaborating closely with back-end teams to define GraphQL/REST contracts and improve application performance and maintainability.',
     ],
     technologies: [
-      'React 19',
+      'React 19.2',
       'TypeScript',
       'Vite',
       'TanStack Query',
-      'Zustand',
       'Storybook',
       'Cloudflare R2/Workers',
       'GitHub Actions',
-      'Turborepo',
+      'Turbo',
       'Node.js',
       'GraphQL',
       'Azure',
@@ -194,6 +193,57 @@ export const education: Education[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    id: 'reversio-saas-core',
+    title: 'Reverse Logistics Platform – Core Frontend Development',
+    description:
+      'Led the frontend development of a mission-critical after-sales and reverse-logistics platform used by major European retailers, focusing on performance, scalability, and cross-team alignment.',
+    period: '2019 – Present',
+    technologies: ['React 19', 'TypeScript', 'GraphQL', 'REST APIs', 'Azure', 'Zustand'],
+    highlights: [
+      'Built high-impact UI modules for claims management, workflows, and operational dashboards',
+      'Collaborated closely with backend teams to define and optimize GraphQL/REST contracts',
+      'Mentored engineers and an apprentice, establishing best practices across squads',
+      'Improved application responsiveness and maintainability through structured state management and streamlined API interaction layers',
+    ],
+  },
+  {
+    id: 'reversio-modernization',
+    title: 'Frontend Platform Modernization & Performance Overhaul',
+    description:
+      'Led the end-to-end migration of a large-scale SaaS frontend from Create React App and Webpack to a modern Vite + React 19 architecture, delivering major productivity and runtime performance gains for engineering teams.',
+    period: '2022 – 2024',
+    technologies: [
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'TanStack Query',
+      'Zustand',
+      'Storybook',
+      'Chromatic',
+    ],
+    highlights: [
+      'Reduced build times by 50% and improved local startup performance by 5×',
+      'Introduced TypeScript strict mode, improving reliability and maintainability',
+      'Modernized the component architecture and design system with Storybook and Chromatic',
+      'Reduced production defects by 25% by enforcing predictable data-fetching patterns with TanStack Query v5',
+    ],
+    link: 'https://revers.io',
+  },
+  {
+    id: 'reversio-monorepo',
+    title: 'Monorepo Architecture & CI/CD Pipeline Acceleration',
+    description:
+      'Designed and deployed a scalable monorepo architecture to unify multiple front-end applications, standardize tooling, and dramatically shorten integration and deployment cycles.',
+    period: '2021 – 2024',
+    technologies: ['Turborepo', 'GitHub Actions', 'Cloudflare R2', 'Node.js', 'pnpm'],
+    highlights: [
+      'Centralized all applications into a Turborepo-driven monorepo with shared configs and tooling',
+      'Cut CI/CD times by 40% through optimized caching, incremental builds, and parallel pipelines',
+      'Implemented versioned asset delivery via Cloudflare R2 for reliable rollbacks',
+      'Improved developer experience through standardized linting, testing, and release workflows',
+    ],
+  },
   {
     id: 'reflexticketing',
     title: 'ReflexTicketing [Bouygues Telecom]',
