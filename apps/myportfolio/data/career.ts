@@ -199,7 +199,7 @@ export const projects: Project[] = [
     description:
       'Led the frontend development of a mission-critical after-sales and reverse-logistics platform used by major European retailers, focusing on performance, scalability, and cross-team alignment.',
     period: '2019 – Present',
-    technologies: ['React 19', 'TypeScript', 'GraphQL', 'REST APIs', 'Azure', 'Zustand'],
+    technologies: ['React 19', 'TypeScript', 'GraphQL', 'REST APIs', 'Azure', 'Redux Toolkit'],
     highlights: [
       'Built high-impact UI modules for claims management, workflows, and operational dashboards',
       'Collaborated closely with backend teams to define and optimize GraphQL/REST contracts',
@@ -218,14 +218,13 @@ export const projects: Project[] = [
       'TypeScript',
       'Vite',
       'TanStack Query',
-      'Zustand',
+      'Redux Toolkit',
       'Storybook',
-      'Chromatic',
     ],
     highlights: [
       'Reduced build times by 50% and improved local startup performance by 5×',
       'Introduced TypeScript strict mode, improving reliability and maintainability',
-      'Modernized the component architecture and design system with Storybook and Chromatic',
+      'Modernized the component architecture and design system with Storybook',
       'Reduced production defects by 25% by enforcing predictable data-fetching patterns with TanStack Query v5',
     ],
     link: 'https://revers.io',
@@ -272,7 +271,7 @@ export const projects: Project[] = [
   },
   {
     id: 'internship-platform',
-    title: 'Internship Platform [BIAT]',
+    title: 'Internship Platform at BIAT bunk',
     description:
       'Platform for automatic matching of candidates with enterprises internship offers. The companies create offers, add weighted criteria, and candidates are assigned automatically to offers.',
     period: '2015 - 2016',
@@ -391,9 +390,8 @@ export const skills: Skill[] = [
       'RPA (UiPath)',
       'Blue Prism',
       'Storybook',
-      'Chromatic',
       'TanStack Query',
-      'Zustand',
+      'Redux Toolkit',
     ],
   },
 ];
