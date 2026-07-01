@@ -41,7 +41,7 @@ export default function Contact({ locale }: ContactProps) {
             <AnimatedCard className="p-8 md:p-12" delay={0.3}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                  <h3 className="text-3xl font-bold text-foreground mb-8">Contact Information</h3>
+                  <h3 className="text-3xl font-bold text-foreground mb-8">{t('contactInfo')}</h3>
                   <div className="space-y-6">
                     <motion.div className="flex items-start gap-4" whileHover={{ x: 5 }}>
                       <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -65,7 +65,7 @@ export default function Contact({ locale }: ContactProps) {
                           <Phone className="w-6 h-6 text-primary group-hover:text-primary transition-colors" />
                         </div>
                         <div>
-                          <p className="font-semibold text-foreground mb-1">Phone</p>
+                          <p className="font-semibold text-foreground mb-1">{t('phone')}</p>
                           <p className="text-primary group-hover:underline">{personalInfo.phone}</p>
                         </div>
                       </motion.a>
@@ -110,7 +110,7 @@ export default function Contact({ locale }: ContactProps) {
                 </div>
 
                 <div>
-                  <h3 className="text-3xl font-bold text-foreground mb-8">Social Links</h3>
+                  <h3 className="text-3xl font-bold text-foreground mb-8">{t('socialLinks')}</h3>
                   <div className="space-y-4">
                     {socialLinks.map((link, index) => {
                       const Icon = link.icon;

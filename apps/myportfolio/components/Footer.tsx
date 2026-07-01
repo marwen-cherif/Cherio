@@ -8,6 +8,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const tCommon = useTranslations('common');
 
   const socialLinks = [
     { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
@@ -28,26 +29,26 @@ export default function Footer() {
           
           <AnimatedSection direction="up" delay={0.1}>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+              <h4 className="font-semibold text-foreground mb-4">{t('quickLinks')}</h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
                   <a href="#about" className="hover:text-primary transition-colors">
-                    About
+                    {tCommon('about')}
                   </a>
                 </li>
                 <li>
                   <a href="#experience" className="hover:text-primary transition-colors">
-                    Experience
+                    {tCommon('experience')}
                   </a>
                 </li>
                 <li>
                   <a href="#projects" className="hover:text-primary transition-colors">
-                    Projects
+                    {tCommon('projects')}
                   </a>
                 </li>
                 <li>
                   <a href="#contact" className="hover:text-primary transition-colors">
-                    Contact
+                    {tCommon('contact')}
                   </a>
                 </li>
               </ul>
@@ -56,7 +57,7 @@ export default function Footer() {
           
           <AnimatedSection direction="up" delay={0.2}>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Connect</h4>
+              <h4 className="font-semibold text-foreground mb-4">{t('connect')}</h4>
               <div className="flex flex-col gap-3">
                 {socialLinks.map((link, index) => {
                   const Icon = link.icon;

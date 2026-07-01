@@ -12,6 +12,7 @@ interface SkillsProps {
 
 export default function Skills({ locale }: SkillsProps) {
   const t = useTranslations('skills');
+  const l: 'en' | 'fr' = locale === 'fr' ? 'fr' : 'en';
 
   return (
     <section id="skills" className="py-24 bg-background relative overflow-hidden">
@@ -35,7 +36,7 @@ export default function Skills({ locale }: SkillsProps) {
               <AnimatedCard className="p-6" delay={idx * 0.1}>
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <span className="w-1 h-8 bg-gradient-to-b from-primary to-purple-600 rounded-full" />
-                  {skillCategory.category}
+                  {skillCategory.category[l]}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {skillCategory.items.map((skill, skillIdx) => (

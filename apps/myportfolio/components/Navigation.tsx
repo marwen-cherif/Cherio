@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from '@/i18n/routing';
 import { Link } from '@/i18n/routing';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'iconoir-react';
+import { Menu, X, Download } from 'iconoir-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -15,6 +15,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   const locale = pathname.split('/')[1] || 'en';
+  const cvHref = `/cv/Marwen-Cherif-CV-${locale === 'fr' ? 'FR' : 'EN'}.pdf`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +65,16 @@ export default function Navigation() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
+            <a
+              href={cvHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg font-semibold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg hover:shadow-xl hover:opacity-90 transition-all"
+            >
+              <Download className="w-4 h-4" />
+              {t('downloadCV')}
+            </a>
             <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-white/20">
               <Link
                 href="/"
@@ -128,6 +139,19 @@ export default function Navigation() {
                     </Link>
                   </motion.div>
                 ))}
+                <div className="px-4 pt-2">
+                  <a
+                    href={cvHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg font-semibold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Download className="w-5 h-5" />
+                    {t('downloadCV')}
+                  </a>
+                </div>
                 <div className="flex items-center space-x-2 pt-4 border-t border-white/20 px-4">
                   <Link
                     href="/"

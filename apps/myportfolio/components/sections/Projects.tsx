@@ -13,6 +13,7 @@ interface ProjectsProps {
 
 export default function Projects({ locale }: ProjectsProps) {
   const t = useTranslations('projects');
+  const l: 'en' | 'fr' = locale === 'fr' ? 'fr' : 'en';
 
   return (
     <section id="projects" className="py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
@@ -36,7 +37,7 @@ export default function Projects({ locale }: ProjectsProps) {
               <AnimatedCard className="p-6 h-full flex flex-col group" delay={index * 0.1}>
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-xl font-bold text-foreground flex-1 group-hover:text-primary transition-colors">
-                    {project.title}
+                    {project.title[l]}
                   </h3>
                   {project.link && (
                     <motion.a
@@ -57,7 +58,7 @@ export default function Projects({ locale }: ProjectsProps) {
                 </p>
 
                 <p className="text-foreground mb-4 flex-grow">
-                  {project.description}
+                  {project.description[l]}
                 </p>
 
                 <div className="mb-4">
@@ -77,13 +78,13 @@ export default function Projects({ locale }: ProjectsProps) {
                   </div>
                 </div>
 
-                {project.highlights && project.highlights.length > 0 && (
+                {project.highlights[l] && project.highlights[l].length > 0 && (
                   <div>
                     <h4 className="text-sm font-semibold text-foreground mb-2">
                       {t('highlights')}:
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                      {project.highlights.slice(0, 2).map((highlight, idx) => (
+                      {project.highlights[l].slice(0, 2).map((highlight, idx) => (
                         <li key={idx} className="pl-2">{highlight}</li>
                       ))}
                     </ul>

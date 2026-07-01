@@ -4,7 +4,8 @@ import { useTranslations } from 'next-intl';
 import { personalInfo } from '@/data/career';
 import { ArrowDown, Mail, MapPin } from 'iconoir-react';
 import { Link } from '@/i18n/routing';
-import { motion } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
+import { useEffect } from 'react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Button from '@/components/ui/Button';
 
@@ -14,6 +15,45 @@ interface HeroProps {
 
 export default function Hero({ locale }: HeroProps) {
   const t = useTranslations('hero');
+  const spinControls = useAnimationControls();
+
+  // Occasionally, at random intervals, the avatar does a full-turn (360°) spin
+  // in a random direction, then eases smoothly back to its idle animation.
+  useEffect(() => {
+    let cancelled = false;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const runSpin = async () => {
+      if (cancelled) return;
+      const direction = Math.random() < 0.5 ? 1 : -1;
+      try {
+        await spinControls.start({
+          rotate: [0, direction * 360, 0],
+          transition: {
+            duration: 2.2,
+            times: [0, 0.55, 1],
+            ease: ['easeOut', 'easeInOut'],
+          },
+        });
+      } catch {
+        // animation interrupted (e.g. unmount) — ignore
+      }
+      if (!cancelled) scheduleNext();
+    };
+
+    const scheduleNext = () => {
+      const delay = 6000 + Math.random() * 9000; // every ~6–15s
+      timeoutId = setTimeout(runSpin, delay);
+    };
+
+    scheduleNext();
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
+      spinControls.stop();
+    };
+  }, [spinControls]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-16">
@@ -28,26 +68,30 @@ export default function Hero({ locale }: HeroProps) {
         <div className="text-center">
           <AnimatedSection direction="scale" delay={0.2}>
             <div className="mb-8">
-              <motion.div
-                className="inline-block w-40 h-40 rounded-full bg-gradient-to-br from-blue-500 via-purple-600 to-pink-600 mb-6 flex items-center justify-center text-5xl font-bold text-white shadow-2xl"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 5, -5, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              >
-                <div className="flex items-center justify-center h-full">
-                  <div>
-                    {personalInfo.name
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')}
+              {/* Outer layer: occasional random full-turn spin (controlled) */}
+              <motion.div animate={spinControls} className="inline-block mb-6">
+                {/* Inner layer: continuous idle pulse + gentle wobble */}
+                <motion.div
+                  className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-500 via-purple-600 to-pink-600 flex items-center justify-center text-5xl font-bold text-white shadow-2xl"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 5, -5, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  <div className="flex items-center justify-center h-full">
+                    <div>
+                      {personalInfo.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </div>
           </AnimatedSection>
@@ -64,9 +108,14 @@ export default function Hero({ locale }: HeroProps) {
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={0.5}>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-700 dark:text-gray-300 mb-6">
-              {t('title')}
-            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+              <h2 className="text-3xl md:text-4xl font-semibold text-gray-700 dark:text-gray-300">
+                {t('title')}
+              </h2>
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-base md:text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg">
+                {t('aiTouch')}
+              </span>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={0.6}>

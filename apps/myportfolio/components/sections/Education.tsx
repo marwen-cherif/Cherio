@@ -13,6 +13,7 @@ interface EducationProps {
 
 export default function Education({ locale }: EducationProps) {
   const t = useTranslations('education');
+  const l: 'en' | 'fr' = locale === 'fr' ? 'fr' : 'en';
 
   return (
     <section id="education" className="py-24 bg-background relative">
@@ -45,9 +46,9 @@ export default function Education({ locale }: EducationProps) {
                   
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      {edu.degree}
+                      {edu.degree[l]}
                     </h3>
-                    <p className="text-lg text-muted-foreground mb-2">{edu.field}</p>
+                    <p className="text-lg text-muted-foreground mb-2">{edu.field[l]}</p>
                     <h4 className="text-xl md:text-2xl text-primary mb-4 font-semibold">
                       {edu.institution}
                     </h4>
@@ -60,7 +61,7 @@ export default function Education({ locale }: EducationProps) {
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
-                        <span>{edu.location}</span>
+                        <span>{edu.location[l]}</span>
                       </div>
                     </div>
                   </div>

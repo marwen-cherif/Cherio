@@ -5,6 +5,7 @@ import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
 import Projects from '@/components/sections/Projects';
 import Skills from '@/components/sections/Skills';
+import LanguagesInterests from '@/components/sections/LanguagesInterests';
 import Contact from '@/components/sections/Contact';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -35,6 +36,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Education locale={locale} />
       <Projects locale={locale} />
       <Skills locale={locale} />
+      <LanguagesInterests />
       <Contact locale={locale} />
     </div>
   );

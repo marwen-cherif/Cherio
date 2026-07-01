@@ -14,6 +14,7 @@ interface ExperienceProps {
 export default function Experience({ locale }: ExperienceProps) {
   const t = useTranslations('experience');
   const tCommon = useTranslations('common');
+  const l: 'en' | 'fr' = locale === 'fr' ? 'fr' : 'en';
 
   return (
     <section id="experience" className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
@@ -55,7 +56,7 @@ export default function Experience({ locale }: ExperienceProps) {
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                       <div>
                         <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                          {exp.position}
+                          {exp.position[l]}
                         </h3>
                         <h4 className="text-xl md:text-2xl text-primary mb-3 font-semibold">
                           {exp.company}
@@ -75,7 +76,7 @@ export default function Experience({ locale }: ExperienceProps) {
                     <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
-                        <span>{exp.location}</span>
+                        <span>{exp.location[l]}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
@@ -86,11 +87,11 @@ export default function Experience({ locale }: ExperienceProps) {
                     </div>
 
                     <p className="text-foreground mb-4 text-lg">
-                      {exp.description[0]}
+                      {exp.description[l][0]}
                     </p>
 
                     <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                      {exp.description.slice(1).map((item, idx) => (
+                      {exp.description[l].slice(1).map((item, idx) => (
                         <li key={idx} className="pl-2">{item}</li>
                       ))}
                     </ul>

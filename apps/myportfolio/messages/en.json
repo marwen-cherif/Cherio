@@ -16,8 +16,9 @@
     "present": "Present"
   },
   "hero": {
-    "title": "Front-End Team Lead",
-    "subtitle": "Leading front-end architecture and building modern, scalable applications with passion",
+    "title": "Software Engineer",
+    "aiTouch": "AI-Augmented",
+    "subtitle": "Front-End Specialist",
     "cta": "View My Work",
     "scrollDown": "Scroll down"
   },
@@ -46,26 +47,45 @@
     "title": "Skills & Technologies",
     "subtitle": "Technologies I work with"
   },
+  "languages": {
+    "title": "Languages",
+    "subtitle": "Languages I speak",
+    "items": [
+      { "name": "French", "level": "Native" },
+      { "name": "English", "level": "Professional" },
+      { "name": "Arabic", "level": "Native" }
+    ]
+  },
+  "interests": {
+    "title": "Interests",
+    "subtitle": "What drives me outside of code",
+    "items": ["DIY & Tinkering", "New Technologies & AI", "Reading"]
+  },
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Let's work together",
     "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    "contactInfo": "Contact Information",
     "email": "Email",
+    "phone": "Phone",
     "location": "Location",
     "website": "Website",
+    "socialLinks": "Social Links",
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "upwork": "Upwork"
   },
   "footer": {
-    "description": "Front-End Team Lead passionate about building innovative solutions",
+    "description": "Front-End Tech Lead passionate about building innovative solutions",
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
     "copyright": "© 2025 Marwen Cherif. All rights reserved.",
     "builtWith": "Built with Next.js, TypeScript, and Tailwind CSS"
   },
   "seo": {
-    "title": "Marwen Cherif - Front-End Team Lead Portfolio",
-    "description": "Front-End Team Lead with 10+ years of experience in web development. Specialized in React, TypeScript, Vite, and building modern, scalable SaaS applications. Expert in front-end architecture, performance optimization, and team leadership.",
-    "keywords": "Front-End Team Lead, Software Engineer, Web Developer, JavaScript, React, TypeScript, Vite, Node.js, Full Stack Developer, Portfolio, React 19, TanStack Query"
+    "title": "Marwen Cherif - Front-End Tech Lead Portfolio",
+    "description": "Front-End Tech Lead with 10+ years of experience in web development. Specialized in React, TypeScript, Vite, and building modern, scalable SaaS applications. Expert in front-end architecture, performance optimization, and team leadership.",
+    "keywords": "Front-End Tech Lead, Software Engineer, Web Developer, JavaScript, React, TypeScript, Vite, Node.js, Full Stack Developer, Portfolio, React 19, TanStack Query"
   }
 }
 
