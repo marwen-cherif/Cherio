@@ -51,7 +51,7 @@ export function getColor(key: ColorKey): string {
     return colors[key] as string;
   }
   // For nested objects like amazon, etsy, vinted
-  return (colors[key] as any).primary || (colors[key] as string);
+  return colors[key].primary;
 }
 
 /**
