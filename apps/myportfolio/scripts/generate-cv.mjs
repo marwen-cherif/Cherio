@@ -33,7 +33,7 @@ const contact = {
 const DATA = {
   fr: {
     lang: 'fr',
-    title: 'Software Engineer — Spécialisation Front-End',
+    title: 'Software Engineer Fullstack',
     labels: {
       profile: 'Profil',
       experience: 'Expérience',
@@ -43,16 +43,19 @@ const DATA = {
       interests: "Centres d'intérêt",
     },
     summary:
-      "Tech Lead Front-End chez Revers.io, où je pilote la modernisation d'une plateforme SaaS — architecture, refontes UI, montée en charge. Je contribue à l'amélioration continue du produit, aussi bien de façon transverse que sur des sujets spécifiques. Une première partie de carrière en full-stack (Symfony/PHP) me donne une vision bout-en-bout, du backend à l'interface. Je privilégie le code propre, le mentorat, et les décisions pragmatiques. Technophile, j'aime expérimenter les nouveaux outils de développement, liés ou non à l'IA.",
+      "Software Engineer Fullstack chez Revers.io, où je pilote le développement et la modernisation d'une plateforme SaaS — architecture, évolutions full-stack, et montée en charge. Je contribue à l'amélioration continue du produit, aussi bien de façon transverse que sur des sujets spécifiques. Fort d'une expérience sur l'ensemble de la stack (React, Node.js, PHP/Symfony), j'apporte une vision bout-en-bout, de la base de données à l'interface. Je privilégie le code propre, le mentorat et les décisions pragmatiques. Technophile, j'aime expérimenter les nouveaux outils de développement, liés ou non à l'IA.",
     experiences: [
       {
         company: 'Revers.io',
-        role: 'Front-End Tech Lead (depuis 2022) · Front-End Software Engineer (2019—2021)',
+        role: 'Tech Lead Fullstack (depuis 2022) · Software Engineer Fullstack (2019—2021)',
         period: '2019 — Présent',
         context:
           'Plateforme SaaS de gestion du SAV pour le compte de distributeurs (remboursement, réparation, intervention à domicile…).',
         bullets: [
-          'Pilotage de la modernisation front-end : refonte UI, migration de librairies, architecture React / TypeScript / GraphQL.',
+          'Pilotage de la modernisation applicative : refonte UI, intégrations API, architecture React / TypeScript / Node.js / GraphQL.',
+          'IA dans le produit et dans la delivery : intégration de fonctionnalités basées sur des LLM dans la plateforme, et code review par IA dans la CI.',
+          "Mise en place d'un flux de développement automatisé par l'IA : veille sur ce qui existe sur le marché, sélection de l'essentiel adapté à l'entreprise et réutilisation via des skills custom et des automatisations, pour le process de développement comme pour les process métiers.",
+          "Résultat : de nombreuses nouvelles features livrées, un process qui s'auto-améliore, et un harnais de sécurité et de qualité de code intégré au développement.",
           'Analyse technique et chiffrage des nouvelles fonctionnalités, arbitrages techniques avec le produit.',
           "Code review et mentorat des développeurs junior, montée en compétence de l'équipe.",
           'Fiabilisation de la plateforme : tests unitaires et E2E, support des anomalies en production.',
@@ -112,13 +115,14 @@ const DATA = {
       },
     ],
     skills: [
+      { category: 'Backend', items: ['Node.js', 'Symfony / PHP', 'Nest', 'C#', 'GraphQL', 'MySQL', 'PostgreSQL', 'MongoDB'] },
       { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Redux / Redux-Saga', 'Zustand', 'Storybook', 'Tailwind CSS'] },
+      { category: 'Développement assisté par IA', items: ['Claude Code', 'MCP', 'WebMCP', 'Context Engineering', 'Custom Skills', 'Dynamic Workflows', 'Smart GitHub Actions', 'AI Code Review'] },
+      { category: 'IA dans les produits', items: ['LLM Integration', 'Prompt Engineering', 'TOON / Token Optimization', 'Process Automation'] },
       { category: 'Qualité', items: ['Jest', 'Vitest', 'Testing Library', 'Cypress', 'Code Review'] },
       { category: 'Style', items: ['Styled Components', 'Bootstrap'] },
       { category: 'Outils', items: ['Webpack', 'Vite', 'Git', 'GitHub', 'Jenkins'] },
-      { category: 'Backend', items: ['Symfony / PHP', 'Nest', 'C#', 'GraphQL', 'MySQL', 'PostgreSQL', 'MongoDB'] },
       { category: 'RPA', items: ['UiPath', 'Blue Prism'] },
-      { category: 'Automatisation / IA', items: ['Claude', 'Dynamic Workflows', 'Custom Skills', 'Smart GitHub Actions'] },
       { category: 'Infrastructure', items: ['Azure DevOps', 'Cloudflare', 'Datadog'] },
     ],
     languages: [
@@ -131,7 +135,7 @@ const DATA = {
 
   en: {
     lang: 'en',
-    title: 'Software Engineer — Front-End Specialization',
+    title: 'Fullstack Software Engineer',
     labels: {
       profile: 'Profile',
       experience: 'Experience',
@@ -141,16 +145,19 @@ const DATA = {
       interests: 'Interests',
     },
     summary:
-      'Front-End Tech Lead at Revers.io, where I drive the modernization of a SaaS platform — architecture, UI overhauls, and scaling. I contribute to continuous product improvement, both cross-functionally and on specific initiatives. An earlier full-stack chapter (Symfony/PHP) gives me an end-to-end perspective, from the backend to the interface. I value clean code, mentoring, and pragmatic decisions. A tech enthusiast, I love experimenting with new development tools, whether AI-related or not.',
+      'Fullstack Software Engineer at Revers.io, driving the development and modernization of a SaaS platform — architecture, full-stack enhancements, and scaling. I contribute to continuous product improvement, both cross-functionally and on specific initiatives. With strong experience across the entire stack (React, Node.js, PHP/Symfony), I bring an end-to-end perspective, from database design to user interface. I value clean code, mentoring, and pragmatic decisions. A tech enthusiast, I love experimenting with new development tools, whether AI-related or not.',
     experiences: [
       {
         company: 'Revers.io',
-        role: 'Front-End Tech Lead (since 2022) · Front-End Software Engineer (2019—2021)',
+        role: 'Fullstack Tech Lead (since 2022) · Fullstack Software Engineer (2019—2021)',
         period: '2019 — Present',
         context:
           'SaaS after-sales management platform for retailers (refunds, repairs, on-site interventions).',
         bullets: [
-          'Driving the front-end modernization: UI redesigns, library migrations, React / TypeScript / GraphQL architecture.',
+          'Driving application modernization and architecture: UI redesigns, API integrations, React / TypeScript / Node.js / GraphQL.',
+          'AI in the product and in delivery: LLM-powered features integrated into the platform, and AI code review in the CI pipeline.',
+          'Set up an AI-automated development workflow: watching what exists on the market, keeping what fits the company and reusing it through custom skills and automations, for the development process as well as business processes.',
+          'Result: many new features delivered, a self-improving process, and a safety and code-quality harness built into development.',
           'Technical analysis and estimation of new features, technical trade-offs alongside the product team.',
           "Code review and mentoring of junior developers, growing the team's skills.",
           'Hardening the platform: unit and E2E tests, production incident support.',
@@ -210,13 +217,14 @@ const DATA = {
       },
     ],
     skills: [
+      { category: 'Backend', items: ['Node.js', 'Symfony / PHP', 'Nest', 'C#', 'GraphQL', 'MySQL', 'PostgreSQL', 'MongoDB'] },
       { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Redux / Redux-Saga', 'Zustand', 'Storybook', 'Tailwind CSS'] },
+      { category: 'AI-Assisted Development', items: ['Claude Code', 'MCP', 'WebMCP', 'Context Engineering', 'Custom Skills', 'Dynamic Workflows', 'Smart GitHub Actions', 'AI Code Review'] },
+      { category: 'AI in Products', items: ['LLM Integration', 'Prompt Engineering', 'TOON / Token Optimization', 'Process Automation'] },
       { category: 'Quality', items: ['Jest', 'Vitest', 'Testing Library', 'Cypress', 'Code Review'] },
       { category: 'Styling', items: ['Styled Components', 'Bootstrap'] },
       { category: 'Tools', items: ['Webpack', 'Vite', 'Git', 'GitHub', 'Jenkins'] },
-      { category: 'Backend', items: ['Symfony / PHP', 'Nest', 'C#', 'GraphQL', 'MySQL', 'PostgreSQL', 'MongoDB'] },
       { category: 'RPA', items: ['UiPath', 'Blue Prism'] },
-      { category: 'Automation & AI', items: ['Claude', 'Dynamic Workflows', 'Custom Skills', 'Smart GitHub Actions'] },
       { category: 'Infrastructure', items: ['Azure DevOps', 'Cloudflare', 'Datadog'] },
     ],
     languages: [

@@ -20,6 +20,8 @@ export interface Experience {
   current: boolean;
   description: LocalizedList;
   technologies: string[];
+  /** Year a technology was adopted, when later than `startDate` (e.g. AI tooling in a long role). */
+  technologiesSince?: Record<string, string>;
 }
 
 export interface Education {
@@ -73,7 +75,7 @@ export interface PersonalInfo {
 
 export const personalInfo: PersonalInfo = {
   name: 'Marwen Cherif',
-  title: 'Software Engineer — Front-End Specialization',
+  title: 'Fullstack Software Engineer',
   location: 'Melun, Île-de-France',
   address: '76 Rue Dian Fossey, 77000 Melun - FRANCE',
   email: 'marwen.cherif@gmail.com',
@@ -84,8 +86,8 @@ export const personalInfo: PersonalInfo = {
   upwork: 'https://www.upwork.com/freelancers/~0156bc098f503b1e3a',
   nationality: 'Tunisia, France',
   bio: {
-    en: 'Front-End Tech Lead at Revers.io, where I drive the modernization of a SaaS platform — architecture, UI overhauls, and scaling. I contribute to continuous product improvement, both cross-functionally and on specific initiatives. An earlier full-stack chapter (Symfony/PHP) gives me an end-to-end perspective, from the backend to the interface. I value clean code, mentoring, and pragmatic decisions. A tech enthusiast, I love experimenting with new development tools, whether AI-related or not.',
-    fr: "Tech Lead Front-End chez Revers.io, où je pilote la modernisation d'une plateforme SaaS — architecture, refontes UI, montée en charge. Je contribue à l'amélioration continue du produit, aussi bien de façon transverse que sur des sujets spécifiques. Une première partie de carrière en full-stack (Symfony/PHP) me donne une vision bout-en-bout, du backend à l'interface. Je privilégie le code propre, le mentorat, et les décisions pragmatiques. Technophile, j'aime expérimenter les nouveaux outils de développement, liés ou non à l'IA.",
+    en: 'Fullstack Software Engineer at Revers.io, driving the development and modernization of a SaaS platform — architecture, full-stack enhancements, and scaling. I contribute to continuous product improvement, both cross-functionally and on specific initiatives. With strong experience across the entire stack (React, Node.js, PHP/Symfony), I bring an end-to-end perspective, from database design to user interface. I value clean code, mentoring, and pragmatic decisions. A tech enthusiast, I love experimenting with new development tools, whether AI-related or not.',
+    fr: "Software Engineer Fullstack chez Revers.io, où je pilote le développement et la modernisation d'une plateforme SaaS — architecture, évolutions full-stack, et montée en charge. Je contribue à l'amélioration continue du produit, aussi bien de façon transverse que sur des sujets spécifiques. Fort d'une expérience sur l'ensemble de la stack (React, Node.js, PHP/Symfony), j'apporte une vision bout-en-bout, de la base de données à l'interface. Je privilégie le code propre, le mentorat et les décisions pragmatiques. Technophile, j'aime expérimenter les nouveaux outils de développement, liés ou non à l'IA.",
   },
 };
 
@@ -93,15 +95,18 @@ export const experiences: Experience[] = [
   {
     id: 'reversio',
     company: 'Revers.io',
-    position: { en: 'Front-End Tech Lead', fr: 'Tech Lead Front-End' },
+    position: { en: 'Fullstack Tech Lead', fr: 'Tech Lead Fullstack' },
     location: { en: 'France', fr: 'France' },
     startDate: '2019',
     endDate: null,
     current: true,
     description: {
       en: [
-        'SaaS after-sales management platform for retailers (refunds, repairs, on-site interventions). Front-End Tech Lead since 2022, after joining as a Front-End Software Engineer in 2019.',
-        'Driving the front-end modernization: UI redesigns, library migrations, React / TypeScript / GraphQL architecture.',
+        'SaaS after-sales management platform for retailers (refunds, repairs, on-site interventions). Fullstack Tech Lead since 2022, after joining as a Fullstack Software Engineer in 2019.',
+        'Driving application modernization and architecture: UI redesigns, API integrations, React / TypeScript / Node.js / GraphQL.',
+        'AI in the product and in delivery: LLM-powered features integrated into the platform, and AI code review in the CI pipeline.',
+        'Set up an AI-automated development workflow: watching what exists on the market, keeping what fits the company and reusing it through custom skills and automations, for the development process as well as business processes.',
+        'Result: many new features delivered, a self-improving process, and a safety and code-quality harness built into development.',
         'Technical analysis and estimation of new features, technical trade-offs alongside the product team.',
         "Code review and mentoring of junior developers, growing the team's skills.",
         'Hardening the platform: unit and E2E tests, production incident support.',
@@ -109,8 +114,11 @@ export const experiences: Experience[] = [
         'Contributing to continuous product improvement, proactively or through analysis of customer-funnel feedback.',
       ],
       fr: [
-        "Plateforme SaaS de gestion du SAV pour le compte de distributeurs (remboursement, réparation, intervention à domicile…). Tech Lead Front-End depuis 2022, après avoir rejoint l'équipe comme Front-End Software Engineer en 2019.",
-        'Pilotage de la modernisation front-end : refonte UI, migration de librairies, architecture React / TypeScript / GraphQL.',
+        "Plateforme SaaS de gestion du SAV pour le compte de distributeurs (remboursement, réparation, intervention à domicile…). Tech Lead Fullstack depuis 2022, après avoir rejoint l'équipe comme Software Engineer Fullstack en 2019.",
+        'Pilotage de la modernisation applicative : refonte UI, intégrations API, architecture React / TypeScript / Node.js / GraphQL.',
+        'IA dans le produit et dans la delivery : intégration de fonctionnalités basées sur des LLM dans la plateforme, et code review par IA dans la CI.',
+        "Mise en place d'un flux de développement automatisé par l'IA : veille sur ce qui existe sur le marché, sélection de l'essentiel adapté à l'entreprise et réutilisation via des skills custom et des automatisations, pour le process de développement comme pour les process métiers.",
+        "Résultat : de nombreuses nouvelles features livrées, un process qui s'auto-améliore, et un harnais de sécurité et de qualité de code intégré au développement.",
         'Analyse technique et chiffrage des nouvelles fonctionnalités, arbitrages techniques avec le produit.',
         "Code review et mentorat des développeurs junior, montée en compétence de l'équipe.",
         'Fiabilisation de la plateforme : tests unitaires et E2E, support des anomalies en production.',
@@ -122,13 +130,24 @@ export const experiences: Experience[] = [
       'React',
       'Next.js',
       'TypeScript',
+      'Node.js',
       'GraphQL',
       'Redux-Saga',
       'Storybook',
       'Vite',
       'Azure DevOps',
       'Cloudflare',
+      'LLM Integration',
+      'AI Code Review',
+      'Custom Skills',
+      'Process Automation',
     ],
+    technologiesSince: {
+      'AI Code Review': '2024',
+      'LLM Integration': '2025',
+      'Custom Skills': '2026',
+      'Process Automation': '2026',
+    },
   },
   {
     id: 'addstones',
@@ -247,14 +266,42 @@ export const education: Education[] = [
 
 export const projects: Project[] = [
   {
-    id: 'reversio-saas-core',
+    id: 'agent-ready-portfolio',
     title: {
-      en: 'Reverse Logistics Platform – Core Frontend Development',
-      fr: 'Plateforme de logistique inverse – Développement front-end principal',
+      en: 'Agent-Ready Portfolio (WebMCP)',
+      fr: 'Portfolio « agent-ready » (WebMCP)',
     },
     description: {
-      en: 'Led the frontend development of a mission-critical after-sales and reverse-logistics platform used by major European retailers, focusing on performance, scalability, and cross-team alignment.',
-      fr: "Pilotage du développement front-end d'une plateforme critique de SAV et de logistique inverse utilisée par de grands distributeurs européens, avec un focus sur la performance, la scalabilité et l'alignement inter-équipes.",
+      en: 'This portfolio exposes structured tools to in-browser AI agents through WebMCP: an assistant can present the profile, explore the experience and match a job offer against it from evidence, instead of scraping the page.',
+      fr: "Ce portfolio expose des outils structurés aux agents IA du navigateur via WebMCP : un assistant peut présenter le profil, explorer l'expérience et confronter une offre d'emploi au parcours à partir de preuves, sans scraper la page.",
+    },
+    period: '2026',
+    technologies: ['WebMCP', 'MCP', 'Next.js', 'TypeScript', 'Claude Code', 'Context Engineering'],
+    highlights: {
+      en: [
+        'Six typed tools (JSON Schema) registered through document.modelContext, with a fallback to the legacy navigator API',
+        'Evidence-based job matching: each requirement is graded proven / listed / mentioned / not found, with years of use and sources',
+        'Tool answers computed from the same career data as the site: a single source of truth',
+        'Built with Claude Code and context engineering (CLAUDE.md, enforced project conventions)',
+      ],
+      fr: [
+        "Six outils typés (JSON Schema) enregistrés via document.modelContext, avec repli sur l'ancienne API navigator",
+        "Matching d'offre basé sur des preuves : chaque exigence est classée prouvée / déclarée / mentionnée / absente, avec années d'usage et sources",
+        'Réponses des outils calculées à partir des mêmes données de carrière que le site : une seule source de vérité',
+        'Développé avec Claude Code et du context engineering (CLAUDE.md, conventions projet imposées)',
+      ],
+    },
+    link: 'https://marwen-cherif.cherio.me',
+  },
+  {
+    id: 'reversio-saas-core',
+    title: {
+      en: 'Reverse Logistics Platform – Core Fullstack Development',
+      fr: 'Plateforme de logistique inverse – Développement fullstack principal',
+    },
+    description: {
+      en: 'Led the development of a mission-critical after-sales and reverse-logistics platform used by major European retailers, focusing on fullstack architecture, scalability, and cross-team alignment.',
+      fr: "Pilotage du développement d'une plateforme critique de SAV et de logistique inverse utilisée par de grands distributeurs européens, avec un focus sur l'architecture fullstack, la scalabilité et l'alignement inter-équipes.",
     },
     period: '2019 – Present',
     technologies: ['React 19', 'TypeScript', 'GraphQL', 'REST APIs', 'Azure', 'Redux Toolkit'],
@@ -276,12 +323,12 @@ export const projects: Project[] = [
   {
     id: 'reversio-modernization',
     title: {
-      en: 'Frontend Platform Modernization & Performance Overhaul',
-      fr: 'Modernisation de la plateforme front-end & refonte des performances',
+      en: 'SaaS Platform Modernization & Performance Overhaul',
+      fr: 'Modernisation de la plateforme SaaS & refonte des performances',
     },
     description: {
-      en: 'Led the end-to-end migration of a large-scale SaaS frontend from Create React App and Webpack to a modern Vite + React 19 architecture, delivering major productivity and runtime performance gains for engineering teams.',
-      fr: "Pilotage de la migration de bout en bout d'un front-end SaaS à grande échelle, de Create React App et Webpack vers une architecture moderne Vite + React 19, avec des gains majeurs de productivité et de performance à l'exécution pour les équipes.",
+      en: 'Led the end-to-end modernization of a large-scale SaaS platform, migrating frontend applications to Vite + React 19 and optimizing backend API integration layers, delivering major productivity gains.',
+      fr: "Pilotage de la modernisation de bout en bout d'une plateforme SaaS, migrant le front-end vers une architecture moderne Vite + React 19 et optimisant les flux API, avec des gains majeurs de performance.",
     },
     period: '2022 – 2024',
     technologies: [
@@ -315,8 +362,8 @@ export const projects: Project[] = [
       fr: 'Architecture monorepo & accélération des pipelines CI/CD',
     },
     description: {
-      en: 'Designed and deployed a scalable monorepo architecture to unify multiple front-end applications, standardize tooling, and dramatically shorten integration and deployment cycles.',
-      fr: "Conception et déploiement d'une architecture monorepo scalable pour unifier plusieurs applications front-end, standardiser l'outillage et raccourcir fortement les cycles d'intégration et de déploiement.",
+      en: 'Designed and deployed a scalable monorepo architecture to unify multiple applications, standardize tooling, and dramatically shorten integration and deployment cycles.',
+      fr: "Conception et déploiement d'une architecture monorepo scalable pour unifier plusieurs applications, standardiser l'outillage et raccourcir fortement les cycles d'intégration et de déploiement.",
     },
     period: '2021 – 2024',
     technologies: ['Turborepo', 'GitHub Actions', 'Cloudflare R2', 'Node.js', 'pnpm'],
@@ -486,6 +533,10 @@ export const projects: Project[] = [
 
 export const skills: Skill[] = [
   {
+    category: { en: 'Backend', fr: 'Backend' },
+    items: ['Node.js', 'Symfony / PHP', 'Nest', 'C#', 'GraphQL', 'MySQL', 'PostgreSQL', 'MongoDB'],
+  },
+  {
     category: { en: 'Frontend', fr: 'Frontend' },
     items: [
       'React',
@@ -495,6 +546,28 @@ export const skills: Skill[] = [
       'Zustand',
       'Storybook',
       'Tailwind CSS',
+    ],
+  },
+  {
+    category: { en: 'AI-Assisted Development', fr: 'Développement assisté par IA' },
+    items: [
+      'Claude Code',
+      'MCP',
+      'WebMCP',
+      'Context Engineering',
+      'Custom Skills',
+      'Dynamic Workflows',
+      'Smart GitHub Actions',
+      'AI Code Review',
+    ],
+  },
+  {
+    category: { en: 'AI in Products', fr: 'IA dans les produits' },
+    items: [
+      'LLM Integration',
+      'Prompt Engineering',
+      'TOON / Token Optimization',
+      'Process Automation',
     ],
   },
   {
@@ -510,16 +583,8 @@ export const skills: Skill[] = [
     items: ['Webpack', 'Vite', 'Git', 'GitHub', 'Jenkins'],
   },
   {
-    category: { en: 'Backend', fr: 'Backend' },
-    items: ['Symfony / PHP', 'Nest', 'C#', 'GraphQL', 'MySQL', 'PostgreSQL', 'MongoDB'],
-  },
-  {
     category: { en: 'RPA', fr: 'RPA' },
     items: ['UiPath', 'Blue Prism'],
-  },
-  {
-    category: { en: 'Automation & AI', fr: 'Automatisation & IA' },
-    items: ['Claude', 'Dynamic Workflows', 'Custom Skills', 'Smart GitHub Actions'],
   },
   {
     category: { en: 'Infrastructure', fr: 'Infrastructure' },

@@ -18,7 +18,7 @@
   "hero": {
     "title": "Software Engineer",
     "aiTouch": "AI-Augmented",
-    "subtitle": "Spécialiste front-end",
+    "subtitle": "Software Engineer Fullstack",
     "cta": "Voir mes réalisations",
     "scrollDown": "Défiler vers le bas"
   },
@@ -76,15 +76,15 @@
     "upwork": "Upwork"
   },
   "footer": {
-    "description": "Tech Lead Front-End passionné par la création de solutions innovantes",
+    "description": "Software Engineer Fullstack passionné par la création de solutions innovantes",
     "quickLinks": "Liens rapides",
     "connect": "Me suivre",
     "copyright": "© 2025 Marwen Cherif. Tous droits réservés.",
     "builtWith": "Construit avec Next.js, TypeScript et Tailwind CSS"
   },
   "seo": {
-    "title": "Marwen Cherif - Portfolio Tech Lead Front-End",
-    "description": "Tech Lead Front-End avec plus de 10 ans d'expérience en développement web. Spécialisé en React, TypeScript, Vite et création d'applications SaaS modernes et évolutives. Expert en architecture front-end, optimisation des performances et leadership d'équipe.",
-    "keywords": "Tech Lead Front-End, Ingénieur Logiciel, Développeur Web, JavaScript, React, TypeScript, Vite, Node.js, Développeur Full Stack, Portfolio, React 19, TanStack Query"
+    "title": "Marwen Cherif - Portfolio Software Engineer Fullstack",
+    "description": "Software Engineer Fullstack avec plus de 10 ans d'expérience en développement web. Spécialisé en React, TypeScript, Node.js et création d'applications SaaS modernes et évolutives. Expert en architecture logicielle, conception de systèmes et leadership d'équipe.",
+    "keywords": "Software Engineer Fullstack, Ingénieur Logiciel, Développeur Web, JavaScript, React, TypeScript, Vite, Node.js, Développeur Full Stack, Portfolio, React 19, TanStack Query"
   }
 }
