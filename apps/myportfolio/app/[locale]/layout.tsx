@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import WebMcpTools from '@/components/webmcp/WebMcpTools';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -75,6 +76,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <WebMcpTools locale={locale} />
       <Navigation />
       <main className="flex-1">{children}</main>
       <Footer />

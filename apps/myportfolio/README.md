@@ -67,6 +67,30 @@ Career information is stored in `data/career.ts` with clean TypeScript interface
 - Canonical URLs
 - Language alternates
 
+## AI agents (WebMCP)
+
+The site exposes tools to in-browser AI agents through [WebMCP](https://webmachinelearning.github.io/webmcp/)
+(`document.modelContext`, with a fallback to the deprecated `navigator.modelContext`). They are built from
+`data/career.ts`, so updating the career data updates what agents see.
+
+| Tool                     | What it gives the agent                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------------------- |
+| `get_profile_overview`   | Headline, current role, years of experience, core stack, quantified achievements, languages  |
+| `match_job_requirements` | Evidence-based match of a job offer's requirements (proven / listed / mentioned / not found) |
+| `search_experience`      | Experience, projects and education matching keywords (tech, client, domain)                  |
+| `get_skills`             | Skills by category, with years of professional use when backed by experience                 |
+| `get_contact_info`       | Contact channels, CV PDF links, optional prefilled `mailto:` link                            |
+| `show_section`           | Scrolls the page to a section while the agent talks about it                                 |
+
+Code: `lib/webmcp/` (tools and pure logic) and `components/webmcp/WebMcpTools` (registration, mounted in
+`app/[locale]/layout.tsx`). Tool titles are translated under `webmcp.titles` in `messages/*.json`.
+
+- **Local testing**: enable `chrome://flags/#enable-webmcp-testing`, then inspect the tools with the
+  [Model Context Tool Inspector](https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd) extension.
+- **Production**: register the production origin for the WebMCP origin trial
+  (Chrome 149–156) and set `WEBMCP_ORIGIN_TRIAL_TOKEN` at build time; `next.config.ts` then sends it as
+  an `Origin-Trial` header on every page.
+
 ## Tech Stack
 
 - **Framework**: Next.js 16
