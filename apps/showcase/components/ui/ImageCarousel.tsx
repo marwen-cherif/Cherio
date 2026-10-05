@@ -26,7 +26,7 @@ export default function ImageCarousel({
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const mainVideoRef = useRef<HTMLVideoElement | null>(null);
-  
+
   // Callback ref to handle video element mounting
   const setVideoRef = (element: HTMLVideoElement | null) => {
     mainVideoRef.current = element;
@@ -74,7 +74,9 @@ export default function ImageCarousel({
 
     videoSources.forEach((src) => {
       // Check if video already exists to avoid duplicates
-      const existingVideo = document.querySelector(`video[data-preload="${src}"]`) as HTMLVideoElement;
+      const existingVideo = document.querySelector(
+        `video[data-preload="${src}"]`
+      ) as HTMLVideoElement;
       if (existingVideo) {
         // If video exists but not loaded, wait for it
         if (existingVideo.readyState < 3) {
@@ -139,7 +141,7 @@ export default function ImageCarousel({
     if (selectedMedia.type === 'video' && mainVideoRef.current) {
       const videoElement = mainVideoRef.current;
       const videoSrc = selectedMedia.src;
-      
+
       // Set source and preload
       if (videoElement.src !== videoSrc) {
         videoElement.src = videoSrc;
@@ -156,7 +158,7 @@ export default function ImageCarousel({
     if (hoveredIndex !== null && allMedia[hoveredIndex]?.type === 'video' && mainVideoRef.current) {
       const videoElement = mainVideoRef.current;
       const videoSrc = allMedia[hoveredIndex].src;
-      
+
       // Ensure video source is set
       if (videoElement.src !== videoSrc) {
         videoElement.src = videoSrc;
@@ -306,12 +308,7 @@ export default function ImageCarousel({
             className={`absolute bottom-4 z-20 rounded-full bg-black/70 hover:bg-black/90 p-2 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white ${isRTL ? 'left-4' : 'right-4'}`}
             aria-label={t('openVideoPreview')}
           >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -368,11 +365,12 @@ export default function ImageCarousel({
 
         {/* Video Indicator */}
         {selectedMedia.type === 'video' && (
-          <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} rounded-md bg-black/70 px-3 py-1.5 text-xs font-medium text-white`}>
+          <div
+            className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} rounded-md bg-black/70 px-3 py-1.5 text-xs font-medium text-white`}
+          >
             {t('video')}
           </div>
         )}
-
       </div>
 
       {/* Thumbnail Navigation - Vertical on Right */}
@@ -408,7 +406,9 @@ export default function ImageCarousel({
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                  <div className={`absolute top-0.5 ${isRTL ? 'left-0.5' : 'right-0.5'} rounded bg-black/70 px-1 py-0.5 text-[10px] font-medium text-white z-10 pointer-events-none`}>
+                  <div
+                    className={`absolute top-0.5 ${isRTL ? 'left-0.5' : 'right-0.5'} rounded bg-black/70 px-1 py-0.5 text-[10px] font-medium text-white z-10 pointer-events-none`}
+                  >
                     {t('video')}
                   </div>
                 </div>
@@ -445,12 +445,7 @@ export default function ImageCarousel({
               className={`absolute top-4 z-10 rounded-full bg-white/10 hover:bg-white/20 p-3 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white ${isRTL ? 'left-4' : 'right-4'}`}
               aria-label={t('close')}
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -544,7 +539,9 @@ export default function ImageCarousel({
 
             {/* Video Indicator in Lightbox */}
             {allMedia[lightboxIndex].type === 'video' && (
-              <div className={`absolute top-20 ${isRTL ? 'right-4' : 'left-4'} rounded-md bg-black/70 px-3 py-1.5 text-xs font-medium text-white`}>
+              <div
+                className={`absolute top-20 ${isRTL ? 'right-4' : 'left-4'} rounded-md bg-black/70 px-3 py-1.5 text-xs font-medium text-white`}
+              >
                 {t('video')}
               </div>
             )}
@@ -554,4 +551,3 @@ export default function ImageCarousel({
     </div>
   );
 }
-

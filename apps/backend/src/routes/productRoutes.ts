@@ -778,4 +778,3 @@ const router = Router();
 RouteBuilder.buildRouteGroup(router, productRoutes);
 
 export default router;
-

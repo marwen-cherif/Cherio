@@ -5,7 +5,7 @@ export type Locale = 'fr' | 'en' | 'ar';
 interface LocaleState {
   locale: Locale;
   isRTL: boolean;
-  
+
   // Actions
   setLocale: (locale: Locale) => void;
 }
@@ -17,7 +17,7 @@ const calculateIsRTL = (locale: Locale): boolean => {
 export const useLocaleStore = create<LocaleState>((set) => ({
   locale: 'fr', // Default locale
   isRTL: false,
-  
+
   setLocale: (locale) => {
     set({
       locale,
@@ -25,4 +25,3 @@ export const useLocaleStore = create<LocaleState>((set) => ({
     });
   },
 }));
-

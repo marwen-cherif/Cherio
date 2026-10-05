@@ -10,11 +10,7 @@ export default function CartIcon() {
 
   return (
     <Link href="/cart" className="relative">
-      <motion.div
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="relative p-2"
-      >
+      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="relative p-2">
         <svg
           className="h-6 w-6 text-secondary hover:text-primary transition-colors"
           fill="none"
@@ -41,4 +37,3 @@ export default function CartIcon() {
     </Link>
   );
 }
-

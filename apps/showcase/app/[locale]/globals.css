@@ -1,27 +1,27 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Theme colors - centralized from config/theme.ts */
 :root {
   /* Base colors */
-  --background: #FFFBF5;
-  --foreground: #5C5451;
-  --primary: #5C5451;
-  --secondary: #A18080;
-  --accent: #FFDBD9;
-  --muted: #A18080;
-  --border: #FFDBD9;
-  
+  --background: #fffbf5;
+  --foreground: #5c5451;
+  --primary: #5c5451;
+  --secondary: #a18080;
+  --accent: #ffdbd9;
+  --muted: #a18080;
+  --border: #ffdbd9;
+
   /* Additional colors */
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
-  
+
   /* Platform colors */
-  --amazon-primary: #FF9900;
-  --amazon-hover: #E88900;
-  --etsy-primary: #F56400;
-  --etsy-hover: #D85600;
-  --vinted-primary: #09B1BA;
-  --vinted-hover: #0899A1;
+  --amazon-primary: #ff9900;
+  --amazon-hover: #e88900;
+  --etsy-primary: #f56400;
+  --etsy-hover: #d85600;
+  --vinted-primary: #09b1ba;
+  --vinted-hover: #0899a1;
 }
 
 @theme inline {
@@ -35,7 +35,7 @@
   --color-border: var(--border);
   --color-white: var(--white);
   --color-black: var(--black);
-  
+
   /* Platform colors */
   --color-amazon: var(--amazon-primary);
   --color-amazon-hover: var(--amazon-hover);
@@ -43,15 +43,15 @@
   --color-etsy-hover: var(--etsy-hover);
   --color-vinted: var(--vinted-primary);
   --color-vinted-hover: var(--vinted-hover);
-  
+
   /* Font */
   --font-sans: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #FFFBF5;
-    --foreground: #5C5451;
+    --background: #fffbf5;
+    --foreground: #5c5451;
   }
 }
 
@@ -62,11 +62,11 @@ body {
 }
 
 /* RTL Support */
-[dir="rtl"] {
+[dir='rtl'] {
   direction: rtl;
 }
 
-[dir="ltr"] {
+[dir='ltr'] {
   direction: ltr;
 }
 
@@ -163,7 +163,9 @@ html {
 .react-select__menu {
   z-index: 9999;
   border-radius: 0.375rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .react-select__option {
@@ -203,7 +205,9 @@ html {
   color: var(--primary);
   background-color: var(--white);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .phone-input .PhoneInputInput:focus {
@@ -215,7 +219,7 @@ html {
   margin-right: 0.5rem;
 }
 
-[dir="rtl"] .phone-input .PhoneInputCountry {
+[dir='rtl'] .phone-input .PhoneInputCountry {
   margin-right: 0;
   margin-left: 0.5rem;
 }
@@ -234,4 +238,3 @@ html {
   border-color: #ef4444;
   box-shadow: 0 0 0 1px #ef4444;
 }
-

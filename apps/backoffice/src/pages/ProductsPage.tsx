@@ -13,12 +13,7 @@ import {
   Pagination,
   Flex,
 } from '@mantine/core';
-import {
-  IconPlus,
-  IconEdit,
-  IconTrash,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconPlus, IconEdit, IconTrash, IconSearch } from '@tabler/icons-react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -30,7 +25,13 @@ import {
   ColumnDef,
 } from '@tanstack/react-table';
 import { modals } from '@mantine/modals';
-import { useProducts, useDeleteProduct, Product, useCreateProduct, useUpdateProduct } from '../hooks/useProducts';
+import {
+  useProducts,
+  useDeleteProduct,
+  Product,
+  useCreateProduct,
+  useUpdateProduct,
+} from '../hooks/useProducts';
 import ProductForm from '../components/ProductForm';
 import { ProductFormData } from '../schemas/productSchema';
 
@@ -98,9 +99,7 @@ export default function ProductsPage() {
       columnHelper.accessor('featured', {
         header: 'Featured',
         cell: (info) => (
-          <Badge color={info.getValue() ? 'blue' : 'gray'}>
-            {info.getValue() ? 'Yes' : 'No'}
-          </Badge>
+          <Badge color={info.getValue() ? 'blue' : 'gray'}>{info.getValue() ? 'Yes' : 'No'}</Badge>
         ),
       }),
       columnHelper.accessor('isActive', {
@@ -116,11 +115,7 @@ export default function ProductsPage() {
         header: 'Actions',
         cell: (info) => (
           <Group gap="xs">
-            <ActionIcon
-              variant="subtle"
-              color="blue"
-              onClick={() => handleEdit(info.row.original)}
-            >
+            <ActionIcon variant="subtle" color="blue" onClick={() => handleEdit(info.row.original)}>
               <IconEdit size={16} />
             </ActionIcon>
             <ActionIcon
@@ -169,7 +164,8 @@ export default function ProductsPage() {
       title: 'Delete Product',
       children: (
         <Text size="sm">
-          Are you sure you want to delete "{product.name?.en || product.name?.fr || 'this product'}"? This action cannot be undone.
+          Are you sure you want to delete "{product.name?.en || product.name?.fr || 'this product'}
+          "? This action cannot be undone.
         </Text>
       ),
       labels: { confirm: 'Delete', cancel: 'Cancel' },
@@ -250,10 +246,7 @@ export default function ProductsPage() {
                           >
                             {header.isPlaceholder
                               ? null
-                              : flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
+                              : flexRender(header.column.columnDef.header, header.getContext())}
                           </th>
                         ))}
                       </tr>
@@ -274,10 +267,7 @@ export default function ProductsPage() {
                               padding: '12px',
                             }}
                           >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </td>
                         ))}
                       </tr>
@@ -289,15 +279,11 @@ export default function ProductsPage() {
               {data.pagination && data.pagination.totalPages > 1 && (
                 <Flex justify="space-between" align="center" mt="md">
                   <Text size="sm" c="dimmed">
-                    Showing {((page - 1) * limit) + 1} to{' '}
-                    {Math.min(page * limit, data.pagination.total)} of{' '}
-                    {data.pagination.total} products
+                    Showing {(page - 1) * limit + 1} to{' '}
+                    {Math.min(page * limit, data.pagination.total)} of {data.pagination.total}{' '}
+                    products
                   </Text>
-                  <Pagination
-                    value={page}
-                    onChange={setPage}
-                    total={data.pagination.totalPages}
-                  />
+                  <Pagination value={page} onChange={setPage} total={data.pagination.totalPages} />
                 </Flex>
               )}
             </>
@@ -318,4 +304,3 @@ export default function ProductsPage() {
     </Container>
   );
 }
-

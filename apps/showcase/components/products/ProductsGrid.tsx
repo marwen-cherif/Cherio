@@ -39,14 +39,10 @@ export default function ProductsGrid({ products }: ProductsGridProps) {
       animate="visible"
     >
       {products.map((product) => (
-        <motion.div
-          key={product.id}
-          variants={itemVariants}
-        >
+        <motion.div key={product.id} variants={itemVariants}>
           <ProductCard product={product} />
         </motion.div>
       ))}
     </motion.div>
   );
 }
-

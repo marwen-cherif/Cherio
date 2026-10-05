@@ -18,7 +18,12 @@ interface AuthState {
 
 interface AuthContextType extends AuthState {
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
+  register: (
+    email: string,
+    password: string,
+    firstName?: string,
+    lastName?: string
+  ) => Promise<void>;
   logout: () => Promise<void>;
   refreshAccessToken: () => Promise<boolean>;
 }
@@ -80,7 +85,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           clearAuthState();
         }
       } else {
-        setAuthState(prev => ({ ...prev, isLoading: false }));
+        setAuthState((prev) => ({ ...prev, isLoading: false }));
       }
     };
 
@@ -141,9 +146,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Register function
   const register = async (
-    email: string, 
-    password: string, 
-    firstName?: string, 
+    email: string,
+    password: string,
+    firstName?: string,
     lastName?: string
   ) => {
     try {
@@ -226,7 +231,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('refreshToken', tokens.refreshToken);
 
       // Update auth state
-      setAuthState(prev => ({
+      setAuthState((prev) => ({
         ...prev,
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
@@ -257,11 +262,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     refreshAccessToken,
   };
 
-  return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
 
 // Custom hook to use auth context

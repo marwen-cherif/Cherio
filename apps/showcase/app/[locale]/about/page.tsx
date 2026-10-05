@@ -10,12 +10,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('subtitle'),
     alternates: {
       languages: {
-        'fr': '/fr/about',
-        'en': '/en/about',
-        'ar': '/ar/about',
-        'x-default': '/about'
-      }
-    }
+        fr: '/fr/about',
+        en: '/en/about',
+        ar: '/ar/about',
+        'x-default': '/about',
+      },
+    },
   };
 }
 
@@ -31,38 +31,36 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
         <div className="prose prose-lg max-w-none" dir={isRTL ? 'rtl' : 'ltr'}>
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('story')}
-            </h2>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('story')}</h2>
             <p className="text-secondary leading-relaxed">
               {locale === 'fr' && (
                 <>
-                  Notre histoire commence avec une passion pour l'artisanat et le désir de créer des produits uniques qui allient tradition et modernité.
-                  Chaque pièce que nous créons est le fruit d'un savoir-faire transmis de génération en génération,
-                  enrichi par notre vision contemporaine de la qualité et de l'esthétique.
+                  Notre histoire commence avec une passion pour l'artisanat et le désir de créer des
+                  produits uniques qui allient tradition et modernité. Chaque pièce que nous créons
+                  est le fruit d'un savoir-faire transmis de génération en génération, enrichi par
+                  notre vision contemporaine de la qualité et de l'esthétique.
                 </>
               )}
               {locale === 'en' && (
                 <>
-                  Our story begins with a passion for craftsmanship and the desire to create unique products that combine tradition and modernity.
-                  Each piece we create is the result of know-how passed down from generation to generation,
-                  enriched by our contemporary vision of quality and aesthetics.
+                  Our story begins with a passion for craftsmanship and the desire to create unique
+                  products that combine tradition and modernity. Each piece we create is the result
+                  of know-how passed down from generation to generation, enriched by our
+                  contemporary vision of quality and aesthetics.
                 </>
               )}
               {locale === 'ar' && (
                 <>
                   تبدأ قصتنا بشغف بالحرفية والرغبة في إنشاء منتجات فريدة تجمع بين التقليد والحداثة.
-                  كل قطعة نصنعها هي ثمرة معرفة متوارثة من جيل إلى جيل،
-                  مثراة برؤيتنا المعاصرة للجودة والجماليات.
+                  كل قطعة نصنعها هي ثمرة معرفة متوارثة من جيل إلى جيل، مثراة برؤيتنا المعاصرة للجودة
+                  والجماليات.
                 </>
               )}
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('values')}
-            </h2>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('values')}</h2>
             <ul className="list-disc list-inside space-y-2 text-secondary">
               {locale === 'fr' && (
                 <>
@@ -92,23 +90,26 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('mission')}
-            </h2>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('mission')}</h2>
             <p className="text-secondary leading-relaxed">
               {locale === 'fr' && (
                 <>
-                    Notre mission est de rendre la qualité accessible à tous. Nous sélectionnons des produits fiables, tendances et abordables pour simplifier et embellir votre vie quotidienne.
+                  Notre mission est de rendre la qualité accessible à tous. Nous sélectionnons des
+                  produits fiables, tendances et abordables pour simplifier et embellir votre vie
+                  quotidienne.
                 </>
               )}
               {locale === 'en' && (
                 <>
-                    Our mission is to make quality accessible to everyone. We carefully select reliable, trendy, and affordable products to simplify and enhance your everyday life.
+                  Our mission is to make quality accessible to everyone. We carefully select
+                  reliable, trendy, and affordable products to simplify and enhance your everyday
+                  life.
                 </>
               )}
               {locale === 'ar' && (
                 <>
-                    مهمتنا هي جعل الجودة في متناول الجميع. نختار بعناية منتجات موثوقة وعصرية وبأسعار مناسبة لتبسيط حياتك اليومية وجعلها أكثر جمالاً.
+                  مهمتنا هي جعل الجودة في متناول الجميع. نختار بعناية منتجات موثوقة وعصرية وبأسعار
+                  مناسبة لتبسيط حياتك اليومية وجعلها أكثر جمالاً.
                 </>
               )}
             </p>
@@ -118,4 +119,3 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     </div>
   );
 }
-

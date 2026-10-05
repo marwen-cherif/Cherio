@@ -50,4 +50,3 @@ export interface RouteGroup {
   routes: RouteDefinition[];
   middlewares?: Array<RequestHandler | RequestHandler[]>;
 }
-

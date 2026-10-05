@@ -10,16 +10,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('description'),
     alternates: {
       languages: {
-        'fr': '/fr/cart',
-        'en': '/en/cart',
-        'ar': '/ar/cart',
-        'x-default': '/cart'
-      }
-    }
+        fr: '/fr/cart',
+        en: '/en/cart',
+        ar: '/ar/cart',
+        'x-default': '/cart',
+      },
+    },
   };
 }
 
 export default async function CartPage({ params }: { params: Promise<{ locale: string }> }) {
   return <CartClient />;
 }
-

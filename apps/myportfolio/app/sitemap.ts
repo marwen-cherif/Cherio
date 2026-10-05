@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://marwencherif.eu';
-  
+
   return [
     {
       url: baseUrl,
@@ -30,4 +30,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 }
-

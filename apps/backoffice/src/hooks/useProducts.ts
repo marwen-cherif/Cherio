@@ -107,8 +107,7 @@ export function useUpdateProduct() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: any }) =>
-      apiUtils.products.update(id, data),
+    mutationFn: ({ id, data }: { id: string; data: any }) => apiUtils.products.update(id, data),
     onSuccess: (_, variables) => {
       // Invalidate and refetch products list and detail
       queryClient.invalidateQueries({ queryKey: productKeys.lists() });
@@ -129,4 +128,3 @@ export function useDeleteProduct() {
     },
   });
 }
-

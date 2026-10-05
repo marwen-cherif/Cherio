@@ -18,4 +18,3 @@ export const escapeHtml = (text: string): string => {
 export const nl2br = (text: string): string => {
   return text.replace(/\n/g, '<br>');
 };
-

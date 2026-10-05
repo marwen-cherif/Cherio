@@ -11,7 +11,7 @@ const mockContracts: Contract[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     provider: 'Energy Corp',
-    category: 'Utilities'
+    category: 'Utilities',
   },
   {
     id: '2',
@@ -20,7 +20,7 @@ const mockContracts: Contract[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     provider: 'Insurance Ltd',
-    category: 'Insurance'
+    category: 'Insurance',
   },
   {
     id: '3',
@@ -29,8 +29,8 @@ const mockContracts: Contract[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     provider: 'Maintenance Bros',
-    category: 'Maintenance'
-  }
+    category: 'Maintenance',
+  },
 ];
 
 export default function ContractsPage() {
@@ -50,7 +50,7 @@ export default function ContractsPage() {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -70,7 +70,9 @@ export default function ContractsPage() {
 
   return (
     <Container size="lg">
-      <Title order={2} mb="lg">Contracts</Title>
+      <Title order={2} mb="lg">
+        Contracts
+      </Title>
 
       <Card withBorder shadow="sm" p="md" radius="md">
         {isLoading ? (

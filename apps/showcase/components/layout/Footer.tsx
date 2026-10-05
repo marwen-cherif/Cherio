@@ -17,21 +17,14 @@ export default function Footer() {
                 <div className="text-sm text-secondary">by Cherio</div>
               </div>
             </h3>
-            <p className="text-sm text-secondary">
-              {t('description')}
-            </p>
+            <p className="text-sm text-secondary">{t('description')}</p>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-primary mb-4">
-              {t('links')}
-            </h4>
+            <h4 className="text-sm font-semibold text-primary mb-4">{t('links')}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  href="/about"
-                  className="text-secondary hover:text-primary transition-colors"
-                >
+                <Link href="/about" className="text-secondary hover:text-primary transition-colors">
                   {t('about')}
                 </Link>
               </li>
@@ -55,15 +48,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-primary mb-4">
-              {t('legalSection')}
-            </h4>
+            <h4 className="text-sm font-semibold text-primary mb-4">{t('legalSection')}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  href="/legal"
-                  className="text-secondary hover:text-primary transition-colors"
-                >
+                <Link href="/legal" className="text-secondary hover:text-primary transition-colors">
                   {t('legal')}
                 </Link>
               </li>
@@ -80,10 +68,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-border pt-8 text-center text-sm text-secondary">
-          <p>© {new Date().getFullYear()} Cherio. {t('rights')}.</p>
+          <p>
+            © {new Date().getFullYear()} Cherio. {t('rights')}.
+          </p>
         </div>
       </div>
     </footer>
   );
 }
-

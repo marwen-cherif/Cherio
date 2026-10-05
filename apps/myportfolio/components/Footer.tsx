@@ -14,7 +14,7 @@ export default function Footer() {
     { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
     { icon: Github, href: personalInfo.github, label: 'GitHub' },
     { icon: Globe, href: personalInfo.website, label: 'Website' },
-  ].filter(link => link.href);
+  ].filter((link) => link.href);
 
   return (
     <footer className="bg-gradient-to-b from-background to-muted/50 border-t border-border">
@@ -26,7 +26,7 @@ export default function Footer() {
               <p className="text-muted-foreground leading-relaxed">{t('description')}</p>
             </div>
           </AnimatedSection>
-          
+
           <AnimatedSection direction="up" delay={0.1}>
             <div>
               <h4 className="font-semibold text-foreground mb-4">{t('quickLinks')}</h4>
@@ -54,7 +54,7 @@ export default function Footer() {
               </ul>
             </div>
           </AnimatedSection>
-          
+
           <AnimatedSection direction="up" delay={0.2}>
             <div>
               <h4 className="font-semibold text-foreground mb-4">{t('connect')}</h4>
@@ -83,7 +83,7 @@ export default function Footer() {
             </div>
           </AnimatedSection>
         </div>
-        
+
         <AnimatedSection direction="up" delay={0.3}>
           <div className="pt-8 border-t border-border text-center space-y-2">
             <p className="text-muted-foreground">{t('copyright')}</p>

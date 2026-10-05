@@ -9,12 +9,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('subtitle'),
     alternates: {
       languages: {
-        'fr': '/fr/privacy',
-        'en': '/en/privacy',
-        'ar': '/ar/privacy',
-        'x-default': '/privacy'
-      }
-    }
+        fr: '/fr/privacy',
+        en: '/en/privacy',
+        ar: '/ar/privacy',
+        'x-default': '/privacy',
+      },
+    },
   };
 }
 
@@ -30,9 +30,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
             {t('title')}
           </h1>
-          <p className="mt-4 text-lg text-secondary">
-            {t('subtitle')}
-          </p>
+          <p className="mt-4 text-lg text-secondary">{t('subtitle')}</p>
         </div>
 
         <div className="prose prose-lg max-w-none" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -40,9 +38,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             <h2 className="text-2xl font-semibold text-primary mb-4">
               {t('dataCollection.title')}
             </h2>
-            <p className="text-secondary leading-relaxed mb-4">
-              {t('dataCollection.content')}
-            </p>
+            <p className="text-secondary leading-relaxed mb-4">{t('dataCollection.content')}</p>
             <ul className="list-disc list-inside space-y-2 text-secondary">
               <li>{t('dataCollection.items.name')}</li>
               <li>{t('dataCollection.items.email')}</li>
@@ -53,12 +49,8 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('dataUsage.title')}
-            </h2>
-            <p className="text-secondary leading-relaxed mb-4">
-              {t('dataUsage.content')}
-            </p>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('dataUsage.title')}</h2>
+            <p className="text-secondary leading-relaxed mb-4">{t('dataUsage.content')}</p>
             <ul className="list-disc list-inside space-y-2 text-secondary">
               <li>{t('dataUsage.items.orders')}</li>
               <li>{t('dataUsage.items.contact')}</li>
@@ -71,27 +63,17 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             <h2 className="text-2xl font-semibold text-primary mb-4">
               {t('dataProtection.title')}
             </h2>
-            <p className="text-secondary leading-relaxed">
-              {t('dataProtection.content')}
-            </p>
+            <p className="text-secondary leading-relaxed">{t('dataProtection.content')}</p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('cookies.title')}
-            </h2>
-            <p className="text-secondary leading-relaxed">
-              {t('cookies.content')}
-            </p>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('cookies.title')}</h2>
+            <p className="text-secondary leading-relaxed">{t('cookies.content')}</p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('rights.title')}
-            </h2>
-            <p className="text-secondary leading-relaxed mb-4">
-              {t('rights.content')}
-            </p>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('rights.title')}</h2>
+            <p className="text-secondary leading-relaxed mb-4">{t('rights.content')}</p>
             <ul className="list-disc list-inside space-y-2 text-secondary">
               <li>{t('rights.items.access')}</li>
               <li>{t('rights.items.rectify')}</li>
@@ -102,17 +84,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-primary mb-4">
-              {t('contact.title')}
-            </h2>
-            <p className="text-secondary leading-relaxed">
-              {t('contact.content')}
-            </p>
+            <h2 className="text-2xl font-semibold text-primary mb-4">{t('contact.title')}</h2>
+            <p className="text-secondary leading-relaxed">{t('contact.content')}</p>
           </section>
         </div>
       </div>
     </div>
   );
 }
-
-

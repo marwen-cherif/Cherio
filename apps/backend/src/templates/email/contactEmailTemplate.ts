@@ -91,9 +91,8 @@ ${isFr ? 'Message' : 'Message'}:
 ${message}
 
 ---
-${isFr ? 'Pour répondre, utilisez l\'adresse email ci-dessus.' : 'To reply, use the email address above.'}
+${isFr ? "Pour répondre, utilisez l'adresse email ci-dessus." : 'To reply, use the email address above.'}
   `.trim();
 
   return { html, text };
 };
-

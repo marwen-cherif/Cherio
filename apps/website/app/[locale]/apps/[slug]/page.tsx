@@ -8,13 +8,13 @@ import AppDetailPage from './AppDetailPage';
 export async function generateStaticParams() {
   const { routing } = await import('@/i18n/routing');
   const params: { locale: string; slug: string }[] = [];
-  
+
   for (const locale of routing.locales) {
     for (const app of cherioApps) {
       params.push({ locale, slug: app.slug });
     }
   }
-  
+
   return params;
 }
 
@@ -32,7 +32,8 @@ export async function generateMetadata({
 
   return generatePageMetadata({
     title: `${app.publicName[locale as 'fr' | 'en']} - Cherio`,
-    description: app.longDescription?.[locale as 'fr' | 'en'] || app.description[locale as 'fr' | 'en'],
+    description:
+      app.longDescription?.[locale as 'fr' | 'en'] || app.description[locale as 'fr' | 'en'],
     locale: locale as 'fr' | 'en',
     path: `/${locale}/apps/${slug}`,
   });
@@ -76,4 +77,3 @@ export default async function AppPage({
     </>
   );
 }
-

@@ -12,10 +12,10 @@ const messages = {
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale: string;
-  
+
   try {
     const requested = await requestLocale;
-    
+
     if (requested && hasLocale(routing.locales, requested)) {
       locale = requested;
     } else {
@@ -30,4 +30,3 @@ export default getRequestConfig(async ({ requestLocale }) => {
     messages: messages[locale as keyof typeof messages],
   };
 });
-

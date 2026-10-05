@@ -37,6 +37,7 @@ Le fichier `cherio.apps.config.ts` contient la configuration de toutes les appli
 ## SEO
 
 Chaque page inclut :
+
 - Metadata complète (title, description)
 - OpenGraph tags
 - Twitter cards
@@ -47,4 +48,3 @@ Chaque page inclut :
 ## Build
 
 Le site est généré en statique avec `next build`, produisant des fichiers HTML dans `out/`.
-

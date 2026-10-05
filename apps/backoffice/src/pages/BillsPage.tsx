@@ -11,7 +11,7 @@ const mockBills: Bill[] = [
     date: '2025-03-15',
     category: 'Utilities',
     contractId: '1',
-    status: 'pending'
+    status: 'pending',
   },
   {
     id: '2',
@@ -20,7 +20,7 @@ const mockBills: Bill[] = [
     date: '2025-03-10',
     category: 'Insurance',
     contractId: '2',
-    status: 'verified'
+    status: 'verified',
   },
   {
     id: '3',
@@ -29,8 +29,8 @@ const mockBills: Bill[] = [
     date: '2025-03-05',
     category: 'Maintenance',
     contractId: '3',
-    status: 'rejected'
-  }
+    status: 'rejected',
+  },
 ];
 
 export default function BillsPage() {
@@ -63,13 +63,15 @@ export default function BillsPage() {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
   return (
     <Container size="lg">
-      <Title order={2} mb="lg">Bills</Title>
+      <Title order={2} mb="lg">
+        Bills
+      </Title>
 
       <Card withBorder shadow="sm" p="md" radius="md">
         {isLoading ? (

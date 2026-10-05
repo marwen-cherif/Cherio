@@ -3,7 +3,7 @@
  */
 export const getBaseEmailTemplate = (content: string, locale: 'fr' | 'en' = 'fr'): string => {
   const isFr = locale === 'fr';
-  
+
   return `
 <!DOCTYPE html>
 <html lang="${locale}">
@@ -30,7 +30,7 @@ export const getBaseEmailTemplate = (content: string, locale: 'fr' | 'en' = 'fr'
                 Cherio
               </h1>
               <p style="margin: 8px 0 0; color: #e0e0e0; font-size: 14px; font-weight: 400;">
-                ${isFr ? 'Écosystème d\'applications' : 'Application Ecosystem'}
+                ${isFr ? "Écosystème d'applications" : 'Application Ecosystem'}
               </p>
             </td>
           </tr>
@@ -49,7 +49,7 @@ export const getBaseEmailTemplate = (content: string, locale: 'fr' | 'en' = 'fr'
                 <tr>
                   <td style="text-align: center; color: #666666; font-size: 12px; line-height: 1.6;">
                     <p style="margin: 0 0 8px;">
-                      <strong>Cherio</strong> - ${isFr ? 'Écosystème d\'applications pour la création, le commerce et l\'innovation' : 'Application ecosystem for creation, commerce, and innovation'}
+                      <strong>Cherio</strong> - ${isFr ? "Écosystème d'applications pour la création, le commerce et l'innovation" : 'Application ecosystem for creation, commerce, and innovation'}
                     </p>
                     <p style="margin: 8px 0 0; color: #999999;">
                       © ${new Date().getFullYear()} Cherio. ${isFr ? 'Tous droits réservés' : 'All rights reserved'}.
@@ -67,4 +67,3 @@ export const getBaseEmailTemplate = (content: string, locale: 'fr' | 'en' = 'fr'
 </html>
   `.trim();
 };
-

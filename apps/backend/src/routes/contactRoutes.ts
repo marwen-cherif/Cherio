@@ -160,4 +160,3 @@ const router = Router();
 RouteBuilder.buildRouteGroup(router, contactRoutes);
 
 export default router;
-

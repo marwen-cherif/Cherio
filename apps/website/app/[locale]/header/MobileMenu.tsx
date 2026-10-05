@@ -138,9 +138,7 @@ export default function MobileMenu({ locale, isOpen, onClose, translations }: Mo
               </div>
             </div>
             <div className="pt-4 border-t border-gray-200">
-              <p className="text-xs text-center text-gray-500">
-                © 2025 Cherio
-              </p>
+              <p className="text-xs text-center text-gray-500">© 2025 Cherio</p>
             </div>
           </div>
         </div>
@@ -148,4 +146,3 @@ export default function MobileMenu({ locale, isOpen, onClose, translations }: Mo
     </>
   );
 }
-

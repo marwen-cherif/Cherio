@@ -35,7 +35,9 @@ export default function Apps() {
   return (
     <section id="apps" ref={sectionRef} className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
             {t('title')}
           </h2>
@@ -58,7 +60,9 @@ export default function Apps() {
                     <span className="text-2xl">📱</span>
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">{app.publicName[locale]}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                  {app.publicName[locale]}
+                </h3>
                 <p className="text-gray-600 text-sm mb-4">{app.description[locale]}</p>
               </Link>
               {app.published ? (

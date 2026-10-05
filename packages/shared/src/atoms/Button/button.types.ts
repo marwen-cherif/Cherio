@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ButtonVariant = 
+export type ButtonVariant =
   | 'primary'
   | 'secondary'
   | 'ghost'
@@ -32,12 +32,15 @@ export interface BaseButtonProps {
 }
 
 export const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-white hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+  primary:
+    'bg-primary text-white hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
   secondary: 'bg-secondary text-white hover:bg-primary',
   ghost: 'bg-transparent text-secondary hover:bg-accent/30 hover:text-primary',
-  outline: 'border border-border bg-transparent text-primary hover:bg-accent/30 hover:border-secondary',
+  outline:
+    'border border-border bg-transparent text-primary hover:bg-accent/30 hover:border-secondary',
   icon: 'bg-transparent text-secondary hover:text-primary p-2',
-  'icon-circle': 'rounded-full bg-primary text-white hover:bg-secondary shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2',
+  'icon-circle':
+    'rounded-full bg-primary text-white hover:bg-secondary shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2',
   amazon: 'bg-amazon text-white hover:bg-amazon-hover',
   etsy: 'bg-etsy text-white hover:bg-etsy-hover',
   vinted: 'bg-vinted text-white hover:bg-vinted-hover',
@@ -64,4 +67,3 @@ export const iconButtonVariants = {
   hover: { scale: 1.1 },
   tap: { scale: 0.9 },
 };
-

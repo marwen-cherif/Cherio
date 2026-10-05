@@ -439,4 +439,3 @@ const router = Router();
 RouteBuilder.buildRouteGroup(router, categoryRoutes);
 
 export default router;
-

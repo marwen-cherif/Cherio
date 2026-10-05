@@ -38,4 +38,3 @@ Le build génère un site statique dans le dossier `out/`.
 ## Configuration du formulaire de contact
 
 Le formulaire de contact utilise Formspree. Pour l'activer, modifiez l'URL dans `components/forms/ContactForm.tsx` avec votre ID Formspree.
-

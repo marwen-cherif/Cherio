@@ -124,7 +124,11 @@ async function main() {
   const sportsOutdoors = await prisma.category.create({
     data: {
       name: createMultilingual('Sport & Plein Air', 'Sports & Outdoors', 'الرياضة والهواء الطلق'),
-      slug: createMultilingualSlug('Sport & Plein Air', 'Sports & Outdoors', 'الرياضة والهواء الطلق'),
+      slug: createMultilingualSlug(
+        'Sport & Plein Air',
+        'Sports & Outdoors',
+        'الرياضة والهواء الطلق'
+      ),
       description: createMultilingual(
         'Équipements sportifs et activités de plein air',
         'Sports equipment and outdoor activities',
@@ -143,8 +147,16 @@ async function main() {
   // Electronics > Computer Accessories
   const computerAccessories = await prisma.category.create({
     data: {
-      name: createMultilingual('Accessoires Informatique', 'Computer Accessories', 'إكسسوارات الكمبيوتر'),
-      slug: createMultilingualSlug('Accessoires Informatique', 'Computer Accessories', 'إكسسوارات الكمبيوتر'),
+      name: createMultilingual(
+        'Accessoires Informatique',
+        'Computer Accessories',
+        'إكسسوارات الكمبيوتر'
+      ),
+      slug: createMultilingualSlug(
+        'Accessoires Informatique',
+        'Computer Accessories',
+        'إكسسوارات الكمبيوتر'
+      ),
       description: createMultilingual(
         'Accessoires pour ordinateurs et périphériques',
         'Computer and peripheral accessories',
@@ -158,8 +170,16 @@ async function main() {
   // Electronics > Mobile & Tablets
   const mobileTablets = await prisma.category.create({
     data: {
-      name: createMultilingual('Mobile & Tablettes', 'Mobile & Tablets', 'الهواتف والأجهزة اللوحية'),
-      slug: createMultilingualSlug('Mobile & Tablettes', 'Mobile & Tablets', 'الهواتف والأجهزة اللوحية'),
+      name: createMultilingual(
+        'Mobile & Tablettes',
+        'Mobile & Tablets',
+        'الهواتف والأجهزة اللوحية'
+      ),
+      slug: createMultilingualSlug(
+        'Mobile & Tablettes',
+        'Mobile & Tablets',
+        'الهواتف والأجهزة اللوحية'
+      ),
       description: createMultilingual(
         'Smartphones, tablettes et accessoires mobiles',
         'Smartphones, tablets and mobile accessories',
@@ -302,7 +322,7 @@ async function main() {
       name: createMultilingual('Souris', 'Mouse', 'الماوس'),
       slug: createMultilingualSlug('Souris', 'Mouse', 'الماوس'),
       description: createMultilingual(
-        'Souris d\'ordinateur filaires et sans fil',
+        "Souris d'ordinateur filaires et sans fil",
         'Wired and wireless computer mice',
         'فأرة الكمبيوتر السلكية واللاسلكية'
       ),
@@ -404,10 +424,10 @@ async function main() {
   // Jewelry > Earrings
   const earrings = await prisma.category.create({
     data: {
-      name: createMultilingual('Boucles d\'oreilles', 'Earrings', 'الأقراط'),
-      slug: createMultilingualSlug('Boucles d\'oreilles', 'Earrings', 'الأقراط'),
+      name: createMultilingual("Boucles d'oreilles", 'Earrings', 'الأقراط'),
+      slug: createMultilingualSlug("Boucles d'oreilles", 'Earrings', 'الأقراط'),
       description: createMultilingual(
-        'Boucles d\'oreilles et créoles',
+        "Boucles d'oreilles et créoles",
         'Earrings and ear studs',
         'الأقراط والخرص'
       ),
@@ -497,7 +517,7 @@ async function main() {
       name: createMultilingual('Éclairage', 'Lighting', 'الإضاءة'),
       slug: createMultilingualSlug('Éclairage', 'Lighting', 'الإضاءة'),
       description: createMultilingual(
-        'Lampes et éclairages d\'intérieur',
+        "Lampes et éclairages d'intérieur",
         'Lamps and interior lighting',
         'المصابيح والإضاءة الداخلية'
       ),

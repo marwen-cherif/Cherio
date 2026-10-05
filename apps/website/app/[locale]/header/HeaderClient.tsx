@@ -100,4 +100,3 @@ export default function HeaderClient({ locale, translations }: HeaderClientProps
     </>
   );
 }
-

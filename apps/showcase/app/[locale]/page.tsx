@@ -12,12 +12,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('subtitle'),
     alternates: {
       languages: {
-        'fr': '/fr',
-        'en': '/en',
-        'ar': '/ar',
-        'x-default': '/'
-      }
-    }
+        fr: '/fr',
+        en: '/en',
+        ar: '/ar',
+        'x-default': '/',
+      },
+    },
   };
 }
 
@@ -46,4 +46,3 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     </div>
   );
 }
-

@@ -28,4 +28,3 @@ export interface Product {
   featured?: boolean;
   category?: string;
 }
-

@@ -20,12 +20,8 @@ export default function Education({ locale }: EducationProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="down">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">
-              {t('title')}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('subtitle')}
-            </p>
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">{t('title')}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t('subtitle')}</p>
           </div>
         </AnimatedSection>
 
@@ -43,7 +39,7 @@ export default function Education({ locale }: EducationProps) {
                       <GraduationCap className="w-8 h-8 text-white" />
                     </motion.div>
                   </div>
-                  
+
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                       {edu.degree[l]}

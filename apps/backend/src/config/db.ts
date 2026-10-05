@@ -14,12 +14,13 @@ const pool = new Pool({
 });
 
 // Test database connection
-pool.connect()
-  .then(client => {
+pool
+  .connect()
+  .then((client) => {
     console.log('Connected to PostgreSQL database');
     client.release();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('Error connecting to PostgreSQL database:', err);
   });
 

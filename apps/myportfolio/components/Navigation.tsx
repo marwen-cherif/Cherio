@@ -38,10 +38,10 @@ export default function Navigation() {
   return (
     <motion.nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? "bg-gray-900/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-white/10 shadow-lg"
-          : "bg-gray-900/90 dark:bg-gray-950/90 backdrop-blur-md"
+          ? 'bg-gray-900/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-white/10 shadow-lg'
+          : 'bg-gray-900/90 dark:bg-gray-950/90 backdrop-blur-md'
       )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -80,10 +80,10 @@ export default function Navigation() {
                 href="/"
                 locale="en"
                 className={cn(
-                  "px-3 py-1.5 rounded-lg font-semibold transition-all",
+                  'px-3 py-1.5 rounded-lg font-semibold transition-all',
                   locale === 'en'
-                    ? "bg-primary text-white shadow-lg"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 )}
               >
                 EN
@@ -92,10 +92,10 @@ export default function Navigation() {
                 href="/"
                 locale="fr"
                 className={cn(
-                  "px-3 py-1.5 rounded-lg font-semibold transition-all",
+                  'px-3 py-1.5 rounded-lg font-semibold transition-all',
                   locale === 'fr'
-                    ? "bg-primary text-white shadow-lg"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 )}
               >
                 FR
@@ -157,10 +157,10 @@ export default function Navigation() {
                     href="/"
                     locale="en"
                     className={cn(
-                      "px-3 py-1.5 rounded-lg font-semibold transition-all",
+                      'px-3 py-1.5 rounded-lg font-semibold transition-all',
                       locale === 'en'
-                        ? "bg-primary text-white"
-                        : "text-white/80 hover:text-white hover:bg-white/10"
+                        ? 'bg-primary text-white'
+                        : 'text-white/80 hover:text-white hover:bg-white/10'
                     )}
                     onClick={() => setIsOpen(false)}
                   >
@@ -170,10 +170,10 @@ export default function Navigation() {
                     href="/"
                     locale="fr"
                     className={cn(
-                      "px-3 py-1.5 rounded-lg font-semibold transition-all",
+                      'px-3 py-1.5 rounded-lg font-semibold transition-all',
                       locale === 'fr'
-                        ? "bg-primary text-white"
-                        : "text-white/80 hover:text-white hover:bg-white/10"
+                        ? 'bg-primary text-white'
+                        : 'text-white/80 hover:text-white hover:bg-white/10'
                     )}
                     onClick={() => setIsOpen(false)}
                   >

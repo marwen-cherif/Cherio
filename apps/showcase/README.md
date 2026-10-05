@@ -42,6 +42,7 @@ pnpm --filter showcase dev
 ## 🌍 Langues
 
 Le site supporte 3 langues :
+
 - **Français** (fr) - langue par défaut
 - **Anglais** (en)
 - **Arabe** (ar) - avec support RTL
@@ -51,6 +52,7 @@ Les traductions sont dans `messages/{locale}.json`
 ## 📦 Produits
 
 Les produits sont définis dans `data/products.ts`. Chaque produit contient :
+
 - Nom, description (multilingue)
 - Prix et devise
 - Images
@@ -59,22 +61,27 @@ Les produits sont définis dans `data/products.ts`. Chaque produit contient :
 ## 🎨 Personnalisation
 
 ### Modifier les couleurs
+
 Éditez `app/[locale]/globals.css` et les classes Tailwind.
 
 ### Ajouter des produits
+
 Modifiez `data/products.ts` et ajoutez vos produits.
 
 ### Modifier les traductions
+
 Éditez les fichiers dans `messages/`.
 
 ## 🚀 Déploiement
 
 ### Vercel (recommandé)
+
 ```bash
 vercel
 ```
 
 ### VPS
+
 ```bash
 pnpm build
 pnpm start

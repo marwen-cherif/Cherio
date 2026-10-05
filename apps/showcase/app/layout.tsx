@@ -23,20 +23,17 @@ export default async function LocaleLayout({
 }) {
   const { locale } = params;
 
-    const messages = await getMessages({ locale });
-    const isRTL = locale === 'ar';
-    const direction = isRTL ? 'rtl' : 'ltr';
+  const messages = await getMessages({ locale });
+  const isRTL = locale === 'ar';
+  const direction = isRTL ? 'rtl' : 'ltr';
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex min-h-screen flex-col">
-            {children}
-          </div>
+          <div className="flex min-h-screen flex-col">{children}</div>
         </NextIntlClientProvider>
       </body>
     </html>
   );
 }
-

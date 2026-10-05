@@ -17,18 +17,17 @@ export default function Experience({ locale }: ExperienceProps) {
   const l: 'en' | 'fr' = locale === 'fr' ? 'fr' : 'en';
 
   return (
-    <section id="experience" className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section
+      id="experience"
+      className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="down">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">
-              {t('title')}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('subtitle')}
-            </p>
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">{t('title')}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t('subtitle')}</p>
           </div>
         </AnimatedSection>
 
@@ -40,7 +39,7 @@ export default function Experience({ locale }: ExperienceProps) {
                 {index < experiences.length - 1 && (
                   <div className="absolute left-8 top-20 bottom-0 w-0.5 bg-gradient-to-b from-primary to-transparent hidden md:block" />
                 )}
-                
+
                 <div className="flex gap-6">
                   <div className="flex-shrink-0">
                     <motion.div
@@ -51,7 +50,7 @@ export default function Experience({ locale }: ExperienceProps) {
                       <Building className="w-8 h-8 text-white" />
                     </motion.div>
                   </div>
-                  
+
                   <div className="flex-1">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                       <div>
@@ -72,7 +71,7 @@ export default function Experience({ locale }: ExperienceProps) {
                         </motion.span>
                       )}
                     </div>
-                    
+
                     <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
@@ -86,13 +85,13 @@ export default function Experience({ locale }: ExperienceProps) {
                       </div>
                     </div>
 
-                    <p className="text-foreground mb-4 text-lg">
-                      {exp.description[l][0]}
-                    </p>
+                    <p className="text-foreground mb-4 text-lg">{exp.description[l][0]}</p>
 
                     <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
                       {exp.description[l].slice(1).map((item, idx) => (
-                        <li key={idx} className="pl-2">{item}</li>
+                        <li key={idx} className="pl-2">
+                          {item}
+                        </li>
                       ))}
                     </ul>
 

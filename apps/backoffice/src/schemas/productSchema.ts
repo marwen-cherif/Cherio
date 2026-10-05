@@ -33,4 +33,3 @@ export const productFormSchema = z.object({
 });
 
 export type ProductFormData = z.infer<typeof productFormSchema>;
-

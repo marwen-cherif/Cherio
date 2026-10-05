@@ -161,8 +161,8 @@ export default function HomePage() {
                     </h2>
                     {inputText && (
                       <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                        {inputStats.characters} {t('characters')} • {inputStats.words} {t('words')} •{' '}
-                        {inputStats.lines} {t('lines')}
+                        {inputStats.characters} {t('characters')} • {inputStats.words} {t('words')}{' '}
+                        • {inputStats.lines} {t('lines')}
                       </div>
                     )}
                   </div>

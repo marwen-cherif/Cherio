@@ -85,10 +85,7 @@ export default function Navigation() {
               <Link key={item.href} href={item.href}>
                 <Button
                   variant={isActive(item.href) ? 'default' : 'ghost'}
-                  className={cn(
-                    'flex items-center gap-2',
-                    isActive(item.href) && 'shadow-sm'
-                  )}
+                  className={cn('flex items-center gap-2', isActive(item.href) && 'shadow-sm')}
                 >
                   {item.icon}
                   <span>{item.label}</span>
@@ -167,4 +164,3 @@ export default function Navigation() {
     </nav>
   );
 }
-

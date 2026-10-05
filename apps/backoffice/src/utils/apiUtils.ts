@@ -17,10 +17,10 @@ export const apiUtils = {
         throw new Error(`HTTP error ${response.status}`);
       }
     }
-    
+
     return response.json();
   },
-  
+
   /**
    * Bills API utilities with error handling
    */
@@ -34,7 +34,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async getById(id: string) {
       try {
         const response = await api.bills.getById(id);
@@ -44,7 +44,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async create(data: any) {
       try {
         const response = await api.bills.create(data);
@@ -54,7 +54,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async update(id: string, data: any) {
       try {
         const response = await api.bills.update(id, data);
@@ -64,7 +64,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async delete(id: string) {
       try {
         const response = await api.bills.delete(id);
@@ -74,7 +74,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async uploadFile(id: string, file: File) {
       try {
         const response = await api.bills.uploadFile(id, file);
@@ -83,9 +83,9 @@ export const apiUtils = {
         console.error(`Error uploading file for bill ${id}:`, error);
         throw error;
       }
-    }
+    },
   },
-  
+
   /**
    * Contracts API utilities with error handling
    */
@@ -99,7 +99,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async getById(id: string) {
       try {
         const response = await api.contracts.getById(id);
@@ -109,7 +109,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async create(data: any) {
       try {
         const response = await api.contracts.create(data);
@@ -119,7 +119,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async update(id: string, data: any) {
       try {
         const response = await api.contracts.update(id, data);
@@ -129,7 +129,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async delete(id: string) {
       try {
         const response = await api.contracts.delete(id);
@@ -139,7 +139,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async uploadFile(id: string, file: File) {
       try {
         const response = await api.contracts.uploadFile(id, file);
@@ -148,9 +148,9 @@ export const apiUtils = {
         console.error(`Error uploading file for contract ${id}:`, error);
         throw error;
       }
-    }
+    },
   },
-  
+
   /**
    * Auth API utilities with error handling
    */
@@ -164,7 +164,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async register(email: string, password: string, firstName?: string, lastName?: string) {
       try {
         const response = await api.auth.register(email, password, firstName, lastName);
@@ -174,7 +174,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async getProfile() {
       try {
         const response = await api.auth.getProfile();
@@ -184,7 +184,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async logout(refreshToken: string) {
       try {
         const response = await api.auth.logout(refreshToken);
@@ -193,9 +193,9 @@ export const apiUtils = {
         console.error('Logout error:', error);
         throw error;
       }
-    }
+    },
   },
-  
+
   /**
    * Products API utilities with error handling
    */
@@ -229,7 +229,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async getById(id: string) {
       try {
         const response = await api.products.getById(id);
@@ -239,7 +239,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async create(data: any) {
       try {
         const response = await api.products.create(data);
@@ -249,7 +249,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async update(id: string, data: any) {
       try {
         const response = await api.products.update(id, data);
@@ -259,7 +259,7 @@ export const apiUtils = {
         throw error;
       }
     },
-    
+
     async delete(id: string) {
       try {
         const response = await api.products.delete(id);
@@ -268,6 +268,6 @@ export const apiUtils = {
         console.error(`Error deleting product ${id}:`, error);
         throw error;
       }
-    }
-  }
+    },
+  },
 };

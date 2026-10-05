@@ -5,4 +5,3 @@ export const pickupPointSearchSchema = z.object({
 });
 
 export type PickupPointSearchData = z.infer<typeof pickupPointSearchSchema>;
-

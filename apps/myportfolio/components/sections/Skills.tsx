@@ -17,16 +17,12 @@ export default function Skills({ locale }: SkillsProps) {
   return (
     <section id="skills" className="py-24 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-purple-500/5" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="down">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">
-              {t('title')}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('subtitle')}
-            </p>
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">{t('title')}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t('subtitle')}</p>
           </div>
         </AnimatedSection>
 
@@ -46,8 +42,12 @@ export default function Skills({ locale }: SkillsProps) {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: (idx * 0.1) + (skillIdx * 0.05) }}
-                      whileHover={{ scale: 1.1, backgroundColor: 'hsl(var(--primary))', color: 'white' }}
+                      transition={{ delay: idx * 0.1 + skillIdx * 0.05 }}
+                      whileHover={{
+                        scale: 1.1,
+                        backgroundColor: 'hsl(var(--primary))',
+                        color: 'white',
+                      }}
                     >
                       {skill}
                     </motion.span>

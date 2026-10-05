@@ -34,4 +34,3 @@ export function useIsRTL() {
   const { isRTL } = useLocale();
   return isRTL;
 }
-

@@ -50,4 +50,3 @@ export function getCountryLabel(country: CountryOption, locale: string): string 
 export function findCountryByValue(value: string): CountryOption | undefined {
   return countries.find((country) => country.value === value);
 }
-

@@ -7,43 +7,49 @@ import { CherioAppConfig } from '../../../../cherio.apps.config';
 // Simple markdown to HTML converter for basic formatting
 function formatMarkdown(text: string): string {
   let html = text;
-  
+
   // Split into paragraphs first
   const paragraphs = html.split(/\n\n+/);
   const processedParagraphs = paragraphs.map((para) => {
     let processed = para.trim();
-    
+
     // Convert numbered lists (1. item)
     if (/^\d+\.\s+/.test(processed)) {
-      const listItems = processed.split(/\n(?=\d+\.\s+)/).map((item) => {
-        const match = item.match(/^\d+\.\s+(.+)$/);
-        return match ? `<li>${match[1]}</li>` : '';
-      }).filter(Boolean);
+      const listItems = processed
+        .split(/\n(?=\d+\.\s+)/)
+        .map((item) => {
+          const match = item.match(/^\d+\.\s+(.+)$/);
+          return match ? `<li>${match[1]}</li>` : '';
+        })
+        .filter(Boolean);
       if (listItems.length > 0) {
         return `<ol class="list-decimal list-inside space-y-2 my-4 ml-4">${listItems.join('')}</ol>`;
       }
     }
-    
+
     // Convert bullet lists (- item or * item)
     if (/^[-*]\s+/.test(processed)) {
-      const listItems = processed.split(/\n(?=[-*]\s+)/).map((item) => {
-        const match = item.match(/^[-*]\s+(.+)$/);
-        return match ? `<li>${match[1]}</li>` : '';
-      }).filter(Boolean);
+      const listItems = processed
+        .split(/\n(?=[-*]\s+)/)
+        .map((item) => {
+          const match = item.match(/^[-*]\s+(.+)$/);
+          return match ? `<li>${match[1]}</li>` : '';
+        })
+        .filter(Boolean);
       if (listItems.length > 0) {
         return `<ul class="list-disc list-inside space-y-2 my-4 ml-4">${listItems.join('')}</ul>`;
       }
     }
-    
+
     // Convert bold (**text**)
     processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
+
     // Convert line breaks within paragraph
     processed = processed.replace(/\n/g, '<br />');
-    
+
     return processed ? `<p class="my-4">${processed}</p>` : '';
   });
-  
+
   return processedParagraphs.filter(Boolean).join('');
 }
 
@@ -84,7 +90,7 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
             className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors"
           >
             <span className="mr-1">←</span>
-            {locale === 'fr' ? 'Retour à l\'accueil' : 'Back to home'}
+            {locale === 'fr' ? "Retour à l'accueil" : 'Back to home'}
           </Link>
         </div>
       </div>
@@ -105,7 +111,7 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
               >
-                {locale === 'fr' ? 'Visiter l\'application' : 'Visit application'}
+                {locale === 'fr' ? "Visiter l'application" : 'Visit application'}
                 <span className="ml-2">↗</span>
               </a>
             )}
@@ -142,7 +148,9 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
                           ) : (
                             <div className="text-white text-center">
                               <span className="text-6xl block mb-4 opacity-75">▶</span>
-                              <p className="text-lg">{locale === 'fr' ? 'Cliquez pour lire' : 'Click to play'}</p>
+                              <p className="text-lg">
+                                {locale === 'fr' ? 'Cliquez pour lire' : 'Click to play'}
+                              </p>
                             </div>
                           )}
                           <button
@@ -160,7 +168,9 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
                           className="w-full h-full object-contain"
                           onEnded={() => setIsVideoPlaying(false)}
                         >
-                          {locale === 'fr' ? 'Votre navigateur ne supporte pas la vidéo.' : 'Your browser does not support video.'}
+                          {locale === 'fr'
+                            ? 'Votre navigateur ne supporte pas la vidéo.'
+                            : 'Your browser does not support video.'}
                         </video>
                       )}
                     </>
@@ -215,7 +225,9 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
           {/* Section "Comment ça fonctionne" */}
           {app.howItWorks && (
             <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">{app.howItWorks.title[locale]}</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                {app.howItWorks.title[locale]}
+              </h2>
               <div
                 className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: formatMarkdown(app.howItWorks.content[locale]) }}
@@ -226,7 +238,9 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
           {/* Section "Cas d'usage" */}
           {app.useCases && (
             <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">{app.useCases.title[locale]}</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                {app.useCases.title[locale]}
+              </h2>
               <div
                 className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: formatMarkdown(app.useCases.content[locale]) }}
@@ -242,8 +256,13 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
               </h2>
               <div className="space-y-6">
                 {app.faq.map((faq, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">{faq.question[locale]}</h3>
+                  <div
+                    key={index}
+                    className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0"
+                  >
+                    <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                      {faq.question[locale]}
+                    </h3>
                     <p className="text-gray-700 leading-relaxed">{faq.answer[locale]}</p>
                   </div>
                 ))}
@@ -268,7 +287,7 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
               >
-                {locale === 'fr' ? 'Lancer l\'application' : 'Launch application'}
+                {locale === 'fr' ? "Lancer l'application" : 'Launch application'}
                 <span className="ml-2 text-xl">↗</span>
               </a>
             </div>
@@ -278,4 +297,3 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
     </div>
   );
 }
-

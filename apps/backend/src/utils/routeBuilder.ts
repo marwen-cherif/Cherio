@@ -21,7 +21,7 @@ export class RouteBuilder {
 
     const handlers: RequestHandler[] = [
       ...(Array.isArray(middlewares) ? middlewares : [middlewares]).flat(),
-      ...wrappedHandlers
+      ...wrappedHandlers,
     ].filter(Boolean) as RequestHandler[];
 
     // Register the route
@@ -45,13 +45,13 @@ export class RouteBuilder {
 
     // Build each route in the group
     routes.forEach((route) => {
-      const fullPath = route.path.startsWith('/') 
-        ? `${prefix}${route.path}` 
+      const fullPath = route.path.startsWith('/')
+        ? `${prefix}${route.path}`
         : `${prefix}/${route.path}`;
-      
+
       const routeWithPrefix: RouteDefinition = {
         ...route,
-        path: fullPath
+        path: fullPath,
       };
 
       this.buildRoute(router, routeWithPrefix);
@@ -67,4 +67,3 @@ export class RouteBuilder {
     });
   }
 }
-

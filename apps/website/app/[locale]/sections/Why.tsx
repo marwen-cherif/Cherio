@@ -59,13 +59,13 @@ export default function Why() {
   return (
     <section ref={sectionRef} className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
             {t('title')}
           </h2>
-          <p className="text-lg text-gray-600">
-            {t('subtitle')}
-          </p>
+          <p className="text-lg text-gray-600">{t('subtitle')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
@@ -78,15 +78,13 @@ export default function Why() {
                 transitionDelay: `${index * 150}ms`,
               }}
             >
-              <div className={`w-16 h-16 ${feature.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 transform transition-all duration-300 hover:scale-110 hover:rotate-6`}>
+              <div
+                className={`w-16 h-16 ${feature.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 transform transition-all duration-300 hover:scale-110 hover:rotate-6`}
+              >
                 <span className="text-3xl">{feature.icon}</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">
-                {feature.description}
-              </p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -94,4 +92,3 @@ export default function Why() {
     </section>
   );
 }
-

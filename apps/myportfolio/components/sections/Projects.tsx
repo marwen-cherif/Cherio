@@ -16,18 +16,17 @@ export default function Projects({ locale }: ProjectsProps) {
   const l: 'en' | 'fr' = locale === 'fr' ? 'fr' : 'en';
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+    <section
+      id="projects"
+      className="py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-dot-pattern opacity-10" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="down">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">
-              {t('title')}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('subtitle')}
-            </p>
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">{t('title')}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t('subtitle')}</p>
           </div>
         </AnimatedSection>
 
@@ -53,13 +52,9 @@ export default function Projects({ locale }: ProjectsProps) {
                   )}
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-4 font-medium">
-                  {project.period}
-                </p>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">{project.period}</p>
 
-                <p className="text-foreground mb-4 flex-grow">
-                  {project.description[l]}
-                </p>
+                <p className="text-foreground mb-4 flex-grow">{project.description[l]}</p>
 
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-foreground mb-2">
@@ -70,7 +65,11 @@ export default function Projects({ locale }: ProjectsProps) {
                       <motion.span
                         key={tech}
                         className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium"
-                        whileHover={{ scale: 1.1, backgroundColor: 'hsl(var(--primary))', color: 'white' }}
+                        whileHover={{
+                          scale: 1.1,
+                          backgroundColor: 'hsl(var(--primary))',
+                          color: 'white',
+                        }}
                       >
                         {tech}
                       </motion.span>
@@ -85,7 +84,9 @@ export default function Projects({ locale }: ProjectsProps) {
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
                       {project.highlights[l].slice(0, 2).map((highlight, idx) => (
-                        <li key={idx} className="pl-2">{highlight}</li>
+                        <li key={idx} className="pl-2">
+                          {highlight}
+                        </li>
                       ))}
                     </ul>
                   </div>

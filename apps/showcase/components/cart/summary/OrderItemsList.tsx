@@ -21,9 +21,7 @@ export function OrderItemsList({ items, currency }: OrderItemsListProps) {
 
   return (
     <div className="border-t border-border pt-4 mb-4">
-      <h3 className="text-sm font-semibold text-primary mb-3">
-        {t('productsList')}
-      </h3>
+      <h3 className="text-sm font-semibold text-primary mb-3">{t('productsList')}</h3>
       <div className="space-y-3">
         {items.map((item) => {
           const lineTotal = item.product.price * item.quantity;
@@ -37,9 +35,7 @@ export function OrderItemsList({ items, currency }: OrderItemsListProps) {
                   {item.product.name[locale]}
                 </p>
                 <div className="flex items-center gap-2 mt-1 text-xs text-secondary">
-                  <span>
-                    {formatPrice(item.product.price, currency, locale)}
-                  </span>
+                  <span>{formatPrice(item.product.price, currency, locale)}</span>
                   <span>×</span>
                   <span>{item.quantity}</span>
                 </div>
@@ -54,4 +50,3 @@ export function OrderItemsList({ items, currency }: OrderItemsListProps) {
     </div>
   );
 }
-

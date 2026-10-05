@@ -13,15 +13,15 @@ const messages = {
 // For static export, we need to handle requestLocale carefully
 // During build, requestLocale may call headers() which isn't available
 // So we catch the error and use defaultLocale as fallback
-// The layout will call setRequestLocale() which ensures getTranslations() 
+// The layout will call setRequestLocale() which ensures getTranslations()
 // uses the correct locale from route params
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale: string;
-  
+
   try {
     // Try to get locale from requestLocale (resolved from route params during static generation)
     const requested = await requestLocale;
-    
+
     // Validate the locale
     if (requested && hasLocale(routing.locales, requested)) {
       locale = requested;

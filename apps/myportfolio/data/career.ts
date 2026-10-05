@@ -84,7 +84,7 @@ export const personalInfo: PersonalInfo = {
   upwork: 'https://www.upwork.com/freelancers/~0156bc098f503b1e3a',
   nationality: 'Tunisia, France',
   bio: {
-    en: "Front-End Tech Lead at Revers.io, where I drive the modernization of a SaaS platform — architecture, UI overhauls, and scaling. I contribute to continuous product improvement, both cross-functionally and on specific initiatives. An earlier full-stack chapter (Symfony/PHP) gives me an end-to-end perspective, from the backend to the interface. I value clean code, mentoring, and pragmatic decisions. A tech enthusiast, I love experimenting with new development tools, whether AI-related or not.",
+    en: 'Front-End Tech Lead at Revers.io, where I drive the modernization of a SaaS platform — architecture, UI overhauls, and scaling. I contribute to continuous product improvement, both cross-functionally and on specific initiatives. An earlier full-stack chapter (Symfony/PHP) gives me an end-to-end perspective, from the backend to the interface. I value clean code, mentoring, and pragmatic decisions. A tech enthusiast, I love experimenting with new development tools, whether AI-related or not.',
     fr: "Tech Lead Front-End chez Revers.io, où je pilote la modernisation d'une plateforme SaaS — architecture, refontes UI, montée en charge. Je contribue à l'amélioration continue du produit, aussi bien de façon transverse que sur des sujets spécifiques. Une première partie de carrière en full-stack (Symfony/PHP) me donne une vision bout-en-bout, du backend à l'interface. Je privilégie le code propre, le mentorat, et les décisions pragmatiques. Technophile, j'aime expérimenter les nouveaux outils de développement, liés ou non à l'IA.",
   },
 };
@@ -182,7 +182,16 @@ export const experiences: Experience[] = [
         'Participation aux cérémonies agiles (sprint planning, revues de code, CI/CD).',
       ],
     },
-    technologies: ['UiPath', 'VB.NET', 'Node.js', 'Puppeteer', 'PHP', 'Symfony', 'REST APIs', 'Jenkins'],
+    technologies: [
+      'UiPath',
+      'VB.NET',
+      'Node.js',
+      'Puppeteer',
+      'PHP',
+      'Symfony',
+      'REST APIs',
+      'Jenkins',
+    ],
   },
   {
     id: 'talan',
@@ -275,7 +284,14 @@ export const projects: Project[] = [
       fr: "Pilotage de la migration de bout en bout d'un front-end SaaS à grande échelle, de Create React App et Webpack vers une architecture moderne Vite + React 19, avec des gains majeurs de productivité et de performance à l'exécution pour les équipes.",
     },
     period: '2022 – 2024',
-    technologies: ['React 19', 'TypeScript', 'Vite', 'TanStack Query', 'Redux Toolkit', 'Storybook'],
+    technologies: [
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'TanStack Query',
+      'Redux Toolkit',
+      'Storybook',
+    ],
     highlights: {
       en: [
         'Reduced build times by 50% and improved local startup performance by 5×',

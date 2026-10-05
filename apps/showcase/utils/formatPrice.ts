@@ -5,11 +5,7 @@
  * @param locale - The locale code ('fr', 'en', 'ar')
  * @returns Formatted price string with currency symbol
  */
-export function formatPrice(
-  price: number,
-  currency: string,
-  locale: 'fr' | 'en' | 'ar'
-): string {
+export function formatPrice(price: number, currency: string, locale: 'fr' | 'en' | 'ar'): string {
   // Map locale codes to Intl locale strings
   const localeMap: Record<'fr' | 'en' | 'ar', string> = {
     fr: 'fr-FR',
@@ -40,4 +36,3 @@ export function formatPrice(
     return `${numberFormatter.format(price)} ${currency}`;
   }
 }
-

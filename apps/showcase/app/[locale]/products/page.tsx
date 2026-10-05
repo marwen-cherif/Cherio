@@ -12,12 +12,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('subtitle'),
     alternates: {
       languages: {
-        'fr': '/fr/products',
-        'en': '/en/products',
-        'ar': '/ar/products',
-        'x-default': '/products'
-      }
-    }
+        fr: '/fr/products',
+        en: '/en/products',
+        ar: '/ar/products',
+        'x-default': '/products',
+      },
+    },
   };
 }
 
@@ -42,4 +42,3 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
     </div>
   );
 }
-

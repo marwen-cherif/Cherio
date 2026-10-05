@@ -58,4 +58,3 @@ export function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
     </div>
   );
 }
-

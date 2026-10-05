@@ -7,12 +7,7 @@ export interface PageMetadata {
   path: string;
 }
 
-export function generatePageMetadata({
-  title,
-  description,
-  locale,
-  path,
-}: PageMetadata): Metadata {
+export function generatePageMetadata({ title, description, locale, path }: PageMetadata): Metadata {
   const baseUrl = 'https://cherio.me';
   const url = `${baseUrl}${path}`;
   const alternateUrls = {
@@ -26,8 +21,8 @@ export function generatePageMetadata({
     alternates: {
       canonical: url,
       languages: {
-        'fr': alternateUrls.fr,
-        'en': alternateUrls.en,
+        fr: alternateUrls.fr,
+        en: alternateUrls.en,
         'x-default': `${baseUrl}/fr${path.replace(/^\/(fr|en)/, '')}`,
       },
     },
@@ -47,4 +42,3 @@ export function generatePageMetadata({
     },
   };
 }
-

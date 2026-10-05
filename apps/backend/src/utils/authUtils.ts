@@ -3,7 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const JWT_SECRET = Buffer.from(process.env.JWT_SECRET ?? 'fallback_secret_key_only_for_development');
+const JWT_SECRET = Buffer.from(
+  process.env.JWT_SECRET ?? 'fallback_secret_key_only_for_development'
+);
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '1h';
 
 export interface TokenPayload {
@@ -19,12 +21,11 @@ export interface DecodedToken extends TokenPayload {
 // Generate JWT token
 export const generateToken = (payload: TokenPayload): string => {
   const options: SignOptions = {
-    expiresIn: JWT_EXPIRES_IN as any
+    expiresIn: JWT_EXPIRES_IN as any,
   };
 
   return jwt.sign(payload, JWT_SECRET, options);
 };
-
 
 // Verify JWT token
 export const verifyToken = (token: string): DecodedToken | null => {

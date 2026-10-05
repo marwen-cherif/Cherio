@@ -115,18 +115,18 @@ export default function Contact({ locale }: ContactProps) {
                     {socialLinks.map((link, index) => {
                       const Icon = link.icon;
                       return (
-                         <motion.a
-                           key={link.label}
-                           href={link.href}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="flex items-center gap-4 p-4 rounded-lg bg-muted hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors group"
-                           whileHover={{ x: 5, scale: 1.02 }}
-                           initial={{ opacity: 0, x: -20 }}
-                           whileInView={{ opacity: 1, x: 0 }}
-                           viewport={{ once: true }}
-                           transition={{ delay: index * 0.1 }}
-                         >
+                        <motion.a
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-4 p-4 rounded-lg bg-muted hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors group"
+                          whileHover={{ x: 5, scale: 1.02 }}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.1 }}
+                        >
                           <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
                             <Icon className="w-6 h-6 text-primary group-hover:text-primary transition-colors" />
                           </div>

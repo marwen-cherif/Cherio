@@ -200,7 +200,10 @@ export const updateCategory = async (req: Request, res: Response): Promise<void>
 };
 
 // Helper function to check if a category is a descendant of another
-const checkIfDescendant = async (ancestorId: string, potentialDescendantId: string): Promise<boolean> => {
+const checkIfDescendant = async (
+  ancestorId: string,
+  potentialDescendantId: string
+): Promise<boolean> => {
   const category = await prisma.category.findUnique({
     where: { id: potentialDescendantId },
     include: {
@@ -241,7 +244,8 @@ export const deleteCategory = async (req: Request, res: Response): Promise<void>
     // Check if category has children
     if (existingCategory.children.length > 0) {
       res.status(400).json({
-        message: 'Cannot delete category with subcategories. Please delete or move subcategories first.',
+        message:
+          'Cannot delete category with subcategories. Please delete or move subcategories first.',
       });
       return;
     }
@@ -387,4 +391,3 @@ export const getAllCategories = async (req: Request, res: Response): Promise<voi
     return;
   }
 };
-

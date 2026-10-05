@@ -17,22 +17,34 @@ export default async function Footer() {
             <h4 className="text-sm font-semibold mb-4 uppercase text-gray-900">Liens</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200">
+                <Link
+                  href="/"
+                  className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
+                >
                   {t('links.home')}
                 </Link>
               </li>
               <li>
-                <Link href="#apps" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200">
+                <Link
+                  href="#apps"
+                  className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
+                >
                   {tCommon('apps')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200">
+                <Link
+                  href="/contact"
+                  className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
+                >
                   {t('links.contact')}
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200">
+                <Link
+                  href="#about"
+                  className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
+                >
                   {t('links.about')}
                 </Link>
               </li>

@@ -79,4 +79,3 @@ Career information is stored in `data/career.ts` with clean TypeScript interface
 ## License
 
 Private project - All rights reserved.
-

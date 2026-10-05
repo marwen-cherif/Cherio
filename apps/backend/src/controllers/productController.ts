@@ -17,11 +17,13 @@ const formatProduct = (product: any) => {
     links: product.links,
     featured: product.featured,
     categoryId: product.categoryId,
-    category: product.category ? {
-      id: product.category.id,
-      name: product.category.name,
-      slug: product.category.slug,
-    } : null,
+    category: product.category
+      ? {
+          id: product.category.id,
+          name: product.category.name,
+          slug: product.category.slug,
+        }
+      : null,
     sku: product.sku,
     stock: product.stock,
     isActive: product.isActive,
@@ -70,14 +72,7 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
     }
 
     // Validate multilingual fields structure
-    if (
-      !name.fr ||
-      !name.en ||
-      !name.ar ||
-      !description.fr ||
-      !description.en ||
-      !description.ar
-    ) {
+    if (!name.fr || !name.en || !name.ar || !description.fr || !description.en || !description.ar) {
       res.status(400).json({
         message: 'Name and description must have fr, en, and ar properties',
       });
@@ -135,13 +130,13 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
       currency,
       image,
       images,
-        video,
-        links,
-        featured,
-        categoryId,
-        sku,
-        stock,
-        isActive,
+      video,
+      links,
+      featured,
+      categoryId,
+      sku,
+      stock,
+      isActive,
     } = req.body;
 
     // Check if product exists
@@ -414,4 +409,3 @@ export const searchProducts = async (req: Request, res: Response): Promise<void>
     return;
   }
 };
-

@@ -6,4 +6,3 @@ export default function RootPage() {
   // Redirect to the default locale with explicit locale in URL
   redirect({ href: '/', locale: routing.defaultLocale });
 }
-
