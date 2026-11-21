@@ -8,6 +8,8 @@ interface ButtonProps {
   children: ReactNode;
   href?: string;
   onClick?: () => void;
+  /** Ignored with `href`. */
+  type?: 'button' | 'submit';
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
@@ -17,6 +19,7 @@ export default function Button({
   children,
   href,
   onClick,
+  type,
   variant = 'primary',
   size = 'md',
   className = '',
@@ -44,6 +47,7 @@ export default function Button({
     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <Component
         href={href}
+        type={href ? undefined : type}
         onClick={onClick}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
       >

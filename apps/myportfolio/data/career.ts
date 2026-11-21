@@ -279,14 +279,16 @@ export const projects: Project[] = [
     technologies: ['WebMCP', 'MCP', 'Next.js', 'TypeScript', 'Claude Code', 'Context Engineering'],
     highlights: {
       en: [
-        'Six typed tools (JSON Schema) registered through document.modelContext, with a fallback to the legacy navigator API',
+        'Eight typed tools (JSON Schema) registered through document.modelContext, with a fallback to the legacy navigator API',
         'Evidence-based job matching: each requirement is graded proven / listed / mentioned / not found, with years of use and sources',
+        'Pitch tailored to the reader (recruiter, hiring manager, founder, developer, freelance client) and an on-page contact form the agent pre-fills for the visitor to send',
         'Tool answers computed from the same career data as the site: a single source of truth',
         'Built with Claude Code and context engineering (CLAUDE.md, enforced project conventions)',
       ],
       fr: [
-        "Six outils typés (JSON Schema) enregistrés via document.modelContext, avec repli sur l'ancienne API navigator",
+        "Huit outils typés (JSON Schema) enregistrés via document.modelContext, avec repli sur l'ancienne API navigator",
         "Matching d'offre basé sur des preuves : chaque exigence est classée prouvée / déclarée / mentionnée / absente, avec années d'usage et sources",
+        "Pitch adapté au lecteur (recruteur, manager, fondateur, développeur, client freelance) et formulaire de contact que l'agent pré-remplit pour que le visiteur l'envoie",
         'Réponses des outils calculées à partir des mêmes données de carrière que le site : une seule source de vérité',
         'Développé avec Claude Code et du context engineering (CLAUDE.md, conventions projet imposées)',
       ],

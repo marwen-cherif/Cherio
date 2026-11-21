@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.marwen-cherif/portfolio",
+  "title": "Marwen Cherif — Fullstack Tech Lead",
+  "description": "Profile of Marwen Cherif: tailored pitch, evidence-based job matching, experience, skills, contact.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://marwen-cherif.cherio.me/api/mcp"
+    }
+  ]
+}

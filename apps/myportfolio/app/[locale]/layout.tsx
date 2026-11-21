@@ -43,6 +43,8 @@ export async function generateMetadata({
         fr: '/fr',
         'x-default': '/en',
       },
+      // llms.txt points AI agents to the MCP server.
+      types: { 'text/markdown': '/llms.txt' },
     },
     robots: {
       index: true,
