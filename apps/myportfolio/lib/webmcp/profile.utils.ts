@@ -19,9 +19,10 @@ import {
   splitSkillItem,
   toTechnologySet,
 } from './matching.utils';
+import { buildMailto } from '@/lib/contact/mailto.utils';
+import type { ContactDraft } from '@/lib/contact/contact.types';
 import type {
   CareerSearchResult,
-  ContactDraft,
   ContactInfo,
   EducationDetails,
   ExperienceDetails,
@@ -38,7 +39,6 @@ const CAREER_START_YEAR = Math.min(...experiences.map(({ startDate }) => Number(
 const METRIC_PATTERN = /\d+\s?(%|×)/;
 const AI_CATEGORY_PATTERN = /\bAI\b/;
 const MAX_SEARCH_RESULTS = 20;
-const MAX_MAILTO_BODY_LENGTH = 1500;
 
 export function cvUrl(origin: string, locale: Locale): string {
   return `${origin}/cv/Marwen-Cherif-CV-${locale.toUpperCase()}.pdf`;
@@ -83,9 +83,28 @@ function formatEducation(entry: Education, locale: Locale): EducationDetails {
   };
 }
 
-export function buildProfileOverview(locale: Locale, currentYear: number): ProfileOverview {
-  const current = experiences.find((experience) => experience.current) ?? experiences[0];
+export function getCurrentExperience(): Experience {
+  return experiences.find((experience) => experience.current) ?? experiences[0];
+}
+
+export function getYearsOfExperience(currentYear: number): number {
+  return currentYear - CAREER_START_YEAR;
+}
+
+/** Quantified project highlights, e.g. "Reduced build times by 50%". */
+export function getKeyAchievements(locale: Locale): string[] {
+  return projects
+    .flatMap((project) => project.highlights[locale])
+    .filter((highlight) => METRIC_PATTERN.test(highlight));
+}
+
+export function formatHighestDegree(locale: Locale): string {
   const degree = education[0];
+  return `${degree.degree[locale]} — ${degree.field[locale]}, ${degree.institution} (${degree.endDate})`;
+}
+
+export function buildProfileOverview(locale: Locale, currentYear: number): ProfileOverview {
+  const current = getCurrentExperience();
 
   return {
     name: personalInfo.name,
@@ -95,7 +114,7 @@ export function buildProfileOverview(locale: Locale, currentYear: number): Profi
       company: current.company,
       since: current.startDate,
     },
-    yearsOfExperience: currentYear - CAREER_START_YEAR,
+    yearsOfExperience: getYearsOfExperience(currentYear),
     location: personalInfo.location,
     nationality: personalInfo.nationality,
     summary: personalInfo.bio[locale],
@@ -103,15 +122,13 @@ export function buildProfileOverview(locale: Locale, currentYear: number): Profi
     aiSkills: skills
       .filter((group) => AI_CATEGORY_PATTERN.test(group.category.en))
       .flatMap((group) => group.items),
-    keyAchievements: projects
-      .flatMap((project) => project.highlights[locale])
-      .filter((highlight) => METRIC_PATTERN.test(highlight)),
+    keyAchievements: getKeyAchievements(locale),
     employers: experiences.map((experience) => experience.company),
-    education: `${degree.degree[locale]} — ${degree.field[locale]}, ${degree.institution} (${degree.endDate})`,
+    education: formatHighestDegree(locale),
     languages: languages.map((language) => `${language.name} (${language.level})`),
     interests,
     nextSteps:
-      'Use match_job_requirements to compare this profile with a job description or client brief, search_experience for details on a technology, company or project, and get_contact_info to reach Marwen or download the CV.',
+      "Use get_tailored_pitch for a pitch adapted to the user's role, match_job_requirements to compare this profile with a job description or client brief, search_experience for details on a technology, company or project, and get_contact_info for contact channels, a ready-to-send mailto: link and the CV. In the visitor's browser, draft_contact_message also pre-fills the page's contact form.",
   };
 }
 
@@ -226,14 +243,6 @@ export function buildSkillsReport(
     }));
 
   return { availableCategories: skills.map((group) => group.category[locale]), categories };
-}
-
-function buildMailto(email: string, { subject, message }: ContactDraft): string {
-  const params = [
-    subject && `subject=${encodeURIComponent(subject)}`,
-    message && `body=${encodeURIComponent(message.slice(0, MAX_MAILTO_BODY_LENGTH))}`,
-  ].filter(Boolean);
-  return `mailto:${email}?${params.join('&')}`;
 }
 
 export function buildContactInfo(locale: Locale, origin: string, draft: ContactDraft): ContactInfo {

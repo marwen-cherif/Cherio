@@ -73,7 +73,27 @@
     "socialLinks": "Réseaux sociaux",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "upwork": "Upwork"
+    "upwork": "Upwork",
+    "form": {
+      "title": "Envoyez-moi un message",
+      "name": "Votre nom",
+      "namePlaceholder": "Camille Martin",
+      "subject": "Objet",
+      "subjectPlaceholder": "De quoi s'agit-il ?",
+      "message": "Message",
+      "messagePlaceholder": "Parlez-moi de votre projet ou de votre opportunité…",
+      "submit": "Envoyer",
+      "hint": "Ouvre votre messagerie avec le message prêt à être envoyé.",
+      "agentNotice": "Votre assistant IA a pré-rempli ce message. Relisez-le, puis cliquez sur Envoyer."
+    },
+    "agents": {
+      "title": "Vous utilisez un assistant IA ?",
+      "description": "Claude, ChatGPT, Gemini, Cursor et d'autres assistants peuvent interroger ce profil directement — pitch, compétences, adéquation à une offre, contact — via mon serveur MCP. Ajoutez-le comme connecteur avec cette URL :",
+      "copy": "Copier",
+      "copied": "Copié",
+      "claudeCode": "Avec Claude Code :",
+      "llmsTxt": "Détails pour les agents IA : llms.txt"
+    }
   },
   "footer": {
     "description": "Software Engineer Fullstack passionné par la création de solutions innovantes",
@@ -90,10 +110,12 @@
   "webmcp": {
     "titles": {
       "get_profile_overview": "Aperçu du profil de Marwen Cherif",
+      "get_tailored_pitch": "Pitch adapté à votre profil",
       "match_job_requirements": "Comparer une offre au profil de Marwen",
       "search_experience": "Rechercher dans l'expérience de Marwen",
       "get_skills": "Compétences de Marwen",
       "get_contact_info": "Contacter Marwen / obtenir le CV",
+      "draft_contact_message": "Rédiger un message à Marwen",
       "show_section": "Afficher une section du portfolio"
     }
   }

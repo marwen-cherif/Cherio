@@ -73,7 +73,27 @@
     "socialLinks": "Social Links",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "upwork": "Upwork"
+    "upwork": "Upwork",
+    "form": {
+      "title": "Send me a message",
+      "name": "Your name",
+      "namePlaceholder": "Jane Doe",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is it about?",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project or opportunity…",
+      "submit": "Send",
+      "hint": "Opens your email app with the message ready to send.",
+      "agentNotice": "Your AI assistant pre-filled this message. Review it, then click Send."
+    },
+    "agents": {
+      "title": "Using an AI assistant?",
+      "description": "Claude, ChatGPT, Gemini, Cursor and other assistants can query this profile directly — pitch, skills, fit with a job offer, contact — through my MCP server. Add it as a connector with this URL:",
+      "copy": "Copy",
+      "copied": "Copied",
+      "claudeCode": "With Claude Code:",
+      "llmsTxt": "Details for AI agents: llms.txt"
+    }
   },
   "footer": {
     "description": "Fullstack Software Engineer passionate about building innovative solutions",
@@ -90,10 +110,12 @@
   "webmcp": {
     "titles": {
       "get_profile_overview": "Marwen Cherif's profile overview",
+      "get_tailored_pitch": "Pitch tailored to your role",
       "match_job_requirements": "Match a job offer with Marwen's profile",
       "search_experience": "Search Marwen's experience",
       "get_skills": "Marwen's skills",
       "get_contact_info": "Contact Marwen / get the CV",
+      "draft_contact_message": "Draft a message to Marwen",
       "show_section": "Show a portfolio section"
     }
   }

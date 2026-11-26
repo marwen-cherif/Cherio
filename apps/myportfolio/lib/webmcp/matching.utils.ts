@@ -179,12 +179,18 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+function wholeWordPattern(term: string): RegExp {
+  return new RegExp(`(^|[^\\p{L}\\p{N}])${escapeRegExp(term.trim())}($|[^\\p{L}\\p{N}])`, 'iu');
+}
+
+/** Case-insensitive whole-word search: "Next.js" is found in "React and Next.js", "Next" is not. */
+export function containsTerm(text: string, term: string): boolean {
+  return wholeWordPattern(term).test(text);
+}
+
 /** Entries whose texts (in any language) mention the requirement as a whole word. */
 export function findMentions(requirement: string, locale: Locale, currentYear: number): Evidence[] {
-  const pattern = new RegExp(
-    `(^|[^\\p{L}\\p{N}])${escapeRegExp(requirement.trim())}($|[^\\p{L}\\p{N}])`,
-    'iu'
-  );
+  const pattern = wholeWordPattern(requirement);
   return getCareerEntries(locale, currentYear)
     .filter((entry) => pattern.test(entry.text))
     .map((entry) => entry.evidence);

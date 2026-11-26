@@ -1,3 +1,7 @@
+import type { Locale } from '@/data/career';
+import type { PitchAudience } from '@/data/pitches';
+import type { ToolInput } from './modelContext.types';
+
 export const SEARCH_SCOPES = ['all', 'experience', 'project', 'education'] as const;
 export type SearchScope = (typeof SEARCH_SCOPES)[number];
 
@@ -17,8 +21,34 @@ export type ProfileToolName =
   | 'match_job_requirements'
   | 'search_experience'
   | 'get_skills'
+  | 'get_tailored_pitch'
   | 'get_contact_info'
+  | 'draft_contact_message'
   | 'show_section';
+
+/** Where a tool runs: the visitor's page (WebMCP) or the remote MCP endpoint. */
+export interface ToolContext {
+  /** Default language: the page's locale in the browser, English on the MCP endpoint. */
+  locale: Locale;
+  origin: string;
+  currentYear: number;
+}
+
+export interface ToolError {
+  error: string;
+}
+
+/** Transport-agnostic tool: adapted to WebMCP (lib/webmcp) and to the MCP endpoint (lib/mcp). */
+export interface ProfileToolDefinition {
+  name: ProfileToolName;
+  description: string;
+  /** JSON Schema of the input, advertised as is to agents. */
+  inputSchema: Record<string, unknown>;
+  readOnly: boolean;
+  /** Acts on the page (scroll, contact form): exposed through WebMCP only. */
+  browserOnly?: boolean;
+  run: (input: ToolInput | undefined, context: ToolContext) => unknown;
+}
 
 export interface Evidence {
   type: 'experience' | 'project';
@@ -137,9 +167,18 @@ export interface SkillsReport {
   }>;
 }
 
-export interface ContactDraft {
-  subject?: string;
-  message?: string;
+export interface TailoredPitch {
+  audience: PitchAudience;
+  candidate: string;
+  headline: string;
+  currentRole: { position: string; company: string; since: string };
+  yearsOfExperience: number;
+  pitch: string;
+  highlights: string[];
+  /** Technologies named in the visitor's context, with the evidence found in the portfolio. */
+  relevantExperience?: RequirementMatch[];
+  links: { cv: string; linkedin?: string; github?: string; upwork?: string };
+  nextSteps: string;
 }
 
 export interface ContactInfo {

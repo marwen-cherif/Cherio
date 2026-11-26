@@ -1,5 +1,6 @@
 import type { Locale } from '@/data/career';
 import type { ToolInput } from './modelContext.types';
+import type { ToolError } from './profile.types';
 
 // Agents may send anything: every reader validates and falls back instead of throwing.
 
@@ -34,6 +35,14 @@ export function readEnum<T extends string>(
 ): T {
   const value = input?.[key];
   return values.find((candidate) => candidate === value) ?? fallback;
+}
+
+export function toolError(error: string): ToolError {
+  return { error };
+}
+
+export function isToolError(data: unknown): data is ToolError {
+  return typeof data === 'object' && data !== null && typeof (data as ToolError).error === 'string';
 }
 
 export function toToolResult(data: unknown): string {

@@ -1,4 +1,7 @@
 import { getTranslations } from 'next-intl/server';
+import { JsonLd } from '@shared/atoms/JsonLd';
+import { buildPersonJsonLd } from '@/lib/seo/personJsonLd.utils';
+import { resolveLocale } from '@/lib/webmcp/toolInput.utils';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Experience from '@/components/sections/Experience';
@@ -15,13 +18,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      languages: {
-        en: '/en',
-        fr: '/fr',
-        'x-default': '/en',
-      },
-    },
   };
 }
 
@@ -30,6 +26,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="flex flex-col">
+      <JsonLd type="Person" data={buildPersonJsonLd(resolveLocale(locale))} />
       <Hero locale={locale} />
       <About locale={locale} />
       <Experience locale={locale} />

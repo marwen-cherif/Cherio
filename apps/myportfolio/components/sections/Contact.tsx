@@ -5,6 +5,8 @@ import { personalInfo } from '@/data/career';
 import { Mail, MapPin, Globe, Linkedin, Github, Phone } from 'iconoir-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import AnimatedCard from '@/components/ui/AnimatedCard';
+import ContactForm from '@/components/contact/ContactForm';
+import AgentAccess from '@/components/contact/AgentAccess';
 import { motion } from 'framer-motion';
 
 interface ContactProps {
@@ -140,6 +142,20 @@ export default function Contact({ locale }: ContactProps) {
                 </div>
               </div>
             </AnimatedCard>
+          </div>
+        </AnimatedSection>
+
+        {personalInfo.email && (
+          <AnimatedSection direction="up" delay={0.2}>
+            <div className="max-w-5xl mx-auto mt-12">
+              <ContactForm email={personalInfo.email} />
+            </div>
+          </AnimatedSection>
+        )}
+
+        <AnimatedSection direction="up" delay={0.2}>
+          <div className="max-w-5xl mx-auto mt-12">
+            <AgentAccess />
           </div>
         </AnimatedSection>
       </div>

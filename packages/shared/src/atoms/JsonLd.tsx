@@ -1,5 +1,5 @@
 interface JsonLdProps {
-  type: 'Product' | 'Organization' | 'WebSite';
+  type: 'Product' | 'Organization' | 'WebSite' | 'Person';
   data: any;
 }
 
