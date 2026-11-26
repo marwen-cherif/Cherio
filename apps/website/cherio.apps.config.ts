@@ -191,6 +191,35 @@ The tool also normalizes multiple spaces, excessive blank lines, and converts sp
       },
     ],
   },
+  {
+    id: 'be-wel',
+    slug: 'be-wel',
+    publicName: { fr: 'Be-Well Tantièmes', en: 'Be-Well Tantièmes' },
+    description: {
+      fr: 'Calculateur de charges et de tantièmes pour la résidence Be-Well : estimez la quote-part d’un copropriétaire sur une ou plusieurs dépenses selon les 13 clés officielles.',
+      en: 'Co-ownership expense and tantièmes calculator for the Be-Well residence: estimate a co-owner’s exact share across one or more expenses using the 13 official distribution keys.',
+    },
+    longDescription: {
+      fr: 'Un outil dédié aux copropriétaires de la résidence Be-Well pour vérifier et simuler la répartition des dépenses de copropriété à partir des 167 lots et des 13 clés de répartition officielles du règlement.',
+      en: 'A dedicated tool for Be-Well residence co-owners to verify and simulate co-ownership expense allocation across all 167 units and 13 official distribution keys from the bylaws.',
+    },
+    urls: {
+      fr: '/fr/residence/be-wel',
+      en: '/en/residence/be-wel',
+    },
+    icon: '/icons/be-wel.svg',
+    published: true,
+    howItWorks: {
+      title: {
+        fr: 'Comment ça fonctionne',
+        en: 'How it works',
+      },
+      content: {
+        fr: `1. **Sélectionnez vos lots** (logement, parking…) parmi les 167 lots de la résidence Be-Well ou saisissez vos tantièmes manuellement.\n2. **Ajoutez une ou plusieurs dépenses** de la résidence en choisissant la clé de répartition officielle correspondante (1 à 13).\n3. **Obtenez votre quote-part exacte** en euros et en pourcentage, poste par poste et au total.`,
+        en: `1. **Select your units** (apartment, parking…) from the 167 Be-Well residence units or enter your tantièmes manually.\n2. **Add one or more residence expenses** and pick the corresponding official distribution key (1 to 13).\n3. **Get your exact share** in euros and percentage, line by line and in total.`,
+      },
+    },
+  },
 ] as const;
 
 export type CherioApp = (typeof cherioApps)[number];

@@ -66,15 +66,25 @@ export default function Apps() {
                 <p className="text-gray-600 text-sm mb-4">{app.description[locale]}</p>
               </Link>
               {app.published ? (
-                <a
-                  href={app.urls[locale]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-block bg-gray-900 text-white px-4 py-2 rounded text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
-                >
-                  {locale === 'fr' ? 'Visiter' : 'Visit'}
-                </a>
+                app.urls[locale].startsWith('/') ? (
+                  <Link
+                    href={app.urls[locale]}
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-block bg-gray-900 text-white px-4 py-2 rounded text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
+                  >
+                    {locale === 'fr' ? 'Ouvrir' : 'Open'}
+                  </Link>
+                ) : (
+                  <a
+                    href={app.urls[locale]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-block bg-gray-900 text-white px-4 py-2 rounded text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
+                  >
+                    {locale === 'fr' ? 'Visiter' : 'Visit'}
+                  </a>
+                )
               ) : (
                 <span className="inline-block bg-gray-200 text-gray-600 px-4 py-2 rounded text-sm">
                   {t('comingSoon')}

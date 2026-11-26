@@ -104,17 +104,25 @@ export default function AppDetailPage({ app, locale }: AppDetailPageProps) {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{app.publicName[locale]}</h1>
             <p className="text-xl text-gray-300 mb-8">{app.description[locale]}</p>
-            {app.published && (
-              <a
-                href={app.urls[locale]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
-              >
-                {locale === 'fr' ? "Visiter l'application" : 'Visit application'}
-                <span className="ml-2">↗</span>
-              </a>
-            )}
+            {app.published &&
+              (app.urls[locale].startsWith('/') ? (
+                <Link
+                  href={app.urls[locale]}
+                  className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+                >
+                  {locale === 'fr' ? "Ouvrir l'outil" : 'Open tool'}
+                </Link>
+              ) : (
+                <a
+                  href={app.urls[locale]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+                >
+                  {locale === 'fr' ? "Visiter l'application" : 'Visit application'}
+                  <span className="ml-2">↗</span>
+                </a>
+              ))}
           </div>
         </div>
       </div>
