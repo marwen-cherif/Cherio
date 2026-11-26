@@ -2,6 +2,9 @@ import { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
 import { cherioApps } from '@/cherio.apps.config';
 
+// Required by `output: 'export'`: route handlers must be explicitly prerendered at build time.
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cherio.me';
 
