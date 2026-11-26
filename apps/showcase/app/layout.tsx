@@ -5,7 +5,7 @@ import { routing } from '@/i18n/routing';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({
-  subsets: ['latin', 'arabic'],
+  subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
 });

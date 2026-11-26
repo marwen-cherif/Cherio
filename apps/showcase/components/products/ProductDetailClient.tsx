@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { Product } from '@/types/product';
 import { useCart } from '@/contexts/CartContext';
@@ -15,7 +15,7 @@ interface ProductDetailClientProps {
   product: Product;
 }
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: {
     opacity: 1,
@@ -27,7 +27,7 @@ const imageVariants = {
   },
 };
 
-const infoVariants = {
+const infoVariants: Variants = {
   hidden: { opacity: 0, x: 20 },
   visible: {
     opacity: 1,
@@ -40,7 +40,7 @@ const infoVariants = {
   },
 };
 
-const buttonVariants = {
+const buttonVariants: Variants = {
   hover: { scale: 1.05 },
   tap: { scale: 0.95 },
 };
